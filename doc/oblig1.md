@@ -3,10 +3,10 @@
 *Teamnavn:* Olav Høysæther Opheim, Marius Soma, Henrik Johansen, Christoffer Slettebo
 
 *Team-Kompetanse*
-- Olav, Datasikkerhet
-- Marius, Datasikkerhet
-- Christoffer, 
-- Henrik, 
+- Olav, Datasikkerhet, Database, algoritme,
+- Marius, Datasikkerhet, Database, algoritme,
+- Christoffer, Informatikk-Matematikk-Økonomi, Maskinlæring, algoritme, optimering og modelering
+- Henrik, Datascince, Maskinlæring, algoritme, databehandling,
 
 
 

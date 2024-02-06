@@ -6,7 +6,7 @@
 - Olav, Datasikkerhet, Database, algoritme,
 - Marius, Datasikkerhet, Database, algoritme,
 - Christoffer, Informatikk-Matematikk-Økonomi, Maskinlæring, algoritme, optimering og modelering
-- Henrik, Datascince, Maskinlæring, algoritme, databehandling,
+- Henrik, Data science, Maskinlæring, algoritme, databehandling,
 
 
 

@@ -5,4 +5,5 @@ Møte referat:
 - Opprettet gitlab gruppe/prosjekt
 - Kommet frem til at vi skal lage spillet: Super Mario Bros
 - Kartlagt kompetansen til de ulike medlemmene av teamet
-- 
+- Begynnt å komme med ideer til spillet
+- Lagd plan for spill funksjoner

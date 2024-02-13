@@ -67,5 +67,29 @@ public class MegaMarius implements ApplicationListener, inputInterface{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'dispose'");
     }
+
+    @Override
+    public boolean jump() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'jump'");
+    }
+
+    @Override
+    public boolean move() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'move'");
+    }
+
+    @Override
+    public boolean duck() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'duck'");
+    }
+
+    @Override
+    public boolean tube() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'tube'");
+    }
     
 }

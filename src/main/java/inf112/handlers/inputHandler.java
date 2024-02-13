@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import inf112.skeleton.app.MegaMarius;
+import inf112.view.mariusView;
 
 public class inputHandler implements KeyListener, MouseListener{
 

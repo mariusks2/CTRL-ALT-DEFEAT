@@ -6,4 +6,6 @@ public interface inputInterface {
     boolean move();
 
     boolean duck();
+
+    boolean tube();
 }

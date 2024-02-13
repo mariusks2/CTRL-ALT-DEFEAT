@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.ScreenUtils;
+import inf112.handlers.inputHandler;
 
 public class MegaMarius implements ApplicationListener {
     private SpriteBatch batch;
@@ -18,7 +19,7 @@ public class MegaMarius implements ApplicationListener {
 	private Rectangle spriteRect;
 	private Rectangle screenRect = new Rectangle();
 	private float dx = 1, dy = 1;
-
+    private inputHandler = new inputHandler(); 
 
     @Override
     public void create() {

@@ -19,7 +19,7 @@ public class MegaMarius implements ApplicationListener {
 	private Rectangle spriteRect;
 	private Rectangle screenRect = new Rectangle();
 	private float dx = 1, dy = 1;
-    private inputHandler = new inputHandler(); 
+    // private inputHandler = new inputHandler(); 
 
     @Override
     public void create() {

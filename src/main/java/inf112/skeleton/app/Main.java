@@ -9,6 +9,8 @@ public class Main {
         cfg.setTitle("hello-world");
         cfg.setWindowedMode(480, 320);
 
-        new Lwjgl3Application(new HelloWorld(), cfg);
+        //new Lwjgl3Application(new HelloWorld(), cfg);
+
+        new Lwjgl3Application(new MegaMarius(), cfg);
     }
 }

@@ -10,8 +10,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.ScreenUtils;
 import inf112.handlers.inputHandler;
+import inf112.handlers.inputInterface;
 
-public class MegaMarius implements ApplicationListener {
+public class MegaMarius implements ApplicationListener, inputInterface{
     private SpriteBatch batch;
 	private BitmapFont font;
 	private Texture spriteImage;

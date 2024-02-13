@@ -5,9 +5,11 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import inf112.skeleton.app.MegaMarius;
+
 public class inputHandler implements KeyListener, MouseListener{
 
-    void InputManager() {
+    void InputManager(MegaMarius megaMarius, mariusView view) {
         
         }
 

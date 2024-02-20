@@ -26,8 +26,7 @@ public class MegaMarius implements ApplicationListener, inputInterface{
     public void create() {
         batch = new SpriteBatch();
 		font = new BitmapFont();
-		font.setColor(Color.RED);
-		spriteImage = new Texture(Gdx.files.internal("MARIUS.png"));
+		spriteImage = new Texture(Gdx.files.internal("start-screen.png"));
 		spriteRect = new Rectangle(1, 1, spriteImage.getWidth() / 2, spriteImage.getHeight() / 2);
 		bellSound = Gdx.audio.newSound(Gdx.files.internal("blipp.ogg"));
 		Gdx.graphics.setForegroundFPS(60);

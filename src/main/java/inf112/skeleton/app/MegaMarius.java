@@ -1,95 +1,30 @@
 package inf112.skeleton.app;
 
-import com.badlogic.gdx.ApplicationListener;
+import org.lwjgl.opengl.GL20;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.utils.ScreenUtils;
-import inf112.handlers.inputHandler;
-import inf112.handlers.inputInterface;
 
-public class MegaMarius implements ApplicationListener, inputInterface{
+public class MegaMarius extends Game {
     private SpriteBatch batch;
-	private BitmapFont font;
-	private Texture spriteImage;
-	private Sound bellSound;
-	private Rectangle spriteRect;
-	private Rectangle screenRect = new Rectangle();
-	private float dx = 1, dy = 1;
-    // private inputHandler = new inputHandler(); 
+    private Texture img;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
-		font = new BitmapFont();
-		font.setColor(Color.RED);
-		spriteImage = new Texture(Gdx.files.internal("MARIUS.png"));
-		spriteRect = new Rectangle(1, 1, spriteImage.getWidth() / 2, spriteImage.getHeight() / 2);
-		bellSound = Gdx.audio.newSound(Gdx.files.internal("blipp.ogg"));
-		Gdx.graphics.setForegroundFPS(60);
-    }
-
-    @Override
-    public void resize(int width, int height) {
-        screenRect.width = width;
-		screenRect.height = height;
+        img = new Texture(Gdx.files.internal("MARIUS.png"));
     }
 
     @Override
     public void render() {
-        ScreenUtils.clear(Color.RED);
+        Gdx.gl.glClearColor(1, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-		// Draw calls should be wrapped in batch.begin() ... batch.end()
-		batch.begin();
-		font.draw(batch, "MEGA MARIUS!", 200, 200);
-		batch.draw(spriteImage, spriteRect.x, spriteRect.y, spriteRect.width, spriteRect.height);
-		batch.end();
+        // Draw calls should be wrapped in batch.begin() ... batch.end()
+        batch.begin();
+        batch.draw(img, 0, 0);
+        batch.end();
     }
 
-    @Override
-    public void pause() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'pause'");
-    }
-
-    @Override
-    public void resume() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'resume'");
-    }
-
-    @Override
-    public void dispose() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'dispose'");
-    }
-
-    @Override
-    public boolean jump() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'jump'");
-    }
-
-    @Override
-    public boolean move() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'move'");
-    }
-
-    @Override
-    public boolean duck() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'duck'");
-    }
-
-    @Override
-    public boolean tube() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'tube'");
-    }
-    
 }

@@ -18,5 +18,3 @@ _«Marius-Mario er i trøbbel nok engong! Han er helt tom for PepsiMax. Marius-M
 Marius-Mario finnes ikke
 
 ## Credits
-
-olav abc

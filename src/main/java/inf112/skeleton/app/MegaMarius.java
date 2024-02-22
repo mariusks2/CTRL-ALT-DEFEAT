@@ -2,6 +2,7 @@ package inf112.skeleton.app;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -9,6 +10,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.ScreenUtils;
+
+import inf112.handlers.actions;
 import inf112.handlers.inputHandler;
 import inf112.handlers.inputInterface;
 
@@ -20,7 +23,7 @@ public class MegaMarius implements ApplicationListener, inputInterface{
 	private Rectangle spriteRect;
 	private Rectangle screenRect = new Rectangle();
 	private float dx = 1, dy = 1;
-    // private inputHandler = new inputHandler(); 
+    // 
 
     @Override
     public void create() {
@@ -48,6 +51,22 @@ public class MegaMarius implements ApplicationListener, inputInterface{
 		font.draw(batch, "MEGA MARIUS!", 200, 200);
 		batch.draw(spriteImage, spriteRect.x, spriteRect.y, spriteRect.width, spriteRect.height);
 		batch.end();
+
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+            spriteRect.x += 5;
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+            spriteRect.x -= 5;
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)){
+            spriteRect.y += 5;
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){
+            spriteRect.y -= 5;
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) { // check for key press
+			Gdx.app.exit();
+		}
     }
 
     @Override
@@ -92,4 +111,5 @@ public class MegaMarius implements ApplicationListener, inputInterface{
         throw new UnsupportedOperationException("Unimplemented method 'tube'");
     }
     
+
 }

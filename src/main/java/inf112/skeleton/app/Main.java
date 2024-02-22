@@ -3,6 +3,9 @@ package inf112.skeleton.app;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 
+import inf112.handlers.actions;
+import inf112.handlers.inputHandler;
+
 public class Main {
     public static void main(String[] args) {
         Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();
@@ -11,6 +14,7 @@ public class Main {
 
         //new Lwjgl3Application(new HelloWorld(), cfg);
 
-        new Lwjgl3Application(new MegaMarius(), cfg);
+        MegaMarius megaMarius = new MegaMarius();
+        new Lwjgl3Application(megaMarius, cfg);
     }
 }

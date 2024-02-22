@@ -1,5 +1,15 @@
 package inf112.characters;
 
-public class marius {
+import com.badlogic.gdx.graphics.Texture;
+
+public class marius extends character{
+    private Texture characterStyle;
     
+    public marius(double x, double y){
+        super(x, y, null);
+        
+    }
+
+    
+
 }

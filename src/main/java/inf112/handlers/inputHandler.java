@@ -5,78 +5,92 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Input.Keys;
+
+import inf112.characters.character;
 import inf112.skeleton.app.MegaMarius;
-import inf112.view.mariusView;
 
-public class inputHandler implements KeyListener, MouseListener{
+public class inputHandler implements InputProcessor{
 
-    MegaMarius megaMarius;
+    character unit;
 
-    public inputHandler(MegaMarius megaMarius) {
-            this.megaMarius=megaMarius;
+    public inputHandler(character unit) {
+        this.unit=unit;
         }
+
+        @Override
+        public boolean keyDown(int keycode)
+        {
+            switch (keycode)
+            {
+            case Keys.LEFT:
+                unit.setLeftMove(true);
+                break;
+            case Keys.RIGHT:
+                unit.setRightMove(true);
+                break;
+            }
+            return true;
+        }
+        @Override
+        public boolean keyUp(int keycode)
+        {
+            switch (keycode)
+            {
+            case Keys.LEFT:
+                unit.setLeftMove(false);
+                break;
+            case Keys.RIGHT:
+                unit.setRightMove(false);
+                break;
+            }
+            return true;
+        }
+    
 
     @Override
-    public void keyPressed(KeyEvent event) {
-        int keyCode = event.getKeyCode();
-
-        if (keyCode == KeyEvent.VK_UP) {
-            /* 
-            if(status == GameStatus.START_SCREEN || status == GameStatus.MAP_SELECTION)
-                currentAction = ButtonAction.GO_UP;
-            else
-                currentAction = ButtonAction.JUMP;
-                */
-
-        }
-        else if(keyCode == KeyEvent.VK_DOWN){
-            //if(status == GameStatus.START_SCREEN || status == GameStatus.MAP_SELECTION)
-            
-        }
-        else if (keyCode == KeyEvent.VK_RIGHT) {
-            System.out.println("hei");
-            
-        }
-        else if (keyCode == KeyEvent.VK_LEFT) {
-            
-        }
-        else if (keyCode == KeyEvent.VK_ENTER) {
-            //
-        }
-        else if (keyCode == KeyEvent.VK_ESCAPE) {
-            /*if(status == GameStatus.RUNNING || status == GameStatus.PAUSED )
-                currentAction = ButtonAction.PAUSE_RESUME;
-            else
-                currentAction = ButtonAction.GO_TO_START_SCREEN;*/
-
-        }
-        else if (keyCode == KeyEvent.VK_SPACE){
-            //
-        }
+    public boolean keyTyped(char character) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'keyTyped'");
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
-        
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'touchDown'");
     }
 
     @Override
-    public void keyReleased(KeyEvent event) {
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'touchUp'");
     }
 
     @Override
-    public void keyTyped(KeyEvent arg0) {}
+    public boolean touchCancelled(int screenX, int screenY, int pointer, int button) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'touchCancelled'");
+    }
 
     @Override
-    public void mouseClicked(MouseEvent e) {}
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'touchDragged'");
+    }
 
     @Override
-    public void mouseReleased(MouseEvent e) {}
+    public boolean mouseMoved(int screenX, int screenY) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'mouseMoved'");
+    }
 
     @Override
-    public void mouseEntered(MouseEvent e) {}
+    public boolean scrolled(float amountX, float amountY) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'scrolled'");
+    }
 
-    @Override
-    public void mouseExited(MouseEvent e) {}
+   
 }
 

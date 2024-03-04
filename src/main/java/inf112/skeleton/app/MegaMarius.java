@@ -24,7 +24,6 @@ public class MegaMarius implements ApplicationListener, inputInterface{
 	private Rectangle spriteRect;
 	private Rectangle screenRect = new Rectangle();
 	private float dx = 1, dy = 1;
-    private marius mmarius = new marius(1, 1);
      // 
 
     @Override
@@ -36,7 +35,7 @@ public class MegaMarius implements ApplicationListener, inputInterface{
 		spriteRect = new Rectangle(1, 1, spriteImage.getWidth() / 2, spriteImage.getHeight() / 2);
 		bellSound = Gdx.audio.newSound(Gdx.files.internal("blipp.ogg"));
 		Gdx.graphics.setForegroundFPS(60);
-        Gdx.input.setInputProcessor(new inputHandler(mmarius));
+        //Gdx.input.setInputProcessor(new inputHandler(spriteRect));
     }
 
     @Override
@@ -52,22 +51,21 @@ public class MegaMarius implements ApplicationListener, inputInterface{
 		// Draw calls should be wrapped in batch.begin() ... batch.end()
 		batch.begin();
 		font.draw(batch, "MEGA MARIUS!", 200, 200);
-		batch.draw(mmarius.getStyle(), spriteRect.x, spriteRect.y, spriteRect.width, spriteRect.height);
+		batch.draw(spriteImage, spriteRect.x, spriteRect.y, spriteRect.width, spriteRect.height);
 		batch.end();
 
-        /*
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-            spriteRect.x += 5;
+            spriteRect.x += 10* Gdx.graphics.getDeltaTime();;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)){
-            spriteRect.x -= 5;
+            spriteRect.x -= 10* Gdx.graphics.getDeltaTime();;
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP)){
-            spriteRect.y += 5;
+            spriteRect.y += 10* Gdx.graphics.getDeltaTime();;
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){
-            spriteRect.y -= 5;
-        } */
+            spriteRect.y -= 10* Gdx.graphics.getDeltaTime();;
+        }
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) { // check for key press
 			Gdx.app.exit();
 		}

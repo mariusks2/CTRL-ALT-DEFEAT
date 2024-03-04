@@ -6,6 +6,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 
 import inf112.characters.character;
@@ -13,9 +15,9 @@ import inf112.skeleton.app.MegaMarius;
 
 public class inputHandler implements InputProcessor{
 
-    character unit;
+    Rectangle unit;
 
-    public inputHandler(character unit) {
+    public inputHandler(Rectangle unit) {
         this.unit=unit;
         }
 
@@ -25,11 +27,9 @@ public class inputHandler implements InputProcessor{
             switch (keycode)
             {
             case Keys.LEFT:
-                unit.setLeftMove(true);
-                break;
+                unit.x -=  10 * Gdx.graphics.getDeltaTime();
             case Keys.RIGHT:
-                unit.setRightMove(true);
-                break;
+                unit.x +=  10 * Gdx.graphics.getDeltaTime();
             }
             return true;
         }
@@ -39,10 +39,8 @@ public class inputHandler implements InputProcessor{
             switch (keycode)
             {
             case Keys.LEFT:
-                unit.setLeftMove(false);
                 break;
             case Keys.RIGHT:
-                unit.setRightMove(false);
                 break;
             }
             return true;

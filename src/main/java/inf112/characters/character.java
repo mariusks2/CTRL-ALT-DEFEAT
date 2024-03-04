@@ -10,7 +10,7 @@ public abstract class character {
     private boolean rightMove;
     private boolean leftMove;
 
-    public character(double x, double y, Texture image){
+    public character(double x, double y){
 
     }
 

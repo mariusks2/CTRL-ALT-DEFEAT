@@ -17,7 +17,7 @@ public class Brick extends InteractiveTileObject{
     }
 
     @Override
-    public void onHeadHit() {
+    public void headContact() {
         System.out.println("Brick, Collision");
         setCategoryFilter(MegaMarius.Destroyed_BIT);
         getCell().setTile(null);

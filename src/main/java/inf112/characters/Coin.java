@@ -15,7 +15,7 @@ public class Coin extends InteractiveTileObject{
     }
 
     @Override
-    public void onHeadHit() {
+    public void headContact() {
         System.out.println("Coin, Collision");
     }
     

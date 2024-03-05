@@ -30,20 +30,20 @@ public abstract class InteractiveTileObject {
 
         BodyDef bdef = new BodyDef();
         FixtureDef fdef = new FixtureDef();
-        PolygonShape shape = new PolygonShape();
+        PolygonShape polyShape = new PolygonShape();
 
         bdef.type = BodyDef.BodyType.StaticBody;
         bdef.position.set((bounds.getX() + bounds.getWidth()/2) / MegaMarius.PPM, (bounds.getY() + bounds.getHeight()/2)/MegaMarius.PPM);
 
         body = world.createBody(bdef);
 
-        shape.setAsBox(bounds.getWidth()/2 / MegaMarius.PPM, bounds.getHeight()/2/MegaMarius.PPM);
-        fdef.shape = shape;
+        polyShape.setAsBox(bounds.getWidth()/2 / MegaMarius.PPM, bounds.getHeight()/2/MegaMarius.PPM);
+        fdef.shape = polyShape;
         fixture = body.createFixture(fdef);
 
     }
 
-    public abstract void onHeadHit();
+    public abstract void headContact();
 
     public void setCategoryFilter(short filterBit){
         Filter filter = new Filter();
@@ -52,7 +52,7 @@ public abstract class InteractiveTileObject {
     }
 
     public TiledMapTileLayer.Cell getCell(){
-        TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(1);
-        return layer.getCell( (int) (body.getPosition().x * MegaMarius.PPM/16), (int)(body.getPosition().y*MegaMarius.PPM/16));
+        TiledMapTileLayer mapLayer = (TiledMapTileLayer) map.getLayers().get(1);
+        return mapLayer.getCell( (int) (body.getPosition().x * MegaMarius.PPM/16), (int)(body.getPosition().y*MegaMarius.PPM/16));
     }
 }

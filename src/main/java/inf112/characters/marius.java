@@ -5,13 +5,23 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.Body;
 
 public class marius extends Sprite{
-    private Texture characterStyle;
-    private Rectangle spriteRect;
+    public World world;
+    public Body body2d;
 
-    public marius(float x, float y){
+    public marius(World world){
+        this.world = world;
+        makeMarius();
+    }
 
+    public void makeMarius(){
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.position.set(32,32);
+        bodyDef.type = BodyDef.BodyType.DynamicBody;
     }
 
 

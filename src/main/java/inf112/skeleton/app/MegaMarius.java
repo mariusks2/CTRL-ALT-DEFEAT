@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -16,7 +17,7 @@ import inf112.handlers.actions;
 import inf112.handlers.inputHandler;
 import inf112.handlers.inputInterface;
 
-public class MegaMarius implements ApplicationListener, inputInterface{
+public class MegaMarius implements ApplicationListener{
     private SpriteBatch batch;
 	private BitmapFont font;
 	private Texture spriteImage;
@@ -36,6 +37,11 @@ public class MegaMarius implements ApplicationListener, inputInterface{
 		bellSound = Gdx.audio.newSound(Gdx.files.internal("blipp.ogg"));
 		Gdx.graphics.setForegroundFPS(60);
         //Gdx.input.setInputProcessor(new inputHandler(spriteRect));
+        OrthographicCamera camera = new OrthographicCamera();
+    }
+
+    public void generateMap(){
+
     }
 
     @Override
@@ -55,16 +61,16 @@ public class MegaMarius implements ApplicationListener, inputInterface{
 		batch.end();
 
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-            spriteRect.x += 10* Gdx.graphics.getDeltaTime();;
+            spriteRect.x += 30* Gdx.graphics.getDeltaTime();
         }
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)){
-            spriteRect.x -= 10* Gdx.graphics.getDeltaTime();;
+            spriteRect.x -= 30* Gdx.graphics.getDeltaTime();
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP)){
-            spriteRect.y += 10* Gdx.graphics.getDeltaTime();;
+            spriteRect.y += 10;
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){
-            spriteRect.y -= 10* Gdx.graphics.getDeltaTime();;
+            spriteRect.y -= 10;
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) { // check for key press
 			Gdx.app.exit();
@@ -88,30 +94,5 @@ public class MegaMarius implements ApplicationListener, inputInterface{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'dispose'");
     }
-
-    @Override
-    public boolean jump() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'jump'");
-    }
-
-    @Override
-    public boolean move() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'move'");
-    }
-
-    @Override
-    public boolean duck() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'duck'");
-    }
-
-    @Override
-    public boolean tube() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'tube'");
-    }
-    
 
 }

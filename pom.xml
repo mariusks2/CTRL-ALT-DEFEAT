@@ -90,6 +90,28 @@
 			<version>${libgdx.version}</version>
 		</dependency>
 		<dependency>
+        <groupId>com.badlogicgames.gdx</groupId>
+        <artifactId>gdx-box2d</artifactId>
+        <version>${libgdx.version}</version>
+    	</dependency>
+		<dependency>
+            <groupId>com.badlogicgames.gdx</groupId>
+            <artifactId>gdx-box2d</artifactId>
+            <version>${libgdx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.badlogicgames.gdx</groupId>
+            <artifactId>gdx-box2d-platform</artifactId>
+            <classifier>natives-desktop</classifier>
+            <version>${libgdx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.badlogicgames.gdx</groupId>
+            <artifactId>gdx-backend-headless</artifactId>
+            <version>${libgdx.version}</version>
+            <scope>test</scope>
+        </dependency>
+		<dependency>
 			<groupId>com.badlogicgames.gdx</groupId>
 			<artifactId>gdx-backend-headless</artifactId>
 			<version>${libgdx.version}</version>

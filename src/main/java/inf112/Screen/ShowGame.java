@@ -22,6 +22,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import inf112.Screen.Marius.Marius;
+import inf112.skeleton.MakeMarius.makemarius;
 import inf112.skeleton.app.MegaMarius;
 
 public class ShowGame implements Screen{
@@ -53,53 +54,9 @@ public class ShowGame implements Screen{
         world = new World(new Vector2(0, -10), true);
         b2dr = new Box2DDebugRenderer();
 
-        player = new Marius(world);
+        new makemarius(world, map);
 
-        BodyDef bdef = new BodyDef();
-        PolygonShape shape = new PolygonShape();
-        FixtureDef fdef = new FixtureDef(); 
-        Body body;
-        
-        // this will find every rectangle in layer 2 from the map. Used for collision.
-        for(MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)) {
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set((rect.getX()+rect.getWidth()/2) / MegaMarius.PPM, (rect.getY()+rect.getHeight()/2) / MegaMarius.PPM);
-            body = world.createBody(bdef);
-            shape.setAsBox(rect.getWidth()/2 / MegaMarius.PPM, rect.getHeight()/2 / MegaMarius.PPM);
-            fdef.shape = shape;
-            body.createFixture(fdef);
-        } 
-        //pipe
-        for(MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)) {
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set((rect.getX()+rect.getWidth()/2) / MegaMarius.PPM, (rect.getY()+rect.getHeight()/2) / MegaMarius.PPM);
-            body = world.createBody(bdef);
-            shape.setAsBox(rect.getWidth()/2 / MegaMarius.PPM, rect.getHeight()/2 / MegaMarius.PPM);
-            fdef.shape = shape;
-            body.createFixture(fdef);
-        } 
-        //brick
-        for(MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)) {
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set((rect.getX()+rect.getWidth()/2) / MegaMarius.PPM, (rect.getY()+rect.getHeight()/2) / MegaMarius.PPM);
-            body = world.createBody(bdef);
-            shape.setAsBox(rect.getWidth()/2 / MegaMarius.PPM, rect.getHeight()/2 / MegaMarius.PPM);
-            fdef.shape = shape;
-            body.createFixture(fdef);
-        } 
-        //coin
-        for(MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set((rect.getX()+rect.getWidth()/2) / MegaMarius.PPM, (rect.getY()+rect.getHeight()/2) / MegaMarius.PPM);
-            body = world.createBody(bdef);
-            shape.setAsBox(rect.getWidth()/2 / MegaMarius.PPM, rect.getHeight()/2 / MegaMarius.PPM);
-            fdef.shape = shape;
-            body.createFixture(fdef);
-        } 
+        player = new Marius(world);
     }
 
     public void update(float dt){
@@ -163,7 +120,11 @@ public class ShowGame implements Screen{
 
     @Override
     public void dispose() {
-        
+        map.dispose();
+        renderer.dispose();
+        world.dispose();
+        b2dr.dispose();
+        //hud.dispose();
     }
     
 }

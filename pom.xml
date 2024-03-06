@@ -90,11 +90,14 @@
 			<version>${libgdx.version}</version>
 		</dependency>
 		<dependency>
+<<<<<<< HEAD
+=======
         <groupId>com.badlogicgames.gdx</groupId>
         <artifactId>gdx-box2d</artifactId>
         <version>${libgdx.version}</version>
     	</dependency>
 		<dependency>
+>>>>>>> 322ce23b218fd45c56ef29b8618e0550f46d6796
             <groupId>com.badlogicgames.gdx</groupId>
             <artifactId>gdx-box2d</artifactId>
             <version>${libgdx.version}</version>
@@ -112,6 +115,19 @@
             <scope>test</scope>
         </dependency>
 		<dependency>
+<<<<<<< HEAD
+			<groupId>com.badlogicgames.gdx</groupId>
+			<artifactId>gdx-box2d</artifactId>
+			<version>${libgdx.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.badlogicgames.gdx</groupId>
+			<artifactId>gdx-box2d-parent</artifactId>
+			<version>${libgdx.version}</version>
+		</dependency>
+		<dependency>
+=======
+>>>>>>> 322ce23b218fd45c56ef29b8618e0550f46d6796
 			<groupId>com.badlogicgames.gdx</groupId>
 			<artifactId>gdx-backend-headless</artifactId>
 			<version>${libgdx.version}</version>

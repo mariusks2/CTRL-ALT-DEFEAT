@@ -12,7 +12,7 @@ import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import inf112.MegaMarius;
+import inf112.skeleton.app.MegaMarius;
 
 /**
  * Created by brentaureli on 8/17/15.

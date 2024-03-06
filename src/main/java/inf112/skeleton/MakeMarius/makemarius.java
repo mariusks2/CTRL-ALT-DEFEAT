@@ -12,13 +12,16 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import inf112.Screen.Marius.Brick;
 import inf112.Screen.Marius.Coin;
+import inf112.Screens.ShowGame;
 import inf112.skeleton.app.MegaMarius;
 
 public class makemarius {
-    public makemarius(World world, TiledMap map){
+    public makemarius(ShowGame screen){
         BodyDef bdef = new BodyDef();
         PolygonShape shape = new PolygonShape();
         FixtureDef fdef = new FixtureDef(); 
+        World world = screen.getWorld();
+        TiledMap map = screen.getMap();
         Body body;
         
         // this will find every rectangle in layer 2 from the map. Used for collision.
@@ -42,16 +45,14 @@ public class makemarius {
             body.createFixture(fdef);
         } 
         //brick
-        for(MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)) {
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+        for(MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)){
+            new Brick(screen, object);
+        }
 
-            new Brick(world, map, rect);
-        } 
-        //coin
-        for(MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+                //create coin bodies/fixtures
+        for(MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)){
 
-            new Coin(world, map, rect);
+            new Coin(screen, object);
         }
     }
 }

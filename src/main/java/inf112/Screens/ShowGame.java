@@ -15,9 +15,9 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import inf112.MegaMarius;
+import inf112.skeleton.app.MegaMarius;
 import inf112.Scenes.Hud;
-import inf112.Tools.B2WorldCreator;
+import inf112.skeleton.MakeMarius.makemarius;
 import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.WorldContactListener;
 
@@ -35,7 +35,7 @@ public class ShowGame implements Screen{
     //Box2d variables
     private World world;
     private Box2DDebugRenderer b2dr;
-    private B2WorldCreator creator;
+    private makemarius creator;
 
     // Sprites
     private Marius player;
@@ -59,15 +59,11 @@ public class ShowGame implements Screen{
 
         b2dr = new Box2DDebugRenderer();
 
-        creator = new B2WorldCreator(this);
+        creator = new makemarius(this);
 
         player = new Marius(this);
 
         world.setContactListener(new WorldContactListener());
-
-
-
-
     }
 
     public TextureAtlas getAtlas() {

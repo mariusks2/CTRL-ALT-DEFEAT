@@ -9,7 +9,7 @@ import inf112.MegaMarius;
 public class Main {
     public static void main(String[] args) {
         Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();
-        cfg.setTitle("hello-world");
+        cfg.setTitle("ctrl+alt+defeat");
         cfg.setWindowedMode(1200, 624);
 
         //new Lwjgl3Application(new HelloWorld(), cfg);

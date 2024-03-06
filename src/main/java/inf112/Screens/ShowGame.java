@@ -51,7 +51,7 @@ public class ShowGame implements Screen{
 
 
         mapLoader = new TmxMapLoader();
-        map = mapLoader.load("level1.tmx");
+        map = mapLoader.load("mario1.tmx");
         renderer = new OrthogonalTiledMapRenderer(map, 1  / MegaMarius.PPM);
         gamecam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2, 0);
 

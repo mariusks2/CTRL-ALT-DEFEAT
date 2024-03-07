@@ -272,7 +272,7 @@ import inf112.Screens.ShowGame;
 				MegaMarius.OBJECT_BIT |
 				MegaMarius.ENEMY_HEAD_BIT |
 				MegaMarius.ITEM_BIT;
-	
+
 			fdef.shape = shape;
 			b2body.createFixture(fdef).setUserData(this);
 	
@@ -288,7 +288,6 @@ import inf112.Screens.ShowGame;
 	
 		}
 	
-		
 		public void defineMario(){
 			BodyDef bdef = new BodyDef();
 			bdef.position.set(32 / MegaMarius.PPM, 32 / MegaMarius.PPM);
@@ -308,7 +307,7 @@ import inf112.Screens.ShowGame;
 			MegaMarius.ITEM_BIT;
 	
 			fdef.shape = shape;
-			b2body.createFixture(fdef).setUserData(this);
+			b2body.createFixture(fdef);
 	
 			EdgeShape head = new EdgeShape();
 			head.set(new Vector2(-2 / MegaMarius.PPM, 6 / MegaMarius.PPM), new Vector2(2 / MegaMarius.PPM, 6 / MegaMarius.PPM));
@@ -316,7 +315,7 @@ import inf112.Screens.ShowGame;
 			fdef.shape = head;
 			fdef.isSensor = true;
 	
-			b2body.createFixture(fdef).setUserData(this);
+			b2body.createFixture(fdef).setUserData("head");
 		}
 
 		public void defineBigMario(){

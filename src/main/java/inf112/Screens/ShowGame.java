@@ -16,7 +16,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import inf112.skeleton.app.MegaMarius;
-import inf112.Scenes.Hud;
+import inf112.Scenes.Display;
+import inf112.Screen.Marius.Spider;
 import inf112.skeleton.MakeMarius.makemarius;
 import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.WorldContactListener;
@@ -26,7 +27,7 @@ public class ShowGame implements Screen{
     private TextureAtlas atlas;
     private OrthographicCamera gamecam;
     private Viewport gamePort;
-    private Hud hud;
+    private Display display;
 
     private TmxMapLoader mapLoader;
     private TiledMap map;
@@ -35,10 +36,12 @@ public class ShowGame implements Screen{
     //Box2d variables
     private World world;
     private Box2DDebugRenderer b2dr;
-    private makemarius creator;
 
     // Sprites
     private Marius player;
+    private float accumulator = 0f;
+    private float stepTime = 1/60f; // Fixed time step for physics updates
+    private Spider spider;
 
     public ShowGame(MegaMarius game){
         atlas = new TextureAtlas("Mario_and_Enemies.pack");
@@ -47,7 +50,7 @@ public class ShowGame implements Screen{
         gamecam = new OrthographicCamera();
         gamePort = new FitViewport(MegaMarius.M_Width / MegaMarius.PPM, MegaMarius.M_Height / MegaMarius.PPM, gamecam);
 
-        hud = new Hud(game.batch);
+        display = new Display(game.batch);
 
 
         mapLoader = new TmxMapLoader();
@@ -56,14 +59,16 @@ public class ShowGame implements Screen{
         gamecam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2, 0);
 
         world = new World(new Vector2(0, -10), true);
+        world.step(0, 0, 0);
+        b2dr = new Box2DDebugRenderer();    
 
-        b2dr = new Box2DDebugRenderer();
-
-        creator = new makemarius(this);
+        new makemarius(this);
 
         player = new Marius(this);
 
         world.setContactListener(new WorldContactListener());
+
+        spider = new Spider(this, .32f, .32f);
     }
 
     public TextureAtlas getAtlas() {
@@ -72,13 +77,22 @@ public class ShowGame implements Screen{
 
 
     public void update(float dt){
+
         handleInput(dt);
 
-        world.step(1 / 60f, 6, 2);
+        // Accumulate the time passed
+        accumulator += Math.min(dt, 0.25f);
+
+        // Perform fixed time step updates
+        while (accumulator >= stepTime) {
+            world.step(stepTime, 6, 2);
+            accumulator -= stepTime;
+        }
 
         player.update(dt);
+        spider.update(dt);
 
-        hud.update(dt);
+        display.updateTime(dt);
 
         //attach our gamecam to our players.x coordinate
         if(player.currentState != Marius.State.DEAD) {
@@ -104,11 +118,26 @@ public class ShowGame implements Screen{
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         player.draw(game.batch);
+        spider.draw(game.batch);
         game.batch.end();
 
-        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
-        hud.stage.draw();
+        game.batch.setProjectionMatrix(display.stage.getCamera().combined);
+        display.stage.draw();
+
+        // Check if game is over
+        if(gameIsOver()) {
+            game.setScreen(new ShowGameOver(game));
+            dispose();
+        }
     }
+
+    private boolean gameIsOver() {
+        if (player.currentState == Marius.State.DEAD && player.getStateTimer() > 3)
+            return true;
+        else
+            return false;
+    }
+
 
     private void handleInput(float dt) {
         //control our player using immediate impulses
@@ -161,11 +190,11 @@ public class ShowGame implements Screen{
         renderer.dispose();
         world.dispose();
         b2dr.dispose();
-        hud.dispose();
+        display.dispose();
     }
     
-    public Hud getHud(){
-        return hud; 
+    public Display getDisplay(){
+        return display; 
     }
 
 }

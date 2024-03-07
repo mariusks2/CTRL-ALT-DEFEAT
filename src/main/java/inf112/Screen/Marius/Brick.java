@@ -1,9 +1,11 @@
 package inf112.Screen.Marius;
 
+import com.badlogic.gdx.Application;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapObject;
 
+import inf112.Scenes.Display;
 import inf112.Screens.ShowGame;
-import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.MegaMarius;
 
 public class Brick extends InteractiveTileObj{
@@ -14,9 +16,11 @@ public class Brick extends InteractiveTileObj{
     }
 
     @Override
-    public void onHeadHit(Marius mario) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'onHeadHit'");
+    public void onHeadHit() {
+        Gdx.app.setLogLevel(Application.LOG_ERROR);
+        setCategoryFilter(MegaMarius.DESTROYED_BIT);
+        getCell().setTile(null);
+        Display.updateScore(200);
     }
 
 }

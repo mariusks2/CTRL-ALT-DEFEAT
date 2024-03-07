@@ -1,10 +1,13 @@
 package inf112.skeleton.app;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
+
+import inf112.Screen.Marius.InteractiveTileObj;
 
 
 public class WorldContactListener implements ContactListener {
@@ -13,8 +16,14 @@ public class WorldContactListener implements ContactListener {
         Fixture fixA = contact.getFixtureA();
         Fixture fixB = contact.getFixtureB();
 
-        int cDef = fixA.getFilterData().categoryBits | fixB.getFilterData().categoryBits;
+        if (fixA.getUserData() == "head" || fixB.getUserData() == "head") {
+            Fixture head = fixA.getUserData() == "head" ? fixA : fixB;
+            Fixture object = head == fixA ? fixB : fixA;
 
+            if (object.getUserData() != null && InteractiveTileObj.class.isAssignableFrom(object.getUserData().getClass())) {
+                ((InteractiveTileObj) object.getUserData()).onHeadHit();
+            }
+        }
     }
 
     @Override

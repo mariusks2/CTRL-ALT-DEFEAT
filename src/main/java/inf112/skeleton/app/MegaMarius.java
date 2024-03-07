@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import inf112.Screens.ShowGame;
+import inf112.Screens.ShowGameOver;
 
 public class MegaMarius extends Game {
     public static final int M_Width = 400;

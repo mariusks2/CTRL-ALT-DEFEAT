@@ -42,6 +42,7 @@ public class makemarius {
             body = world.createBody(bdef);
             shape.setAsBox(rect.getWidth()/2 / MegaMarius.PPM, rect.getHeight()/2 / MegaMarius.PPM);
             fdef.shape = shape;
+            fdef.filter.categoryBits=MegaMarius.OBJECT_BIT;
             body.createFixture(fdef);
         } 
         //brick

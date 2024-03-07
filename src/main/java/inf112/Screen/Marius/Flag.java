@@ -1,29 +1,24 @@
 package inf112.Screen.Marius;
-
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 
 import inf112.Scenes.Display;
 import inf112.Screens.ShowGame;
-import inf112.skeleton.app.MegaMarius;
 
-public class Coin extends InteractiveTileObj{
+public class Flag extends InteractiveTileObj{
+    private final int FLAG = 314;
     private static TiledMapTileSet tileSet;
-    private final int BLANK_COIN = 28;
 
-    public Coin(ShowGame screen, MapObject object){
+    public Flag(ShowGame screen, MapObject object) {
         super(screen, object);
         tileSet = map.getTileSets().getTileSet("tileset1");
         fixture.setUserData(this);
-        setCategoryFilter(MegaMarius.COIN_BIT);
+        tileSet.getTile(FLAG);
     }
 
     @Override
     public void onHeadHit() {
-        Gdx.app.log("Coin", "Collision");
-        getCell().setTile(tileSet.getTile(BLANK_COIN));
-        Display.updateScore(200);
+        Display.updateScore(1000);
     }
     
 }

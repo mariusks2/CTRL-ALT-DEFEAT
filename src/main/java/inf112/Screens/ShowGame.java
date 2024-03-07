@@ -17,6 +17,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import inf112.skeleton.app.MegaMarius;
 import inf112.Scenes.Display;
+import inf112.Screen.Marius.Spider;
 import inf112.skeleton.MakeMarius.makemarius;
 import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.WorldContactListener;
@@ -35,10 +36,10 @@ public class ShowGame implements Screen{
     //Box2d variables
     private World world;
     private Box2DDebugRenderer b2dr;
-    private makemarius creator;
 
     // Sprites
     private Marius player;
+    private Spider spider;
 
     public ShowGame(MegaMarius game){
         atlas = new TextureAtlas("Mario_and_Enemies.pack");
@@ -59,11 +60,13 @@ public class ShowGame implements Screen{
 
         b2dr = new Box2DDebugRenderer();
 
-        creator = new makemarius(this);
+        new makemarius(this);
 
         player = new Marius(this);
 
         world.setContactListener(new WorldContactListener());
+
+        spider = new Spider(this, .32f, .32f);
     }
 
     public TextureAtlas getAtlas() {
@@ -77,6 +80,7 @@ public class ShowGame implements Screen{
         world.step(1 / 60f, 6, 2);
 
         player.update(dt);
+        spider.update(dt);
 
         display.updateTime(dt);
 
@@ -104,6 +108,7 @@ public class ShowGame implements Screen{
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         player.draw(game.batch);
+        spider.draw(game.batch);
         game.batch.end();
 
         game.batch.setProjectionMatrix(display.stage.getCamera().combined);

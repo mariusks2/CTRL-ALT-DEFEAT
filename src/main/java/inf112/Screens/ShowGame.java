@@ -16,7 +16,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import inf112.skeleton.app.MegaMarius;
-import inf112.Scenes.Hud;
+import inf112.Scenes.Display;
 import inf112.skeleton.MakeMarius.makemarius;
 import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.WorldContactListener;
@@ -26,7 +26,7 @@ public class ShowGame implements Screen{
     private TextureAtlas atlas;
     private OrthographicCamera gamecam;
     private Viewport gamePort;
-    private Hud hud;
+    private Display display;
 
     private TmxMapLoader mapLoader;
     private TiledMap map;
@@ -47,7 +47,7 @@ public class ShowGame implements Screen{
         gamecam = new OrthographicCamera();
         gamePort = new FitViewport(MegaMarius.M_Width / MegaMarius.PPM, MegaMarius.M_Height / MegaMarius.PPM, gamecam);
 
-        hud = new Hud(game.batch);
+        display = new Display(game.batch);
 
 
         mapLoader = new TmxMapLoader();
@@ -78,7 +78,7 @@ public class ShowGame implements Screen{
 
         player.update(dt);
 
-        hud.update(dt);
+        display.updateTime(dt);
 
         //attach our gamecam to our players.x coordinate
         if(player.currentState != Marius.State.DEAD) {
@@ -106,8 +106,8 @@ public class ShowGame implements Screen{
         player.draw(game.batch);
         game.batch.end();
 
-        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
-        hud.stage.draw();
+        game.batch.setProjectionMatrix(display.stage.getCamera().combined);
+        display.stage.draw();
     }
 
     private void handleInput(float dt) {
@@ -161,11 +161,11 @@ public class ShowGame implements Screen{
         renderer.dispose();
         world.dispose();
         b2dr.dispose();
-        hud.dispose();
+        display.dispose();
     }
     
-    public Hud getHud(){
-        return hud; 
+    public Display getDisplay(){
+        return display; 
     }
 
 }

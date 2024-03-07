@@ -109,7 +109,7 @@ import inf112.Screens.ShowGame;
 		}
 	
 		public void update(float dt){
-			if(screen.getHud().isTimeUp() && !entityIsDead()) {
+			if(screen.getDisplay().isTimeUp() && !entityIsDead()) {
 				entityDie();
 			}
 

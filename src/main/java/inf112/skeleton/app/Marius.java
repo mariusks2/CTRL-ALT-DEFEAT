@@ -109,7 +109,7 @@ import inf112.Screens.ShowGame;
 		}
 	
 		public void update(float dt){
-			if(screen.getDisplay().isTimeUp() && !entityIsDead()) {
+			if((screen.getDisplay().isTimeUp() && !entityIsDead()) || fallOfMap()) {
 				entityDie();
 			}
 
@@ -128,6 +128,13 @@ import inf112.Screens.ShowGame;
         	if(timeToRedefineMario)
             	redefineMario();
 	
+		}
+
+		private boolean fallOfMap() {
+			if(b2body.getPosition().y <= 0)
+				return true;
+			else
+				return false;
 		}
 
 		public boolean entityIsDead() {

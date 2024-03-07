@@ -1,5 +1,20 @@
 package inf112.skeleton.app;
 
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.EdgeShape;
+import com.badlogic.gdx.physics.box2d.Filter;
+import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -10,6 +25,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.EdgeShape;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.utils.Array;
 import inf112.Screens.ShowGame;
@@ -93,6 +109,10 @@ import inf112.Screens.ShowGame;
 		}
 	
 		public void update(float dt){
+			if(screen.getHud().isTimeUp() && !entityIsDead()) {
+				entityDie();
+			}
+
 			//update our sprite to correspond with the position of our Box2D body
 			
 			if(marioIsBig)
@@ -109,6 +129,29 @@ import inf112.Screens.ShowGame;
             	redefineMario();
 	
 		}
+
+		public boolean entityIsDead() {
+			return marioIsDead;
+		}
+
+		public void entityDie() {
+			if(!entityIsDead()) {
+				marioIsDead = true;
+				Filter filter = new Filter();
+				filter.maskBits = MegaMarius.NOTHING_BIT;
+
+				for (Fixture fixture : b2body.getFixtureList()) {
+					
+					fixture.setFilterData(filter);
+				}
+
+				b2body.applyLinearImpulse(new Vector2(0, 4f), b2body.getWorldCenter(), true);
+			} else {
+				// entity is already dead
+			}
+            
+		}
+
 	
 		public TextureRegion getFrame(float dt){
 			//get marios current state. ie. jumping, running, standing...

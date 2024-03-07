@@ -253,7 +253,7 @@ import inf112.Screens.ShowGame;
 	
 		public void jump(){
 			if ( currentState != State.JUMPING ) {
-				b2body.applyLinearImpulse(new Vector2(0, 4f), b2body.getWorldCenter(), true);
+				b2body.applyLinearImpulse(new Vector2(0, 3.8f), b2body.getWorldCenter(), true);
 				currentState = State.JUMPING;
 			}
 		}

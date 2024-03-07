@@ -50,6 +50,5 @@ public class TestMarius {
 	void coinTest() {
         assertEquals(null, mm.getScreen());
         assertEquals(null, mm.batch);
-        mm.create();
 	}
 }

@@ -123,7 +123,7 @@ import inf112.Screens.ShowGame;
 
 				b2body.applyLinearImpulse(new Vector2(0, 4f), b2body.getWorldCenter(), true);
 			} else {
-				System.out.println("Entity is already dead");
+				//System.out.println("Entity is already dead");
 			}
 		}
 	

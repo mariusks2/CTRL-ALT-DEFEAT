@@ -7,6 +7,8 @@ import inf112.Screens.ShowGame;
 import inf112.Screens.ShowGameOver;
 import inf112.skeleton.app.MegaMarius;
 
+
+//DOESNT WORK YET
 public class Flag extends InteractiveTileObj{
     private final int FLAG = 314;
     private static TiledMapTileSet tileSet;
@@ -16,13 +18,13 @@ public class Flag extends InteractiveTileObj{
         fixture.setUserData(this);
         setCategoryFilter(MegaMarius.FLAG_BIT);
     }
-
+//this is all testing
     @Override
-    public void onHeadHit() {
+    public void HeadHit() {
         Gdx.app.log("Flag", "Collision");
         Object test = map.getTileSets().getTileSet("tileset1").getTile(FLAG).getOffsetX();
         System.out.println(test);
-        MegaMarius game = ShowGame.getGame();
+        MegaMarius game = screen.getGame();
         game.setScreen(new ShowGameOver(game));
     }
 }

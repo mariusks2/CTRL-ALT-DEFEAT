@@ -24,40 +24,37 @@ import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.WorldContactListener;
 
 public class ShowGame implements Screen{
-    private static MegaMarius game;
+    private MegaMarius game;
     private TextureAtlas atlas;
-    private OrthographicCamera gamecam;
+    private OrthographicCamera gameCam;
     private Viewport gamePort;
     private Display display;
 
     private TmxMapLoader mapLoader;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
-
-    //Box2d variables
+    
     private World world;
     private Box2DDebugRenderer b2dr;
 
-    // Sprites
     private Marius player;
     private float accumulator = 0f;
-    private float stepTime = 1/60f; // Fixed time step for physics updates
+    private float stepTime = 1/60f;
     private Spider spider;
 
     public ShowGame(MegaMarius game){
         atlas = new TextureAtlas("Mario_and_Enemies.pack");
 
         this.game = game;
-        gamecam = new OrthographicCamera();
-        gamePort = new FitViewport(MegaMarius.M_Width / MegaMarius.PPM, MegaMarius.M_Height / MegaMarius.PPM, gamecam);
+        gameCam = new OrthographicCamera();
+        gamePort = new FitViewport(MegaMarius.M_Width / MegaMarius.PPM, MegaMarius.M_Height / MegaMarius.PPM, gameCam);
 
         display = new Display(game.batch);
-
 
         mapLoader = new TmxMapLoader();
         map = mapLoader.load("mario1.tmx");
         renderer = new OrthogonalTiledMapRenderer(map, 1  / MegaMarius.PPM);
-        gamecam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2, 0);
+        gameCam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2, 0);
 
         world = new World(new Vector2(0, -10), true);
         world.step(0, 0, 0);
@@ -81,10 +78,10 @@ public class ShowGame implements Screen{
 
         handleInput(dt);
 
-        // Accumulate the time passed
+        
         accumulator += Math.min(dt, 0.25f);
 
-        // Perform fixed time step updates
+        
         while (accumulator >= stepTime) {
             world.step(stepTime, 6, 2);
             accumulator -= stepTime;
@@ -97,11 +94,11 @@ public class ShowGame implements Screen{
 
         //attach our gamecam to our players.x coordinate
         if(player.currentState != Marius.State.DEAD) {
-            gamecam.position.x = player.b2body.getPosition().x;
+            gameCam.position.x = player.b2body.getPosition().x;
         }
 
-        gamecam.update();
-        renderer.setView(gamecam);
+        gameCam.update();
+        renderer.setView(gameCam);
     }
 
     @Override
@@ -112,11 +109,11 @@ public class ShowGame implements Screen{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); //clears screen
 
         renderer.render();
-        b2dr.render(world, gamecam.combined);
+        b2dr.render(world, gameCam.combined);
 
 
 
-        game.batch.setProjectionMatrix(gamecam.combined);
+        game.batch.setProjectionMatrix(gameCam.combined);
         game.batch.begin();
         player.draw(game.batch);
         spider.draw(game.batch);
@@ -197,7 +194,7 @@ public class ShowGame implements Screen{
     public Display getDisplay(){
         return display; 
     }
-    public static MegaMarius getGame() {
+    public MegaMarius getGame() {
         return game;
     }
 

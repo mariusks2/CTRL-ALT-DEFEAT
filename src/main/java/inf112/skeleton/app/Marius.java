@@ -15,18 +15,6 @@ import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.badlogic.gdx.physics.box2d.EdgeShape;
-import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.utils.Array;
 import inf112.Screens.ShowGame;
 
@@ -271,7 +259,7 @@ import inf112.Screens.ShowGame;
 			FixtureDef fdef = new FixtureDef();
 			CircleShape shape = new CircleShape();
 			shape.setRadius(6 / MegaMarius.PPM);
-			fdef.filter.categoryBits = MegaMarius.MARIO_BIT;
+			fdef.filter.categoryBits = MegaMarius.MARIUS_BIT;
 			fdef.filter.maskBits = MegaMarius.GROUND_BIT |
 				MegaMarius.COIN_BIT |
 				MegaMarius.BRICK_BIT |
@@ -286,7 +274,7 @@ import inf112.Screens.ShowGame;
 	
 			EdgeShape head = new EdgeShape();
 			head.set(new Vector2(-2 / MegaMarius.PPM, 6 / MegaMarius.PPM), new Vector2(2 / MegaMarius.PPM, 6 / MegaMarius.PPM));
-			fdef.filter.categoryBits = MegaMarius.MARIO_HEAD_BIT;
+			fdef.filter.categoryBits = MegaMarius.MARIUS_HEAD_BIT;
 			fdef.shape = head;
 			fdef.isSensor = true;
 	
@@ -305,7 +293,7 @@ import inf112.Screens.ShowGame;
 			FixtureDef fdef = new FixtureDef();
 			CircleShape shape = new CircleShape();
 			shape.setRadius(6 / MegaMarius.PPM);
-			fdef.filter.categoryBits = MegaMarius.MARIO_BIT;
+			fdef.filter.categoryBits = MegaMarius.MARIUS_BIT;
 			fdef.filter.maskBits = MegaMarius.GROUND_BIT |
 			MegaMarius.COIN_BIT |
 			MegaMarius.BRICK_BIT |
@@ -320,7 +308,7 @@ import inf112.Screens.ShowGame;
 	
 			EdgeShape head = new EdgeShape();
 			head.set(new Vector2(-2 / MegaMarius.PPM, 6 / MegaMarius.PPM), new Vector2(2 / MegaMarius.PPM, 6 / MegaMarius.PPM));
-			fdef.filter.categoryBits = MegaMarius.MARIO_HEAD_BIT;
+			fdef.filter.categoryBits = MegaMarius.MARIUS_HEAD_BIT;
 			fdef.shape = head;
 			fdef.isSensor = true;
 	
@@ -339,7 +327,7 @@ import inf112.Screens.ShowGame;
 			FixtureDef fdef = new FixtureDef();
 			CircleShape shape = new CircleShape();
 			shape.setRadius(6 / MegaMarius.PPM);
-			fdef.filter.categoryBits = MegaMarius.MARIO_BIT;
+			fdef.filter.categoryBits = MegaMarius.MARIUS_BIT;
 			fdef.filter.maskBits = MegaMarius.GROUND_BIT |
 			MegaMarius.COIN_BIT |
 			MegaMarius.BRICK_BIT |
@@ -357,7 +345,7 @@ import inf112.Screens.ShowGame;
 	
 			EdgeShape head = new EdgeShape();
 			head.set(new Vector2(-2 / MegaMarius.PPM, 6 / MegaMarius.PPM), new Vector2(2 / MegaMarius.PPM, 6 / MegaMarius.PPM));
-			fdef.filter.categoryBits = MegaMarius.MARIO_HEAD_BIT;
+			fdef.filter.categoryBits = MegaMarius.MARIUS_HEAD_BIT;
 			fdef.shape = head;
 			fdef.isSensor = true;
 	

@@ -34,29 +34,28 @@ public abstract class InteractiveTileObj {
         this.map = screen.getMap();
         this.bounds = ((RectangleMapObject) object).getRectangle();
 
-        BodyDef bdef = new BodyDef();
-        FixtureDef fdef = new FixtureDef();
-        PolygonShape shape = new PolygonShape();
+        BodyDef bodyDef = new BodyDef();
+        FixtureDef fixtureDef = new FixtureDef();
+        PolygonShape pShape = new PolygonShape();
+        //Define shape and position of tiles.
+        bodyDef.type = BodyDef.BodyType.StaticBody;
+        bodyDef.position.set((bounds.getX() + bounds.getWidth() / 2) / MegaMarius.PPM, (bounds.getY() + bounds.getHeight() / 2) / MegaMarius.PPM);
 
-        bdef.type = BodyDef.BodyType.StaticBody;
-        bdef.position.set((bounds.getX() + bounds.getWidth() / 2) / MegaMarius.PPM, (bounds.getY() + bounds.getHeight() / 2) / MegaMarius.PPM);
+        body = world.createBody(bodyDef);
 
-        body = world.createBody(bdef);
-
-        shape.setAsBox(bounds.getWidth() / 2 / MegaMarius.PPM, bounds.getHeight() / 2 / MegaMarius.PPM);
-        fdef.shape = shape;
-        fixture = body.createFixture(fdef);
-
+        pShape.setAsBox(bounds.getWidth() / 2 / MegaMarius.PPM, bounds.getHeight() / 2 / MegaMarius.PPM);
+        fixtureDef.shape = pShape;
+        fixture = body.createFixture(fixtureDef);
     }
 
-    public abstract void onHeadHit();
+    public abstract void HeadHit();
 
-    public void setCategoryFilter(short filterBit){
+    public void setCategoryFilter(short filterBit){ //Func to set the category filter for blocks.
         Filter filter = new Filter();
         filter.categoryBits = filterBit;
         fixture.setFilterData(filter);
     }
-
+    //Get the cells from layer 1.
     public TiledMapTileLayer.Cell getCell(){
         TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(1);
         return layer.getCell((int)(body.getPosition().x * MegaMarius.PPM / 16),

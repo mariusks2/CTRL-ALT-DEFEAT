@@ -121,4 +121,7 @@
   <object id="82" x="336" y="160" width="16" height="16"/>
   <object id="83" x="304" y="160" width="16" height="16"/>
  </objectgroup>
+  <objectgroup id="7" name="Flag">
+  <object id="314" x="3408" y="80" width="16" height="128"/>
+ </objectgroup>
 </map>

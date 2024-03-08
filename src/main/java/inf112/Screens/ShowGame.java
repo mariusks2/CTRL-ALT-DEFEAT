@@ -125,6 +125,10 @@ public class ShowGame implements Screen{
             game.setScreen(new ShowGameOver(game));
             dispose();
         }
+        if (Marius.getGameWon()) {
+            game.setScreen(new ShowGameOver(game));
+            dispose();
+        }
     }
 
     private boolean gameIsOver() {

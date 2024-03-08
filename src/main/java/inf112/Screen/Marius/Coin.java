@@ -8,7 +8,7 @@ import inf112.skeleton.app.MegaMarius;
 
 public class Coin extends InteractiveTileObj{
     private static TiledMapTileSet tileSet;
-    private final int BLANK_COIN = 28;
+    private final int BLANK_COIN = 4;
 
     public Coin(ShowGame screen, MapObject object){
         super(screen, object);

@@ -10,13 +10,13 @@ import inf112.skeleton.app.MegaMarius;
 
 //DOESNT WORK YET
 public class Flag extends InteractiveTileObj{
-    private final int FLAG = 314;
     private static TiledMapTileSet tileSet;
+    private short id;
 
     public Flag(ShowGame screen, MapObject object) {
         super(screen, object);
         fixture.setUserData(this);
-        setCategoryFilter(MegaMarius.FLAG_BIT);
+        setCategoryFilter(MegaMarius.DESTROYED_BIT);
     }
 //this is all testing
     @Override

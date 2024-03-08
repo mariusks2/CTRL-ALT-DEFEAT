@@ -22,8 +22,8 @@ public class Flag extends InteractiveTileObj{
     @Override
     public void HeadHit() {
         Gdx.app.log("Flag", "Collision");
-        Object test = map.getTileSets().getTileSet("tileset1").getTile(FLAG).getOffsetX();
-        System.out.println(test);
+        //Object test = map.getTileSets().getTileSet("tileset1").getTile(FLAG).getOffsetX();
+        //System.out.println(test);
         MegaMarius game = screen.getGame();
         game.setScreen(new ShowGameOver(game));
     }

@@ -32,11 +32,11 @@ public class Spider extends Enemy{
         setPosition(b2body.getPosition().x-getWidth()/2, b2body.getPosition().y-getHeight()/2);
         setRegion(walkAnimation.getKeyFrame(stateTime,true));
     }
-
+    //todo make spider move and kill player when touched, also kill spider when player jumps on spider.
     @Override
     protected void defineEnemy() {
         BodyDef bdef = new BodyDef();
-        bdef.position.set(32/MegaMarius.PPM, 32/MegaMarius.PPM);
+        bdef.position.set(64/MegaMarius.PPM, 64/MegaMarius.PPM);
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2body = world.createBody(bdef);
 

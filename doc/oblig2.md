@@ -58,10 +58,17 @@
 
 # våre 3 forbedringspunkter
 * Struktur
-* 
-*
+* Javadocs
+* Testing
 
 # Prosess for teamet videre:
+* Vi skal jobbe med å få bedre struktur. Vi mangler mye javadocs og tester. Vi skal jobbe videre med parprogrammering,
+* det siden vi finner fort små feil til de andre. Vi kommer til å fortsette med å få i gruppetimene, det siden alle kan da. 
+* Vi har også opplevd god suksess med digitale møter. 
 
 # Oppsumering
+* Vi har kommet langt, vi har fått til ca alle målene våre for MVP, kanskje utenom å kunne gjøre noe med fiendene. 
+* Vi opplevde at først vi mangler noen ekstra bibliotek til gdx som box2d, men når vi fikk det på plass gikk det kjappt mye bedre.
+* Vi hadde kanskje tenkt å ha fungerende fiender, men vi kom ikke så langt denne gangen
+* Vi at flere små møter digitalt som hjelpsomt 
 

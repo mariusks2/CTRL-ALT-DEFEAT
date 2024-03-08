@@ -6,6 +6,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 
 import inf112.Scenes.Display;
 import inf112.Screens.ShowGame;
+import inf112.Screens.ShowGameOver;
 import inf112.skeleton.app.MegaMarius;
 
 public class Coin extends InteractiveTileObj{
@@ -22,6 +23,7 @@ public class Coin extends InteractiveTileObj{
     @Override
     public void onHeadHit() {
         Gdx.app.log("Coin", "Collision");
+        setCategoryFilter(MegaMarius.COIN_BIT);
         getCell().setTile(tileSet.getTile(BLANK_COIN));
         Display.updateScore(200);
     }

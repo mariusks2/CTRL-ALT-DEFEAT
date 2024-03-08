@@ -253,7 +253,7 @@ import inf112.Screens.ShowGame;
 	
 		public void jump(){
 			if ( currentState != State.JUMPING ) {
-				b2body.applyLinearImpulse(new Vector2(0, 4f), b2body.getWorldCenter(), true);
+				b2body.applyLinearImpulse(new Vector2(0, 3.8f), b2body.getWorldCenter(), true);
 				currentState = State.JUMPING;
 			}
 		}
@@ -278,7 +278,8 @@ import inf112.Screens.ShowGame;
 				MegaMarius.ENEMY_BIT |
 				MegaMarius.OBJECT_BIT |
 				MegaMarius.ENEMY_HEAD_BIT |
-				MegaMarius.ITEM_BIT;
+				MegaMarius.ITEM_BIT |
+				MegaMarius.FLAG_BIT;
 
 			fdef.shape = shape;
 			b2body.createFixture(fdef).setUserData(this);
@@ -311,7 +312,8 @@ import inf112.Screens.ShowGame;
 			MegaMarius.ENEMY_BIT |
 			MegaMarius.OBJECT_BIT |
 			MegaMarius.ENEMY_HEAD_BIT |
-			MegaMarius.ITEM_BIT;
+			MegaMarius.ITEM_BIT |
+			MegaMarius.FLAG_BIT;
 	
 			fdef.shape = shape;
 			b2body.createFixture(fdef);
@@ -344,7 +346,9 @@ import inf112.Screens.ShowGame;
 			MegaMarius.ENEMY_BIT |
 			MegaMarius.OBJECT_BIT |
 			MegaMarius.ENEMY_HEAD_BIT |
-			MegaMarius.ITEM_BIT;
+			MegaMarius.ITEM_BIT |
+			MegaMarius.FLAG_BIT;
+			
 	
 			fdef.shape = shape;
 			b2body.createFixture(fdef).setUserData(this);

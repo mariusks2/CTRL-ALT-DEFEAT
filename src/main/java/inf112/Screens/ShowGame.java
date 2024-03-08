@@ -1,5 +1,6 @@
 package inf112.Screens;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -23,7 +24,7 @@ import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.WorldContactListener;
 
 public class ShowGame implements Screen{
-    private MegaMarius game;
+    private static MegaMarius game;
     private TextureAtlas atlas;
     private OrthographicCamera gamecam;
     private Viewport gamePort;
@@ -195,6 +196,9 @@ public class ShowGame implements Screen{
     
     public Display getDisplay(){
         return display; 
+    }
+    public static MegaMarius getGame() {
+        return game;
     }
 
 }

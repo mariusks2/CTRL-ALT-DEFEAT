@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import inf112.Screen.Marius.Brick;
 import inf112.Screen.Marius.Coin;
+import inf112.Screen.Marius.Flag;
 import inf112.Screens.ShowGame;
 import inf112.skeleton.app.MegaMarius;
 
@@ -50,10 +51,17 @@ public class makemarius {
             new Brick(screen, object);
         }
 
-                //create coin bodies/fixtures
+        //create coin bodies/fixtures
         for(MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)){
 
             new Coin(screen, object);
         }
+
+        //create flag boides/fixture
+        for(MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)){
+
+            new Flag(screen, object);
+        }
+
     }
 }

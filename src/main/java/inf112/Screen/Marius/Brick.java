@@ -17,7 +17,7 @@ public class Brick extends InteractiveTileObj{
 
     @Override
     public void onHeadHit() {
-        Gdx.app.setLogLevel(Application.LOG_ERROR);
+        Gdx.app.log("Brick", "Collision");
         setCategoryFilter(MegaMarius.DESTROYED_BIT);
         getCell().setTile(null);
         Display.updateScore(200);

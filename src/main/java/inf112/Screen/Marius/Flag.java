@@ -10,20 +10,19 @@ import inf112.Screens.ShowGameOver;
 import inf112.skeleton.app.MegaMarius;
 
 public class Flag extends InteractiveTileObj{
-    private final int FLAG = 314;
     private static TiledMapTileSet tileSet;
+    private short id;
 
     public Flag(ShowGame screen, MapObject object) {
         super(screen, object);
         tileSet = map.getTileSets().getTileSet("tileset1");
         fixture.setUserData(this);
-        setCategoryFilter(MegaMarius.FLAG_BIT);
+        setCategoryFilter(MegaMarius.DESTROYED_BIT);
     }
 
     @Override
     public void onHeadHit() {
         Gdx.app.log("Flag", "Collision");
-        //getCell().setTile(tileSet.getTile(MegaMarius.FLAG_BIT));
         MegaMarius game = ShowGame.getGame();
         game.setScreen(new ShowGameOver(game));
     }

@@ -278,7 +278,8 @@ import inf112.Screens.ShowGame;
 				MegaMarius.ENEMY_BIT |
 				MegaMarius.OBJECT_BIT |
 				MegaMarius.ENEMY_HEAD_BIT |
-				MegaMarius.ITEM_BIT;
+				MegaMarius.ITEM_BIT |
+				MegaMarius.FLAG_BIT;
 
 			fdef.shape = shape;
 			b2body.createFixture(fdef).setUserData(this);
@@ -311,7 +312,8 @@ import inf112.Screens.ShowGame;
 			MegaMarius.ENEMY_BIT |
 			MegaMarius.OBJECT_BIT |
 			MegaMarius.ENEMY_HEAD_BIT |
-			MegaMarius.ITEM_BIT;
+			MegaMarius.ITEM_BIT |
+			MegaMarius.FLAG_BIT;
 	
 			fdef.shape = shape;
 			b2body.createFixture(fdef);
@@ -344,7 +346,9 @@ import inf112.Screens.ShowGame;
 			MegaMarius.ENEMY_BIT |
 			MegaMarius.OBJECT_BIT |
 			MegaMarius.ENEMY_HEAD_BIT |
-			MegaMarius.ITEM_BIT;
+			MegaMarius.ITEM_BIT |
+			MegaMarius.FLAG_BIT;
+			
 	
 			fdef.shape = shape;
 			b2body.createFixture(fdef).setUserData(this);

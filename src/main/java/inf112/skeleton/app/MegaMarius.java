@@ -16,6 +16,7 @@ public class MegaMarius extends Game {
     public static final short BRICK_BIT = 4;
     public static final short COIN_BIT = 8;
     public static final short DESTROYED_BIT = 16;
+    public static final short FLAG_BIT = 2048;
 
 
 	public static final short NOTHING_BIT = 0;
@@ -43,4 +44,5 @@ public class MegaMarius extends Game {
     public void render() {
         super.render();
     }
+
 }

@@ -11,6 +11,7 @@ import inf112.skeleton.app.MegaMarius;
 public class Coin extends InteractiveTileObj{
     private static TiledMapTileSet tileSet;
     private final int BLANK_COIN = 28;
+    private final int FLAG = 314;
 
     public Coin(ShowGame screen, MapObject object){
         super(screen, object);
@@ -22,6 +23,7 @@ public class Coin extends InteractiveTileObj{
     @Override
     public void onHeadHit() {
         Gdx.app.log("Coin", "Collision");
+        setCategoryFilter(MegaMarius.COIN_BIT);
         getCell().setTile(tileSet.getTile(BLANK_COIN));
         Display.updateScore(200);
     }

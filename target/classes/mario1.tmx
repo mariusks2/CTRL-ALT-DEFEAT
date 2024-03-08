@@ -121,7 +121,4 @@
   <object id="82" x="336" y="160" width="16" height="16"/>
   <object id="83" x="304" y="160" width="16" height="16"/>
  </objectgroup>
- <objectgroup id="11" name="flag">
-  <object id="134" x="3414.73" y="79.4545" width="2.18182" height="128.364"/>
- </objectgroup>
 </map>

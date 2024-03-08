@@ -6,7 +6,7 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import inf112.Screens.ShowGame;
 
-public abstract class Enemy extends Sprite{
+public abstract class Enemy extends Sprite{ //Abstract class for enemies. 
     protected World world;
     protected ShowGame screen;
     public Body b2body;

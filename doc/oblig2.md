@@ -39,9 +39,11 @@
 * Kan lages flere tester
 * Vi må nok rydde litt i filene og strukturen
 * Vi har litt ekstra med som vi prøvde på men som nok må vekk
-* Bugs: 
-    * Kan hoppe permanent hvis man interacter med objekt
-    * Fart er litt usikker
+* Bugs som vi har funnet:
+* * kan hoppe for alltid etter hodekollisjon.
+* * Til neste innlevering skal vi lage eget map og endre mer på Marius slik den ikkje ser ut som mario.
+* * Legge til flere enemies.
+
 
 # Commit
 * Vi har alle commitet en del

@@ -1,6 +1,5 @@
 package inf112.skeleton.app;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -21,7 +20,7 @@ public class WorldContactListener implements ContactListener {
             Fixture object = head == fixtureA ? fixtureB : fixtureA;
 
             if (object.getUserData() != null && InteractiveTileObj.class.isAssignableFrom(object.getUserData().getClass())) {
-                ((InteractiveTileObj) object.getUserData()).onHeadHit();
+                ((InteractiveTileObj) object.getUserData()).HeadHit();
             }
         }
     }

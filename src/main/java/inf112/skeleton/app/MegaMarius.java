@@ -12,7 +12,7 @@ public class MegaMarius extends Game {
     public static final float PPM = 100;
 
 	//Box2D Collision Bits
-    public static final short MARIO_BIT = 2;
+    public static final short MARIUS_BIT = 2;
     public static final short BRICK_BIT = 4;
     public static final short COIN_BIT = 8;
     public static final short DESTROYED_BIT = 16;
@@ -25,8 +25,7 @@ public class MegaMarius extends Game {
 	public static final short ENEMY_BIT = 64;
 	public static final short ENEMY_HEAD_BIT = 128;
 	public static final short ITEM_BIT = 256;
-	public static final short MARIO_HEAD_BIT = 512;
-	public static final short FIREBALL_BIT = 1024;
+	public static final short MARIUS_HEAD_BIT = 512;
 
     @Override
     public void create() {

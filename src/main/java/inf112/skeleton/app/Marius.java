@@ -45,6 +45,7 @@ import inf112.Screens.ShowGame;
 		private float stateTimer;
 		private ShowGame screen;
 
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		public Marius(ShowGame screen){
 			// Initializing variables
 			this.screen = screen;
@@ -212,7 +213,7 @@ import inf112.Screens.ShowGame;
 			FixtureDef fdef = new FixtureDef();
 			CircleShape shape = new CircleShape();
 			shape.setRadius(6 / MegaMarius.PPM);
-			fdef.filter.categoryBits = MegaMarius.MARIO_BIT;
+			fdef.filter.categoryBits = MegaMarius.MARIUS_BIT;
 			fdef.filter.maskBits = MegaMarius.GROUND_BIT |
 			MegaMarius.COIN_BIT |
 			MegaMarius.BRICK_BIT |
@@ -227,7 +228,7 @@ import inf112.Screens.ShowGame;
 	
 			EdgeShape head = new EdgeShape();
 			head.set(new Vector2(-2 / MegaMarius.PPM, 6 / MegaMarius.PPM), new Vector2(2 / MegaMarius.PPM, 6 / MegaMarius.PPM));
-			fdef.filter.categoryBits = MegaMarius.MARIO_HEAD_BIT;
+			fdef.filter.categoryBits = MegaMarius.MARIUS_HEAD_BIT;
 			fdef.shape = head;
 			fdef.isSensor = true;
 	

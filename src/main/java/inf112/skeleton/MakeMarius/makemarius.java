@@ -12,15 +12,18 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import inf112.Screen.Marius.Brick;
 import inf112.Screen.Marius.Coin;
-import inf112.Screen.Marius.Flag;
 import inf112.Screens.ShowGame;
 import inf112.skeleton.app.MegaMarius;
 
 public class makemarius {
+    /**
+     * Makes the Marius world. Defines what has collision with Marius.
+     * @param screen
+     */
     public makemarius(ShowGame screen){
-        BodyDef bdef = new BodyDef();
-        PolygonShape shape = new PolygonShape();
-        FixtureDef fdef = new FixtureDef(); 
+        BodyDef bodyDef = new BodyDef();
+        PolygonShape polygonShape = new PolygonShape();
+        FixtureDef fixtureDef = new FixtureDef(); 
         World world = screen.getWorld();
         TiledMap map = screen.getMap();
         Body body;
@@ -28,40 +31,33 @@ public class makemarius {
         // this will find every rectangle in layer 2 from the map. Used for collision.
         for(MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set((rect.getX()+rect.getWidth()/2) / MegaMarius.PPM, (rect.getY()+rect.getHeight()/2) / MegaMarius.PPM);
-            body = world.createBody(bdef);
-            shape.setAsBox(rect.getWidth()/2 / MegaMarius.PPM, rect.getHeight()/2 / MegaMarius.PPM);
-            fdef.shape = shape;
-            body.createFixture(fdef);
+            bodyDef.type = BodyDef.BodyType.StaticBody;
+            bodyDef.position.set((rect.getX()+rect.getWidth()/2) / MegaMarius.PPM, (rect.getY()+rect.getHeight()/2) / MegaMarius.PPM);
+            body = world.createBody(bodyDef);
+            polygonShape.setAsBox(rect.getWidth()/2 / MegaMarius.PPM, rect.getHeight()/2 / MegaMarius.PPM);
+            fixtureDef.shape = polygonShape;
+            body.createFixture(fixtureDef);
         } 
-        //pipe
+        //create the pipes, can jump on them, cant dive in them yet
         for(MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set((rect.getX()+rect.getWidth()/2) / MegaMarius.PPM, (rect.getY()+rect.getHeight()/2) / MegaMarius.PPM);
-            body = world.createBody(bdef);
-            shape.setAsBox(rect.getWidth()/2 / MegaMarius.PPM, rect.getHeight()/2 / MegaMarius.PPM);
-            fdef.shape = shape;
-            fdef.filter.categoryBits=MegaMarius.OBJECT_BIT;
-            body.createFixture(fdef);
+            bodyDef.type = BodyDef.BodyType.StaticBody;
+            bodyDef.position.set((rect.getX()+rect.getWidth()/2) / MegaMarius.PPM, (rect.getY()+rect.getHeight()/2) / MegaMarius.PPM);
+            body = world.createBody(bodyDef);
+            polygonShape.setAsBox(rect.getWidth()/2 / MegaMarius.PPM, rect.getHeight()/2 / MegaMarius.PPM);
+            fixtureDef.shape = polygonShape;
+            fixtureDef.filter.categoryBits=MegaMarius.OBJECT_BIT;
+            body.createFixture(fixtureDef);
         } 
-        //brick
+        //create the bricks, so we can interact with them
         for(MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)){
             new Brick(screen, object);
         }
 
-        //create coin bodies/fixtures
+        //create the coins, so we can interact with them
         for(MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)){
 
             new Coin(screen, object);
         }
-
-        //create flag boides/fixture
-        for(MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)){
-
-            new Flag(screen, object);
-        }
-
     }
 }

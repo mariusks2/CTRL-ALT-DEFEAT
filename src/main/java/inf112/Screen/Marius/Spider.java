@@ -19,8 +19,8 @@ public class Spider extends Enemy{
     public Spider(ShowGame screen, float x, float y) {
         super(screen, x, y);
         frames = new Array<TextureRegion>();
-        for (int i = 0; i < 2; i++) {
-            frames.add(new TextureRegion(screen.getAtlas().findRegion("goomba"), i *16, 0,16,16));
+        for (int i = 0; i < 2; i++) { //For loop for animation. Goomba is changed in the file to a spider.
+            frames.add(new TextureRegion(screen.getAtlas().findRegion("spider"), i *16, 0,16,16));
         }
         walkAnimation = new Animation<>(0.4f, frames);
         stateTime = 0;
@@ -32,24 +32,24 @@ public class Spider extends Enemy{
         setPosition(b2body.getPosition().x-getWidth()/2, b2body.getPosition().y-getHeight()/2);
         setRegion(walkAnimation.getKeyFrame(stateTime,true));
     }
-
+    //todo make spider move and kill player when touched, also kill spider when player jumps on spider.
     @Override
     protected void defineEnemy() {
         BodyDef bdef = new BodyDef();
-        bdef.position.set(32/MegaMarius.PPM, 32/MegaMarius.PPM);
+        bdef.position.set(64/MegaMarius.PPM, 64/MegaMarius.PPM);
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2body = world.createBody(bdef);
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
         shape.setRadius(6 / MegaMarius.PPM);
-        fdef.filter.categoryBits = MegaMarius.ENEMY_BIT;
-        fdef.filter.maskBits = MegaMarius.GROUND_BIT |
+        fdef.filter.categoryBits = MegaMarius.ENEMY_BIT; //Is a enemy.
+        fdef.filter.maskBits = MegaMarius.GROUND_BIT | //Can collide with these
             MegaMarius.COIN_BIT |
             MegaMarius.BRICK_BIT |
             MegaMarius.ENEMY_BIT |
             MegaMarius.OBJECT_BIT |
-            MegaMarius.MARIO_BIT;
+            MegaMarius.MARIUS_BIT;
 
         fdef.shape = shape;
         b2body.createFixture(fdef).setUserData(this);

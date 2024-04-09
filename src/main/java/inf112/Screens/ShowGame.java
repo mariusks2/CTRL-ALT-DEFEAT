@@ -4,6 +4,7 @@ import java.util.PriorityQueue;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -18,7 +19,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import inf112.skeleton.app.MegaMarius;
 import inf112.Scenes.Display;
-import inf112.Screen.Marius.Enemy;
+import inf112.Screen.Marius.Spider;
 import inf112.skeleton.MakeMarius.makemarius;
 import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.WorldContactListener;
@@ -41,6 +42,8 @@ public class ShowGame implements Screen{
     private Marius player;
     private float accumulator = 0f;
     private float stepTime = 1/60f;
+
+    private Music music;
 
     public ShowGame(MegaMarius game){
         atlas = new TextureAtlas("Mario_and_Enemies.pack");
@@ -65,6 +68,14 @@ public class ShowGame implements Screen{
         player = new Marius(this);
 
         world.setContactListener(new WorldContactListener());
+
+
+        music = MegaMarius.manager.get("audio/music/music1.mp3", Music.class);
+        music.setLooping(true);
+        music.setVolume(0.005f);
+        music.play(); // Comment this out to stop music from playing
+
+        spider = new Spider(this, .32f, .32f);
     }
 
     public TextureAtlas getAtlas() {
@@ -102,6 +113,8 @@ public class ShowGame implements Screen{
 
     @Override
     public void render(float delta) {
+        
+
         update(delta);
 
         Gdx.gl.glClearColor(0,0,0,1);
@@ -203,5 +216,8 @@ public class ShowGame implements Screen{
         return game;
     }
 
+    public void setDisplay(Display display) {
+        this.display = display;
+    }
 }
 

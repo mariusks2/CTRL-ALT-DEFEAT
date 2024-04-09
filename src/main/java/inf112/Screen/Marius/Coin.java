@@ -21,7 +21,7 @@ public class Coin extends InteractiveTileObj{
     @Override
     public void HeadHit() {
         getCell().setTile(tileSet.getTile(BLANK_COIN)); //Set the graphic block to Blank Coin
-        Display.updateScore(200); //Add score
+        //Display.getInstance().updateScore(200); //Add score
     }
     
 }

@@ -40,6 +40,7 @@ public class MegaMarius extends Game {
         manager.finishLoading();
         setScreen(new ShowStartGame(this));
     }
+        
 
     @Override
 	public void dispose() {

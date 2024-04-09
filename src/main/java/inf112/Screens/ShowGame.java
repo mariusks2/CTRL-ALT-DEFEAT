@@ -2,6 +2,7 @@ package inf112.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -40,6 +41,8 @@ public class ShowGame implements Screen{
     private float stepTime = 1/60f;
     private Spider spider;
 
+    private Music music;
+
     public ShowGame(MegaMarius game){
         atlas = new TextureAtlas("Mario_and_Enemies.pack");
 
@@ -63,6 +66,12 @@ public class ShowGame implements Screen{
         player = new Marius(this);
 
         world.setContactListener(new WorldContactListener());
+
+
+        music = MegaMarius.manager.get("audio/music/music1.mp3", Music.class);
+        music.setLooping(true);
+        music.setVolume(0.005f);
+        music.play(); // Comment this out to stop music from playing
 
         spider = new Spider(this, .32f, .32f);
     }
@@ -200,5 +209,8 @@ public class ShowGame implements Screen{
         return game;
     }
 
+    public void setDisplay(Display display) {
+        this.display = display;
+    }
 }
 

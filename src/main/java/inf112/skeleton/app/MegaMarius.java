@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import inf112.Screens.ShowGame;
+import inf112.Screens.ShowStartGame;
 
 public class MegaMarius extends Game {
     public static final int M_Width = 400;
@@ -30,7 +31,7 @@ public class MegaMarius extends Game {
     @Override
     public void create() {
         batch = new SpriteBatch();
-        setScreen(new ShowGame(this));
+        setScreen(new ShowStartGame(this));
     }
 
     @Override

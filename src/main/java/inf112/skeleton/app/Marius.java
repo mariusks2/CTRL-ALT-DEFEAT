@@ -98,7 +98,7 @@ import inf112.Screens.ShowGame;
 			
 	
 			// Define marius in Box2d
-			defineMairus();
+			defineMarius();
 	
 			// Set initial values for marius location, width and height and also initial frame as mariusStand
 			setBounds(0, 0, 16 / MegaMarius.PPM, 16 / MegaMarius.PPM);
@@ -241,7 +241,7 @@ import inf112.Screens.ShowGame;
 			}
 		}
 	
-		public void defineMairus(){
+		public void defineMarius(){
 			// Define marius character
 			BodyDef bdef = new BodyDef();
 			bdef.position.set(32 / MegaMarius.PPM, 32 / MegaMarius.PPM);

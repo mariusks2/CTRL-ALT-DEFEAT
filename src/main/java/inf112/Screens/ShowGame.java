@@ -5,6 +5,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -24,6 +25,7 @@ import inf112.Scenes.Display;
 import inf112.Screen.Marius.Item;
 import inf112.Screen.Marius.ItemDef;
 import inf112.Screen.Marius.Pepsi;
+import inf112.Screen.Marius.Enemy;
 import inf112.Screen.Marius.Spider;
 import inf112.skeleton.MakeMarius.makemarius;
 import inf112.skeleton.app.Marius;
@@ -42,11 +44,13 @@ public class ShowGame implements Screen{
     
     private World world;
     private Box2DDebugRenderer b2dr;
+    private makemarius creator;
 
     private Marius player;
     private float accumulator = 0f;
     private float stepTime = 1/60f;
-    private Spider spider;
+
+    private Music music;
     private Array<Item> items;
     public LinkedBlockingQueue<ItemDef> itemsToSpawn;
 
@@ -69,13 +73,17 @@ public class ShowGame implements Screen{
         world.step(0, 0, 0);
         b2dr = new Box2DDebugRenderer();    
 
-        new makemarius(this);
+        creator = new makemarius(this);
 
         player = new Marius(this);
 
         world.setContactListener(new WorldContactListener());
 
-        spider = new Spider(this, .32f, .32f);
+
+        music = MegaMarius.manager.get("audio/music/music1.mp3", Music.class);
+        music.setLooping(true);
+        music.setVolume(0.005f);
+        music.play(); // Comment this out to stop music from playing
 
         items = new Array<Item>();
         itemsToSpawn = new LinkedBlockingQueue<ItemDef>();
@@ -113,8 +121,9 @@ public class ShowGame implements Screen{
         }
 
         player.update(dt);
-        spider.update(dt);
-        for(Item item : items){
+        for(Enemy enemy : creator.getSpiders()){
+            enemy.update(dt);
+        }        for(Item item : items){
             item.update(dt);
         }
 
@@ -131,6 +140,8 @@ public class ShowGame implements Screen{
 
     @Override
     public void render(float delta) {
+        
+
         update(delta);
 
         Gdx.gl.glClearColor(0,0,0,1);
@@ -142,9 +153,11 @@ public class ShowGame implements Screen{
         game.batch.setProjectionMatrix(gameCam.combined);
         game.batch.begin();
         player.draw(game.batch);
-        spider.draw(game.batch);
+        for(Enemy enemy : creator.getSpiders()){
+            enemy.draw(game.batch);
         for(Item item : items){
             item.draw(game.batch);
+        }
         }
         game.batch.end();
 
@@ -231,5 +244,8 @@ public class ShowGame implements Screen{
         return game;
     }
 
+    public void setDisplay(Display display) {
+        this.display = display;
+    }
 }
 

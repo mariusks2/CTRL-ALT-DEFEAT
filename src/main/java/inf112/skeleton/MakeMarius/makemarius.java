@@ -11,9 +11,9 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 
-import inf112.Screen.Marius.Brick;
-import inf112.Screen.Marius.Coin;
-import inf112.Screen.Marius.Spider;
+import inf112.Screen.Brick;
+import inf112.Screen.Coin;
+import inf112.Screen.Spider;
 import inf112.Screens.ShowGame;
 import inf112.skeleton.app.MegaMarius;
 

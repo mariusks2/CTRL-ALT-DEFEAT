@@ -1,4 +1,4 @@
-package inf112.Screen.Marius;
+package inf112.Screen;
 
 import com.badlogic.gdx.math.Vector2;
 

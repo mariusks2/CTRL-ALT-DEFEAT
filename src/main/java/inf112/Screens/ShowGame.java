@@ -22,10 +22,10 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import inf112.skeleton.app.MegaMarius;
 import inf112.Scenes.Display;
-import inf112.Screen.Marius.Item;
-import inf112.Screen.Marius.ItemDef;
-import inf112.Screen.Marius.Pepsi;
-import inf112.Screen.Marius.Enemy;
+import inf112.Screen.Item;
+import inf112.Screen.ItemDef;
+import inf112.Screen.Pepsi;
+import inf112.Screen.Enemy;
 import inf112.skeleton.MakeMarius.makemarius;
 import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.WorldContactListener;
@@ -178,7 +178,7 @@ public class ShowGame implements Screen{
     }
 
     private boolean gameIsOver() {
-        if (player.currentState == Marius.State.DEAD && player.getStateTimer() > 3)
+        if (player.currentState == Marius.State.DEAD && player.getStateTimer() > 1)
             return true;
         else
             return false;

@@ -1,4 +1,4 @@
-package inf112.Screen.Marius;
+package inf112.Screen;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.math.Vector2;
@@ -26,9 +26,6 @@ public class Coin extends InteractiveTileObj{
             if(object.getProperties().containsKey("pepsi")){
                 screen.spawnItems(new ItemDef(new Vector2(body.getPosition().x, body.getPosition().y + 16/MegaMarius.PPM), Pepsi.class));
             }
-            
         }
-        
     }
-    
 }

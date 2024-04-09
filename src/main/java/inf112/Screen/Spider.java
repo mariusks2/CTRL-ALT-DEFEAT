@@ -1,4 +1,4 @@
-package inf112.Screen.Marius;
+package inf112.Screen;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;

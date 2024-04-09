@@ -15,14 +15,9 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.maps.MapObject;
 
 import inf112.Scenes.Display;
-import inf112.Screen.Marius.Coin;
 import inf112.Screens.ShowGame;
-import inf112.Scenes.Display;
 public class TestMarius {
 
     

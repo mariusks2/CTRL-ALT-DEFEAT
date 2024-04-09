@@ -1,4 +1,4 @@
-package inf112.Screen.Marius;
+package inf112.Screen;
 
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -61,5 +61,4 @@ public abstract class InteractiveTileObj {
         return layer.getCell((int)(body.getPosition().x * MegaMarius.PPM / 16),
                 (int)(body.getPosition().y * MegaMarius.PPM / 16));
     }
-
 }

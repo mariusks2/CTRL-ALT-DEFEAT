@@ -1,4 +1,4 @@
-package inf112.Screen.Marius;
+package inf112.Screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapObject;
 
@@ -20,7 +20,5 @@ public class Brick extends InteractiveTileObj{
         setCategoryFilter(MegaMarius.DESTROYED_BIT); //Set the block to Destroyed bit.
         getCell().setTile(null); //Set tile to null Todo add animation.
         Display.updateScore(200); //Add score
-        
     }
-
 }

@@ -61,7 +61,13 @@ public class WorldContactListener implements ContactListener {
                 ((Enemy)fixtureA.getUserData()).revVelocity(true, false);
                 ((Enemy)fixtureB.getUserData()).revVelocity(true, false);
                 break;
-            case MegaMarius.MARIUS_BIT | MegaMarius.ITEM_BIT:
+            case MegaMarius.ITEM_BIT | MegaMarius.MARIUS_BIT:
+                if (fixtureA.getFilterData().categoryBits == MegaMarius.ITEM_BIT) {
+                    ((Item)fixtureA.getUserData()).use((Marius) fixtureB.getUserData());
+                }else
+                    ((Item)fixtureB.getUserData()).use((Marius) fixtureA.getUserData());
+            break;
+            case MegaMarius.ITEM_BIT | MegaMarius.MARIUS_HEAD_BIT:
                 if (fixtureA.getFilterData().categoryBits == MegaMarius.ITEM_BIT) {
                     ((Item)fixtureA.getUserData()).use((Marius) fixtureB.getUserData());
                 }else

@@ -20,7 +20,7 @@ import inf112.Screens.ShowGame;
 	public class Marius extends Sprite {
 
 		// Enum and states
-		public enum State {START, FALLING, JUMPING, STANDING, RUNNING, DEAD };
+		public enum State {START, FALLING, JUMPING, STANDING, RUNNING, DEAD, GROWING};
 		public State currentState;
 		public State previousState;
 		
@@ -32,15 +32,21 @@ import inf112.Screens.ShowGame;
 		private TextureRegion mariusStand;
 		private TextureRegion mariusJump;
 		private TextureRegion mariusDead;
+		private TextureRegion bigMariusJump;
+		private TextureRegion bigMariusStand;
 		
 		// Marius boolean state
 		private boolean runningRight;
 		private boolean mariusIsDead;
 		private static boolean gameWon;
+		private boolean isMariusBig;
+		private boolean runGrowAnimation;
 
 		// Marius animation
-		private Animation mariusRun;
-		
+		private Animation<TextureRegion> mariusRun;
+		private Animation<TextureRegion> bigMariusRun;
+		private Animation<TextureRegion> mariusGrow;
+
 		// Timer & Screen
 		private float stateTimer;
 		private ShowGame screen;
@@ -66,14 +72,30 @@ import inf112.Screens.ShowGame;
 			mariusRun = new Animation(0.1f, frames);
 			frames.clear();
 
+			for(int i = 1; i < 4; i++)
+				frames.add(new TextureRegion(screen.getAtlas().findRegion("little_mario"), i * 16, 0, 16, 32));
+			// Adding run animation to marius
+			bigMariusRun = new Animation(0.1f, frames);
+			frames.clear();
+
+			// Animation when Marius gets pepsi
+			frames.add(new TextureRegion(screen.getAtlas().findRegion("big_mario"), 240, 0, 16, 32));
+			frames.add(new TextureRegion(screen.getAtlas().findRegion("big_mario"), 0, 0, 16, 32));
+			mariusGrow = new Animation(0.3f, frames);
+			frames.clear();
+
 			// Cet jump animation frames and add them to marioJump Animation
 			mariusJump = new TextureRegion(screen.getAtlas().findRegion("little_mario"), 80, 0, 16, 16);
+			bigMariusJump = new TextureRegion(screen.getAtlas().findRegion("big_mario"), 80, 0, 16, 32);
 	
 			// Create texture region for standing marius
 			mariusStand = new TextureRegion(screen.getAtlas().findRegion("little_mario"), 0, 0, 16, 16);
+			bigMariusStand = new TextureRegion(screen.getAtlas().findRegion("big_mario"), 0, 0, 16, 32);
+	
 	
 			// Create texture region for dead marius
 			mariusDead = new TextureRegion(screen.getAtlas().findRegion("little_mario"), 96, 0, 16, 16);
+			
 	
 			// Define marius in Box2d
 			defineMairus();
@@ -134,20 +156,33 @@ import inf112.Screens.ShowGame;
 	
 			// Retrive the animation frame depending on the current state
 			switch(currentState){
+				case GROWING: 
+					animationFrame = mariusGrow.getKeyFrame(stateTimer, true);
+					if(mariusGrow.isAnimationFinished(stateTimer)) runGrowAnimation = false;
+					break;
 				case DEAD:
 					animationFrame = mariusDead;
 					break;
 				case JUMPING:
-					animationFrame = mariusJump;
+					if (isMariusBig) {
+						animationFrame = bigMariusJump;
+					} 
+					else animationFrame = bigMariusJump;
 					break;
 				case RUNNING:
-					animationFrame = (TextureRegion) mariusRun.getKeyFrame(stateTimer, true);
+					if (isMariusBig) {
+						animationFrame = (TextureRegion) bigMariusRun.getKeyFrame(stateTimer, true);
+					} 
+					else animationFrame = (TextureRegion) mariusRun.getKeyFrame(stateTimer, true);
 					break;
 				case FALLING:
 					// ToDo
 				case STANDING:
 				default:
-					animationFrame = mariusStand;
+					if (isMariusBig) {
+						animationFrame = bigMariusStand;
+					}
+					else animationFrame = mariusStand;
 					break;
 			}
 	
@@ -175,6 +210,9 @@ import inf112.Screens.ShowGame;
 		public State getState(){
 			//Test to Box2D for velocity on the X and Y-Axis
 			//if mario is going positive in Y-Axis he is jumping... or if he just jumped and is falling remain in jump state
+			if(runGrowAnimation){
+				return State.GROWING;
+			}
 			if(mariusIsDead)
 				return State.DEAD;
 			else if((b2body.getLinearVelocity().y > 0 && currentState == State.JUMPING) || (b2body.getLinearVelocity().y < 0 && previousState == State.JUMPING))
@@ -245,5 +283,11 @@ import inf112.Screens.ShowGame;
 
 		public static boolean getGameWon() {
 			return gameWon;
+		}
+
+		public void grow(){
+			runGrowAnimation = true;
+			isMariusBig = true;
+			setBounds(getX(), getY(), getWidth(), getHeight()*2);
 		}
 }

@@ -38,6 +38,7 @@ public class Pepsi extends Item{
     @Override
     public void use(Marius marius) {
         destroy();
+        marius.grow();
     }
     
     @Override

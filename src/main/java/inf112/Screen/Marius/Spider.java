@@ -73,8 +73,8 @@ public class Spider extends Enemy{
 
         PolygonShape head = new PolygonShape();
         Vector2[] vertice = new Vector2[4]; //defines headhitbox for spider
-        vertice[0] = new Vector2(-4,8).scl(1/MegaMarius.PPM);
-        vertice[1] = new Vector2(4,8).scl(1/MegaMarius.PPM);
+        vertice[0] = new Vector2(-5,8).scl(1/MegaMarius.PPM);
+        vertice[1] = new Vector2(5,8).scl(1/MegaMarius.PPM);
         vertice[2] = new Vector2(-3,3).scl(1/MegaMarius.PPM);
         vertice[3] = new Vector2(3,3).scl(1/MegaMarius.PPM);
         head.set(vertice);

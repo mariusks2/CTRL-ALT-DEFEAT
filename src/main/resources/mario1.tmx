@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="240" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="135">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="240" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="152">
  <tileset firstgid="1" name="tileset1" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="924" columns="33">
   <image source="tileset.png" width="594" height="504"/>
  </tileset>
+ <tileset firstgid="925" source="customtileset.tsx"/>
  <layer id="1" name="Background" width="240" height="16">
   <data encoding="base64" compression="zlib">
-   eJztwzEJAAAMA7Ay/4bqrjZ2JJBeUlVVVVVVVVVVVVVVVVVV9cUBTRH1lw==
+   eJzt0ysKACAAREGxeDzP6+3EIIhBbH6YMLBxyysxhAIAAAAAAAAAAHwvp/MfgH1js/qFd7Ree7PjBu7We52d/gWsaRYA+FkFSdfu4g==
   </data>
  </layer>
  <layer id="2" name="graphics" width="240" height="16">
   <data encoding="base64" compression="zlib">
-   eJztmNtOwzAMhrNxBeKgwVVvewkCJGAg8Z7AmzAej0xaJMuLkz+Le8jmT7KoGsdxHP/tinOGYRiGYbTK19K5b28/y/oYtXFa5dT3X0tND5567X/9njfe/oS90/pINQoxUnEQ0HPUeOZoorX/QMn+EF/kDDV1UHo+uR5E5mrVvpQhe1EjNq3P0DVCzxH1Q3tSqhPS90NQ0s+IL3KGmjqo0SNl7Pp3i/21c2tq7XXs2C2A9qRUpzGfXcY+Y9f/k+i3Re10UyfQCMuMSb419S2dK+UTxrqdNdSeg0P1axjG9PQ7QzD9GsZ86J3p1zBapHc6+r0kNhf4t1T4HqJ/tTn3tbkAnm+oH4rWt55GbaS50ndqB1wj8UvWDPTCdQ6ul5K5Afr/gkPqzbVbo98rb9febg7IA+F2Ju/8nO7u/dgDGZfy5n7HzFzOjhPTYEwDPP+YXkr0o0FMu0juW7h+t+/cR2La7+CVX+/F292BfYD2D/JOzOmOjqfyRvSr0fdTa2essyslpUF6j+cv6UXSUMi/9vcWnS9pl68t1Z7r92xnT+Rai5DDq7e3TB+s/dg7sY9Fun/WxG8Loinqs2Zr0fFc3sEvljPdt7RfnnuMVaJmyHwpN8mHj495diXwng9r8vs8/5Re+H2eP++t0vzD/JR2Y8+dWO25zoNmn11cvzW1Xpg5XrYpY2jGOQazOpghRpkyhmacYzCrQ9r+AYIBiEI=
+   eJztmM1yEzEMxzfdpLlAOqEnOBY40s60DczwDHw8YfMWfQXuwDPAlem1HzO1u/VUCMuWbCW7WfSb0TTNamVZ1t/eTdMYhmEYhjFE7vbT17CV8nreNG+cvZ3XxdlV/JxhDTbBdzfGD2c/GfWV+A6B0tp9nf9tm16DTYJ7CGsTrmlMu5TuYMxQJ8wn991nZ18Y+k31Frf+2A/PrWRsCTiOHxPWoCQGJFaHa+d34+x2X+4b1jdVX809WKojae0gUL81cUrR6incQ1ibcE0l5y6MSelXMheqD/FYqZjYLzY3D+5JiQY8sX3d/5+aAxdpHSg4vqEmKd/cHizp09Q4kjicc1Wqn5T/y8nTZ+5+VtMLIZfcuQp7uvZZOTV/jb7WjMl9LqD6Lbavw/3+f0JrbSVxOOeqNK+U/0egX8kzZSkhFy3NXLb8MTU1umvsZYzy5dSXQnovlY9n3XbxvK0rchobUL+GYfTPn7YzDqbfftH6Pd0YB0G7pl/D2C2gdmv0+wzYUMDvUuHdDP7V5te0aX5P9fy4hDnVzkujNtS91HsqXCfqMyd+jHXm3Rf2PLf/g2/pvQH4e0FJvbF2a/T73NnC2UFBHhxeDOTMz+luMXM1mD39T+WN/cbMUNYOE9NgTAM4/5heJPrRIKZdTu4erF9/5r4Dpn0GL914p84OC/uA2z+cMzGnO3g9lTdHvxp937d2trV2UmDPX007i+kA50/phdJQyL/2eQveT2kXj03VHuu3fbRj8FmLkMOZs/NMH6zctffAPkzS/bMCfh6OpqDPCo0Fr+fyDn6xnOG8qfni3GMsEzXj3E/lRvng69tcOwm451/NOsPf4/xTesHf4/xxb0nzD/entBvbd2K1P0Kxg2ZPmrh+a2p90ZpdtDo10aqrrc+/teg7j6HaN7MHg/QZQzPOGMzqkLZ77UZ7yA==
   </data>
  </layer>
  <objectgroup id="9" name="ground">
@@ -121,7 +122,22 @@
   <object id="82" x="336" y="160" width="16" height="16"/>
   <object id="83" x="304" y="160" width="16" height="16"/>
  </objectgroup>
-  <objectgroup id="7" name="Flag">
-  <object id="314" x="3408" y="80" width="16" height="128"/>
+ <objectgroup id="12" name="Spider">
+  <object id="136" x="352" y="208" width="16" height="16"/>
+  <object id="137" x="672" y="208" width="16" height="16"/>
+  <object id="138" x="944" y="208" width="16" height="16"/>
+  <object id="139" x="1248" y="208" width="16" height="16"/>
+  <object id="140" x="1219" y="483" width="40" height="2.5"/>
+  <object id="141" x="1568" y="208" width="16" height="16"/>
+  <object id="142" x="1824" y="208" width="16" height="16"/>
+  <object id="143" x="2048" y="208" width="16" height="16"/>
+  <object id="144" x="2176" y="208" width="16" height="16"/>
+  <object id="145" x="2320" y="144" width="16" height="16"/>
+  <object id="146" x="2576" y="208" width="16" height="16"/>
+  <object id="147" x="2976" y="208" width="16" height="16"/>
+  <object id="148" x="3008" y="208" width="16" height="16"/>
+  <object id="149" x="3040" y="208" width="16" height="16"/>
+  <object id="150" x="3232" y="96" width="16" height="16"/>
+  <object id="151" x="3248" y="96" width="16" height="16"/>
  </objectgroup>
 </map>

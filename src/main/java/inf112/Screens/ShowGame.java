@@ -1,4 +1,6 @@
 package inf112.Screens;
+import java.util.PriorityQueue;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -16,7 +18,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import inf112.skeleton.app.MegaMarius;
 import inf112.Scenes.Display;
-import inf112.Screen.Marius.Spider;
+import inf112.Screen.Marius.Enemy;
 import inf112.skeleton.MakeMarius.makemarius;
 import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.WorldContactListener;
@@ -34,11 +36,11 @@ public class ShowGame implements Screen{
     
     private World world;
     private Box2DDebugRenderer b2dr;
+    private makemarius creator;
 
     private Marius player;
     private float accumulator = 0f;
     private float stepTime = 1/60f;
-    private Spider spider;
 
     public ShowGame(MegaMarius game){
         atlas = new TextureAtlas("Mario_and_Enemies.pack");
@@ -58,13 +60,11 @@ public class ShowGame implements Screen{
         world.step(0, 0, 0);
         b2dr = new Box2DDebugRenderer();    
 
-        new makemarius(this);
+        creator = new makemarius(this);
 
         player = new Marius(this);
 
         world.setContactListener(new WorldContactListener());
-
-        spider = new Spider(this, .32f, .32f);
     }
 
     public TextureAtlas getAtlas() {
@@ -86,8 +86,9 @@ public class ShowGame implements Screen{
         }
 
         player.update(dt);
-        spider.update(dt);
-
+        for(Enemy enemy : creator.getSpiders()){
+            enemy.update(dt);
+        }
         display.updateTime(dt);
 
         //attach our gamecam to our players.x coordinate
@@ -114,7 +115,9 @@ public class ShowGame implements Screen{
         game.batch.setProjectionMatrix(gameCam.combined);
         game.batch.begin();
         player.draw(game.batch);
-        spider.draw(game.batch);
+        for(Enemy enemy : creator.getSpiders()){
+            enemy.draw(game.batch);
+        }
         game.batch.end();
 
         game.batch.setProjectionMatrix(display.stage.getCamera().combined);

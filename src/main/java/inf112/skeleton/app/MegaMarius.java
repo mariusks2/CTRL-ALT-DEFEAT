@@ -32,6 +32,7 @@ public class MegaMarius extends Game {
         batch = new SpriteBatch();
         setScreen(new ShowGame(this));
     }
+        
 
     @Override
 	public void dispose() {

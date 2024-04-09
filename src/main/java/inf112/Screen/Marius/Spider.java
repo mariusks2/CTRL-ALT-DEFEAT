@@ -29,7 +29,7 @@ public class Spider extends Enemy{
 
     public void update(float dt){
         stateTime +=dt;
-        setPosition(b2body.getPosition().x-getWidth()/2, b2body.getPosition().y-getHeight()/2);
+        setCenter(b2body.getPosition().x, b2body.getPosition().y);
         setRegion(walkAnimation.getKeyFrame(stateTime,true));
     }
     //todo make spider move and kill player when touched, also kill spider when player jumps on spider.

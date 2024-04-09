@@ -3,22 +3,38 @@ package inf112.skeleton.app;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+
+import static org.mockito.Mockito.*;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.MapObject;
+
+import inf112.Scenes.Display;
+import inf112.Screen.Marius.Coin;
+import inf112.Screens.ShowGame;
+import inf112.Scenes.Display;
 public class TestMarius {
 
-    static MegaMarius mm = new MegaMarius();
+    
 
     @BeforeAll
 	static void setUpBeforeAll() {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
+		ApplicationListener listener = new ApplicationAdapter() {
+		};
+
         
-        new HeadlessApplication(mm, config);
+        new HeadlessApplication(listener, config);
         }
 
 	/**
@@ -38,8 +54,19 @@ public class TestMarius {
 	}
 
     @Test
-	void coinTest() {
-        assertEquals(null, mm.getScreen());
-        assertEquals(null, mm.batch);
+	void mmTest() {
+		ShowGame sg = mock(ShowGame.class);
+        assertEquals(null, sg.getGame());
+	}
+
+	@SuppressWarnings("static-access")
+	@Test
+	void displayTest() {
+		Display cDisplay = mock(Display.class);
+		Display.updateScore(200);
+		verify(cDisplay).updateScore(200);
+		assertEquals(200, cDisplay.getScoreCount());
+		Display.updateScore(200);
+		assertEquals(200, cDisplay.getScoreCount());
 	}
 }

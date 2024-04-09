@@ -10,7 +10,7 @@ _«Marius-Mario er i trøbbel nok engong! Han er helt tom for PepsiMax. Marius-M
 ## Kjøring #undervurdering
 
 - Kompileres med `mvn package`.
-- Kjøres med `java -jar target/kurt-mario-1.0-SNAPSHOT-fat.jar`
+- Kjøres med `java -jar skeleton/app/main.java`
 - Krever Java 15 eller senere
 
 ## Kjente feil

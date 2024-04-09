@@ -1,4 +1,7 @@
 package inf112.Screens;
+
+import java.util.concurrent.LinkedBlockingQueue;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -11,11 +14,16 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+
 import inf112.skeleton.app.MegaMarius;
 import inf112.Scenes.Display;
+import inf112.Screen.Marius.Item;
+import inf112.Screen.Marius.ItemDef;
+import inf112.Screen.Marius.Pepsi;
 import inf112.Screen.Marius.Spider;
 import inf112.skeleton.MakeMarius.makemarius;
 import inf112.skeleton.app.Marius;
@@ -39,6 +47,9 @@ public class ShowGame implements Screen{
     private float accumulator = 0f;
     private float stepTime = 1/60f;
     private Spider spider;
+    private Array<Item> items;
+    public LinkedBlockingQueue<ItemDef> itemsToSpawn;
+
 
     public ShowGame(MegaMarius game){
         atlas = new TextureAtlas("Mario_and_Enemies.pack");
@@ -65,17 +76,33 @@ public class ShowGame implements Screen{
         world.setContactListener(new WorldContactListener());
 
         spider = new Spider(this, .32f, .32f);
+
+        items = new Array<Item>();
+        itemsToSpawn = new LinkedBlockingQueue<ItemDef>();
     }
 
     public TextureAtlas getAtlas() {
         return atlas;
     }
 
+    public void spawnItems(ItemDef itemDef){
+        itemsToSpawn.add(itemDef);
+    }
+
+    public void handleSpawningItems(){
+        if(!itemsToSpawn.isEmpty()){
+            ItemDef itemDef = itemsToSpawn.poll();
+            if(itemDef.type == Pepsi.class){
+                items.add(new Pepsi(this, itemDef.positon.x, itemDef.positon.y));
+            }
+        }
+    }
+
 
     public void update(float dt){
 
         handleInput(dt);
-
+        handleSpawningItems();
         
         accumulator += Math.min(dt, 0.25f);
 
@@ -87,6 +114,9 @@ public class ShowGame implements Screen{
 
         player.update(dt);
         spider.update(dt);
+        for(Item item : items){
+            item.update(dt);
+        }
 
         display.updateTime(dt);
 
@@ -109,12 +139,13 @@ public class ShowGame implements Screen{
         renderer.render();
         b2dr.render(world, gameCam.combined);
 
-
-
         game.batch.setProjectionMatrix(gameCam.combined);
         game.batch.begin();
         player.draw(game.batch);
         spider.draw(game.batch);
+        for(Item item : items){
+            item.draw(game.batch);
+        }
         game.batch.end();
 
         game.batch.setProjectionMatrix(display.stage.getCamera().combined);

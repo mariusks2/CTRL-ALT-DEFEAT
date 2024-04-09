@@ -5,7 +5,6 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import inf112.Screens.ShowGame;
 import inf112.Screens.ShowStartGame;
 
 public class MegaMarius extends Game {

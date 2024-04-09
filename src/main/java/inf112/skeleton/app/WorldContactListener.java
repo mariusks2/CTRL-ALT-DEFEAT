@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 
 import inf112.Screen.Marius.Enemy;
 import inf112.Screen.Marius.InteractiveTileObj;
+import inf112.Screen.Marius.Item;
 
 
 public class WorldContactListener implements ContactListener {
@@ -46,6 +47,12 @@ public class WorldContactListener implements ContactListener {
                     ((Enemy)fixtureA.getUserData()).revVelocity(true, false);
                 }else
                     ((Enemy)fixtureB.getUserData()).revVelocity(true, false);
+                break;
+            case MegaMarius.ITEM_BIT | MegaMarius.OBJECT_BIT:
+                if (fixtureA.getFilterData().categoryBits == MegaMarius.ITEM_BIT) {
+                    ((Item)fixtureA.getUserData()).revVelocity(true, false);
+                }else
+                    ((Item)fixtureB.getUserData()).revVelocity(true, false);
                 break;
             case MegaMarius.MARIUS_BIT | MegaMarius.ENEMY_BIT:
                 Gdx.app.log("Marius", "died");

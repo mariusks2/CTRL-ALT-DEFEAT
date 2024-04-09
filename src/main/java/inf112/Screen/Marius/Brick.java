@@ -2,7 +2,6 @@ package inf112.Screen.Marius;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapObject;
 
-import inf112.Scenes.Display;
 import inf112.Screens.ShowGame;
 import inf112.skeleton.app.MegaMarius;
 

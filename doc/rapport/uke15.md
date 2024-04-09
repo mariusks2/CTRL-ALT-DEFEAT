@@ -1,5 +1,5 @@
 Møtested: Digitalt (Discord)
-Dato: 09. April, 12:00 - 14:00
+Dato: 09. April
 Oppmøte: Alle i gruppen!
 
 Dette gjorde vi på gruppetime:

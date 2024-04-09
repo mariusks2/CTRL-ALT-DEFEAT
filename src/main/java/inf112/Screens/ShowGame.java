@@ -20,7 +20,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import inf112.skeleton.app.MegaMarius;
 import inf112.Scenes.Display;
 import inf112.Screen.Marius.Enemy;
-import inf112.Screen.Marius.Spider;
 import inf112.skeleton.MakeMarius.makemarius;
 import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.WorldContactListener;
@@ -98,6 +97,9 @@ public class ShowGame implements Screen{
         player.update(dt);
         for(Enemy enemy : creator.getSpiders()){
             enemy.update(dt);
+            if (enemy.getX() < player.getX() + 224/MegaMarius.PPM) {
+                enemy.b2body.setActive(true);
+            }
         }
         display.updateTime(dt);
 

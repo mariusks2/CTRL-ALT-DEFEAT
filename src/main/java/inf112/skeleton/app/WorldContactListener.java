@@ -41,8 +41,19 @@ public class WorldContactListener implements ContactListener {
                 }else
                     ((Enemy)fixtureB.getUserData()).revVelocity(true, false);
                 break;
+            case MegaMarius.ENEMY_BIT | MegaMarius.GROUND_BIT:
+                if (fixtureA.getFilterData().categoryBits == MegaMarius.ENEMY_BIT) {
+                    ((Enemy)fixtureA.getUserData()).revVelocity(true, false);
+                }else
+                    ((Enemy)fixtureB.getUserData()).revVelocity(true, false);
+                break;
             case MegaMarius.MARIUS_BIT | MegaMarius.ENEMY_BIT:
                 Gdx.app.log("Marius", "died");
+                break;
+            case MegaMarius.ENEMY_BIT | MegaMarius.ENEMY_BIT:
+                ((Enemy)fixtureA.getUserData()).revVelocity(true, false);
+                ((Enemy)fixtureB.getUserData()).revVelocity(true, false);
+                break;
         }
     }
 

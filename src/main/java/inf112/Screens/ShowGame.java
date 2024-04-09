@@ -19,6 +19,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import inf112.skeleton.app.MegaMarius;
 import inf112.Scenes.Display;
+import inf112.Screen.Marius.Enemy;
 import inf112.Screen.Marius.Spider;
 import inf112.skeleton.MakeMarius.makemarius;
 import inf112.skeleton.app.Marius;
@@ -74,8 +75,6 @@ public class ShowGame implements Screen{
         music.setLooping(true);
         music.setVolume(0.005f);
         music.play(); // Comment this out to stop music from playing
-
-        spider = new Spider(this, .32f, .32f);
     }
 
     public TextureAtlas getAtlas() {

@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 
 import inf112.Screens.ShowGame;
+import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.MegaMarius;
 
 public class Pepsi extends Item{
@@ -35,9 +36,8 @@ public class Pepsi extends Item{
     }
 
     @Override
-    public void use() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'use'");
+    public void use(Marius marius) {
+        destroy();
     }
     
     @Override

@@ -25,8 +25,10 @@ public class Coin extends InteractiveTileObj{
         if(getCell().getTile().getId() != BLANK_COIN){
             getCell().setTile(tileSet.getTile(BLANK_COIN)); //Set the graphic block to Blank Coin
             Display.updateScore(200); //Add score
-            screen.spawnItems(new ItemDef(new Vector2(body.getPosition().x, body.getPosition().y + 16/MegaMarius.PPM), Pepsi.class));
-            System.out.println(body.getPosition().x);
+            if(object.getProperties().containsKey("pepsi")){
+                screen.spawnItems(new ItemDef(new Vector2(body.getPosition().x, body.getPosition().y + 16/MegaMarius.PPM), Pepsi.class));
+            }
+            
         }
         
     }

@@ -19,7 +19,7 @@ public class Brick extends InteractiveTileObj{
         Gdx.app.log("Brick", "Collision");
         setCategoryFilter(MegaMarius.DESTROYED_BIT); //Set the block to Destroyed bit.
         getCell().setTile(null); //Set tile to null Todo add animation.
-        //Display.getInstance().updateScore(200); //Add score
+        Display.updateScore(200); //Add score
         
     }
 

@@ -6,6 +6,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import inf112.Screens.ShowGame;
+import inf112.Screens.ShowStartGame;
 
 public class MegaMarius extends Game {
     public static final int M_Width = 400;
@@ -33,11 +34,11 @@ public class MegaMarius extends Game {
 
     @Override
     public void create() {
-        this.batch = new SpriteBatch();
+        batch = new SpriteBatch();
         manager = new AssetManager();
         manager.load("audio/music/music1.mp3", Music.class);
         manager.finishLoading();
-        setScreen(new ShowGame(this));
+        setScreen(new ShowStartGame(this));
     }
 
     @Override

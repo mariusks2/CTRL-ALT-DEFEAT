@@ -69,9 +69,9 @@ public class WorldContactListener implements ContactListener {
             case MegaMarius.MARIUS_HEAD_BIT | MegaMarius.BRICK_BIT:
             case MegaMarius.MARIUS_HEAD_BIT | MegaMarius.COIN_BIT:
                 if (fixtureA.getFilterData().categoryBits == MegaMarius.MARIUS_HEAD_BIT) {
-                    ((InteractiveTileObj) fixtureB.getUserData()).HeadHit();
+                    ((InteractiveTileObj) fixtureB.getUserData()).HeadHit((Marius) fixtureA.getUserData());
                 }else
-                    ((InteractiveTileObj) fixtureA.getUserData()).HeadHit();
+                    ((InteractiveTileObj) fixtureA.getUserData()).HeadHit((Marius) fixtureB.getUserData());
             break;
         }
     }

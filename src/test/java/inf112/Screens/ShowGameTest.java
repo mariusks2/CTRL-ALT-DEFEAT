@@ -20,6 +20,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 
 import inf112.Scenes.Display;
 import inf112.Screen.Coin;
+import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.MegaMarius;
 
 public class ShowGameTest {
@@ -72,7 +73,8 @@ public class ShowGameTest {
 	@Test
 	void test2() {
 		Coin coin = mock(Coin.class);
-		coin.HeadHit();
+		Marius marius = mock(Marius.class);
+		coin.HeadHit(marius);
 
 	}
 

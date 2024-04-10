@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import inf112.Scenes.Display;
 import inf112.Screens.ShowGame;
+import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.MegaMarius;
 
 public class Coin extends InteractiveTileObj{
@@ -19,7 +20,7 @@ public class Coin extends InteractiveTileObj{
     }
 
     @Override
-    public void HeadHit() {
+    public void HeadHit(Marius marius) {
         if(getCell().getTile().getId() != BLANK_COIN){
             getCell().setTile(tileSet.getTile(BLANK_COIN)); //Set the graphic block to Blank Coin
             Display.updateScore(200); //Add score

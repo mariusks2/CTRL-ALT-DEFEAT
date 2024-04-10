@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 
 import inf112.Screens.ShowGame;
+import inf112.skeleton.app.Marius;
 
 public abstract class Enemy extends Sprite{ //Abstract class for enemies. 
     protected World world;
@@ -24,7 +25,8 @@ public abstract class Enemy extends Sprite{ //Abstract class for enemies.
 
     protected abstract void defineEnemy();
     public abstract void update(float dt);
-    public abstract void hitOnHead();
+    public abstract void hitOnHead(Marius marius);
+    public abstract void hitByEnemy(Enemy enemy);
 
     public void revVelocity(boolean x, boolean y){
         if (x) {

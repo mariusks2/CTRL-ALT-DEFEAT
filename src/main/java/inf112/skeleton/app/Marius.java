@@ -15,6 +15,9 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 
 import com.badlogic.gdx.utils.Array;
+
+import inf112.Screen.Enemy;
+import inf112.Screen.Turtle;
 import inf112.Screens.ShowGame;
 
 	public class Marius extends Sprite {
@@ -127,7 +130,7 @@ import inf112.Screens.ShowGame;
 			if (timeToDefineBigMarius) {
 				defineBigMarius();
 			}
-			if (timeToDefineBigMarius) {
+			if (timetoReDefineMarius) {
 				redefineMarius();
 			}
 		}
@@ -227,6 +230,8 @@ import inf112.Screens.ShowGame;
 			}
 			if(mariusIsDead)
 				return State.DEAD;
+			else if (runGrowAnimation)
+				return State.GROWING;
 			else if((b2body.getLinearVelocity().y > 0 && currentState == State.JUMPING) || (b2body.getLinearVelocity().y < 0 && previousState == State.JUMPING))
 				return State.JUMPING;
 			//if negative in Y-Axis mario is falling
@@ -336,11 +341,19 @@ import inf112.Screens.ShowGame;
 			return gameWon;
 		}
 
-		public void hit(){
-			if (isMariusBig){
-				isMariusBig = false;
-				timetoReDefineMarius = true;
-				setBounds(getX(), getY(), getWidth(), getHeight() /2);
+		public void hit(Enemy enemy){
+			if (enemy instanceof Turtle && ((Turtle) enemy).currentState == Turtle.State.STANDING_SHELL) {
+				((Turtle) enemy).kick(enemy.b2body.getPosition().x > b2body.getPosition().x ? Turtle.KICK_RIGHT : Turtle.KICK_LEFT);
+			}
+			else {
+				if (isMariusBig){
+					isMariusBig = false;
+					timetoReDefineMarius = true;
+					setBounds(getX(), getY(), getWidth(), getHeight()/2);
+				}
+				else {
+					entityDie();
+				}
 			}
 		}
 
@@ -350,13 +363,13 @@ import inf112.Screens.ShowGame;
 			timeToDefineBigMarius = true;
 			setBounds(getX(), getY(), getWidth(), getHeight()*2);
 		}
-		
+
 		public void redefineMarius(){
-			Vector2 pos = b2body.getPosition();
+			Vector2 posistion = b2body.getPosition();
 			world.destroyBody(b2body);
 
 			BodyDef bdef = new BodyDef();
-			bdef.position.set(pos);
+			bdef.position.set(posistion);
 			bdef.type = BodyDef.BodyType.DynamicBody;
 			b2body = world.createBody(bdef);
 	

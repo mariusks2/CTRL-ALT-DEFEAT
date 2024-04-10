@@ -11,6 +11,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.utils.Array;
 
 import inf112.Screens.ShowGame;
+import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.MegaMarius;
 
 public class Spider extends Enemy{
@@ -92,8 +93,14 @@ public class Spider extends Enemy{
     }
 
     @Override
-    public void hitOnHead() {
+    public void hitOnHead(Marius marius) {
         setToDestroy = true;
+    }
+
+    @Override
+    public void hitByEnemy(Enemy enemy) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'hitByEnemy'");
     }
     
 }

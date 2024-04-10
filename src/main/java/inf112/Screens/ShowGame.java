@@ -125,7 +125,8 @@ public class ShowGame implements Screen{
             if (enemy.getX() < player.getX() + 224/MegaMarius.PPM) {
                 enemy.b2body.setActive(true);
             }
-        }        for(Item item : items){
+        }
+        for(Item item : items){
             item.update(dt);
         }
 
@@ -187,13 +188,14 @@ public class ShowGame implements Screen{
 
     private void handleInput(float dt) {
         //control our player using immediate impulses
-         
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP))
-            player.jump();
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2)
-            player.b2body.applyLinearImpulse(new Vector2(0.1f/3, 0), player.b2body.getWorldCenter(), true);
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2)
-            player.b2body.applyLinearImpulse(new Vector2(-0.1f/3, 0), player.b2body.getWorldCenter(), true);
+        if (player.currentState != Marius.State.DEAD) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.UP))
+                player.jump();
+            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2)
+                player.b2body.applyLinearImpulse(new Vector2(0.1f/3, 0), player.b2body.getWorldCenter(), true);
+            if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2)
+                player.b2body.applyLinearImpulse(new Vector2(-0.1f/3, 0), player.b2body.getWorldCenter(), true);
+        } 
     }
 
     public TiledMap getMap(){

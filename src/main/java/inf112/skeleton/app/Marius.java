@@ -74,7 +74,7 @@ import inf112.Screens.ShowGame;
 			frames.clear();
 
 			for(int i = 1; i < 4; i++)
-				frames.add(new TextureRegion(screen.getAtlas().findRegion("little_mario"), i * 16, 0, 16, 32));
+				frames.add(new TextureRegion(screen.getAtlas().findRegion("big_mario"), i * 16, 0, 16, 32));
 			// Adding run animation to marius
 			bigMariusRun = new Animation(0.1f, frames);
 			frames.clear();

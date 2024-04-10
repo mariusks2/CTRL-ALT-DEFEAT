@@ -23,6 +23,8 @@ public class Turtle extends Enemy{
     public enum State {WALKING, MOVING_SHELL, STANDING_SHELL}
     public State currentState;
     public State prevState;
+    private boolean setToDestroy;
+    private boolean destroyed;
 
     public Turtle(ShowGame screen, float x, float y) {
         super(screen, x, y);
@@ -130,7 +132,9 @@ public class Turtle extends Enemy{
 
     @Override
     public void hitByEnemy(Enemy enemy) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'hitByEnemy'");
+        if(enemy instanceof Turtle && ((Turtle) enemy).currentState == Turtle.State.MOVING_SHELL)
+            setToDestroy = true;
+        else
+            revVelocity(true, false);
+        }
     }
-}

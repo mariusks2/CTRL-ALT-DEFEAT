@@ -120,7 +120,7 @@ public class ShowGame implements Screen{
         }
 
         player.update(dt);
-        for(Enemy enemy : creator.getSpiders()){
+        for(Enemy enemy : creator.getEnemies()){
             enemy.update(dt);
             if (enemy.getX() < player.getX() + 224/MegaMarius.PPM) {
                 enemy.b2body.setActive(true);
@@ -156,7 +156,7 @@ public class ShowGame implements Screen{
         game.batch.setProjectionMatrix(gameCam.combined);
         game.batch.begin();
         player.draw(game.batch);
-        for(Enemy enemy : creator.getSpiders()){
+        for(Enemy enemy : creator.getEnemies()){
             enemy.draw(game.batch);
         for(Item item : items){
             item.draw(game.batch);

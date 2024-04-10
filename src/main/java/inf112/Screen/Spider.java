@@ -73,9 +73,9 @@ public class Spider extends Enemy{
         b2body.createFixture(fdef).setUserData(this);
 
         PolygonShape head = new PolygonShape();
-        Vector2[] vertice = new Vector2[4]; //defines headhitbox for spider
-        vertice[0] = new Vector2(-5,8).scl(1/MegaMarius.PPM);
-        vertice[1] = new Vector2(5,8).scl(1/MegaMarius.PPM);
+        Vector2[] vertice = new Vector2[4]; //defines hitbox for spider
+        vertice[0] = new Vector2(-5,9).scl(1/MegaMarius.PPM);
+        vertice[1] = new Vector2(5,9).scl(1/MegaMarius.PPM);
         vertice[2] = new Vector2(-3,3).scl(1/MegaMarius.PPM);
         vertice[3] = new Vector2(3,3).scl(1/MegaMarius.PPM);
         head.set(vertice);
@@ -99,8 +99,9 @@ public class Spider extends Enemy{
 
     @Override
     public void hitByEnemy(Enemy enemy) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'hitByEnemy'");
+        if(enemy instanceof Turtle && ((Turtle) enemy).currentState == Turtle.State.MOVING_SHELL)
+            setToDestroy = true;
+        else
+            revVelocity(true, false);
     }
-    
 }

@@ -42,6 +42,7 @@ import inf112.Screens.ShowGame;
 		private boolean isMariusBig;
 		private boolean runGrowAnimation;
 		private boolean timeToDefineBigMarius;
+		private boolean timetoReDefineMarius;
 
 		// Marius animation
 		private Animation<TextureRegion> mariusRun;
@@ -125,6 +126,9 @@ import inf112.Screens.ShowGame;
             
 			if (timeToDefineBigMarius) {
 				defineBigMarius();
+			}
+			if (timeToDefineBigMarius) {
+				redefineMarius();
 			}
 		}
 
@@ -332,10 +336,55 @@ import inf112.Screens.ShowGame;
 			return gameWon;
 		}
 
+		public void hit(){
+			if (mariusIsBig){
+				mariusIsBig = false;
+				timetoReDefineMarius = true;
+				setBounds(getX(), getY(), getWidth(), getHeight() /2);
+			}
+		}
+
 		public void grow(){
 			runGrowAnimation = true;
 			isMariusBig = true;
 			timeToDefineBigMarius = true;
 			setBounds(getX(), getY(), getWidth(), getHeight()*2);
+		}
+		public void defineBigMarius(){
+
+		}
+		public void redefineMarius(){
+			Vector2 pos = b2body.getPosition();
+			world.destroyBody(b2body);
+
+			BodyDef bdef = new BodyDef();
+			bdef.position.set(pos);
+			bdef.type = BodyDef.BodyType.DynamicBody;
+			b2body = world.createBody(bdef);
+	
+			FixtureDef fdef = new FixtureDef();
+			CircleShape shape = new CircleShape();
+			shape.setRadius(6 / MegaMarius.PPM);
+			fdef.filter.categoryBits = MegaMarius.MARIUS_BIT;
+			fdef.filter.maskBits = MegaMarius.GROUND_BIT |
+					MegaMarius.COIN_BIT |
+					MegaMarius.BRICK_BIT |
+					MegaMarius.ENEMY_BIT |
+					MegaMarius.OBJECT_BIT |
+					MegaMarius.ENEMY_HEAD_BIT |
+					MegaMarius.ITEM_BIT;
+	
+			fdef.shape = shape;
+			b2body.createFixture(fdef).setUserData(this);
+	
+			EdgeShape head = new EdgeShape();
+			head.set(new Vector2(-2 / MegaMarius.PPM, 6 / MegaMarius.PPM), new Vector2(2 / MegaMarius.PPM, 6 / MegaMarius.PPM));
+			fdef.filter.categoryBits = MegaMarius.MARIUS_HEAD_BIT;
+			fdef.shape = head;
+			fdef.isSensor = true;
+	
+			b2body.createFixture(fdef).setUserData(this);
+
+			timetoReDefineMarius = false;
 		}
 }

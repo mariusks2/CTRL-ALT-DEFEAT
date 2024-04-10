@@ -1,9 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="15">
  <tileset firstgid="1" source="customtileset.tsx"/>
- <layer id="1" name="Rutelag 1" width="240" height="13">
+ <layer id="2" name="Background" width="240" height="13">
   <data encoding="base64" compression="zlib">
-   eJztw7ENAAAEADDe8f+BHrAaRJs0AgAAAAAAAAAAAOCXXAzsqgOBWQP6BQbS
+   eJztwTEBAAAAwqD1T20KP6AAAAAAAAAAAAAAAAC+BjDAAAE=
   </data>
  </layer>
+ <layer id="1" name="Graphics" width="240" height="13">
+  <data encoding="base64" compression="zlib">
+   eJzt17ENgEAIBVAMU7iCW93+Sxi7azUYCl7xCkLxaUhgZcQCAABanRGRm6fungkAAAAq5PbvfukDAMB06VaG3xxRpysXproKvdnfylyY6gZvuDIs
+  </data>
+ </layer>
+ <objectgroup id="3" name="Ground">
+  <object id="1" x="0" y="176" width="304" height="32"/>
+ </objectgroup>
+ <objectgroup id="4" name="Pipes"/>
+ <objectgroup id="5" name="Coins">
+  <object id="13" x="352" y="48" width="16" height="16"/>
+  <object id="14" x="416" y="48" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="6" name="Bricks">
+  <object id="2" x="304" y="112" width="16" height="16"/>
+  <object id="3" x="320" y="112" width="16" height="16"/>
+  <object id="4" x="336" y="112" width="16" height="16"/>
+  <object id="5" x="368" y="48" width="16" height="16"/>
+  <object id="6" x="384" y="48" width="16" height="16"/>
+  <object id="7" x="400" y="48" width="16" height="16"/>
+  <object id="8" x="384" y="160" width="16" height="16"/>
+  <object id="9" x="432" y="112" width="16" height="16"/>
+  <object id="10" x="464" y="112" height="16"/>
+  <object id="11" x="448" y="112" width="16" height="16"/>
+  <object id="12" x="464" y="112" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="8" name="Spiders"/>
+ <objectgroup id="9" name="Turtles"/>
 </map>

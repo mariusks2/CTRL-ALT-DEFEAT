@@ -182,7 +182,7 @@ import inf112.Screens.ShowGame;
 					if (isMariusBig) {
 						animationFrame = bigMariusJump;
 					} 
-					else animationFrame = bigMariusJump;
+					else animationFrame = mariusJump;
 					break;
 				case RUNNING:
 					if (isMariusBig) {

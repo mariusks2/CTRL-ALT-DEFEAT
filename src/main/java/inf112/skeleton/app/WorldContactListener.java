@@ -20,14 +20,6 @@ public class WorldContactListener implements ContactListener {
 
         int cdef = fixtureA.getFilterData().categoryBits | fixtureB.getFilterData().categoryBits;
 
-        if (fixtureA.getUserData() == "head" || fixtureB.getUserData() == "head") {
-            Fixture head = fixtureA.getUserData() == "head" ? fixtureA : fixtureB;
-            Fixture object = head == fixtureA ? fixtureB : fixtureA;
-
-            if (object.getUserData() != null && InteractiveTileObj.class.isAssignableFrom(object.getUserData().getClass())) {
-                ((InteractiveTileObj) object.getUserData()).HeadHit();
-            }
-        }
         switch (cdef) {
             case MegaMarius.ENEMY_HEAD_BIT | MegaMarius.MARIUS_BIT:
                 if (fixtureA.getFilterData().categoryBits == MegaMarius.ENEMY_HEAD_BIT) {
@@ -72,6 +64,13 @@ public class WorldContactListener implements ContactListener {
                     ((Item)fixtureA.getUserData()).use((Marius) fixtureB.getUserData());
                 }else
                     ((Item)fixtureB.getUserData()).use((Marius) fixtureA.getUserData());
+            break;
+            case MegaMarius.MARIUS_HEAD_BIT | MegaMarius.BRICK_BIT:
+            case MegaMarius.MARIUS_HEAD_BIT | MegaMarius.COIN_BIT:
+                if (fixtureA.getFilterData().categoryBits == MegaMarius.MARIUS_HEAD_BIT) {
+                    ((InteractiveTileObj) fixtureB.getUserData()).HeadHit();
+                }else
+                    ((InteractiveTileObj) fixtureA.getUserData()).HeadHit();
             break;
         }
     }

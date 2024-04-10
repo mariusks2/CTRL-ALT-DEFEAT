@@ -41,6 +41,7 @@ import inf112.Screens.ShowGame;
 		private static boolean gameWon;
 		private boolean isMariusBig;
 		private boolean runGrowAnimation;
+		private boolean timeToDefineBigMarius;
 
 		// Marius animation
 		private Animation<TextureRegion> mariusRun;
@@ -111,13 +112,16 @@ import inf112.Screens.ShowGame;
 				entityDie();
 			}
 			// Check if marius has won game
-			if (b2body.getPosition().x >= 34.5) {
+			if (b2body.getPosition().x >= 34) {
 				setGameWon();
 			}
 
 			// Update our sprite to correspond with the position of our Box2D body and with correct frame depending on current state
             setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
 			setRegion(getFrame(dt));
+			if (timeToDefineBigMarius) {
+				
+			}
 		}
 
 		private boolean fallOfMap() {
@@ -242,7 +246,6 @@ import inf112.Screens.ShowGame;
 		}
 	
 		public void defineMarius(){
-			// Define marius character
 			BodyDef bdef = new BodyDef();
 			bdef.position.set(32 / MegaMarius.PPM, 32 / MegaMarius.PPM);
 			bdef.type = BodyDef.BodyType.DynamicBody;
@@ -253,16 +256,15 @@ import inf112.Screens.ShowGame;
 			shape.setRadius(6 / MegaMarius.PPM);
 			fdef.filter.categoryBits = MegaMarius.MARIUS_BIT;
 			fdef.filter.maskBits = MegaMarius.GROUND_BIT |
-			MegaMarius.COIN_BIT |
-			MegaMarius.BRICK_BIT |
-			MegaMarius.ENEMY_BIT |
-			MegaMarius.OBJECT_BIT |
-			MegaMarius.ENEMY_HEAD_BIT |
-			MegaMarius.ITEM_BIT |
-			MegaMarius.FLAG_BIT;
+					MegaMarius.COIN_BIT |
+					MegaMarius.BRICK_BIT |
+					MegaMarius.ENEMY_BIT |
+					MegaMarius.OBJECT_BIT |
+					MegaMarius.ENEMY_HEAD_BIT |
+					MegaMarius.ITEM_BIT;
 	
 			fdef.shape = shape;
-			b2body.createFixture(fdef);
+			b2body.createFixture(fdef).setUserData(this);
 	
 			EdgeShape head = new EdgeShape();
 			head.set(new Vector2(-2 / MegaMarius.PPM, 6 / MegaMarius.PPM), new Vector2(2 / MegaMarius.PPM, 6 / MegaMarius.PPM));
@@ -270,7 +272,7 @@ import inf112.Screens.ShowGame;
 			fdef.shape = head;
 			fdef.isSensor = true;
 	
-			b2body.createFixture(fdef).setUserData("head");
+			b2body.createFixture(fdef).setUserData(this);
 		}
 
 		public void draw(Batch batch){
@@ -288,6 +290,7 @@ import inf112.Screens.ShowGame;
 		public void grow(){
 			runGrowAnimation = true;
 			isMariusBig = true;
+			timeToDefineBigMarius = true;
 			setBounds(getX(), getY(), getWidth(), getHeight()*2);
 		}
 }

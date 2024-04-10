@@ -37,6 +37,7 @@ public class Pepsi extends Item{
 
     @Override
     public void use(Marius marius) {
+        System.out.println(marius.getX());
         destroy();
         marius.grow();
     }

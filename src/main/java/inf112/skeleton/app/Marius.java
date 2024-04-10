@@ -116,12 +116,16 @@ import inf112.Screens.ShowGame;
 			if (b2body.getPosition().x >= 34) {
 				setGameWon();
 			}
-
 			// Update our sprite to correspond with the position of our Box2D body and with correct frame depending on current state
-            setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
+			if (isMariusBig) {
+				setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2 - 6/MegaMarius.PPM);
+			}
+			else setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
 			setRegion(getFrame(dt));
+			
+            
 			if (timeToDefineBigMarius) {
-				
+				defineBigMarius();
 			}
 			if (timeToDefineBigMarius) {
 				redefineMarius();
@@ -279,12 +283,53 @@ import inf112.Screens.ShowGame;
 			b2body.createFixture(fdef).setUserData(this);
 		}
 
+		public void defineBigMarius(){
+			Vector2 currentPositionMarius =  b2body.getPosition();
+			world.destroyBody(b2body);
+
+			BodyDef bdef = new BodyDef();
+			bdef.position.set(currentPositionMarius.add(0, 10/MegaMarius.PPM));
+			bdef.type = BodyDef.BodyType.DynamicBody;
+			b2body = world.createBody(bdef);
+	
+			FixtureDef fdef = new FixtureDef();
+			CircleShape shape = new CircleShape();
+			shape.setRadius(6 / MegaMarius.PPM);
+			fdef.filter.categoryBits = MegaMarius.MARIUS_BIT;
+			fdef.filter.maskBits = MegaMarius.GROUND_BIT |
+					MegaMarius.COIN_BIT |
+					MegaMarius.BRICK_BIT |
+					MegaMarius.ENEMY_BIT |
+					MegaMarius.OBJECT_BIT |
+					MegaMarius.ENEMY_HEAD_BIT |
+					MegaMarius.ITEM_BIT;
+	
+			fdef.shape = shape;
+			b2body.createFixture(fdef).setUserData(this);
+			shape.setPosition(new Vector2(0, -14/MegaMarius.PPM));
+			b2body.createFixture(fdef).setUserData(this);
+	
+			EdgeShape head = new EdgeShape();
+			head.set(new Vector2(-2 / MegaMarius.PPM, 6 / MegaMarius.PPM), new Vector2(2 / MegaMarius.PPM, 6 / MegaMarius.PPM));
+			fdef.filter.categoryBits = MegaMarius.MARIUS_HEAD_BIT;
+			fdef.shape = head;
+			fdef.isSensor = true;
+	
+			b2body.createFixture(fdef).setUserData(this);
+			timeToDefineBigMarius = false;
+		}
+
+
 		public void draw(Batch batch){
 			super.draw(batch);
 		}
 
 		public void setGameWon() {
 			gameWon = true;
+		}
+
+		public boolean isMariusBigNow(){
+			return isMariusBig;
 		}
 
 		public static boolean getGameWon() {

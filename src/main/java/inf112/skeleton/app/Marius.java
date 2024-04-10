@@ -127,7 +127,7 @@ import inf112.Screens.ShowGame;
 			if (timeToDefineBigMarius) {
 				defineBigMarius();
 			}
-			if (timeToDefineBigMarius) {
+			if (timetoReDefineMarius) {
 				redefineMarius();
 			}
 		}

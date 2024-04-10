@@ -337,8 +337,8 @@ import inf112.Screens.ShowGame;
 		}
 
 		public void hit(){
-			if (mariusIsBig){
-				mariusIsBig = false;
+			if (isMariusBig){
+				isMariusBig = false;
 				timetoReDefineMarius = true;
 				setBounds(getX(), getY(), getWidth(), getHeight() /2);
 			}
@@ -350,9 +350,7 @@ import inf112.Screens.ShowGame;
 			timeToDefineBigMarius = true;
 			setBounds(getX(), getY(), getWidth(), getHeight()*2);
 		}
-		public void defineBigMarius(){
-
-		}
+		
 		public void redefineMarius(){
 			Vector2 pos = b2body.getPosition();
 			world.destroyBody(b2body);

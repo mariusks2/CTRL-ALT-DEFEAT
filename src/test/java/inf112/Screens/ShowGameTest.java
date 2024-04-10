@@ -3,11 +3,13 @@ package inf112.Screens;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.ApplicationListener;
@@ -15,10 +17,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 
 import inf112.Scenes.Display;
+import inf112.Screen.Brick;
 import inf112.Screen.Coin;
 import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.MegaMarius;
@@ -68,6 +74,7 @@ public class ShowGameTest {
 		MegaMarius mGame = mock(MegaMarius.class);
 		mGame.batch = mock(SpriteBatch.class);
 		return new ShowGame(mGame);
+
 	}
 
 	@Test
@@ -85,8 +92,17 @@ public class ShowGameTest {
 		ShowGame sGame = makeShowGame();
         when(sGame.getDisplay()).thenReturn(display);
         var coin = makeCoin();
-        // when(sGame.getMap()).thenReturn(makeMap());
-        assertNotNull(sGame.getMap());
-        //new Coin(sGame, map.getLayers().get(0).getObjects().get(0));
+	}
+
+	@Test 
+	void brickTest() {
+		MapObject mapObject = mock(MapObject.class);
+		Brick newBrick = new Brick(mock(ShowGame.class), mapObject);
+		Marius marius = mock(Marius.class);
+		Brick brick = mock(Brick.class);
+		brick.setCategoryFilter(MegaMarius.BRICK_BIT);
+		when(marius.isMariusBigNow()).thenReturn(true);
+		brick.HeadHit(marius);
+		assertEquals(MegaMarius.DESTROYED_BIT, brick.getFilterData());
 	}
 }

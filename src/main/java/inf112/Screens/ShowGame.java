@@ -25,6 +25,7 @@ import inf112.Scenes.Display;
 import inf112.Screen.Item;
 import inf112.Screen.ItemDef;
 import inf112.Screen.Pepsi;
+import inf112.Screen.Coin;
 import inf112.Screen.Enemy;
 import inf112.skeleton.MakeMarius.makemarius;
 import inf112.skeleton.app.Marius;

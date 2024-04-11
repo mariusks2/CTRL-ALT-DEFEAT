@@ -116,7 +116,7 @@ import inf112.Screens.ShowGame;
 				entityDie();
 			}
 			// Check if marius has won game
-			if (b2body.getPosition().x >= 34) {
+			if (b2body.getPosition().x >= 34 + 0.1) {
 				setGameWon();
 			}
 			// Update our sprite to correspond with the position of our Box2D body and with correct frame depending on current state

@@ -72,7 +72,7 @@ public class ShowGame implements Screen{
 
         world = new World(new Vector2(0, -10), true);
         world.step(0, 0, 0);
-        b2dr = new Box2DDebugRenderer();    
+        //b2dr = new Box2DDebugRenderer(); // uncomment to show hitbox 
 
         creator = new makemarius(this);
 
@@ -157,7 +157,8 @@ public class ShowGame implements Screen{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); //clears screen
 
         renderer.render();
-        b2dr.render(world, gameCam.combined);
+
+        //b2dr.render(world, gameCam.combined); // Uncomment to show hitbox
 
         game.batch.setProjectionMatrix(gameCam.combined);
         game.batch.begin();

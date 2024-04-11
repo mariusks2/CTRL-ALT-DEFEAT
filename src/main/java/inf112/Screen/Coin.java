@@ -43,23 +43,9 @@ public class Coin extends InteractiveTileObj{
              
         }
     }
-    public TiledMapTileLayer.Cell getCellA(){
-        TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(8);
-        layer.setVisible(true);
-        return layer.getCell((int)(body.getPosition().x * MegaMarius.PPM / 16),
-                (int)((body.getPosition().y) * MegaMarius.PPM / 16+1));
-    }
 
     public TiledMapTileLayer.Cell getCellA(){
         TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(1);
-        System.out.println((int)(body.getPosition().y * MegaMarius.PPM / 16+1));
-        return layer.getCell((int)(body.getPosition().x * MegaMarius.PPM / 16),
-        (int)(body.getPosition().y * MegaMarius.PPM / 16+1));
-    }
-
-    public TiledMapTileLayer.Cell getCellA(){
-        TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(1);
-        System.out.println((int)(body.getPosition().y * MegaMarius.PPM / 16+1));
         return layer.getCell((int)(body.getPosition().x * MegaMarius.PPM / 16),
         (int)(body.getPosition().y * MegaMarius.PPM / 16+1));
     }

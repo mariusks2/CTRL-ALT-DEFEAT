@@ -182,9 +182,8 @@
  </objectgroup>
  <objectgroup id="9" name="Turtles">
   <object id="19" x="1504" y="160" width="16" height="16"/>
-  <object id="20" x="1376" y="160" width="16" height="16"/>
+  <object id="20" x="1424.25" y="160.25" width="16" height="16"/>
   <object id="21" x="1312" y="160" width="16" height="16"/>
-  <object id="22" x="1456" y="160" width="16" height="16"/>
   <object id="27" x="2992" y="160" width="16" height="16"/>
   <object id="28" x="2864" y="160" width="16" height="16"/>
   <object id="29" x="3328" y="160" width="16" height="16"/>

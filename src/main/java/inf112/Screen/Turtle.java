@@ -153,7 +153,6 @@ public class Turtle extends Enemy {
         if (setToDestroy && !destroyed) {
             world.destroyBody(b2body);
             destroyed = true;
-            setRegion(new TextureRegion(screen.getAtlas().findRegion("turtle"),32, 0, 16, 16));
             stateTime = 0;
 
         }

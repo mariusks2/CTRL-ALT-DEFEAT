@@ -299,7 +299,7 @@ import inf112.Screens.ShowGame;
 	
 			FixtureDef fdef = new FixtureDef();
 			CircleShape shape = new CircleShape();
-			shape.setRadius(6 / MegaMarius.PPM);
+			shape.setRadius(5 / MegaMarius.PPM);
 			fdef.filter.categoryBits = MegaMarius.MARIUS_BIT;
 			fdef.filter.maskBits = MegaMarius.GROUND_BIT |
 					MegaMarius.COIN_BIT |

@@ -20,7 +20,7 @@ import inf112.Screens.ShowGame;
 	public class Marius extends Sprite {
 
 		// Enum and states
-		public enum State {START, FALLING, JUMPING, STANDING, RUNNING, DEAD };
+		public enum State { FALLING, JUMPING, STANDING, RUNNING, DEAD };
 		public State currentState;
 		public State previousState;
 		

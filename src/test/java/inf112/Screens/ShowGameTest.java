@@ -66,13 +66,6 @@ public class ShowGameTest {
 		return new Coin(sGame, mp);
 	}
 
-	static ShowGame makeShowGame() {
-		MegaMarius mGame = mock(MegaMarius.class);
-		mGame.batch = mock(SpriteBatch.class);
-		return new ShowGame(mGame);
-
-	}
-
 	@Test
 	void test2() {
 		Coin coin = mock(Coin.class);
@@ -85,7 +78,7 @@ public class ShowGameTest {
 	void test1() {
 		Display display = mock(Display.class);
         TiledMap map = mock(TiledMap.class);
-		ShowGame sGame = makeShowGame();
+		ShowGame sGame = mock(ShowGame.class);
         when(sGame.getDisplay()).thenReturn(display);
         var coin = makeCoin();
 	}

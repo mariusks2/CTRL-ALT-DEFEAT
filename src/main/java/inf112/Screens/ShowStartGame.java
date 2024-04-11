@@ -47,7 +47,7 @@ public class ShowStartGame implements Screen {
         
         MegaMarius megaMariusGame = (MegaMarius) game;
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-            game.setScreen(new ShowGame(megaMariusGame));
+            game.setScreen(new ShowGame(megaMariusGame, "custom1.tmx"));
             dispose();
         }
 
@@ -68,7 +68,7 @@ public class ShowStartGame implements Screen {
 
             // Check if the click is within the bounds of "Start Game"
             if (startGameBounds.contains(clickPosition.x, clickPosition.y)) {
-                megaMariusGame.setScreen(new ShowGame(megaMariusGame));
+                megaMariusGame.setScreen(new ShowGame(megaMariusGame, "custom1.tmx"));
                 dispose();
             }
             //Checks for if the button click is on help

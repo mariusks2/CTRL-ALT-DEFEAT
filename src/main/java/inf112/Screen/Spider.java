@@ -51,8 +51,8 @@ public class Spider extends Enemy{
         walkAnimation = new Animation<>(0.4f, frames);
         stateTime = 0;
         setBounds(getX(), getY(), 16/MegaMarius.PPM, 16/MegaMarius.PPM);
-        setToDestroy = false;
         destroyed = false;
+        setToDestroy = false;
     }
 
     /**
@@ -125,7 +125,7 @@ public class Spider extends Enemy{
      * @param batch Batch batch.
      */
     public void draw(Batch batch){
-        if (!destroyed || stateTime <1) {
+        if (!destroyed) {
             super.draw(batch);
         }
     }

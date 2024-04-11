@@ -55,7 +55,7 @@ public class ShowGame implements Screen{
     public LinkedBlockingQueue<ItemDef> itemsToSpawn;
 
 
-    public ShowGame(MegaMarius game){
+    public ShowGame(MegaMarius game, String stringMap){
         atlas = new TextureAtlas("Mario_and_Enemies.pack");
 
         this.game = game;
@@ -66,7 +66,7 @@ public class ShowGame implements Screen{
 
         mapLoader = new TmxMapLoader();
         //map = mapLoader.load("mario1.tmx");
-        map = mapLoader.load("custom1.tmx");
+        map = mapLoader.load(stringMap);
         renderer = new OrthogonalTiledMapRenderer(map, 1  / MegaMarius.PPM);
         gameCam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2, 0);
 

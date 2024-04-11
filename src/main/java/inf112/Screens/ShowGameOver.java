@@ -75,7 +75,7 @@ public class ShowGameOver implements Screen {
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
             // Start new game if 'enter' key is pressed
-            game.setScreen(new ShowGame((MegaMarius) game));
+            game.setScreen(new ShowGame((MegaMarius) game, "custom1.tmx"));
             dispose();
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             // Exit game if 'escape' key is pressed

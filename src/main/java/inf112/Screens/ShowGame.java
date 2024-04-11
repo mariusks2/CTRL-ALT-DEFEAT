@@ -25,7 +25,6 @@ import inf112.Scenes.Display;
 import inf112.Screen.Item;
 import inf112.Screen.ItemDef;
 import inf112.Screen.Pepsi;
-import inf112.Screen.Coin;
 import inf112.Screen.CoinAnimation;
 import inf112.Screen.Enemy;
 import inf112.skeleton.MakeMarius.makemarius;
@@ -66,8 +65,8 @@ public class ShowGame implements Screen{
         display = new Display(game.batch);
 
         mapLoader = new TmxMapLoader();
-        map = mapLoader.load("mario1.tmx");
-        //map = mapLoader.load("custom1.tmx");
+        //map = mapLoader.load("mario1.tmx");
+        map = mapLoader.load("custom1.tmx");
         renderer = new OrthogonalTiledMapRenderer(map, 1  / MegaMarius.PPM);
         gameCam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2, 0);
 

@@ -43,9 +43,6 @@ public class Brick extends InteractiveTileObj{
      */
     @Override
     public void HeadHit(Marius marius) {
-        if (marius == null) {
-            throw new NullPointerException("Marius is Null");
-        }
 
         if(marius.isMariusBigNow()){
             Gdx.app.log("Brick", "Collision"); // Console logging

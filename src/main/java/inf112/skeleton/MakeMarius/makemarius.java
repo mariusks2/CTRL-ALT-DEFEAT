@@ -9,9 +9,13 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 
-import inf112.Screen.Marius.Brick;
-import inf112.Screen.Marius.Coin;
+import inf112.Screen.Brick;
+import inf112.Screen.Coin;
+import inf112.Screen.Enemy;
+import inf112.Screen.Spider;
+import inf112.Screen.Turtle;
 import inf112.Screens.ShowGame;
 import inf112.skeleton.app.MegaMarius;
 
@@ -20,6 +24,8 @@ public class makemarius {
      * Makes the Marius world. Defines what has collision with Marius.
      * @param screen
      */
+    private Array<Spider> spiders;
+    private Array<Turtle> turtles;
     public makemarius(ShowGame screen){
         BodyDef bodyDef = new BodyDef();
         PolygonShape polygonShape = new PolygonShape();
@@ -56,8 +62,27 @@ public class makemarius {
 
         //create the coins, so we can interact with them
         for(MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)){
-
             new Coin(screen, object);
         }
+        //create spiders
+        spiders = new Array<Spider>();
+        for(MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)){
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+            spiders.add(new Spider(screen, rect.getX() / MegaMarius.PPM, rect.getY() / MegaMarius.PPM));
+        }
+        turtles = new Array<Turtle>();
+        for(MapObject object : map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class)){
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+            turtles.add(new Turtle(screen, rect.getX() / MegaMarius.PPM, rect.getY() / MegaMarius.PPM));
+        }
+    }
+    public Array<Spider> getSpiders() {
+        return spiders;
+    }
+    public Array<Enemy> getEnemies(){
+        Array<Enemy> enemies = new Array<Enemy>();
+        enemies.addAll(spiders);
+        enemies.addAll(turtles);
+        return enemies;
     }
 }

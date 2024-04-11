@@ -10,13 +10,13 @@ _«Marius-Mario er i trøbbel nok engong! Han er helt tom for PepsiMax. Marius-M
 ## Kjøring #undervurdering
 
 - Kompileres med `mvn package`.
-- Kjøres med `java -jar target/kurt-mario-1.0-SNAPSHOT-fat.jar`
+- Kjøres med `java -jar skeleton/app/main.java`
 - Krever Java 15 eller senere
 
 ## Kjente feil
 
-Marius-Mario finnes ikke
+Kan hoppe i blokker og da hoppe for alltid, på en måte slik du svever. 
+Hit box på karakter er litt rar
 
 ## Credits
-
-olav
+Musikk fra <a href="https://pixabay.com/users/white_records-32584949/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=164702">Maksym Dudchyk</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=164702">Pixabay</a>

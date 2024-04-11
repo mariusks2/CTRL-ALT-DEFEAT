@@ -1,7 +1,11 @@
 package inf112.Screens;
+
+import java.util.concurrent.LinkedBlockingQueue;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -11,12 +15,17 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+
 import inf112.skeleton.app.MegaMarius;
 import inf112.Scenes.Display;
-import inf112.Screen.Marius.Spider;
+import inf112.Screen.Item;
+import inf112.Screen.ItemDef;
+import inf112.Screen.Pepsi;
+import inf112.Screen.Enemy;
 import inf112.skeleton.MakeMarius.makemarius;
 import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.WorldContactListener;
@@ -34,11 +43,16 @@ public class ShowGame implements Screen{
     
     private World world;
     private Box2DDebugRenderer b2dr;
+    private makemarius creator;
 
     private Marius player;
     private float accumulator = 0f;
     private float stepTime = 1/60f;
-    private Spider spider;
+
+    private Music music;
+    private Array<Item> items;
+    public LinkedBlockingQueue<ItemDef> itemsToSpawn;
+
 
     public ShowGame(MegaMarius game){
         atlas = new TextureAtlas("Mario_and_Enemies.pack");
@@ -51,6 +65,7 @@ public class ShowGame implements Screen{
 
         mapLoader = new TmxMapLoader();
         map = mapLoader.load("mario1.tmx");
+        //map = mapLoader.load("custom1.tmx");
         renderer = new OrthogonalTiledMapRenderer(map, 1  / MegaMarius.PPM);
         gameCam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2, 0);
 
@@ -58,24 +73,44 @@ public class ShowGame implements Screen{
         world.step(0, 0, 0);
         b2dr = new Box2DDebugRenderer();    
 
-        new makemarius(this);
+        creator = new makemarius(this);
 
         player = new Marius(this);
 
         world.setContactListener(new WorldContactListener());
 
-        spider = new Spider(this, .32f, .32f);
+
+        music = MegaMarius.manager.get("audio/music/music1.mp3", Music.class);
+        music.setLooping(true);
+        music.setVolume(0.005f);
+        music.play(); // Comment this out to stop music from playing
+
+        items = new Array<Item>();
+        itemsToSpawn = new LinkedBlockingQueue<ItemDef>();
     }
 
     public TextureAtlas getAtlas() {
         return atlas;
     }
 
+    public void spawnItems(ItemDef itemDef){
+        itemsToSpawn.add(itemDef);
+    }
+
+    public void handleSpawningItems(){
+        if(!itemsToSpawn.isEmpty()){
+            ItemDef itemDef = itemsToSpawn.poll();
+            if(itemDef.type == Pepsi.class){
+                items.add(new Pepsi(this, itemDef.positon.x, itemDef.positon.y));
+            }
+        }
+    }
+
 
     public void update(float dt){
 
         handleInput(dt);
-
+        handleSpawningItems();
         
         accumulator += Math.min(dt, 0.25f);
 
@@ -86,7 +121,15 @@ public class ShowGame implements Screen{
         }
 
         player.update(dt);
-        spider.update(dt);
+        for(Enemy enemy : creator.getEnemies()){
+            enemy.update(dt);
+            if (enemy.getX() < player.getX() + 224/MegaMarius.PPM) {
+                enemy.b2body.setActive(true);
+            }
+        }
+        for(Item item : items){
+            item.update(dt);
+        }
 
         display.updateTime(dt);
 
@@ -111,12 +154,15 @@ public class ShowGame implements Screen{
         renderer.render();
         b2dr.render(world, gameCam.combined);
 
-
-
         game.batch.setProjectionMatrix(gameCam.combined);
         game.batch.begin();
         player.draw(game.batch);
-        spider.draw(game.batch);
+        for(Enemy enemy : creator.getEnemies()){
+            enemy.draw(game.batch);
+        for(Item item : items){
+            item.draw(game.batch);
+        }
+        }
         game.batch.end();
 
         game.batch.setProjectionMatrix(display.stage.getCamera().combined);
@@ -134,7 +180,7 @@ public class ShowGame implements Screen{
     }
 
     private boolean gameIsOver() {
-        if (player.currentState == Marius.State.DEAD && player.getStateTimer() > 3)
+        if (player.currentState == Marius.State.DEAD && player.getStateTimer() > 1)
             return true;
         else
             return false;
@@ -143,13 +189,14 @@ public class ShowGame implements Screen{
 
     private void handleInput(float dt) {
         //control our player using immediate impulses
-         
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP))
-            player.jump();
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2)
-            player.b2body.applyLinearImpulse(new Vector2(0.1f/3, 0), player.b2body.getWorldCenter(), true);
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2)
-            player.b2body.applyLinearImpulse(new Vector2(-0.1f/3, 0), player.b2body.getWorldCenter(), true);
+        if (player.currentState != Marius.State.DEAD) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.UP))
+                player.jump();
+            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2)
+                player.b2body.applyLinearImpulse(new Vector2(0.1f/3, 0), player.b2body.getWorldCenter(), true);
+            if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2)
+                player.b2body.applyLinearImpulse(new Vector2(-0.1f/3, 0), player.b2body.getWorldCenter(), true);
+        } 
     }
 
     public TiledMap getMap(){
@@ -202,5 +249,8 @@ public class ShowGame implements Screen{
         return game;
     }
 
+    public void setDisplay(Display display) {
+        this.display = display;
+    }
 }
 

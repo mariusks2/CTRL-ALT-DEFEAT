@@ -1,9 +1,10 @@
 package inf112.skeleton.app;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import inf112.Screens.ShowGame;
 import inf112.Screens.ShowStartGame;
 
 public class MegaMarius extends Game {
@@ -28,21 +29,36 @@ public class MegaMarius extends Game {
 	public static final short ITEM_BIT = 256;
 	public static final short MARIUS_HEAD_BIT = 512;
 
+    public static AssetManager manager;
+
     @Override
     public void create() {
         batch = new SpriteBatch();
+        manager = new AssetManager();
+        manager.load("audio/music/music1.mp3", Music.class);
+        manager.finishLoading();
         setScreen(new ShowStartGame(this));
     }
+        
 
     @Override
 	public void dispose() {
 		super.dispose();
+        manager.dispose();
         batch.dispose();
 	}
 
     @Override
     public void render() {
         super.render();
+    }
+
+    public SpriteBatch getSpriteBatch() {
+        return this.batch;
+    }
+
+    public void setSpriteBatch(SpriteBatch batch) {
+        this.batch = batch;
     }
 
 }

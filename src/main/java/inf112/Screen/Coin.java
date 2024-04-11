@@ -1,9 +1,11 @@
-package inf112.Screen.Marius;
+package inf112.Screen;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
+import com.badlogic.gdx.math.Vector2;
 
 import inf112.Scenes.Display;
 import inf112.Screens.ShowGame;
+import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.MegaMarius;
 
 public class Coin extends InteractiveTileObj{
@@ -18,9 +20,13 @@ public class Coin extends InteractiveTileObj{
     }
 
     @Override
-    public void HeadHit() {
-        getCell().setTile(tileSet.getTile(BLANK_COIN)); //Set the graphic block to Blank Coin
-        Display.updateScore(200); //Add score
+    public void HeadHit(Marius marius) {
+        if(getCell().getTile().getId() != BLANK_COIN){
+            getCell().setTile(tileSet.getTile(BLANK_COIN)); //Set the graphic block to Blank Coin
+            Display.updateScore(200); //Add score
+            if(object.getProperties().containsKey("pepsi")){
+                screen.spawnItems(new ItemDef(new Vector2(body.getPosition().x, body.getPosition().y + 16/MegaMarius.PPM), Pepsi.class));
+            }
+        }
     }
-    
 }

@@ -15,12 +15,15 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 
 import com.badlogic.gdx.utils.Array;
+
+import inf112.Screen.Enemy;
+import inf112.Screen.Turtle;
 import inf112.Screens.ShowGame;
 
 	public class Marius extends Sprite {
 
 		// Enum and states
-		public enum State { FALLING, JUMPING, STANDING, RUNNING, DEAD };
+		public enum State {START, FALLING, JUMPING, STANDING, RUNNING, DEAD, GROWING};
 		public State currentState;
 		public State previousState;
 		
@@ -32,15 +35,23 @@ import inf112.Screens.ShowGame;
 		private TextureRegion mariusStand;
 		private TextureRegion mariusJump;
 		private TextureRegion mariusDead;
+		private TextureRegion bigMariusJump;
+		private TextureRegion bigMariusStand;
 		
 		// Marius boolean state
 		private boolean runningRight;
 		private boolean mariusIsDead;
 		private static boolean gameWon;
+		private boolean isMariusBig;
+		private boolean runGrowAnimation;
+		private boolean timeToDefineBigMarius;
+		private boolean timetoReDefineMarius;
 
 		// Marius animation
-		private Animation mariusRun;
-		
+		private Animation<TextureRegion> mariusRun;
+		private Animation<TextureRegion> bigMariusRun;
+		private Animation<TextureRegion> mariusGrow;
+
 		// Timer & Screen
 		private float stateTimer;
 		private ShowGame screen;
@@ -66,17 +77,33 @@ import inf112.Screens.ShowGame;
 			mariusRun = new Animation(0.1f, frames);
 			frames.clear();
 
+			for(int i = 1; i < 4; i++)
+				frames.add(new TextureRegion(screen.getAtlas().findRegion("big_mario"), i * 16, 0, 16, 32));
+			// Adding run animation to marius
+			bigMariusRun = new Animation(0.1f, frames);
+			frames.clear();
+
+			// Animation when Marius gets pepsi
+			frames.add(new TextureRegion(screen.getAtlas().findRegion("big_mario"), 240, 0, 16, 32));
+			frames.add(new TextureRegion(screen.getAtlas().findRegion("big_mario"), 0, 0, 16, 32));
+			mariusGrow = new Animation(0.3f, frames);
+			frames.clear();
+
 			// Cet jump animation frames and add them to marioJump Animation
 			mariusJump = new TextureRegion(screen.getAtlas().findRegion("little_mario"), 80, 0, 16, 16);
+			bigMariusJump = new TextureRegion(screen.getAtlas().findRegion("big_mario"), 80, 0, 16, 32);
 	
 			// Create texture region for standing marius
 			mariusStand = new TextureRegion(screen.getAtlas().findRegion("little_mario"), 0, 0, 16, 16);
+			bigMariusStand = new TextureRegion(screen.getAtlas().findRegion("big_mario"), 0, 0, 16, 32);
+	
 	
 			// Create texture region for dead marius
 			mariusDead = new TextureRegion(screen.getAtlas().findRegion("little_mario"), 96, 0, 16, 16);
+			
 	
 			// Define marius in Box2d
-			defineMairus();
+			defineMarius();
 	
 			// Set initial values for marius location, width and height and also initial frame as mariusStand
 			setBounds(0, 0, 16 / MegaMarius.PPM, 16 / MegaMarius.PPM);
@@ -89,13 +116,23 @@ import inf112.Screens.ShowGame;
 				entityDie();
 			}
 			// Check if marius has won game
-			if (b2body.getPosition().x >= 34.5) {
+			if (b2body.getPosition().x >= 34) {
 				setGameWon();
 			}
-
 			// Update our sprite to correspond with the position of our Box2D body and with correct frame depending on current state
-            setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
+			if (isMariusBig) {
+				setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2 - 6/MegaMarius.PPM);
+			}
+			else setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
 			setRegion(getFrame(dt));
+			
+            
+			if (timeToDefineBigMarius) {
+				defineBigMarius();
+			}
+			if (timetoReDefineMarius) {
+				redefineMarius();
+			}
 		}
 
 		private boolean fallOfMap() {
@@ -134,20 +171,33 @@ import inf112.Screens.ShowGame;
 	
 			// Retrive the animation frame depending on the current state
 			switch(currentState){
+				case GROWING: 
+					animationFrame = mariusGrow.getKeyFrame(stateTimer, true);
+					if(mariusGrow.isAnimationFinished(stateTimer)) runGrowAnimation = false;
+					break;
 				case DEAD:
 					animationFrame = mariusDead;
 					break;
 				case JUMPING:
-					animationFrame = mariusJump;
+					if (isMariusBig) {
+						animationFrame = bigMariusJump;
+					} 
+					else animationFrame = mariusJump;
 					break;
 				case RUNNING:
-					animationFrame = (TextureRegion) mariusRun.getKeyFrame(stateTimer, true);
+					if (isMariusBig) {
+						animationFrame = (TextureRegion) bigMariusRun.getKeyFrame(stateTimer, true);
+					} 
+					else animationFrame = (TextureRegion) mariusRun.getKeyFrame(stateTimer, true);
 					break;
 				case FALLING:
 					// ToDo
 				case STANDING:
 				default:
-					animationFrame = mariusStand;
+					if (isMariusBig) {
+						animationFrame = bigMariusStand;
+					}
+					else animationFrame = mariusStand;
 					break;
 			}
 	
@@ -175,8 +225,13 @@ import inf112.Screens.ShowGame;
 		public State getState(){
 			//Test to Box2D for velocity on the X and Y-Axis
 			//if mario is going positive in Y-Axis he is jumping... or if he just jumped and is falling remain in jump state
+			if(runGrowAnimation){
+				return State.GROWING;
+			}
 			if(mariusIsDead)
 				return State.DEAD;
+			else if (runGrowAnimation)
+				return State.GROWING;
 			else if((b2body.getLinearVelocity().y > 0 && currentState == State.JUMPING) || (b2body.getLinearVelocity().y < 0 && previousState == State.JUMPING))
 				return State.JUMPING;
 			//if negative in Y-Axis mario is falling
@@ -203,8 +258,7 @@ import inf112.Screens.ShowGame;
 			}
 		}
 	
-		public void defineMairus(){
-			// Define marius character
+		public void defineMarius(){
 			BodyDef bdef = new BodyDef();
 			bdef.position.set(32 / MegaMarius.PPM, 32 / MegaMarius.PPM);
 			bdef.type = BodyDef.BodyType.DynamicBody;
@@ -215,16 +269,15 @@ import inf112.Screens.ShowGame;
 			shape.setRadius(6 / MegaMarius.PPM);
 			fdef.filter.categoryBits = MegaMarius.MARIUS_BIT;
 			fdef.filter.maskBits = MegaMarius.GROUND_BIT |
-			MegaMarius.COIN_BIT |
-			MegaMarius.BRICK_BIT |
-			MegaMarius.ENEMY_BIT |
-			MegaMarius.OBJECT_BIT |
-			MegaMarius.ENEMY_HEAD_BIT |
-			MegaMarius.ITEM_BIT |
-			MegaMarius.FLAG_BIT;
+					MegaMarius.COIN_BIT |
+					MegaMarius.BRICK_BIT |
+					MegaMarius.ENEMY_BIT |
+					MegaMarius.OBJECT_BIT |
+					MegaMarius.ENEMY_HEAD_BIT |
+					MegaMarius.ITEM_BIT;
 	
 			fdef.shape = shape;
-			b2body.createFixture(fdef);
+			b2body.createFixture(fdef).setUserData(this);
 	
 			EdgeShape head = new EdgeShape();
 			head.set(new Vector2(-2 / MegaMarius.PPM, 6 / MegaMarius.PPM), new Vector2(2 / MegaMarius.PPM, 6 / MegaMarius.PPM));
@@ -232,8 +285,45 @@ import inf112.Screens.ShowGame;
 			fdef.shape = head;
 			fdef.isSensor = true;
 	
-			b2body.createFixture(fdef).setUserData("head");
+			b2body.createFixture(fdef).setUserData(this);
 		}
+
+		public void defineBigMarius(){
+			Vector2 currentPositionMarius =  b2body.getPosition();
+			world.destroyBody(b2body);
+
+			BodyDef bdef = new BodyDef();
+			bdef.position.set(currentPositionMarius.add(0, 10/MegaMarius.PPM));
+			bdef.type = BodyDef.BodyType.DynamicBody;
+			b2body = world.createBody(bdef);
+	
+			FixtureDef fdef = new FixtureDef();
+			CircleShape shape = new CircleShape();
+			shape.setRadius(6 / MegaMarius.PPM);
+			fdef.filter.categoryBits = MegaMarius.MARIUS_BIT;
+			fdef.filter.maskBits = MegaMarius.GROUND_BIT |
+					MegaMarius.COIN_BIT |
+					MegaMarius.BRICK_BIT |
+					MegaMarius.ENEMY_BIT |
+					MegaMarius.OBJECT_BIT |
+					MegaMarius.ENEMY_HEAD_BIT |
+					MegaMarius.ITEM_BIT;
+	
+			fdef.shape = shape;
+			b2body.createFixture(fdef).setUserData(this);
+			shape.setPosition(new Vector2(0, -14/MegaMarius.PPM));
+			b2body.createFixture(fdef).setUserData(this);
+	
+			EdgeShape head = new EdgeShape();
+			head.set(new Vector2(-2 / MegaMarius.PPM, 6 / MegaMarius.PPM), new Vector2(2 / MegaMarius.PPM, 6 / MegaMarius.PPM));
+			fdef.filter.categoryBits = MegaMarius.MARIUS_HEAD_BIT;
+			fdef.shape = head;
+			fdef.isSensor = true;
+	
+			b2body.createFixture(fdef).setUserData(this);
+			timeToDefineBigMarius = false;
+		}
+
 
 		public void draw(Batch batch){
 			super.draw(batch);
@@ -243,7 +333,69 @@ import inf112.Screens.ShowGame;
 			gameWon = true;
 		}
 
+		public boolean isMariusBigNow(){
+			return isMariusBig;
+		}
+
 		public static boolean getGameWon() {
 			return gameWon;
+		}
+
+		public void hit(Enemy enemy){
+			if (enemy instanceof Turtle && ((Turtle) enemy).currentState == Turtle.State.STANDING_SHELL) {
+				((Turtle) enemy).kick(enemy.b2body.getPosition().x > b2body.getPosition().x ? Turtle.KICK_RIGHT : Turtle.KICK_LEFT);
+			}
+			else {
+				if (isMariusBig){
+					isMariusBig = false;
+					timetoReDefineMarius = true;
+					setBounds(getX(), getY(), getWidth(), getHeight()/2);
+				}
+				else {
+					entityDie();
+				}
+			}
+		}
+
+		public void grow(){
+			runGrowAnimation = true;
+			isMariusBig = true;
+			timeToDefineBigMarius = true;
+			setBounds(getX(), getY(), getWidth(), getHeight()*2);
+		}
+
+		public void redefineMarius(){
+			Vector2 posistion = b2body.getPosition();
+			world.destroyBody(b2body);
+
+			BodyDef bdef = new BodyDef();
+			bdef.position.set(posistion);
+			bdef.type = BodyDef.BodyType.DynamicBody;
+			b2body = world.createBody(bdef);
+	
+			FixtureDef fdef = new FixtureDef();
+			CircleShape shape = new CircleShape();
+			shape.setRadius(6 / MegaMarius.PPM);
+			fdef.filter.categoryBits = MegaMarius.MARIUS_BIT;
+			fdef.filter.maskBits = MegaMarius.GROUND_BIT |
+					MegaMarius.COIN_BIT |
+					MegaMarius.BRICK_BIT |
+					MegaMarius.ENEMY_BIT |
+					MegaMarius.OBJECT_BIT |
+					MegaMarius.ENEMY_HEAD_BIT |
+					MegaMarius.ITEM_BIT;
+	
+			fdef.shape = shape;
+			b2body.createFixture(fdef).setUserData(this);
+	
+			EdgeShape head = new EdgeShape();
+			head.set(new Vector2(-2 / MegaMarius.PPM, 6 / MegaMarius.PPM), new Vector2(2 / MegaMarius.PPM, 6 / MegaMarius.PPM));
+			fdef.filter.categoryBits = MegaMarius.MARIUS_HEAD_BIT;
+			fdef.shape = head;
+			fdef.isSensor = true;
+	
+			b2body.createFixture(fdef).setUserData(this);
+
+			timetoReDefineMarius = false;
 		}
 }

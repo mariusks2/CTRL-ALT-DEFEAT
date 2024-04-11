@@ -1,4 +1,4 @@
-package inf112.Screen.Marius;
+package inf112.Screen;
 
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -14,6 +14,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
 import inf112.Screens.ShowGame;
+import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.MegaMarius;
 
 
@@ -48,7 +49,7 @@ public abstract class InteractiveTileObj {
         fixture = body.createFixture(fixtureDef);
     }
 
-    public abstract void HeadHit();
+    public abstract void HeadHit(Marius marius);
 
     public void setCategoryFilter(short filterBit){ //Func to set the category filter for blocks.
         Filter filter = new Filter();
@@ -62,4 +63,8 @@ public abstract class InteractiveTileObj {
                 (int)(body.getPosition().y * MegaMarius.PPM / 16));
     }
 
+    //for testing
+    public Filter getFilterData(){
+        return fixture.getFilterData();
+    }
 }

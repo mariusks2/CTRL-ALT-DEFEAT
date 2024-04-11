@@ -1,6 +1,7 @@
 package inf112.Screen;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -59,8 +60,9 @@ public class Turtle extends Enemy {
         shell = new TextureRegion(screen.getAtlas().findRegion("turtle"), 64, 0, 16, 24);
         walkAnimation = new Animation(0.2f, frames);
         currentState = prevState = State.WALKING;
-
         setBounds(getX(), getY(), 16 / MegaMarius.PPM, 24 / MegaMarius.PPM);
+        setToDestroy = false;
+        destroyed = false;
     }
 
     /**
@@ -151,7 +153,6 @@ public class Turtle extends Enemy {
         if (setToDestroy && !destroyed) {
             world.destroyBody(b2body);
             destroyed = true;
-            setRegion(new TextureRegion(screen.getAtlas().findRegion("turtle"),32, 0, 16, 16));
             stateTime = 0;
 
         }
@@ -180,6 +181,12 @@ public class Turtle extends Enemy {
         else {
             currentState = State.STANDING_SHELL;
             velocity.x = 0;
+        }
+    }
+
+    public void draw(Batch batch){
+        if (!destroyed) {
+            super.draw(batch);
         }
     }
     

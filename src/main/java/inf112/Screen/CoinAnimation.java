@@ -11,10 +11,11 @@ import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.MegaMarius;
 
 public class CoinAnimation extends Item{
-    
+    int timer = 0;
+
     public CoinAnimation(ShowGame screen, float x, float y){
         super(screen, x, y);
-        setRegion(screen.getAtlas().findRegion("pepsi"));
+        setRegion(screen.getAtlas().findRegion("coin"));
     } 
 
     @Override
@@ -25,6 +26,8 @@ public class CoinAnimation extends Item{
     public void update(float dt){
         super.update(dt);
         setCenter(b2body.getPosition().x, b2body.getPosition().y);
+        if(timer>30) destroy();
+        timer++;
     }
 
     @Override

@@ -33,11 +33,12 @@ public class Turtle extends Enemy {
     // Texture and state variables
     private TextureRegion shell;
     public enum State {WALKING, MOVING_SHELL, STANDING_SHELL}
-    public State currentState;
+    private State currentState;
     public State prevState;
 
     // State control variables
     private boolean setToDestroy;
+    private boolean destroyed;
 
     // Constants
     public static final int KICK_LEFT = -2;
@@ -147,6 +148,13 @@ public class Turtle extends Enemy {
             velocity.x = 1;
 
         }
+        if (setToDestroy && !destroyed) {
+            world.destroyBody(b2body);
+            destroyed = true;
+            setRegion(new TextureRegion(screen.getAtlas().findRegion("turtle"),32, 0, 16, 16));
+            stateTime = 0;
+
+        }
         setPosition(b2body.getPosition().x-getWidth()/2, b2body.getPosition().y-8/MegaMarius.PPM);
         b2body.setLinearVelocity(velocity);
     }
@@ -201,9 +209,9 @@ public class Turtle extends Enemy {
      */
     @Override
     public void hitByEnemy(Enemy enemy) {
-        if(enemy instanceof Turtle && ((Turtle) enemy).currentState == Turtle.State.MOVING_SHELL)
-            setToDestroy = true;
-        else
-            revVelocity(true, false);
+        if(enemy.getClass() == Turtle.class && ((Turtle) enemy).getCurrentState() == Turtle.State.MOVING_SHELL){
+            this.setToDestroy = true;
+        }
+        else revVelocity(true, false);
     }
 }

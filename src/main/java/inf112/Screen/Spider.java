@@ -137,7 +137,7 @@ public class Spider extends Enemy{
 
     @Override
     public void hitByEnemy(Enemy enemy) {
-        if(enemy instanceof Turtle && ((Turtle) enemy).currentState == Turtle.State.MOVING_SHELL)
+        if(enemy instanceof Turtle && ((Turtle) enemy).getCurrentState() == Turtle.State.MOVING_SHELL)
             setToDestroy = true;
         else
             revVelocity(true, false);

@@ -1,5 +1,8 @@
 package inf112.Screen;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.math.Vector2;
 
@@ -32,5 +35,12 @@ public class Coin extends InteractiveTileObj{
             }
              
         }
+    }
+
+    public TiledMapTileLayer.Cell getCellA(){
+        TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(1);
+        System.out.println((int)(body.getPosition().y * MegaMarius.PPM / 16+1));
+        return layer.getCell((int)(body.getPosition().x * MegaMarius.PPM / 16),
+        (int)(body.getPosition().y * MegaMarius.PPM / 16+1));
     }
 }

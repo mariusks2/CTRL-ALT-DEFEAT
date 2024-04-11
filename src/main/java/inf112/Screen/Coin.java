@@ -28,7 +28,7 @@ public class Coin extends InteractiveTileObj{
                 screen.spawnItems(new ItemDef(new Vector2(body.getPosition().x, body.getPosition().y + 16/MegaMarius.PPM), Pepsi.class));
             }
             else if(object.getProperties().containsKey("coin")){
-                   //todo
+                screen.spawnItems(new ItemDef(new Vector2(body.getPosition().x, body.getPosition().y + 16/MegaMarius.PPM), CoinAnimation.class));
             }
              
         }

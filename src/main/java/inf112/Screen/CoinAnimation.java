@@ -1,11 +1,12 @@
 package inf112.Screen;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 
 import inf112.Screens.ShowGame;
 import inf112.skeleton.app.Marius;
 
 public class CoinAnimation extends Item{
-    int timer = 0;
+    private int timer = 0;
 
     public CoinAnimation(ShowGame screen, float x, float y){
         super(screen, x, y);
@@ -21,7 +22,7 @@ public class CoinAnimation extends Item{
         super.update(dt);
         setCenter(b2body.getPosition().x, b2body.getPosition().y);
         if(timer>30) destroy();
-        timer++;
+        else timer++;
     }
 
     @Override

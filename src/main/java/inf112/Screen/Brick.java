@@ -17,7 +17,6 @@ import inf112.skeleton.app.MegaMarius;
  * @author CTRL-ALT-DEFEAT
  * @version 1.0
  * @since 2024-02
- * 
 */
 public class Brick extends InteractiveTileObj{
 

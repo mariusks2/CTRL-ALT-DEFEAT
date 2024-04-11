@@ -13,19 +13,44 @@ import inf112.Screens.ShowGame;
 import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.MegaMarius;
 
-public class Turtle extends Enemy{
-    public static final int KICK_LEFT = -2;
-    public static final int KICK_RIGHT = 2;
+/** 
+ * Represents a Turtle object.
+ * 
+ * This class provides the functionality neccesary to 
+ * create a Turtle object and render it.
+ * 
+ * @author CTRL-ALT-DEFEAT
+ * @version 1.0
+ * @since 2024-02
+*/
+public class Turtle extends Enemy {
+
+    // Animation-related variables
     private float stateTime;
     private Animation<TextureRegion> walkAnimation;
     private Array<TextureRegion> frames;
+
+    // Texture and state variables
     private TextureRegion shell;
     public enum State {WALKING, MOVING_SHELL, STANDING_SHELL}
     public State currentState;
     public State prevState;
+
+    // State control variables
     private boolean setToDestroy;
     private boolean destroyed;
 
+    // Constants
+    public static final int KICK_LEFT = -2;
+    public static final int KICK_RIGHT = 2;
+
+    /**
+     * Constructs a Turtle object with given screen, x and y values.
+     * 
+     * @param screen ShowGame screen.
+     * @param x float x.
+     * @param y float y.
+     */
     public Turtle(ShowGame screen, float x, float y) {
         super(screen, x, y);
         frames = new Array<TextureRegion>();
@@ -38,6 +63,13 @@ public class Turtle extends Enemy{
         setBounds(getX(), getY(), 16 / MegaMarius.PPM, 24 / MegaMarius.PPM);
     }
 
+    /**
+     * Defines the properties of the turtle enemy, such as its hitbox and shape.
+     * 
+     * This method sets up the body and fixtures for the turtle enemy, including its main body
+     * and its head. It defines the physics properties, such as position, shape, and collision
+     * filters, and attaches user data to fixtures for identification purposes.
+     */
     @Override
     protected void defineEnemy() {
         BodyDef bdef = new BodyDef();
@@ -74,6 +106,12 @@ public class Turtle extends Enemy{
         b2body.createFixture(fdef).setUserData(this);
     }
 
+    /**
+     * This function returns the texture region depending on the current state.
+     * 
+     * @param dt float dt.
+     * @return The texture region
+     */
     public TextureRegion getFrame(float dt){
         TextureRegion region;
         switch (currentState) {
@@ -97,6 +135,11 @@ public class Turtle extends Enemy{
         return region;
     }
 
+    /**
+     * Update the turtle state, depending on the if statements.
+     * 
+     * @param dt float dt.
+     */
     @Override
     public void update(float dt) {
         setRegion(getFrame(dt));
@@ -108,6 +151,16 @@ public class Turtle extends Enemy{
         setPosition(b2body.getPosition().x-getWidth()/2, b2body.getPosition().y-8/MegaMarius.PPM);
         b2body.setLinearVelocity(velocity);
     }
+
+    /**
+     * Check if enemy is hit on head by mairus.
+     * 
+     * If marius hits the turtle on his head, then
+     * the turtle dies and turns into a shell that moves.
+     * The shell can kill marius, and also other enemies.
+     * 
+     * @param marius Marius marius.
+     */
     @Override
     public void hitOnHead(Marius marius) {
         if(currentState == State.STANDING_SHELL) {
@@ -122,19 +175,36 @@ public class Turtle extends Enemy{
             velocity.x = 0;
         }
     }
+    
+    /**
+     * Changes the current state of turtle to moving shell and sets speed.
+     * 
+     * @param speed
+     */
     public void kick(int speed){
         velocity.x = speed;
         currentState = State.MOVING_SHELL;
     }
+
+    /**
+     * Returns the current state of the turtle.
+     * 
+     * @return Current state.
+     */
     public State getCurrentState(){
         return currentState;
     }
 
+    /**
+     * TODO write javadoc
+     * 
+     * @param enemy Enemy enemy.
+     */
     @Override
     public void hitByEnemy(Enemy enemy) {
         if(enemy instanceof Turtle && ((Turtle) enemy).currentState == Turtle.State.MOVING_SHELL)
             setToDestroy = true;
         else
             revVelocity(true, false);
-        }
     }
+}

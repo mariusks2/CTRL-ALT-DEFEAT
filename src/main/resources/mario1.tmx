@@ -87,8 +87,16 @@
    </properties>
   </object>
   <object id="36" x="1744" y="96" width="16" height="16"/>
-  <object id="37" x="240" y="160" width="16" height="16"/>
-  <object id="38" x="320" y="160" width="16" height="16"/>
+  <object id="37" x="240" y="160" width="16" height="16">
+   <properties>
+    <property name="coin" value=""/>
+   </properties>
+  </object>
+  <object id="38" x="320" y="160" width="16" height="16">
+   <properties>
+    <property name="coin" value=""/>
+   </properties>
+  </object>
   <object id="39" x="352" y="160" width="16" height="16">
    <properties>
     <property name="pepsi" value=""/>

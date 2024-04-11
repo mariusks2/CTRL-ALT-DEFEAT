@@ -39,6 +39,8 @@ Kommunikasjonen i gruppen er god, lett å komme fram til tidspunkt alle kan møt
 # Bugs som vi har funnet:
 * Kan "sveve" ved å spamme hoppe knapp når man treffer en blokk i lufta
 * Kan "sveve" ved å spamme venstre eller høgre knapp intil en vegg/blokk
+* Hit box rar på enemies, spesielt når man er stor
+* Faller man fra en stor høyde ned på enemies kan også skade selv om man treffer hodet. 
 
 # Til neste innlevering skal vi legge til (final product):
 * Legge til mulighet for å velge mellom maps

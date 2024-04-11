@@ -14,14 +14,34 @@ import inf112.Screens.ShowGame;
 import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.MegaMarius;
 
+/** 
+ * Represents a Spider object.
+ * 
+ * This class provides the functionality neccesary to 
+ * create a Spider object and render it.
+ * 
+ * @author CTRL-ALT-DEFEAT
+ * @version 1.0
+ * @since 2024-02
+*/
 public class Spider extends Enemy{
     
+    // Animation-related variables
     private float stateTime;
     private Animation<TextureRegion> walkAnimation;
     private Array<TextureRegion> frames;
+
+    // State control variables
     private boolean setToDestroy;
     private boolean destroyed;
     
+    /**
+     * Constructs a Spider object with given screen, x and y values.
+     * 
+     * @param screen ShowGame screen.
+     * @param x float x.
+     * @param y float y.
+     */
     public Spider(ShowGame screen, float x, float y) {
         super(screen, x, y);
         frames = new Array<TextureRegion>();
@@ -35,6 +55,11 @@ public class Spider extends Enemy{
         destroyed = false;
     }
 
+    /**
+     * Checks the spiders current state, and upates depending on what condition is met.
+     * 
+     * @param df float dt.
+     */
     public void update(float dt){
         stateTime +=dt;
         if (setToDestroy && !destroyed) {
@@ -48,8 +73,16 @@ public class Spider extends Enemy{
             b2body.setLinearVelocity(velocity);
             setPosition(b2body.getPosition().x-getWidth()/2, b2body.getPosition().y-getHeight()/2);
             setRegion(walkAnimation.getKeyFrame(stateTime,true));
+        }
     }
-    }
+
+    /**
+     * Defines the properties of the spider enemy, such as its hitbox and shape.
+     * 
+     * This method sets up the body and fixtures for the spider enemy, including its main body
+     * and its head. It defines the physics properties, such as position, shape, and collision
+     * filters, and attaches user data to fixtures for identification purposes.
+     */
     @Override
     protected void defineEnemy() {
         BodyDef bdef = new BodyDef();
@@ -74,8 +107,8 @@ public class Spider extends Enemy{
 
         PolygonShape head = new PolygonShape();
         Vector2[] vertice = new Vector2[4]; //defines hitbox for spider
-        vertice[0] = new Vector2(-5,9).scl(1/MegaMarius.PPM);
-        vertice[1] = new Vector2(5,9).scl(1/MegaMarius.PPM);
+        vertice[0] = new Vector2(-5,10).scl(1/MegaMarius.PPM);
+        vertice[1] = new Vector2(5,10).scl(1/MegaMarius.PPM);
         vertice[2] = new Vector2(-3,3).scl(1/MegaMarius.PPM);
         vertice[3] = new Vector2(3,3).scl(1/MegaMarius.PPM);
         head.set(vertice);
@@ -86,6 +119,11 @@ public class Spider extends Enemy{
         b2body.createFixture(fdef).setUserData(this);
     }
 
+    /**
+     * 
+     * 
+     * @param batch Batch batch.
+     */
     public void draw(Batch batch){
         if (!destroyed || stateTime <1) {
             super.draw(batch);

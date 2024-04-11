@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="240" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="15" nextobjectid="172">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="240" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="19" nextobjectid="179">
  <tileset firstgid="1" name="tileset1" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="924" columns="33">
   <image source="tileset.png" width="594" height="504"/>
  </tileset>
@@ -11,7 +11,7 @@
  </layer>
  <layer id="2" name="graphics" width="240" height="16">
   <data encoding="base64" compression="zlib">
-   eJztmM1yEzEMxzfdpLlAOqEnOBY40s60DczwDHw8YfMWfQXuwDPAlem1HzO1u/VUCMuWbCW7WfSb0TTNamVZ1t/eTdMYhmEYhjFE7vbT17CV8nreNG+cvZ3XxdlV/JxhDTbBdzfGD2c/GfWV+A6B0tp9nf9tm16DTYJ7CGsTrmlMu5TuYMxQJ8wn991nZ18Y+k31Frf+2A/PrWRsCTiOHxPWoCQGJFaHa+d34+x2X+4b1jdVX809WKojae0gUL81cUrR6incQ1ibcE0l5y6MSelXMheqD/FYqZjYLzY3D+5JiQY8sX3d/5+aAxdpHSg4vqEmKd/cHizp09Q4kjicc1Wqn5T/y8nTZ+5+VtMLIZfcuQp7uvZZOTV/jb7WjMl9LqD6Lbavw/3+f0JrbSVxOOeqNK+U/0egX8kzZSkhFy3NXLb8MTU1umvsZYzy5dSXQnovlY9n3XbxvK0rchobUL+GYfTPn7YzDqbfftH6Pd0YB0G7pl/D2C2gdmv0+wzYUMDvUuHdDP7V5te0aX5P9fy4hDnVzkujNtS91HsqXCfqMyd+jHXm3Rf2PLf/g2/pvQH4e0FJvbF2a/T73NnC2UFBHhxeDOTMz+luMXM1mD39T+WN/cbMUNYOE9NgTAM4/5heJPrRIKZdTu4erF9/5r4Dpn0GL914p84OC/uA2z+cMzGnO3g9lTdHvxp937d2trV2UmDPX007i+kA50/phdJQyL/2eQveT2kXj03VHuu3fbRj8FmLkMOZs/NMH6zctffAPkzS/bMCfh6OpqDPCo0Fr+fyDn6xnOG8qfni3GMsEzXj3E/lRvng69tcOwm451/NOsPf4/xTesHf4/xxb0nzD/entBvbd2K1P0Kxg2ZPmrh+a2p90ZpdtDo10aqrrc+/teg7j6HaN7MHg/QZQzPOGMzqkLZ77UZ7yA==
+   eJztmM1SGzEMxzdsEi4lHcoJjlCOpTOlKTM8Ax9PSN6CV+De8gz02umVj5napB6EsGzJVrJLot+MhiSrlWVZf3uXpjEMwzAMY5052Gyaz84OnT2Nu85m+fg5wxosgp9ujF/Obhn1lfj2gdLaXW6+tkWvwaJJ5V+6ppyanLlr584uGPpN5cGtP/aDMVPja/U1juPHhDUoiQGJ1eHe+T04exzLfZ/G+T1Gcw+W6khaOwjUb02cUrT3Sip/av1zSGrCmUsqj9hYsZjYD8YMverBPSnRgCe2r/vvpbWsqQMFxzfUJOWb24MlfZoaRxKHc65K9ZPy3x28fObuZzW9EHJZ5rNSav4afa0Zk/tcQPVbbF+H+/06obW2kjicc1WaV8r/FOhX8kxZSshFSzPXLX9MTY2+NzYyRvly6kshvZfKxzNr5/G8zSpyWjWgfg3D6J4/7dw4mH67JbznwXdgY30J2jX9Gsb7Amq3Rr8fgPUF/C4V3s3gX23uhk3ze6jnxyXMqXZeGrWh7qXeU+E6UZ858WPMMu++sOe5/R98S+8NwP8XlNQba7dGv1vOJs4+FuTB4VNPzvyc7iYjV4PRy3cqb+y3yvRl7TAxDcY0gPOP6UWiHw1i2uXk7sH69WfuF2DaZ/C2G++bs53CPuD2D+dMzOkOXk/lzdGvRt93rZ1lrZ0U2PN/h3OL6QDnT+mF0lDIv/Z5C95PaRePTdUe67f9b0fgsxYhh2Nn3zN9MHXXfgA7GaT7Zwr8PBxNQZ8pGgtez+Ud/GI5w3lT88W5x9hO1IxzP5Ub5YOvL3PtJOCe3xvNDf+O80/pBf+O88e9Jc0/3J/SbmzfidV+H8UOmv3axPVbU+ur1uyq1amJVl1tfd7Wous8+mo3Zs8G6TKGZpxVMKtD2v4Bay9VsQ==
   </data>
  </layer>
  <objectgroup id="9" name="ground">
@@ -79,32 +79,76 @@
   <object id="171" x="3408" y="208" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="5" name="coins">
-  <object id="32" x="1200" y="160" width="16" height="16"/>
-  <object id="34" x="1216" y="160" width="16" height="16"/>
+  <object id="32" x="1200" y="160" width="16" height="16">
+   <properties>
+    <property name="coin" value=""/>
+   </properties>
+  </object>
+  <object id="34" x="1216" y="160" width="16" height="16">
+   <properties>
+    <property name="coin" value=""/>
+   </properties>
+  </object>
   <object id="35" x="1488" y="160" width="16" height="16">
    <properties>
     <property name="pepsi" value=""/>
    </properties>
   </object>
-  <object id="36" x="1744" y="96" width="16" height="16"/>
-  <object id="37" x="240" y="160" width="16" height="16"/>
-  <object id="38" x="320" y="160" width="16" height="16"/>
+  <object id="36" x="1744" y="96" width="16" height="16">
+   <properties>
+    <property name="coin" value=""/>
+   </properties>
+  </object>
+  <object id="37" x="240" y="160" width="16" height="16">
+   <properties>
+    <property name="coin" value=""/>
+   </properties>
+  </object>
+  <object id="38" x="320" y="160" width="16" height="16">
+   <properties>
+    <property name="coin" value=""/>
+   </properties>
+  </object>
   <object id="39" x="352" y="160" width="16" height="16">
    <properties>
     <property name="pepsi" value=""/>
    </properties>
   </object>
-  <object id="40" x="336" y="96" width="16" height="16"/>
-  <object id="41" x="1936" y="160" width="16" height="16"/>
-  <object id="42" x="1984" y="160" width="16" height="16"/>
+  <object id="40" x="336" y="96" width="16" height="16">
+   <properties>
+    <property name="coin" value=""/>
+   </properties>
+  </object>
+  <object id="41" x="1936" y="160" width="16" height="16">
+   <properties>
+    <property name="coin" value=""/>
+   </properties>
+  </object>
+  <object id="42" x="1984" y="160" width="16" height="16">
+   <properties>
+    <property name="coin" value=""/>
+   </properties>
+  </object>
   <object id="43" x="1984" y="96" width="16" height="16">
    <properties>
     <property name="pepsi" value=""/>
    </properties>
   </object>
-  <object id="44" x="2032" y="160" width="16" height="16"/>
-  <object id="45" x="2304" y="96" width="16" height="16"/>
-  <object id="46" x="2320" y="96" width="16" height="16"/>
+  <object id="44" x="2032" y="160" width="16" height="16">
+   <properties>
+    <property name="coin" value=""/>
+   </properties>
+  </object>
+  <object id="45" x="2304" y="96" width="16" height="16">
+   <properties>
+    <property name="coin" value=""/>
+   </properties>
+  </object>
+  <object id="46" x="2320" y="96" width="16" height="16">
+   <properties>
+    <property name="coin" value=""/>
+   </properties>
+  </object>
   <object id="47" x="2960" y="160" width="16" height="16">
    <properties>
     <property name="pepsi" value=""/>

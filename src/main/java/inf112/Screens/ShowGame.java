@@ -25,6 +25,8 @@ import inf112.Scenes.Display;
 import inf112.Screen.Item;
 import inf112.Screen.ItemDef;
 import inf112.Screen.Pepsi;
+import inf112.Screen.Coin;
+import inf112.Screen.CoinAnimation;
 import inf112.Screen.Enemy;
 import inf112.skeleton.MakeMarius.makemarius;
 import inf112.skeleton.app.Marius;
@@ -103,7 +105,11 @@ public class ShowGame implements Screen{
             if(itemDef.type == Pepsi.class){
                 items.add(new Pepsi(this, itemDef.positon.x, itemDef.positon.y));
             }
+            if(itemDef.type == CoinAnimation.class){
+                items.add(new CoinAnimation(this, itemDef.positon.x, itemDef.positon.y));
+            }
         }
+        
     }
 
 

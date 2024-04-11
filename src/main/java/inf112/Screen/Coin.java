@@ -36,8 +36,9 @@ public class Coin extends InteractiveTileObj{
                 screen.spawnItems(new ItemDef(new Vector2(body.getPosition().x, body.getPosition().y + 16/MegaMarius.PPM), Pepsi.class));
             }
             else if(object.getProperties().containsKey("coin")){
-                getCellA().setTile(tileSet.getTile(COIN)); //
-                getCellA().setTile(null); // Set tile to null (removes the block from map)
+                screen.spawnItems(new ItemDef(new Vector2(body.getPosition().x, body.getPosition().y + 16/MegaMarius.PPM), CoinAnimation.class));
+                //getCellA().setTile(tileSet.getTile(COIN)); //
+                //getCellA().setTile(null); // Set tile to null (removes the block from map)
                 Display.updateScore(200); // Update score
             }
              

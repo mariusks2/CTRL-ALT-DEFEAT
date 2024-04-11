@@ -244,7 +244,6 @@ public class ShowGame implements Screen{
         map.dispose();
         renderer.dispose();
         world.dispose();
-        b2dr.dispose();
         display.dispose();
     }
     

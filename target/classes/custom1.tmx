@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="123">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="126">
  <tileset firstgid="1" source="customtileset.tsx"/>
  <tileset firstgid="1682" name="tileset1" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="924" columns="33">
   <image source="tileset.png" width="594" height="504"/>
@@ -11,7 +11,7 @@
  </layer>
  <layer id="1" name="Graphics" width="240" height="13">
   <data encoding="base64" compression="zlib">
-   eJztmEtOw0AMhlsFteIIvUL3wBnotoDEBugVYA1IbIA9Wx6CHgDoHpB4lGPhqIxqmYljT5xMSjPSpyaZqTP+7T8pjJJWaxSRc+ACuIy8j/+swRqwDmwYr60DodpNCIveh9z+Q2sq0eQReAKeBfG4fUj1p+ukuVn1tS+ORoMQHfaAfeDAeK1We6ueCe0fCvZvkTiWvVCErP1n1dRSW0ku3D5895J4Rdqv2r72PdcnBbQsooNFfbi1eXE0fcrF0sSRvFe1/uHWp2O3zfeEpo6x6UE+CSI9D82FfjcvloU+0t7OWxfjuV4HcI2s+jQkDqe/Nl7e+rP2cte8oaGODIXvC+ffhmroCX4XNCw3qXcb/zYsE8kCPBPd4NY475bt3+vOnNh1c4TM+9gETQbt/Gt1IuudHvquT1rz/ydY7sciRuieYpPXQ9i7Zfv3Bnx7C9wF+HewOuOhOz+OrS3W9xA4Irq4azF9bHnvuj2PhgWeFXWC09XXVzj/qvybvnNfENp3cOrXe/DuOzDu/vVv6usYmjt93ecWsA3seOZonSR7Tlr+Yw4cl6u/lqKxuHyxbpJYmn6V6Jp4ngXcde6c6xecK+0TTf183i3Tv1edGa+d+bHm+867H8Dnr4fp3Jj0xxecT4FvgU+43F2cKYpHvek+j4ET4NQzh2uRtecQcJ40bhX+lehM90X/rsO65eWY1a94OF85LPIPqYdPO5cr7ROfTm4uK/8Q/64E6OE8+xboX0jBjFj3lUDakB1JxXuzwjc0830E1UOjn/VY1HpUQd8QjX8t7ytBO6reX1k5auaL6FW2x2NrW1d+AIIvR7E=
+   eJztmEtOw0AMhlsFteIIvUL3wBnotoDEBugVYA1IbIA9Wx6CHgDoHpB4lGPhqFi1holjT5xMSjPSp6adqWP/439SGCWt1igi58AFcBk5j/+swRqwDmwYr60DodpNHBa9D7n8Q/dUoskj8AQ8C+JxeUj1d9dJa7Pqa18cjQYhOuwB+8CB8Vqt9lY9E9o/LtS/ReJY9kIRsvLP2lNLbSW1cHn47iXxirRftX3tO9cnBbQsooPF/nBr8+Jo+pSLpYkjea5q/cOtx7Hblp9BFr1QFj2oJSGk70Nrcb+bF8tCH2lv562Lca7XAbpHVn0aEofTXxsvb306ztrLu+cNDXVkKHxeoH9j57ss9AS/CxqWm9S7jX8blolkAc5EHNwa9G7Z/r3uzIm9b0jIvI9N0GPQzv+sTmQ900Of9Ulr/v8Ey3wsYoTmFJu8HqLeLdu/N+DbW+AuwL+D1RkP3fl1bG2pvofAkaMJfhbTx5b3rtt5NCxwVtQJTldfX9H6q/Jv+sx9IWifwalf78G778C4+9e/qa9jaI764usWsA3seObcfZLknLT81xw0Lrf/WorG4uqlukliafpVomviOQu4z7n3XL/QWt0+0eyfz7tl+veqM+O1M7/WfB+9+wF8/nrYnRs7/fEF76fAt8AnXO0YZ0riud7E12PgBDj1zNG9yMo5BFqnG7cK/0p0dvNy/66juuXVmNWvdKCvEIv6Q/bDpx3W6vaJTyecy6o/1L8rSk3Qs2+B/oUSzIh1XwlOG7IjqTg3K3xDM98nuHpo9LMei7ofVdA3RONfy/tK0I6q8yurRs18Eb3K9nhsbevKD8n/RC0=
   </data>
  </layer>
  <objectgroup id="3" name="Ground">
@@ -59,6 +59,9 @@
   <object id="109" x="576" y="144" width="32" height="32"/>
   <object id="112" x="720" y="112" width="32" height="64"/>
   <object id="113" x="640" y="112" width="32" height="64"/>
+  <object id="123" x="3216" y="144" width="16" height="32"/>
+  <object id="124" x="3309.5" y="298.5" width="1.75" height="0.75"/>
+  <object id="125" x="-2.75" y="0.5" width="2.25" height="175"/>
  </objectgroup>
  <objectgroup id="5" name="Coins">
   <object id="13" x="352" y="48" width="16" height="16">

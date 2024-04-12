@@ -135,7 +135,7 @@ public class ShowGame implements Screen{
             }
         }
         for(Item item : items){
-            item.update(dt);
+            if(!item.isDestroyed()) item.update(dt);
         }
         
         display.updateTime(dt);

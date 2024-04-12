@@ -20,10 +20,13 @@ public class CoinAnimation extends Item{
     
     @Override
     public void update(float dt){
-        super.update(dt);
-        setCenter(b2body.getPosition().x, b2body.getPosition().y);
-        if(timer>30) destroy();
-        else timer++;
+        if (!destroyed) {
+            super.update(dt);
+           ;
+            setCenter(b2body.getPosition().x, b2body.getPosition().y);
+            if(timer>30) destroy();
+            else timer++;
+        }
     }
 
     @Override

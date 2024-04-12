@@ -125,7 +125,7 @@ public class Spider extends Enemy{
      * @param batch Batch batch.
      */
     public void draw(Batch batch){
-        if (!destroyed || stateTime < 2) {
+        if (!destroyed || stateTime < 1) {
             super.draw(batch);
         }
     }

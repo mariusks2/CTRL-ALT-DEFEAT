@@ -67,7 +67,6 @@ public class Spider extends Enemy{
             destroyed = true;
             setRegion(new TextureRegion(screen.getAtlas().findRegion("spider"),32, 0, 16, 16));
             stateTime = 0;
-
         }
         else if (!destroyed){
             b2body.setLinearVelocity(velocity);

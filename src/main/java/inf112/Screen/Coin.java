@@ -11,7 +11,7 @@ import inf112.skeleton.app.MegaMarius;
 
 public class Coin extends InteractiveTileObj{
     private static TiledMapTileSet tileSet;
-    private final int BLANK_COIN = 4;
+    private final int BLANK_COIN = 28;
 
     public Coin(ShowGame screen, MapObject object){
         super(screen, object);
@@ -22,7 +22,6 @@ public class Coin extends InteractiveTileObj{
 
     @Override
     public void HeadHit(Marius marius) {
-        System.out.println(map.getTileSets());
         if(getCell().getTile().getId() != BLANK_COIN){
             getCell().setTile(tileSet.getTile(BLANK_COIN)); //Set the graphic block to Blank Coin
             Display.updateScore(200); //Add score

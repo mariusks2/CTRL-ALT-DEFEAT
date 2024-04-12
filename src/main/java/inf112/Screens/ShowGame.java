@@ -53,12 +53,14 @@ public class ShowGame implements Screen{
     private Music music;
     private Array<Item> items;
     public LinkedBlockingQueue<ItemDef> itemsToSpawn;
+    public String fileName;
 
 
     public ShowGame(MegaMarius game, String fileName){
         atlas = new TextureAtlas("Mario_and_Enemies.pack");
 
         this.game = game;
+        this.fileName = fileName;
         gameCam = new OrthographicCamera();
         gamePort = new FitViewport(MegaMarius.M_Width / MegaMarius.PPM, MegaMarius.M_Height / MegaMarius.PPM, gameCam);
 
@@ -135,7 +137,7 @@ public class ShowGame implements Screen{
         for(Item item : items){
             if(!item.isDestroyed()) item.update(dt);
         }
-
+        
         display.updateTime(dt);
 
         //attach our gamecam to our players.x coordinate
@@ -176,11 +178,11 @@ public class ShowGame implements Screen{
 
         // Check if game is over
         if(gameIsOver()) {
-            game.setScreen(new ShowGameOver(game));
+            game.setScreen(new ShowGameOver(game, fileName));
             dispose();
         }
         if (Marius.getGameWon()) {
-            game.setScreen(new ShowGameOver(game));
+            game.setScreen(new ShowGameWon(game, fileName));
             dispose();
         }
     }

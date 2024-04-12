@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="240" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="126">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="240" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="131">
  <tileset firstgid="1" source="customtileset.tsx"/>
- <tileset firstgid="1682" name="tileset1" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="1681" columns="41">
-  <image source="customtileset.png" width="740" height="740"/>
- </tileset>
  <layer id="2" name="Background" width="240" height="16">
   <data encoding="base64" compression="zlib">
    eJztwzEJAAAMA7DClNa/idrYkUB6SVVVVVVVVVVVVVVVVVVV1RcHFQLcTA==
@@ -11,7 +8,7 @@
  </layer>
  <layer id="1" name="Graphics" width="240" height="16">
   <data encoding="base64" compression="zlib">
-   eJztmUtOwzAQhlMFtSAeZdsrdA+cAbYFJDY8rgBrQGID7NnyOALQOwDngJ6AEzBRsWINjjPjTOKUzkifWmJ34vk9v1MgSTQ0NDQ0NDQ0NDQ0qHGSxuUauAFuI6/jP2uwAWwCW8Jz20CodmPErPehb/2he0rR5Bl4AV4J+XzroOqP51Frk+prVx6OBiE6HAJHwLHwXK72Uj0T2j8Y279V8kj2QhWK1l+0p5LaUmrxrcN1L4pXqP3K7WvXuT6uoGUVHST2xze3LA+nT325OHkoz1Wuf3zzTRx06GeQRC/UxQBqSS0GJd/VfbXgz5blktCH2ttl82Kc623A3iOpPg3J49Ofm69sfhZXnfndc0VpIyPi88L4N/Z654UB4XuBMt9k3lX/KvNEOgNnIuX/L8a7dfv3vpsTe98MIeMutkGPnU75tTZR9EwPfdanSf73BMn1SOQIXVNsynrI9m7d/n0A3z4CTwH+/V6a8tXL38fW1tb3FDhDmphrMX0see+2nUejCmdFm/Dp6uoru/6m/Js9c98suM/gzK+f4N3lxSSZ9P76N/N1DM2NvuZ1F9gD9h1jeJ8oa04T93sfdl7f/nOpmstXr60bJRenXym6po6zwHfd97OvX+xacZ9w9s/l3Tr9e9ed8t7N33M+b7y7Aqz+ehiPTVB/rMG1PrC+SOuHojGTp2/lw940r+fABXDpGLP3omjNIdh14rxN+JeiM14X/r3O1q2sxqJ+tcP4yiBRf8h+uLQzteI+celkxorqD/XvAlMT49mPQP9CCWLEui8F1IbeSBtemxSu4IwPLbAeHP2kY1b3owmGgnD8K3lfCtxoen111cgZr6JX3R6PrW1b+QHbDzZl
+   eJztmUtOAzEMhlsNSx7rXqH7tmeAHRSQ2PC4Aux4SmyA2wC9IJ5FVMtKHDvxTKZMLH2qOkk9zh//mUFMJjVq1KhRo0aNGjVq1JDGXVOWD+AT+Cpcx3/WYAEsgZXx3CGQqt2GsOt9yNWfuqcSTb6BH+BXkI+rQ6o/nSddm1Vf+/JoNEjR4Rq4AW6N52q1t+qZ1P6hYP/m5LHshRxC9Yf21FJbyVq4Onz3knhF2q/avvad65sMLXN0sNgfbm4sj6ZPuVyaPJLnqtY/3HwXV1P5GWTRC10xg7U0iFnkXZ1bC/1tLJeFPtLejs0rca4PAbxHVn2akofTX5svNr+N9+l497xSGSJr4fPC+bd0vWNgpng3qIyX1rvVv5Ux0ezAeSj5/4vzbtf+3Z9sKb1vjpRxH8egx8k0fm1IhJ7nqc/5ZrJ9X7CsxyJHak2lifUQ9m7X/j2A3x0CRxlang3MD07fe+CB1OaulfSx5b2Hdh6tM86KIcHp6usrvP6+/Ns+cxeIlGfwKdzzEVh77u3z9TlcuwAuM3vO5cH5qG/dJ55Dx+g+Sc4i3J+hXqXrxHm5/dcSyiXVmVtvLAcd1/SrRNfGcxZw17nvvrXgvXfjtE98Ovn6Cq+/L/86HZYJ76YtzrtPwDPxcMjXL/D9FXgT1Mqt3eXB+ag33adkDldzCvieNG8f/pXoTOuif9fFcuDxUL/i4PzXNb61YO3cOO0Tn06+vgp5V+PfPaUmTsdVoqZQthml7iuBtCEbTc+1WeELzfgcQfXQ6Gcdu7offTA3RONfy/tK0Ebf9XW1Rs14jl5de7y0tkPlDxb2JaY=
   </data>
  </layer>
  <objectgroup id="3" name="Ground">
@@ -84,17 +81,6 @@
     <property name="coin" value=""/>
    </properties>
   </object>
-  <object id="86" x="1008" y="128" height="16"/>
-  <object id="87" x="1008" y="128" width="16" height="16">
-   <properties>
-    <property name="coin" value=""/>
-   </properties>
-  </object>
-  <object id="88" x="1024" y="128" width="16" height="16">
-   <properties>
-    <property name="coin" value=""/>
-   </properties>
-  </object>
   <object id="89" x="1360" y="160" width="16" height="16">
    <properties>
     <property name="pepsi" value=""/>
@@ -125,6 +111,8 @@
     <property name="pepsi" value=""/>
    </properties>
   </object>
+  <object id="127" x="992" y="128" width="16" height="16"/>
+  <object id="128" x="1040" y="128" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="6" name="Bricks">
   <object id="2" x="304" y="160" width="16" height="16"/>
@@ -172,6 +160,8 @@
   <object id="119" x="2208" y="224" width="16" height="16"/>
   <object id="120" x="2256" y="208" width="16" height="16"/>
   <object id="121" x="2286" y="390.75" width="4" height="3"/>
+  <object id="129" x="1008" y="128" width="16" height="16"/>
+  <object id="130" x="1024" y="128" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="8" name="Spiders">
   <object id="16" x="256" y="208" width="16" height="16"/>

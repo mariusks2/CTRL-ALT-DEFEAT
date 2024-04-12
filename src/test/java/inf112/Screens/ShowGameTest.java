@@ -93,5 +93,6 @@ public class ShowGameTest {
 		when(marius.isMariusBigNow()).thenReturn(true);
 		brick.HeadHit(marius);
 		assertEquals(MegaMarius.DESTROYED_BIT, brick.getFilterData());
+		//##
 	}
 }

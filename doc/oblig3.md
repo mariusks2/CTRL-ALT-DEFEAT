@@ -29,7 +29,10 @@ Kommunikasjonen i gruppen er god, lett å komme fram til tidspunkt alle kan møt
 * Power up (Marius kan drikke pepsi og vokse seg stor)
 * To fiender (en edderkopp og et pepsi turtle som kan dø og drepe marius)
 * Musikk
-* Et nytt map og oppdatert pixel art i de forgje
+* Et nytt map
+* oppdatert pixel art
+* Restruktur
+* Tester
 * Main menu og Help menu
 
 # Hva kan gjøres bedre?
@@ -42,10 +45,11 @@ Kommunikasjonen i gruppen er god, lett å komme fram til tidspunkt alle kan møt
 * Hit box rar på enemies, spesielt når man er stor
 * Faller man fra en stor høyde ned på enemies kan også skade selv om man treffer hodet. 
 * Mens man går fra liten marius til stor marius ser det ut som man kan dobbel jumpe mid animation
+* Spillet krasjer når en tar en coin, en dreper en spider, tar en pepsi og så før pepsien er i bakken tar en coin.
 
 # Til neste innlevering skal vi legge til (final product):
 * Legge til mulighet for å velge mellom maps
-* Lage minst 3 nye maps (slik at vi har 5 totlat)
+* Lage minst 1 nye maps (slik at vi har 3 totalt)
 * En ny fiende
 * Legge til en ny power up (ikkje komt frem til hva enda)
 * Legge til sound når man dør, drikker pepsi etc.

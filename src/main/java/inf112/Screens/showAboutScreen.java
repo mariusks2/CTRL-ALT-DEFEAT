@@ -36,7 +36,7 @@ public class showAboutScreen implements Screen {
         this.stage = new Stage(viewport,((MegaMarius) game).batch);
         //this.font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
         //this.table = new Table();
-        this.backgroundImage = new Texture("about-screen.png");
+        this.backgroundImage = new Texture("Screens/about-screen.png");
     }
 
 

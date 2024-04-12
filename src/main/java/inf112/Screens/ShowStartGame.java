@@ -47,7 +47,7 @@ public class ShowStartGame implements Screen {
         
         MegaMarius megaMariusGame = (MegaMarius) game;
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-            game.setScreen(new ShowGame(megaMariusGame));
+            megaMariusGame.setScreen(new ShowGame(megaMariusGame));
             dispose();
         }
 

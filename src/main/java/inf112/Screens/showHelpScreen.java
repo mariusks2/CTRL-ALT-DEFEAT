@@ -7,7 +7,10 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -21,34 +24,19 @@ import inf112.skeleton.app.MegaMarius;
 public class showHelpScreen implements Screen{
 
     private Game game;
-    private Viewport camera;
+    private Viewport viewport;
     private Stage stage;
-    private LabelStyle font;
-    private Table table;
+    private Texture backgroundImage;
+
 
     public showHelpScreen (Game game){
         this.game=game;
-        this.camera=new FitViewport(MegaMarius.M_Width,MegaMarius.M_Height, new OrthographicCamera());
-        this.font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
-        this.table = new Table();
-        this.stage=new Stage(camera,((MegaMarius)game).batch);
+        this.viewport=new FitViewport(MegaMarius.M_Width,MegaMarius.M_Height, new OrthographicCamera());
+        this.stage=new Stage(viewport,((MegaMarius)game).batch);
+        this.backgroundImage = new Texture("help-screen.png");
 
-        createHelpScreen(stage, table, font);
     }
 
-    private void createHelpScreen(Stage stage, Table table, LabelStyle font){
-        table.center();
-        table.setFillParent(true);
-
-        Label gameOverLabel = new Label("To play the game", font);
-        Label retryLabel = new Label("Press 'Enter' to retry or 'Escape' to exit", font);
-
-        table.add(gameOverLabel).expandX();
-        table.row();
-        table.add(retryLabel).expandX().padTop(10f);
-
-        stage.addActor(table);
-    }
 
     @Override
     public void show() {
@@ -57,13 +45,37 @@ public class showHelpScreen implements Screen{
     @Override
     public void render(float delta) {
         MegaMarius megaMariusGame = (MegaMarius) game;
+        // Clear the screen
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        stage.draw();
 
+        // Draw the background image
+        megaMariusGame.batch.begin();
+        megaMariusGame.batch.draw(backgroundImage, 0, 0, MegaMarius.M_Width, MegaMarius.M_Height);
+        megaMariusGame.batch.end();
+
+        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+        stage.draw();
+        
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
             dispose();
             game.setScreen(new ShowStartGame(megaMariusGame));
+       }
+
+       // Check if the left mouse button is clicked
+        if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
+            Vector3 clickPosition = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+            viewport.unproject(clickPosition);
+
+            System.out.println("Clicked at: " + clickPosition.x + ", " + clickPosition.y);
+
+            // Defines the bounding box where "Start Game" is located
+            Rectangle backBounds = new Rectangle(6, 197,35 , 8);
+            // Check if the click is within the bounds of "Start Game"
+            if (backBounds.contains(clickPosition.x, clickPosition.y)) {
+                megaMariusGame.setScreen(new ShowStartGame(megaMariusGame));
+                dispose();
+            }
         }
     }
 

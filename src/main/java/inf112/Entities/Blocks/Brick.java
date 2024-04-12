@@ -1,8 +1,9 @@
-package inf112.Screen;
+package inf112.Entities.Blocks;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapObject;
 
+import inf112.Entities.InteractiveTileObj;
 import inf112.Scenes.Display;
 import inf112.Screens.ShowGame;
 import inf112.skeleton.app.Marius;
@@ -11,7 +12,7 @@ import inf112.skeleton.app.MegaMarius;
 /** 
  * Represents a simple Brick.
  * 
- * This class provieds functionality neccesary break 
+ * This class provieds functionality neccesary to break 
  * bricks if the correct conditions are met.
  * 
  * @author CTRL-ALT-DEFEAT

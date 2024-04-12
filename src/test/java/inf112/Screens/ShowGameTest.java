@@ -19,9 +19,9 @@ import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 
+import inf112.Entities.Blocks.Brick;
+import inf112.Entities.Blocks.Coin;
 import inf112.Scenes.Display;
-import inf112.Screen.Brick;
-import inf112.Screen.Coin;
 import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.MegaMarius;
 

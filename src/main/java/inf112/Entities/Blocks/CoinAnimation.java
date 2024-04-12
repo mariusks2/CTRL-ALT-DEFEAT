@@ -1,7 +1,8 @@
-package inf112.Screen;
+package inf112.Entities.Blocks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 
+import inf112.Entities.Item;
 import inf112.Screens.ShowGame;
 import inf112.skeleton.app.Marius;
 

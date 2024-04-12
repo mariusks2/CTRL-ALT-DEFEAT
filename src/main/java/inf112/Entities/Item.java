@@ -1,4 +1,4 @@
-package inf112.Screen;
+package inf112.Entities;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;

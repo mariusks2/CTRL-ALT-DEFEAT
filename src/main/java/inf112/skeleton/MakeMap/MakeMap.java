@@ -1,4 +1,4 @@
-package inf112.skeleton.MakeMarius;
+package inf112.skeleton.MakeMap;
 
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -11,22 +11,22 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 
-import inf112.Screen.Brick;
-import inf112.Screen.Coin;
-import inf112.Screen.Enemy;
-import inf112.Screen.Spider;
-import inf112.Screen.Turtle;
+import inf112.Entities.Blocks.Brick;
+import inf112.Entities.Blocks.Coin;
+import inf112.Entities.Enemies.Enemy;
+import inf112.Entities.Enemies.Spider;
+import inf112.Entities.Enemies.Turtle;
 import inf112.Screens.ShowGame;
 import inf112.skeleton.app.MegaMarius;
 
-public class makemarius {
+public class MakeMap {
     /**
      * Makes the Marius world. Defines what has collision with Marius.
      * @param screen
      */
     private Array<Spider> spiders;
     private Array<Turtle> turtles;
-    public makemarius(ShowGame screen){
+    public MakeMap(ShowGame screen){
         BodyDef bodyDef = new BodyDef();
         PolygonShape polygonShape = new PolygonShape();
         FixtureDef fixtureDef = new FixtureDef(); 

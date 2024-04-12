@@ -1,9 +1,11 @@
-package inf112.Screen;
+package inf112.Entities.Blocks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.math.Vector2;
 
+import inf112.Entities.InteractiveTileObj;
+import inf112.Entities.ItemDef;
 import inf112.Scenes.Display;
 import inf112.Screens.ShowGame;
 import inf112.skeleton.app.Marius;

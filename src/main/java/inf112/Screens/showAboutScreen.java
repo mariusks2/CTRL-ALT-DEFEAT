@@ -20,7 +20,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import inf112.skeleton.app.MegaMarius;
 
-import com.badlogic.gdx.Screen;
 
 public class showAboutScreen implements Screen {
 

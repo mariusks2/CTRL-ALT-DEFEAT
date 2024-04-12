@@ -1,6 +1,7 @@
 package inf112.Screen;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -33,7 +34,7 @@ public class Turtle extends Enemy {
     // Texture and state variables
     private TextureRegion shell;
     public enum State {WALKING, MOVING_SHELL, STANDING_SHELL}
-    public State currentState;
+    private State currentState;
     public State prevState;
 
     // State control variables
@@ -59,8 +60,9 @@ public class Turtle extends Enemy {
         shell = new TextureRegion(screen.getAtlas().findRegion("turtle"), 64, 0, 16, 24);
         walkAnimation = new Animation(0.2f, frames);
         currentState = prevState = State.WALKING;
-
         setBounds(getX(), getY(), 16 / MegaMarius.PPM, 24 / MegaMarius.PPM);
+        setToDestroy = false;
+        destroyed = false;
     }
 
     /**
@@ -94,8 +96,8 @@ public class Turtle extends Enemy {
         //Create the Head here:
         PolygonShape head = new PolygonShape();
         Vector2[] vertice = new Vector2[4];
-        vertice[0] = new Vector2(-5, 9).scl(1 / MegaMarius.PPM);
-        vertice[1] = new Vector2(5, 9).scl(1 / MegaMarius.PPM);
+        vertice[0] = new Vector2(-5, 10).scl(1 / MegaMarius.PPM);
+        vertice[1] = new Vector2(5, 10).scl(1 / MegaMarius.PPM);
         vertice[2] = new Vector2(-3, 3).scl(1 / MegaMarius.PPM);
         vertice[3] = new Vector2(3, 3).scl(1 / MegaMarius.PPM);
         head.set(vertice);
@@ -148,6 +150,12 @@ public class Turtle extends Enemy {
             velocity.x = 1;
 
         }
+        if (setToDestroy && !destroyed) {
+            world.destroyBody(b2body);
+            destroyed = true;
+            stateTime = 0;
+
+        }
         setPosition(b2body.getPosition().x-getWidth()/2, b2body.getPosition().y-8/MegaMarius.PPM);
         b2body.setLinearVelocity(velocity);
     }
@@ -173,6 +181,12 @@ public class Turtle extends Enemy {
         else {
             currentState = State.STANDING_SHELL;
             velocity.x = 0;
+        }
+    }
+
+    public void draw(Batch batch){
+        if (!destroyed) {
+            super.draw(batch);
         }
     }
     
@@ -202,9 +216,9 @@ public class Turtle extends Enemy {
      */
     @Override
     public void hitByEnemy(Enemy enemy) {
-        if(enemy instanceof Turtle && ((Turtle) enemy).currentState == Turtle.State.MOVING_SHELL)
-            setToDestroy = true;
-        else
-            revVelocity(true, false);
+        if(enemy.getClass() == Turtle.class && ((Turtle) enemy).getCurrentState() == Turtle.State.MOVING_SHELL){
+            this.setToDestroy = true;
+        }
+        else revVelocity(true, false);
     }
 }

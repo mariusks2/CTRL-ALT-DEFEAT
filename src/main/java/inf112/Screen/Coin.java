@@ -1,12 +1,6 @@
 package inf112.Screen;
-import java.util.concurrent.TimeUnit;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapObject;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.math.Vector2;
 
@@ -17,12 +11,11 @@ import inf112.skeleton.app.MegaMarius;
 
 public class Coin extends InteractiveTileObj{
     private static TiledMapTileSet tileSet;
-    private final int BLANK_COIN = 4;
-    private final int COIN = 58;
+    private final int BLANK_COIN = 28;
 
     public Coin(ShowGame screen, MapObject object){
         super(screen, object);
-        tileSet = map.getTileSets().getTileSet("tileset1"); 
+        tileSet = map.getTileSets().getTileSet("customtileset");
         fixture.setUserData(this);
         setCategoryFilter(MegaMarius.COIN_BIT); //Set the block to Coin bit.
     }
@@ -35,7 +28,7 @@ public class Coin extends InteractiveTileObj{
             if(object.getProperties().containsKey("pepsi")){
                 screen.spawnItems(new ItemDef(new Vector2(body.getPosition().x, body.getPosition().y + 16/MegaMarius.PPM), Pepsi.class));
             }
-            else if(object.getProperties().containsKey("coin")){
+            else {
                 screen.spawnItems(new ItemDef(new Vector2(body.getPosition().x, body.getPosition().y + 16/MegaMarius.PPM), CoinAnimation.class));
             }
              

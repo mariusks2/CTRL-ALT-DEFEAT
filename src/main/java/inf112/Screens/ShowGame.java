@@ -25,7 +25,6 @@ import inf112.Scenes.Display;
 import inf112.Screen.Item;
 import inf112.Screen.ItemDef;
 import inf112.Screen.Pepsi;
-import inf112.Screen.Coin;
 import inf112.Screen.CoinAnimation;
 import inf112.Screen.Enemy;
 import inf112.skeleton.MakeMarius.makemarius;
@@ -54,26 +53,28 @@ public class ShowGame implements Screen{
     private Music music;
     private Array<Item> items;
     public LinkedBlockingQueue<ItemDef> itemsToSpawn;
+    public String fileName;
 
 
-    public ShowGame(MegaMarius game){
+    public ShowGame(MegaMarius game, String fileName){
         atlas = new TextureAtlas("Mario_and_Enemies.pack");
 
         this.game = game;
+        this.fileName = fileName;
         gameCam = new OrthographicCamera();
         gamePort = new FitViewport(MegaMarius.M_Width / MegaMarius.PPM, MegaMarius.M_Height / MegaMarius.PPM, gameCam);
 
         display = new Display(game.batch);
 
         mapLoader = new TmxMapLoader();
-        map = mapLoader.load("mario1.tmx");
-        //map = mapLoader.load("custom1.tmx");
+        //map = mapLoader.load("mario1.tmx");
+        map = mapLoader.load(fileName);
         renderer = new OrthogonalTiledMapRenderer(map, 1  / MegaMarius.PPM);
         gameCam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2, 0);
 
         world = new World(new Vector2(0, -10), true);
         world.step(0, 0, 0);
-        b2dr = new Box2DDebugRenderer();    
+        //b2dr = new Box2DDebugRenderer(); // uncomment to show hitbox 
 
         creator = new makemarius(this);
 
@@ -134,9 +135,9 @@ public class ShowGame implements Screen{
             }
         }
         for(Item item : items){
-            item.update(dt);
+            if(!item.isDestroyed()) item.update(dt);
         }
-
+        
         display.updateTime(dt);
 
         //attach our gamecam to our players.x coordinate
@@ -158,7 +159,8 @@ public class ShowGame implements Screen{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); //clears screen
 
         renderer.render();
-        b2dr.render(world, gameCam.combined);
+
+        //b2dr.render(world, gameCam.combined); // Uncomment to show hitbox
 
         game.batch.setProjectionMatrix(gameCam.combined);
         game.batch.begin();
@@ -176,11 +178,11 @@ public class ShowGame implements Screen{
 
         // Check if game is over
         if(gameIsOver()) {
-            game.setScreen(new ShowGameOver(game));
+            game.setScreen(new ShowGameOver(game, fileName));
             dispose();
         }
         if (Marius.getGameWon()) {
-            game.setScreen(new ShowGameOver(game));
+            game.setScreen(new ShowGameWon(game, fileName));
             dispose();
         }
     }
@@ -244,7 +246,6 @@ public class ShowGame implements Screen{
         map.dispose();
         renderer.dispose();
         world.dispose();
-        b2dr.dispose();
         display.dispose();
     }
     

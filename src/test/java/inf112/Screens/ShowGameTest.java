@@ -3,13 +3,11 @@ package inf112.Screens;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.ApplicationListener;
@@ -20,8 +18,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
 
 import inf112.Scenes.Display;
 import inf112.Screen.Brick;
@@ -70,13 +66,6 @@ public class ShowGameTest {
 		return new Coin(sGame, mp);
 	}
 
-	static ShowGame makeShowGame() {
-		MegaMarius mGame = mock(MegaMarius.class);
-		mGame.batch = mock(SpriteBatch.class);
-		return new ShowGame(mGame);
-
-	}
-
 	@Test
 	void test2() {
 		Coin coin = mock(Coin.class);
@@ -89,7 +78,7 @@ public class ShowGameTest {
 	void test1() {
 		Display display = mock(Display.class);
         TiledMap map = mock(TiledMap.class);
-		ShowGame sGame = makeShowGame();
+		ShowGame sGame = mock(ShowGame.class);
         when(sGame.getDisplay()).thenReturn(display);
         var coin = makeCoin();
 	}

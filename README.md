@@ -20,3 +20,4 @@ Hit box på karakter er litt rar
 
 ## Credits
 Musikk fra <a href="https://pixabay.com/users/white_records-32584949/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=164702">Maksym Dudchyk</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=164702">Pixabay</a>
+Sprite resources, some we have edited : <a href= https://www.spriters-resource.com/nes/supermariobros/sheet/52571> </a>

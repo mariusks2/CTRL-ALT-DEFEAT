@@ -51,8 +51,8 @@ public class Spider extends Enemy{
         walkAnimation = new Animation<>(0.4f, frames);
         stateTime = 0;
         setBounds(getX(), getY(), 16/MegaMarius.PPM, 16/MegaMarius.PPM);
-        setToDestroy = false;
         destroyed = false;
+        setToDestroy = false;
     }
 
     /**
@@ -67,7 +67,6 @@ public class Spider extends Enemy{
             destroyed = true;
             setRegion(new TextureRegion(screen.getAtlas().findRegion("spider"),32, 0, 16, 16));
             stateTime = 0;
-
         }
         else if (!destroyed){
             b2body.setLinearVelocity(velocity);
@@ -125,7 +124,7 @@ public class Spider extends Enemy{
      * @param batch Batch batch.
      */
     public void draw(Batch batch){
-        if (!destroyed || stateTime <1) {
+        if (!destroyed || stateTime < 1) {
             super.draw(batch);
         }
     }
@@ -137,7 +136,7 @@ public class Spider extends Enemy{
 
     @Override
     public void hitByEnemy(Enemy enemy) {
-        if(enemy instanceof Turtle && ((Turtle) enemy).currentState == Turtle.State.MOVING_SHELL)
+        if(enemy instanceof Turtle && ((Turtle) enemy).getCurrentState() == Turtle.State.MOVING_SHELL)
             setToDestroy = true;
         else
             revVelocity(true, false);

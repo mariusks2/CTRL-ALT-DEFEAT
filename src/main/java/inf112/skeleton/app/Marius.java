@@ -342,7 +342,7 @@ import inf112.Screens.ShowGame;
 		}
 
 		public void hit(Enemy enemy){
-			if (enemy instanceof Turtle && ((Turtle) enemy).currentState == Turtle.State.STANDING_SHELL) {
+			if (enemy instanceof Turtle && ((Turtle) enemy).getCurrentState() == Turtle.State.STANDING_SHELL) {
 				((Turtle) enemy).kick(enemy.b2body.getPosition().x > b2body.getPosition().x ? Turtle.KICK_RIGHT : Turtle.KICK_LEFT);
 			}
 			else {

@@ -24,6 +24,7 @@ public class ShowStartGame implements Screen {
     //private Label.LabelStyle fontStyle;
     //private Table table;
     private Texture backgroundImage;
+    private String fileName;
 
     public ShowStartGame(Game game) {
         this.game = game;
@@ -32,6 +33,7 @@ public class ShowStartGame implements Screen {
         //this.fontStyle = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
         //this.table = new Table();
         this.backgroundImage = new Texture("start-screen.png");
+        fileName = "mario1.tmx";
     }
 
    
@@ -47,7 +49,7 @@ public class ShowStartGame implements Screen {
         
         MegaMarius megaMariusGame = (MegaMarius) game;
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-            megaMariusGame.setScreen(new ShowGame(megaMariusGame));
+            game.setScreen(new ShowGame(megaMariusGame, fileName));
             dispose();
         }
 
@@ -68,7 +70,7 @@ public class ShowStartGame implements Screen {
 
             // Check if the click is within the bounds of "Start Game"
             if (startGameBounds.contains(clickPosition.x, clickPosition.y)) {
-                megaMariusGame.setScreen(new ShowGame(megaMariusGame));
+                megaMariusGame.setScreen(new ShowGame(megaMariusGame, fileName));
                 dispose();
             }
             //Checks for if the button click is on help

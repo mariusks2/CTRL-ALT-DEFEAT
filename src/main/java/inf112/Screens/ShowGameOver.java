@@ -23,11 +23,12 @@ public class ShowGameOver implements Screen {
     private Texture backgroundImage;
     private String fileName;
 
-    public ShowGameOver(Game game) {
+    public ShowGameOver(Game game, String fileName) {
         // Initialize variables
         this.game = game;
         this.camera = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());
         this.stage = new Stage(camera, ((MegaMarius) game).batch);
+        this.fileName = fileName;
         //font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
         //table = new Table();
         this.backgroundImage = new Texture("game-over.png");
@@ -76,7 +77,6 @@ public class ShowGameOver implements Screen {
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
             // Start new game if 'enter' key is pressed
-            fileName = getNewGame();
             game.setScreen(new ShowGame((MegaMarius) game, fileName));
             dispose();
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
@@ -86,7 +86,7 @@ public class ShowGameOver implements Screen {
         }
     }
 
-    public String getNewGame() {
+    public String getCurrentGame() {
         if(fileName == "custom1.tmx"){
             System.out.println("GAME DONE");
         }

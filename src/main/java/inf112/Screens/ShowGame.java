@@ -178,7 +178,7 @@ public class ShowGame implements Screen{
 
         // Check if game is over
         if(gameIsOver()) {
-            game.setScreen(new ShowGameWon(game, fileName));
+            game.setScreen(new ShowGameOver(game, fileName));
             dispose();
         }
         if (Marius.getGameWon()) {

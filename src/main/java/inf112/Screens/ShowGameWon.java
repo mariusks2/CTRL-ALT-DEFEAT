@@ -84,10 +84,10 @@ public class ShowGameWon implements Screen {
    
    
        public String getNewGame() {
-           if(fileName == "custom1.tmx"){
+           if(fileName == "MapAndTileset/custom1.tmx"){
                System.out.println("GAME DONE");
            }
-           return "custom1.tmx";
+           return "MapAndTileset/custom1.tmx";
        }
    
        @Override

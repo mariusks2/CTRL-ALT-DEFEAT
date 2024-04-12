@@ -31,7 +31,7 @@ public class ShowGameOver implements Screen {
         this.fileName = fileName;
         //font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
         //table = new Table();
-        this.backgroundImage = new Texture("game-over.png");
+        this.backgroundImage = new Texture("Screens/game-over.png");
         // Create game over label
         //createGameOverScreen(handler, table, font);
     }

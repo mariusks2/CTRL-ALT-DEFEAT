@@ -32,8 +32,8 @@ public class ShowStartGame implements Screen {
         this.stage = new Stage(viewport, ((MegaMarius) game).batch);
         //this.fontStyle = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
         //this.table = new Table();
-        this.backgroundImage = new Texture("start-screen.png");
-        fileName = "mario1.tmx";
+        this.backgroundImage = new Texture("src/main/resources/Screens/start-screen.png");
+        fileName = "MapAndTileset/mario1.tmx";
     }
 
    

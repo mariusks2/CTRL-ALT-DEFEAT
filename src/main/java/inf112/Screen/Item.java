@@ -32,6 +32,10 @@ public abstract class Item extends Sprite{ //Abstract class for enemies.
 
     public abstract void use(Marius marius);
 
+    public boolean isDestroyed(){
+        return destroyed;
+    }
+
     public void update(float dt){
         if(toDestroy && !destroyed){
             destroyed=true;

@@ -16,8 +16,8 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import com.badlogic.gdx.utils.Array;
 
-import inf112.Screen.Enemy;
-import inf112.Screen.Turtle;
+import inf112.Entities.Enemies.Enemy;
+import inf112.Entities.Enemies.Turtle;
 import inf112.Screens.ShowGame;
 
 	public class Marius extends Sprite {

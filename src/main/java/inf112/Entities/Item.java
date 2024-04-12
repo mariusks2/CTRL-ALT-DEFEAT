@@ -1,4 +1,4 @@
-package inf112.Screen;
+package inf112.Entities;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -31,6 +31,10 @@ public abstract class Item extends Sprite{ //Abstract class for enemies.
     public abstract void defineItem();
 
     public abstract void use(Marius marius);
+
+    public boolean isDestroyed(){
+        return destroyed;
+    }
 
     public void update(float dt){
         if(toDestroy && !destroyed){

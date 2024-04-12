@@ -1,7 +1,8 @@
-package inf112.Screen;
+package inf112.Entities.Blocks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 
+import inf112.Entities.Item;
 import inf112.Screens.ShowGame;
 import inf112.skeleton.app.Marius;
 
@@ -19,10 +20,13 @@ public class CoinAnimation extends Item{
     
     @Override
     public void update(float dt){
-        super.update(dt);
-        setCenter(b2body.getPosition().x, b2body.getPosition().y);
-        if(timer>30) destroy();
-        else timer++;
+        if (!destroyed) {
+            super.update(dt);
+           ;
+            setCenter(b2body.getPosition().x, b2body.getPosition().y);
+            if(timer>30) destroy();
+            else timer++;
+        }
     }
 
     @Override

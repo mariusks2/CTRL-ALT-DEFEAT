@@ -1,4 +1,4 @@
-package inf112.Screen;
+package inf112.Entities;
 
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;

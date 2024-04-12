@@ -1,4 +1,5 @@
 package inf112.Screen;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.math.Vector2;
@@ -21,6 +22,7 @@ public class Coin extends InteractiveTileObj{
 
     @Override
     public void HeadHit(Marius marius) {
+        System.out.println(map.getTileSets());
         if(getCell().getTile().getId() != BLANK_COIN){
             getCell().setTile(tileSet.getTile(BLANK_COIN)); //Set the graphic block to Blank Coin
             Display.updateScore(200); //Add score

@@ -27,7 +27,7 @@ Kommunikasjonen i gruppen er god, lett å komme fram til tidspunkt alle kan møt
 
 # Early access-version (Dette er de vi har lagt til):
 * Power up (Marius kan drikke pepsi og vokse seg stor)
-* To fiender (en edderkopp og et pepsi monster som kan dø og drepe marius)
+* To fiender (en edderkopp og et pepsi turtle som kan dø og drepe marius)
 * Musikk
 * Et nytt map og oppdatert pixel art i de forgje
 * Main menu og Help menu

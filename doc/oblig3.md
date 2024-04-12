@@ -45,7 +45,8 @@ Kommunikasjonen i gruppen er god, lett å komme fram til tidspunkt alle kan møt
 * Hit box rar på enemies, spesielt når man er stor
 * Faller man fra en stor høyde ned på enemies kan også skade selv om man treffer hodet. 
 * Mens man går fra liten marius til stor marius ser det ut som man kan dobbel jumpe mid animation
-* Spillet krasjer når en tar en coin, en dreper en spider, tar en pepsi og så før pepsien er i bakken tar en coin.
+* Spillet krasjer når en tar en coin, en dreper en spider, tar en pepsi og så før pepsien er i bakken tar en coin. 
+  Får da Java Runtime Enviroment feil. (Muligens CoinAnimation feil)
 
 # Til neste innlevering skal vi legge til (final product):
 * Legge til mulighet for å velge mellom maps

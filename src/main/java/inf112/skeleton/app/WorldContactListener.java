@@ -6,9 +6,9 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 
-import inf112.Screen.Enemy;
-import inf112.Screen.InteractiveTileObj;
-import inf112.Screen.Item;
+import inf112.Entities.InteractiveTileObj;
+import inf112.Entities.Item;
+import inf112.Entities.Enemies.Enemy;
 
 
 public class WorldContactListener implements ContactListener {

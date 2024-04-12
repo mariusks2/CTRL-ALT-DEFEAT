@@ -21,13 +21,13 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 
 import inf112.skeleton.app.MegaMarius;
+import inf112.Entities.Item;
+import inf112.Entities.ItemDef;
+import inf112.Entities.Blocks.CoinAnimation;
+import inf112.Entities.Blocks.Pepsi;
+import inf112.Entities.Enemies.Enemy;
 import inf112.Scenes.Display;
-import inf112.Screen.Item;
-import inf112.Screen.ItemDef;
-import inf112.Screen.Pepsi;
-import inf112.Screen.CoinAnimation;
-import inf112.Screen.Enemy;
-import inf112.skeleton.MakeMarius.makemarius;
+import inf112.skeleton.MakeMap.MakeMap;
 import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.WorldContactListener;
 
@@ -44,7 +44,7 @@ public class ShowGame implements Screen{
     
     private World world;
     private Box2DDebugRenderer b2dr;
-    private makemarius creator;
+    private MakeMap creator;
 
     private Marius player;
     private float accumulator = 0f;
@@ -57,7 +57,7 @@ public class ShowGame implements Screen{
 
 
     public ShowGame(MegaMarius game, String fileName){
-        atlas = new TextureAtlas("Mario_and_Enemies.pack");
+        atlas = new TextureAtlas("Characters/Mario_and_Enemies.pack");
 
         this.game = game;
         this.fileName = fileName;
@@ -76,7 +76,7 @@ public class ShowGame implements Screen{
         world.step(0, 0, 0);
         //b2dr = new Box2DDebugRenderer(); // uncomment to show hitbox 
 
-        creator = new makemarius(this);
+        creator = new MakeMap(this);
 
         player = new Marius(this);
 

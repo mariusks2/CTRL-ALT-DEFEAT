@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="240" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="126">
  <tileset firstgid="1" source="customtileset.tsx"/>
- <tileset firstgid="1682" name="tileset1" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="1681" columns="41">
-  <image source="customtileset.png" width="740" height="740"/>
- </tileset>
  <layer id="2" name="Background" width="240" height="16">
   <data encoding="base64" compression="zlib">
    eJztwzEJAAAMA7DClNa/idrYkUB6SVVVVVVVVVVVVVVVVVVV1RcHFQLcTA==
@@ -11,7 +8,7 @@
  </layer>
  <layer id="1" name="Graphics" width="240" height="16">
   <data encoding="base64" compression="zlib">
-   eJztmUtOwzAQhlMFtSAeZdsrdA+cAbYFJDY8rgBrQGID7NnyOALQOwDngJ6AEzBRsWINjjPjTOKUzkifWmJ34vk9v1MgSTQ0NDQ0NDQ0NDQ0qHGSxuUauAFuI6/jP2uwAWwCW8Jz20CodmPErPehb/2he0rR5Bl4AV4J+XzroOqP51Frk+prVx6OBiE6HAJHwLHwXK72Uj0T2j8Y279V8kj2QhWK1l+0p5LaUmrxrcN1L4pXqP3K7WvXuT6uoGUVHST2xze3LA+nT325OHkoz1Wuf3zzTRx06GeQRC/UxQBqSS0GJd/VfbXgz5blktCH2ttl82Kc623A3iOpPg3J49Ofm69sfhZXnfndc0VpIyPi88L4N/Z654UB4XuBMt9k3lX/KvNEOgNnIuX/L8a7dfv3vpsTe98MIeMutkGPnU75tTZR9EwPfdanSf73BMn1SOQIXVNsynrI9m7d/n0A3z4CTwH+/V6a8tXL38fW1tb3FDhDmphrMX0see+2nUejCmdFm/Dp6uoru/6m/Js9c98suM/gzK+f4N3lxSSZ9P76N/N1DM2NvuZ1F9gD9h1jeJ8oa04T93sfdl7f/nOpmstXr60bJRenXym6po6zwHfd97OvX+xacZ9w9s/l3Tr9e9ed8t7N33M+b7y7Aqz+ehiPTVB/rMG1PrC+SOuHojGTp2/lw940r+fABXDpGLP3omjNIdh14rxN+JeiM14X/r3O1q2sxqJ+tcP4yiBRf8h+uLQzteI+celkxorqD/XvAlMT49mPQP9CCWLEui8F1IbeSBtemxSu4IwPLbAeHP2kY1b3owmGgnD8K3lfCtxoen111cgZr6JX3R6PrW1b+QHbDzZl
+   eJztmUtOAzEMhlsNSx7rXqH7tmeAHRSQ2PC4Aux4SmyA2wC9IJ5FVMtKHDvxTKZMLH2qOkk9zh//mRYmkxo1atSoUaNGjRo1akjjrinLB/AJfBWu4z9rsACWwMp47hBI1W5D2PU+5OpP3VOJJt/AD/AryMfVIdWfzpOuzaqvfXk0GqTocA3cALfGc7XaW/VMav9QsH9z8lj2Qg6h+kN7aqmtZC1cHb57Sbwi7VdtX/vO9U2Gljk6WOwPNzeWR9OnXC5NHslzVesfbr6Lq6n8DLLoha6YwVoaxCzyXZ1bC/1sLJeFPtLejs0rca4PAbxHVn2akofTX5svNr+N9+l497xSGSJr4fPC+bd0vWNhJvheUBk3rXerfytjotmBM1Hy/xfn3a79uz/ZUnrfHCnjPo5Bj5Np/NqQCD3TU5/1zWT79wTLeixypNZUmlgPYe927d8D+NwhcJSh5dnA/OD0vQceSG3uWkkfW957aOfROuOsGBKcrr6+wuvvy7/tM3eBSHkGn8I9H4G1594+X5/DtQvgMrPnXB6cj/rWveI5dIzuk+Qswv0Z6lW6TpyX238toVxSnbn1xnLQcU2/SnRtPGcBd51771sL3ns3TvvEp5Ovr/D6+/Kv02GZ8N20xXn3CXgmHg75+gXevwJvglq5tbs8OB/1pnuVzOFqTgHfk+btw78SnWld9HddLAceD/UrDs5/XeNbC9bOjdM+8enk66uQdzX+3VNq4nRcJWoKZZtR6r4SSBuy0fRcmxW+0IzPEVQPjX7Wsav70QdzQzT+tbyvBG30XV9Xa9SM5+jVtcdLaztU/gATviZo
   </data>
  </layer>
  <objectgroup id="3" name="Ground">

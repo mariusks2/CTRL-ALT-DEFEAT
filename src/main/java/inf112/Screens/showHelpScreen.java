@@ -33,7 +33,7 @@ public class showHelpScreen implements Screen{
         this.game=game;
         this.viewport=new FitViewport(MegaMarius.M_Width,MegaMarius.M_Height, new OrthographicCamera());
         this.stage=new Stage(viewport,((MegaMarius)game).batch);
-        this.backgroundImage = new Texture("help-screen.png");
+        this.backgroundImage = new Texture("Screens/help-screen.png");
 
     }
 

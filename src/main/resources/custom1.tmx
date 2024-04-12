@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="240" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="126">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="240" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="131">
  <tileset firstgid="1" source="customtileset.tsx"/>
  <layer id="2" name="Background" width="240" height="16">
   <data encoding="base64" compression="zlib">
@@ -8,7 +8,7 @@
  </layer>
  <layer id="1" name="Graphics" width="240" height="16">
   <data encoding="base64" compression="zlib">
-   eJztmUtOAzEMhlsNSx7rXqH7tmeAHRSQ2PC4Aux4SmyA2wC9IJ5FVMtKHDvxTKZMLH2qOkk9zh//mRYmkxo1atSoUaNGjRo1akjjrinLB/AJfBWu4z9rsACWwMp47hBI1W5D2PU+5OpP3VOJJt/AD/AryMfVIdWfzpOuzaqvfXk0GqTocA3cALfGc7XaW/VMav9QsH9z8lj2Qg6h+kN7aqmtZC1cHb57Sbwi7VdtX/vO9U2Gljk6WOwPNzeWR9OnXC5NHslzVesfbr6Lq6n8DLLoha6YwVoaxCzyXZ1bC/1sLJeFPtLejs0rca4PAbxHVn2akofTX5svNr+N9+l497xSGSJr4fPC+bd0vWNhJvheUBk3rXerfytjotmBM1Hy/xfn3a79uz/ZUnrfHCnjPo5Bj5Np/NqQCD3TU5/1zWT79wTLeixypNZUmlgPYe927d8D+NwhcJSh5dnA/OD0vQceSG3uWkkfW957aOfROuOsGBKcrr6+wuvvy7/tM3eBSHkGn8I9H4G1594+X5/DtQvgMrPnXB6cj/rWveI5dIzuk+Qswv0Z6lW6TpyX238toVxSnbn1xnLQcU2/SnRtPGcBd51771sL3ns3TvvEp5Ovr/D6+/Kv02GZ8N20xXn3CXgmHg75+gXevwJvglq5tbs8OB/1pnuVzOFqTgHfk+btw78SnWld9HddLAceD/UrDs5/XeNbC9bOjdM+8enk66uQdzX+3VNq4nRcJWoKZZtR6r4SSBuy0fRcmxW+0IzPEVQPjX7Wsav70QdzQzT+tbyvBG30XV9Xa9SM5+jVtcdLaztU/gATviZo
+   eJztmUtOAzEMhlsNSx7rXqH7tmeAHRSQ2PC4Aux4SmyA2wC9IJ5FVMtKHDvxTKZMLH2qOkk9zh//mUFMJjVq1KhRo0aNGjVq1JDGXVOWD+AT+Cpcx3/WYAEsgZXx3CGQqt2GsOt9yNWfuqcSTb6BH+BXkI+rQ6o/nSddm1Vf+/JoNEjR4Rq4AW6N52q1t+qZ1P6hYP/m5LHshRxC9Yf21FJbyVq4Onz3knhF2q/avvad65sMLXN0sNgfbm4sj6ZPuVyaPJLnqtY/3HwXV1P5GWTRC10xg7U0iFnkXZ1bC/1tLJeFPtLejs0rca4PAbxHVn2akofTX5svNr+N9+l497xSGSJr4fPC+bd0vWNgpng3qIyX1rvVv5Ux0ezAeSj5/4vzbtf+3Z9sKb1vjpRxH8egx8k0fm1IhJ7nqc/5ZrJ9X7CsxyJHak2lifUQ9m7X/j2A3x0CRxlang3MD07fe+CB1OaulfSx5b2Hdh6tM86KIcHp6usrvP6+/Ns+cxeIlGfwKdzzEVh77u3z9TlcuwAuM3vO5cH5qG/dJ55Dx+g+Sc4i3J+hXqXrxHm5/dcSyiXVmVtvLAcd1/SrRNfGcxZw17nvvrXgvXfjtE98Ovn6Cq+/L/86HZYJ76YtzrtPwDPxcMjXL/D9FXgT1Mqt3eXB+ag33adkDldzCvieNG8f/pXoTOuif9fFcuDxUL/i4PzXNb61YO3cOO0Tn06+vgp5V+PfPaUmTsdVoqZQthml7iuBtCEbTc+1WeELzfgcQfXQ6Gcdu7offTA3RONfy/tK0Ebf9XW1Rs14jl5de7y0tkPlDxb2JaY=
   </data>
  </layer>
  <objectgroup id="3" name="Ground">
@@ -81,17 +81,6 @@
     <property name="coin" value=""/>
    </properties>
   </object>
-  <object id="86" x="1008" y="128" height="16"/>
-  <object id="87" x="1008" y="128" width="16" height="16">
-   <properties>
-    <property name="coin" value=""/>
-   </properties>
-  </object>
-  <object id="88" x="1024" y="128" width="16" height="16">
-   <properties>
-    <property name="coin" value=""/>
-   </properties>
-  </object>
   <object id="89" x="1360" y="160" width="16" height="16">
    <properties>
     <property name="pepsi" value=""/>
@@ -122,6 +111,8 @@
     <property name="pepsi" value=""/>
    </properties>
   </object>
+  <object id="127" x="992" y="128" width="16" height="16"/>
+  <object id="128" x="1040" y="128" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="6" name="Bricks">
   <object id="2" x="304" y="160" width="16" height="16"/>
@@ -169,6 +160,8 @@
   <object id="119" x="2208" y="224" width="16" height="16"/>
   <object id="120" x="2256" y="208" width="16" height="16"/>
   <object id="121" x="2286" y="390.75" width="4" height="3"/>
+  <object id="129" x="1008" y="128" width="16" height="16"/>
+  <object id="130" x="1024" y="128" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="8" name="Spiders">
   <object id="16" x="256" y="208" width="16" height="16"/>

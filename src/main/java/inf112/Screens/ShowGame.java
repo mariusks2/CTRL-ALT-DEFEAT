@@ -135,7 +135,7 @@ public class ShowGame implements Screen{
         for(Item item : items){
             item.update(dt);
         }
-
+        
         display.updateTime(dt);
 
         //attach our gamecam to our players.x coordinate

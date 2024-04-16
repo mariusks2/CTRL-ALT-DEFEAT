@@ -135,4 +135,8 @@ public class Display implements Disposable{
         stage.dispose();
         font.dispose();
     } 
+
+    public Integer getScoreCount(){
+        return scoreCount;
+    }
 }

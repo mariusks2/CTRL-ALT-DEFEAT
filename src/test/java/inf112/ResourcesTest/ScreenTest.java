@@ -1,18 +1,15 @@
 package inf112.ResourcesTest;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
-import com.badlogic.gdx.files.FileHandle;
 
 public class ScreenTest {
     @BeforeAll
@@ -21,36 +18,26 @@ public class ScreenTest {
 		ApplicationListener listener = new ApplicationAdapter() {
 		};
 
-        
         new HeadlessApplication(listener, config);
         }
 
-	/**
-	 * Setup method called before each of the test methods
-	 */
-	@BeforeEach
-	void setUpBeforeEach() {
-    
-	}
-
     @Test
     void startScreenTest(){
-        assertNotNull(Gdx.files.internal("start-screen.png"));
+        assertTrue(Gdx.files.internal("screens/start-screen.png").exists());
     }
 
     @Test
     void aboutScreenTest(){
-        assertNotNull(Gdx.files.internal("screens/about-screen.png"));
+        assertTrue(Gdx.files.internal("screens/about-screen.png").exists());
     }
 
     @Test
     void helpScreenTest(){
-        FileHandle file1 = Gdx.files.internal("help-screem.png");
-        assertNotNull(file1);
+        assertTrue(Gdx.files.internal("screens/help-screen.png").exists());
     }
 
     @Test
     void gameOverTest(){
-        assertNotNull(Gdx.files.internal("game-over.png"));
+        assertTrue(Gdx.files.internal("screens/game-over.png").exists());
     }
 }

@@ -1,0 +1,25 @@
+-------------------------------------------------------------------------------
+Test set: inf112.Screens.ShowGameTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 1.620 s <<< FAILURE! -- in inf112.Screens.ShowGameTest
+inf112.Screens.ShowGameTest.test1 -- Time elapsed: 1.474 s <<< ERROR!
+java.lang.UnsatisfiedLinkError: 'long com.badlogic.gdx.physics.box2d.PolygonShape.newPolygonShape()'
+	at com.badlogic.gdx.physics.box2d.PolygonShape.newPolygonShape(Native Method)
+	at com.badlogic.gdx.physics.box2d.PolygonShape.<init>(PolygonShape.java:29)
+	at inf112.Entities.InteractiveTileObj.<init>(InteractiveTileObj.java:40)
+	at inf112.Entities.Blocks.Coin.<init>(Coin.java:19)
+	at inf112.Screens.ShowGameTest.makeCoin(ShowGameTest.java:66)
+	at inf112.Screens.ShowGameTest.test1(ShowGameTest.java:83)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+inf112.Screens.ShowGameTest.brickTest -- Time elapsed: 0.006 s <<< ERROR!
+java.lang.ClassCastException: class com.badlogic.gdx.maps.MapObject cannot be cast to class com.badlogic.gdx.maps.objects.RectangleMapObject (com.badlogic.gdx.maps.MapObject and com.badlogic.gdx.maps.objects.RectangleMapObject are in unnamed module of loader 'app')
+	at inf112.Entities.InteractiveTileObj.<init>(InteractiveTileObj.java:36)
+	at inf112.Entities.Blocks.Brick.<init>(Brick.java:31)
+	at inf112.Screens.ShowGameTest.brickTest(ShowGameTest.java:89)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+

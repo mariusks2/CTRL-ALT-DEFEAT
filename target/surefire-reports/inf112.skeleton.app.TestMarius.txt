@@ -1,12 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: inf112.skeleton.app.TestMarius
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.008 s <<< FAILURE! -- in inf112.skeleton.app.TestMarius
-inf112.skeleton.app.TestMarius.displayTest -- Time elapsed: 0.002 s <<< ERROR!
-java.lang.NullPointerException: Cannot invoke "java.lang.Integer.intValue()" because "inf112.Scenes.Display.scoreCount" is null
-	at inf112.Scenes.Display.updateScore(Display.java:114)
-	at inf112.skeleton.app.TestMarius.displayTest(TestMarius.java:61)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in inf112.skeleton.app.TestMarius

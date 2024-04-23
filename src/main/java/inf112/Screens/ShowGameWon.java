@@ -1,6 +1,6 @@
 package inf112.Screens;
 
-import com.badlogic.gdx.Game;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -20,7 +20,7 @@ import inf112.skeleton.app.MegaMarius;
 
 public class ShowGameWon implements Screen {
 
-        private Game game;
+        private MegaMarius megaMariusGame;
         private Viewport camera;
         private Stage stage;
         private LabelStyle font;
@@ -29,15 +29,15 @@ public class ShowGameWon implements Screen {
         private String fileName;
         private showMapSelect mapSelect;
 
-        public ShowGameWon(Game game, String fileName) {
+        public ShowGameWon(MegaMarius megaMariusGame, String fileName) {
            // Initialize variables
-           this.game = game;
+           this.megaMariusGame = megaMariusGame;
            this.fileName = fileName;
            this.camera = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());
-           this.stage = new Stage(camera, ((MegaMarius) game).batch);
+           this.stage = new Stage(camera, megaMariusGame.batch);
            font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
            table = new Table();
-           this.mapSelect = new showMapSelect(game);
+           this.mapSelect = new showMapSelect(megaMariusGame);
            // Create game over label
            createGameOverScreen(stage, table, font);
        }
@@ -69,14 +69,13 @@ public class ShowGameWon implements Screen {
        @Override
        public void render(float delta) {
         String nextMap = mapSelect.getNextMap(fileName);
-        MegaMarius megaMariusGame = (MegaMarius) game;
         if (nextMap=="GameCompleted"){
             megaMariusGame.setScreen(new showGameCompleted(megaMariusGame));
         }
         else{
            if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
                // Start next map if enter is pressed
-               megaMariusGame.setScreen(new ShowGame((MegaMarius) game,nextMap ));
+               megaMariusGame.setScreen(new ShowGame(megaMariusGame,nextMap ));
                dispose();
            } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
                // Exit game if 'escape' key is pressed

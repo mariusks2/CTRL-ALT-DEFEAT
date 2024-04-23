@@ -1,6 +1,5 @@
 package inf112.Screens;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -15,17 +14,17 @@ import inf112.skeleton.app.MegaMarius;
 
 public class ShowGameOver implements Screen {
 
-    private Game game;
+    private MegaMarius megaMariusGame;
     private Viewport camera;
     private Stage stage;
     private Texture backgroundImage;
     private String fileName;
 
-    public ShowGameOver(Game game, String fileName) {
+    public ShowGameOver(MegaMarius megaMariusGame, String fileName) {
         // Initialize variables
-        this.game = game;
+        this.megaMariusGame = megaMariusGame;
         this.camera = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());
-        this.stage = new Stage(camera, ((MegaMarius) game).batch);
+        this.stage = new Stage(camera, megaMariusGame.batch);
         this.fileName = fileName;
         this.backgroundImage = new Texture("Screens/game-over.png");
     }
@@ -39,7 +38,6 @@ public class ShowGameOver implements Screen {
 
     @Override
     public void render(float delta) {
-        MegaMarius megaMariusGame = (MegaMarius) game;
         // Clear the screen
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -54,7 +52,7 @@ public class ShowGameOver implements Screen {
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
             // Start new game if 'enter' key is pressed
-            game.setScreen(new ShowGame((MegaMarius) game, fileName));
+            megaMariusGame.setScreen(new ShowGame(megaMariusGame, fileName));
             dispose();
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             // Exit game if 'escape' key is pressed

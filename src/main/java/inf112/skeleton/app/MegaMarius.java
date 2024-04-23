@@ -40,12 +40,14 @@ public class MegaMarius extends Game {
         setScreen(new ShowStartGame(this));
     }
         
-
     @Override
 	public void dispose() {
 		super.dispose();
         manager.dispose();
         batch.dispose();
+
+        //manager = null;
+       // batch = null;
 	}
 
     @Override

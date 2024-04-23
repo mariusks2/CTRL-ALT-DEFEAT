@@ -27,6 +27,7 @@ public class ShowGameWon implements Screen {
         private Table table;
         private Texture backgroundImage;
         private String fileName;
+        private showMapSelect mapSelect;
 
         public ShowGameWon(Game game, String fileName) {
            // Initialize variables
@@ -36,6 +37,7 @@ public class ShowGameWon implements Screen {
            this.stage = new Stage(camera, ((MegaMarius) game).batch);
            font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
            table = new Table();
+           this.mapSelect = new showMapSelect(game);
            // Create game over label
            createGameOverScreen(stage, table, font);
        }
@@ -66,9 +68,15 @@ public class ShowGameWon implements Screen {
    
        @Override
        public void render(float delta) {
+        String nextMap = mapSelect.getNextMap(fileName);
+        MegaMarius megaMariusGame = (MegaMarius) game;
+        if (nextMap=="GameCompleted"){
+            megaMariusGame.setScreen(new showGameCompleted(megaMariusGame));
+        }
+        else{
            if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-               // Start new game if 'enter' key is pressed
-               game.setScreen(new ShowGame((MegaMarius) game, getNewGame()));
+               // Start next map if enter is pressed
+               megaMariusGame.setScreen(new ShowGame((MegaMarius) game,nextMap ));
                dispose();
            } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
                // Exit game if 'escape' key is pressed
@@ -80,15 +88,10 @@ public class ShowGameWon implements Screen {
                Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
                stage.draw();
            }
+        }
        }
    
-   
-       public String getNewGame() {
-           if(fileName == "MapAndTileset/custom1.tmx"){
-               System.out.println("GAME DONE");
-           }
-           return "MapAndTileset/custom1.tmx";
-       }
+
    
        @Override
        public void resize(int width, int height) {

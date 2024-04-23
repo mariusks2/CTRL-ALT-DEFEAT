@@ -161,6 +161,10 @@ public class ShowGame implements Screen{
         renderer.render();
 
         //b2dr.render(world, gameCam.combined); // Uncomment to show hitbox
+        if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
+            game.setScreen(new showMapSelect(game));
+            dispose();
+        }
 
         game.batch.setProjectionMatrix(gameCam.combined);
         game.batch.begin();

@@ -18,8 +18,6 @@ public class ShowGameOver implements Screen {
     private Game game;
     private Viewport camera;
     private Stage stage;
-    //private LabelStyle font;
-    //private Table table;
     private Texture backgroundImage;
     private String fileName;
 
@@ -29,30 +27,9 @@ public class ShowGameOver implements Screen {
         this.camera = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());
         this.stage = new Stage(camera, ((MegaMarius) game).batch);
         this.fileName = fileName;
-        //font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
-        //table = new Table();
         this.backgroundImage = new Texture("Screens/game-over.png");
-        // Create game over label
-        //createGameOverScreen(handler, table, font);
     }
 
-    //public void createGameOverScreen(Stage stage, Table table, LabelStyle font) {
-        // Initialize tabel
-       // table.center();
-        //table.setFillParent(true);
-
-        // Creating labels
-        //Label gameOverLabel = new Label("Game Over", font);
-        //Label retryLabel = new Label("Press 'Enter' to retry or 'Escape' to exit", font);
-
-        // Adding labels to table
-        //table.add(gameOverLabel).expandX();
-        //table.row();
-        //table.add(retryLabel).expandX().padTop(10f);
-
-        // Adding actor to stage
-        //stage.addActor(table);
-    //}
 
 
     @Override

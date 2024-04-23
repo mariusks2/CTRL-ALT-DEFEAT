@@ -18,7 +18,7 @@ import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 
 import inf112.Scenes.Display;
 import inf112.Screens.ShowGame;
-public class TestMarius {
+public class MariusTest {
 
     
 

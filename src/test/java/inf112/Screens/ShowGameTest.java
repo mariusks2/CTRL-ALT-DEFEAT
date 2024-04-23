@@ -2,6 +2,7 @@ package inf112.Screens;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -19,6 +20,7 @@ import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 
+import inf112.Entities.ItemDef;
 import inf112.Entities.Blocks.Brick;
 import inf112.Entities.Blocks.Coin;
 import inf112.Scenes.Display;
@@ -26,6 +28,10 @@ import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.MegaMarius;
 
 public class ShowGameTest {
+
+	public ShowGame showGame;
+	public ShowGame mockShowGame;
+
     @BeforeAll
 	static void setUpBeforeAll() {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
@@ -41,7 +47,33 @@ public class ShowGameTest {
 	 */
 	@BeforeEach
 	void setUpBeforeEach() {
-    
+		
+		//MegaMarius mockMegaMarius = mock(MegaMarius.class);
+		//String mockFilename = mock(String.class);
+
+		//showGame = new ShowGame(mockMegaMarius, mockFilename);
+		//mockShowGame = mock(ShowGame.class);
+	}
+
+	@Test
+	void getAtlasTest() {
+		
+	}
+
+	@Test
+	void handleSpawningItemsTest() {
+		//MegaMarius mockMegaMarius = new MegaMarius();
+		//String mockString = "";
+		//ShowGame showGame = new ShowGame(mockMegaMarius, mockString);
+
+		//showGame.handleSpawningItems();
+	}
+
+
+	@Test
+	void spawnItemsTest() {
+		
+		//doNothing().when(mockShowGame).getAtlas();
 	}
 
 	/**

@@ -40,7 +40,9 @@ public class MegaMariusTest {
         // Verify that the screen is set to ShowStartGame
         //assertTrue(megaMarius.getScreen() instanceof ShowStartGame);
     }
-
+    
+            
+            
     @Test
     void disposeTest() {
         // Mock the SpriteBatch
@@ -66,7 +68,6 @@ public class MegaMariusTest {
         //assertNull(megaMarius.batch);
         //assertNull(MegaMarius.manager);
     }
-
     @Test
     void renderTest() {
         MegaMarius mockMegaMarius = mock(MegaMarius.class);
@@ -75,7 +76,7 @@ public class MegaMariusTest {
         // Verify that the render method of the Game instance is called
         verify(mockMegaMarius).render();
     }
-
+    
     @Test
     void setAndGetSpriteBatchTest() {
         // Initialize batch and mockBatch

@@ -33,13 +33,13 @@ public class CharactersTest {
 
     @Test
     void customCharacter(){
-        assertNotNull(Gdx.files.internal("Characters/CustomCharacter.png"));
+        assertNotNull(Gdx.files.internal("Characters/CustomChar.png"));
     }
 
     @Test
     void marioAndEnemies(){
-        assertNotNull(Gdx.files.internal("Characters/Mario_and_Enemies.pack"));
-        assertNotNull(Gdx.files.internal("Characters/Mario_and_Enemies.png"));
+        assertNotNull(Gdx.files.internal("Characters/Mario_a.pack"));
+        assertNotNull(Gdx.files.internal("Characters/Mario_and_Enemi.png"));
     }
     
 }

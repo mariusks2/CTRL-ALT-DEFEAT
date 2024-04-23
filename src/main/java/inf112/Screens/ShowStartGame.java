@@ -1,6 +1,6 @@
 package inf112.Screens;
 
-import com.badlogic.gdx.Game;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -27,10 +27,7 @@ public class ShowStartGame implements Screen {
         this.megaMariusGame = megaMariusGame;
         this.viewport = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());
         this.stage = new Stage(viewport, ((MegaMarius) megaMariusGame).batch);
-        //this.fontStyle = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
-        //this.table = new Table();
         this.backgroundImage = new Texture("src/main/resources/Screens/start-screen.png");
-
     }
 
    

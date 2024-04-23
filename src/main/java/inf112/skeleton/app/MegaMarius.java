@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.physics.box2d.Filter;
 
 import inf112.Screens.ShowStartGame;
 
@@ -29,15 +30,18 @@ public class MegaMarius extends Game {
 	public static final short ITEM_BIT = 256;
 	public static final short MARIUS_HEAD_BIT = 512;
 
-    public static AssetManager manager;
+    public AssetManager manager;
+    public boolean headless;
 
     @Override
     public void create() {
-        batch = new SpriteBatch();
+        if(!headless)
+            batch = new SpriteBatch();
         manager = new AssetManager();
         manager.load("audio/music/music1.mp3", Music.class);
         manager.finishLoading();
-        setScreen(new ShowStartGame(this));
+        if(!headless)
+            setScreen(new ShowStartGame(this));
     }
         
     @Override
@@ -45,15 +49,7 @@ public class MegaMarius extends Game {
 		super.dispose();
         manager.dispose();
         batch.dispose();
-
-        //manager = null;
-       // batch = null;
 	}
-
-    @Override
-    public void render() {
-        super.render();
-    }
 
     public SpriteBatch getSpriteBatch() {
         return this.batch;
@@ -63,4 +59,11 @@ public class MegaMarius extends Game {
         this.batch = batch;
     }
 
+    public AssetManager getAssetManager() {
+        return this.manager;
+    }
+
+	public void setMockMode(boolean headless) {
+		this.headless = headless;
+	}
 }

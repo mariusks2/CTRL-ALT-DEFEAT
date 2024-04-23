@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.ApplicationListener;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 
@@ -28,6 +29,12 @@ public class CoinTest {
     @BeforeEach
 	void setUpBeforeEach() {
 	}
+
+    @Test
+    void createTest() {
+        Coin mockCoin = mock(Coin.class);
+        mockCoin.getClass().equals(Coin.class);
+    }
 
     @Test
     void onHeadHitTest() {

@@ -82,8 +82,7 @@ public class ShowGame implements Screen{
 
         world.setContactListener(new WorldContactListener());
 
-
-        music = MegaMarius.manager.get("audio/music/music1.mp3", Music.class);
+        music = game.manager.get("audio/music/music1.mp3", Music.class);
         music.setLooping(true);
         music.setVolume(0.005f);
         music.play(); // Comment this out to stop music from playing

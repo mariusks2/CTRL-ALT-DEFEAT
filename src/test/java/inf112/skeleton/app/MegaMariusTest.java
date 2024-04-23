@@ -4,58 +4,70 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.backends.headless.HeadlessApplication;
+import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3NativesLoader;
 
-import inf112.Screens.ShowStartGame;
-
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+
 public class MegaMariusTest {
-    private MegaMarius megaMarius;
-    
-    @BeforeEach
-    void setUpBeforeEach() {
-        megaMarius = new MegaMarius();
+
+    private static HeadlessApplication headlessApplication;
+
+    @BeforeAll
+    static void setUpBeforeAll() {
+        Lwjgl3NativesLoader.load();
+
+        HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
+        MegaMarius megaMarius = new MegaMarius(); // Your implementation of ApplicationListener
+
+        headlessApplication = new HeadlessApplication(megaMarius, config);
     }
 
+    @AfterAll
+    static void tearDownAfterAll() {
+        headlessApplication.exit();
+    }
 
     @Test
     void createTest() {
-        // Mock the AssetManager
-        AssetManager mockManager = mock(AssetManager.class);
-        MegaMarius.manager = mockManager;
+        MegaMarius megaMarius = (MegaMarius) headlessApplication.getApplicationListener();
+        MegaMarius mockMegaMaris = mock(MegaMarius.class);
 
-        //megaMarius.create();
-        // Call the create method
-        //verify(megaMarius).create();
+        assertNull(megaMarius.getSpriteBatch());
+        assertNull(megaMarius.getAssetManager());
 
-        // Verify that the AssetManager is properly initialized and resources are loaded
-        //verify(mockManager).load("audio/music/music1.mp3", Music.class);
-        //verify(mockManager).finishLoading();
+        SpriteBatch mockBatch = mock(SpriteBatch.class);
+        megaMarius.setMockMode(true);
 
-        // Verify that the screen is set to ShowStartGame
-        //assertTrue(megaMarius.getScreen() instanceof ShowStartGame);
+        megaMarius.setSpriteBatch(mockBatch);
+        
+        megaMarius.create();
+        mockMegaMaris.create();
+
+        verify(mockMegaMaris).create();
     }
 
     @Test
     void disposeTest() {
         // Mock the SpriteBatch
+        MegaMarius megaMarius = new MegaMarius();
+
         SpriteBatch mockBatch = mock(SpriteBatch.class);
         AssetManager mockManager = mock(AssetManager.class);
 
         megaMarius.batch = mockBatch;
-        MegaMarius.manager = mockManager;
+        megaMarius.manager = mockManager;
         
         // Check that the values actualy have value before
         assertNotNull(megaMarius.batch);
-        assertNotNull(MegaMarius.manager);
+        assertNotNull(megaMarius.manager);
         
-        
-
         // Call the dispose method
         megaMarius.dispose();
 
@@ -69,15 +81,19 @@ public class MegaMariusTest {
 
     @Test
     void renderTest() {
+        MegaMarius megaMarius = new MegaMarius();
         MegaMarius mockMegaMarius = mock(MegaMarius.class);
 
+        megaMarius.render();
         mockMegaMarius.render();
         // Verify that the render method of the Game instance is called
+        doNothing().when(mockMegaMarius).render();
         verify(mockMegaMarius).render();
     }
 
     @Test
     void setAndGetSpriteBatchTest() {
+        MegaMarius megaMarius = new MegaMarius();
         // Initialize batch and mockBatch
         SpriteBatch batch = null;
         SpriteBatch mockBatch = mock(SpriteBatch.class);

@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import inf112.Scenes.Display;
 import inf112.skeleton.app.MegaMarius;
 
 public class ShowGameWon implements Screen {
@@ -75,7 +76,8 @@ public class ShowGameWon implements Screen {
         else{
            if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
                // Start next map if enter is pressed
-               megaMariusGame.setScreen(new ShowGame(megaMariusGame,nextMap ));
+               megaMariusGame.setScreen(new ShowGame(megaMariusGame,nextMap));
+               Display.updateLevel(1);
                dispose();
            } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
                // Exit game if 'escape' key is pressed

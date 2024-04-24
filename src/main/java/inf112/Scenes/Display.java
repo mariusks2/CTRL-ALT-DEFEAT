@@ -26,21 +26,20 @@ public class Display implements Disposable{
     private float timeCount;
     private static Integer scoreCount;
     private static Integer coins;
-    private static Integer lives;
+    private static Integer level;
 
     //Create the labels to display in the 
     private Label countdownDisplay;
     private static Label scoreDisplay;
     private static Label coinsDisplay;
-    private static Label livesDisplay;
-    private Label levelDisplay;
+    private static Label levelDisplay;
 
     // Descriptor labels
     private Label scoreTextLabel;
     private Label coinsTextLabel;
     private Label worldTextLabel;
     private Label timeTextLabel;
-    private Label livesTextLabel;
+  
     
 
     public Display(SpriteBatch sb){
@@ -48,7 +47,8 @@ public class Display implements Disposable{
         timeCount=0;
         scoreCount=0;
         coins=0;
-        lives=3;
+
+        level=1;
 
         viewport = new FitViewport(MegaMarius.M_Height, MegaMarius.M_Height, new OrthographicCamera());
         stage = new Stage(viewport, sb);
@@ -65,8 +65,7 @@ public class Display implements Disposable{
         Label.LabelStyle labelStyle = new Label.LabelStyle(font,Color.WHITE);
         scoreDisplay =new Label(String.format("%03d", scoreCount), labelStyle);
         coinsDisplay = new Label (String.format("%02d",coins),labelStyle);
-        levelDisplay = new Label ("1-1", labelStyle);
-        livesDisplay = new Label (String.format("%02d",lives),labelStyle);
+        levelDisplay = new Label (String.format("%01d",level ), labelStyle);
         countdownDisplay= new Label(String.format("%03d",timer),labelStyle);
 
         // Create descriptor labels
@@ -74,14 +73,13 @@ public class Display implements Disposable{
         coinsTextLabel = new Label("COINS", labelStyle);
         worldTextLabel = new Label("WORLD", labelStyle);
         timeTextLabel = new Label("TIME", labelStyle);
-        livesTextLabel = new Label("LIVES", labelStyle);
+
 
         // Add descriptor labels to the table
         table.add(scoreTextLabel).expandX().padTop(4);
         table.add(coinsTextLabel).expandX().padTop(4);
         table.add(worldTextLabel).expandX().padTop(4);
         table.add(timeTextLabel).expandX().padTop(4);
-        table.add(livesTextLabel).expandX().padTop(4);
 
         // Add a new row to the table for the values
         table.row();
@@ -89,7 +87,6 @@ public class Display implements Disposable{
         table.add(coinsDisplay).expandX();
         table.add(levelDisplay).expandX();
         table.add(countdownDisplay).expandX();
-        table.add(livesDisplay).expandX();
 
         // Add the table to the stage
         stage.addActor(table);
@@ -116,16 +113,17 @@ public class Display implements Disposable{
         
     }
 
+    public static void updateLevel (int newLevel){
+        level+=newLevel;
+        levelDisplay.setText(String.format("%01d",level));
+    }
+
     public static void addCoins(int newCoin){
         coins+=newCoin;
         coinsDisplay.setText(String.format("COINS: %02d",coins));
     }
 
-    public static void addLives(int newLife){
-        lives+=newLife;
-        livesDisplay.setText(String.format("LIVES: %01d",lives));
-    }
-
+  
     public boolean isTimeUp(){
         return timesOut;
     }

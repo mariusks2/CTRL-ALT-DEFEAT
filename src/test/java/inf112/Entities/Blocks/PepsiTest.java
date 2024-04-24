@@ -1,6 +1,5 @@
 package inf112.Entities.Blocks;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -14,13 +13,12 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3NativesLoader;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.maps.MapProperties;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -33,15 +31,15 @@ import inf112.Screens.ShowGame;
 import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.MegaMarius;
 
-public class CoinTest {
-
-    Coin coin;
+public class PepsiTest {
+    Pepsi pepsi;
     RectangleMapObject object;
     TmxMapLoader mapLoader;
     String fileName = "MapAndTileset/mario1.tmx";
     TiledMap map;
     GL20 gl;
     Display display;
+    TextureAtlas textureAtlas;
 
     @BeforeAll
 	static void setUpBeforeAll() {
@@ -66,34 +64,43 @@ public class CoinTest {
         
         new HeadlessApplication(listener, config);
         ShowGame cScreen = mock(ShowGame.class);
-        World world = new World(new Vector2(0, -10), true);
+        World world = new World(new Vector2(10, 10), true);
         display = new Display(mock(SpriteBatch.class));
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
         when(cScreen.getWorld()).thenReturn(world);
         when(cScreen.getMap()).thenReturn(map);
-        object = new RectangleMapObject();
-        coin = new Coin(cScreen, object);
+        textureAtlas = new TextureAtlas("Characters/Mario_and_Enemies.pack");
+        when(cScreen.getAtlas()).thenReturn(textureAtlas);
+        //when(cScreen.getAtlas().findRegion("pepsi")).thenReturn(textureAtlas.findRegion("pepsi"));
+        pepsi = new Pepsi(cScreen, 0, 0);
 	}
 
     @Test
     void createTest() {
-        coin.getClass().equals(Coin.class);
+        pepsi.getClass().equals(Pepsi.class);
     }
 
     @Test
-    void onHeadHitTest() {
+    void useTest() {
         Marius mockMarius = mock(Marius.class);
-        coin.HeadHit(mockMarius);
-        assertEquals(MegaMarius.COIN_BIT, coin.getFilterData().categoryBits);
-        assertEquals(200, display.getScoreCount());
+        pepsi.use(mockMarius);
+        assertEquals(MegaMarius.ITEM_BIT, pepsi.getCatergoryBits());
+        verify(mockMarius).grow();
     }
 
     @Test
     void categoryFilterTest(){
-        assertEquals(MegaMarius.COIN_BIT, coin.getFilterData().categoryBits);
+        assertEquals(MegaMarius.ITEM_BIT, pepsi.getCatergoryBits());
     }
 
-
-    
+    @Test
+    void testUpdate(){
+        assertEquals(0, pepsi.b2body.getPosition().x);
+        assertEquals(0, pepsi.b2body.getPosition().y);
+        pepsi.update(1);
+        assertEquals(0, pepsi.b2body.getPosition().x);
+        assertEquals(0, pepsi.b2body.getPosition().y);
+        assertEquals(new Vector2(0.7f, 0), pepsi.b2body.getLinearVelocity());
+    }
 }

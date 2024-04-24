@@ -96,6 +96,7 @@ public class BrickTest {
         Marius mockMarius = mock(Marius.class);
         when(mockMarius.isMariusBigNow()).thenReturn(false);
         brick.HeadHit(mockMarius);
+        assertEquals(0, display.getScoreCount());
         assertEquals(MegaMarius.BRICK_BIT, brick.getFilterData().categoryBits);
     }
 

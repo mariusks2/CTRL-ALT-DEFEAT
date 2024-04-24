@@ -201,25 +201,25 @@ import inf112.Screens.ShowGame;
 					break;
 			}
 	
-		// Flip marius to the left if body is running left
-		if((b2body.getLinearVelocity().x < 0 || !runningRight) && !animationFrame.isFlipX()){
-			animationFrame.flip(true, false);
-			runningRight = false;
-		}
+			// Flip marius to the left if body is running left
+			if((b2body.getLinearVelocity().x < 0 || !runningRight) && !animationFrame.isFlipX()){
+				animationFrame.flip(true, false);
+				runningRight = false;
+			}
 
-		// Flip marius to the right if body is running right
-		else if((b2body.getLinearVelocity().x > 0 || runningRight) && animationFrame.isFlipX()){
-			animationFrame.flip(true, false);
-			runningRight = true;
-		}
+			// Flip marius to the right if body is running right
+			else if((b2body.getLinearVelocity().x > 0 || runningRight) && animationFrame.isFlipX()){
+				animationFrame.flip(true, false);
+				runningRight = true;
+			}
 
-		// If the current state is the same as the previous state increase the state timer.
-		// Otherwise the state has changed and we need to reset timer.
-		stateTimer = currentState == previousState ? stateTimer + dt : 0;
-		// Update previous state
-		previousState = currentState;
-		// Return animation frame
-		return animationFrame;
+			// If the current state is the same as the previous state increase the state timer.
+			// Otherwise the state has changed and we need to reset timer.
+			stateTimer = currentState == previousState ? stateTimer + dt : 0;
+			// Update previous state
+			previousState = currentState;
+			// Return animation frame
+			return animationFrame;
 		}
 	
 		public State getState(){
@@ -400,5 +400,9 @@ import inf112.Screens.ShowGame;
 			b2body.createFixture(fdef).setUserData(this);
 
 			timetoReDefineMarius = false;
+		}
+
+		public ShowGame getScreen(){
+			return screen;
 		}
 }

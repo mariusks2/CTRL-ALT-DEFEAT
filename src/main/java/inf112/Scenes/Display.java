@@ -106,7 +106,10 @@ public class Display implements Disposable{
             timeCount=0;
         }
     }
-
+    /*
+     * Method for updating the score when the player smashes a brick or gathers coins
+     *
+     */
     public static void updateScore (int newScore){
         scoreCount+=newScore;
         scoreDisplay.setText(String.format("%06d",scoreCount));

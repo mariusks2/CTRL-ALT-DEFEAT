@@ -23,7 +23,7 @@ import inf112.Screens.ShowGame;
 	public class Marius extends Sprite {
 
 		// Enum and states
-		public enum State {START, FALLING, JUMPING, STANDING, RUNNING, DEAD, GROWING};
+		public enum State {START, FALLING, JUMPING, STANDING, RUNNING, DEAD, GROWING, PAUSED};
 		public State currentState;
 		public State previousState;
 		
@@ -227,6 +227,9 @@ import inf112.Screens.ShowGame;
 			//if mario is going positive in Y-Axis he is jumping... or if he just jumped and is falling remain in jump state
 			if(runGrowAnimation){
 				return State.GROWING;
+			}
+			if (gameWon){
+				return State.PAUSED;
 			}
 			if(mariusIsDead)
 				return State.DEAD;

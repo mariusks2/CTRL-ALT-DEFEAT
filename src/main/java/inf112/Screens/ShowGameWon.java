@@ -26,7 +26,6 @@ public class ShowGameWon implements Screen {
         private Stage stage;
         private LabelStyle font;
         private Table table;
-        private Texture backgroundImage;
         private String fileName;
         private showMapSelect mapSelect;
 

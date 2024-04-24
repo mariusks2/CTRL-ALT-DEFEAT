@@ -6,15 +6,22 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 //import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer; Uncomment to show hitbox
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -37,6 +44,13 @@ public class ShowGame implements Screen{
     private OrthographicCamera gameCam;
     private Viewport gamePort;
     private Display display;
+    private Stage uiStage;
+    private LabelStyle font;
+    private Label victoryLabel;
+    private Label retryLabel;
+    private showMapSelect mapSelect;
+    //For creating a grayed out screen when the game is won
+    private ShapeRenderer shapeRenderer;
 
     private TmxMapLoader mapLoader;
     private TiledMap map;
@@ -88,6 +102,24 @@ public class ShowGame implements Screen{
 
         items = new Array<Item>();
         itemsToSpawn = new LinkedBlockingQueue<ItemDef>();
+
+        //Display map winning text:
+        this.uiStage = new Stage (new FitViewport(MegaMarius.M_Width,MegaMarius.M_Height, new OrthographicCamera()), game.batch);
+        this.font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
+        // Configure the victory message
+        victoryLabel = new Label("Level Complete!", font);
+        victoryLabel.setVisible(false);  // Initially invisible
+        victoryLabel.setPosition(MegaMarius.M_Width / 2 - victoryLabel.getWidth() / 2, MegaMarius.M_Height / 2 + 20);  // Adjust Y position for visibility
+        uiStage.addActor(victoryLabel);
+
+        // Configure the instruction message
+        retryLabel = new Label("Press ENTER for next level or ESC to quit game", font);
+        retryLabel.setVisible(false);  // Initially invisible
+        retryLabel.setPosition(MegaMarius.M_Width / 2 - retryLabel.getWidth() / 2, MegaMarius.M_Height / 2 - 20);  // Slightly below the victoryLabel
+        uiStage.addActor(retryLabel);
+
+        this.mapSelect = new showMapSelect(game);
+        this.shapeRenderer = new ShapeRenderer();
     }
 
     public TextureAtlas getAtlas() {
@@ -113,6 +145,9 @@ public class ShowGame implements Screen{
 
 
     public void update(float dt){
+        if (player.currentState==Marius.State.PAUSED){
+            return;
+        }
 
         handleInput(dt);
         handleSpawningItems();
@@ -164,6 +199,10 @@ public class ShowGame implements Screen{
             dispose();
         }
 
+        if (Marius.getGameWon()){
+            drawGrayOverlay();
+        }
+
         game.batch.setProjectionMatrix(gameCam.combined);
         game.batch.begin();
         player.draw(game.batch);
@@ -184,9 +223,36 @@ public class ShowGame implements Screen{
             dispose();
         }
         if (Marius.getGameWon()) {
-            game.setScreen(new ShowGameWon(game, fileName));
-            dispose();
+            uiStage.act(delta);
+            uiStage.draw();
+            retryLabel.setVisible(true);
+            victoryLabel.setVisible(true);
+            String nextMap = mapSelect.getNextMap(fileName);
+            if (nextMap=="GameCompleted"){
+                game.setScreen(new showGameCompleted(game));
+            }
+            if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+                // Start next map if enter is pressed
+                game.setScreen(new ShowGame(game,nextMap));
+                Display.updateLevel(1);
+                dispose();
+            } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+                // Exit game if 'escape' key is pressed
+                dispose();
+                System.exit(0);
+            }
         }
+    }
+
+    private void drawGrayOverlay() {
+        Gdx.gl.glEnable(GL20.GL_BLEND);
+        Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+        shapeRenderer.setProjectionMatrix(gameCam.combined);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.setColor(0.3f, 0.3f, 0.3f, 0.5f);  // Gray color with 50% opacity
+        shapeRenderer.rect(0, 0, MegaMarius.M_Width, MegaMarius.M_Height);
+        shapeRenderer.end();
+        Gdx.gl.glDisable(GL20.GL_BLEND);
     }
 
     private boolean gameIsOver() {

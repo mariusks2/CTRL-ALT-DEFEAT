@@ -13,6 +13,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
+//import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer; Uncomment to show hitbox
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -52,6 +53,7 @@ public class ShowGame implements Screen{
     private Array<Item> items;
     public LinkedBlockingQueue<ItemDef> itemsToSpawn;
     public String fileName;
+    //private Box2DDebugRenderer b2dr;
 
 
     public ShowGame(MegaMarius game, String fileName){
@@ -65,7 +67,6 @@ public class ShowGame implements Screen{
         display = new Display(game.batch);
 
         mapLoader = new TmxMapLoader();
-        //map = mapLoader.load("mario1.tmx");
         map = mapLoader.load(fileName);
         renderer = new OrthogonalTiledMapRenderer(map, 1  / MegaMarius.PPM);
         gameCam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2, 0);

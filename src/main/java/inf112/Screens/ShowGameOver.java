@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import inf112.Scenes.Display;
 import inf112.skeleton.app.MegaMarius;
 
 public class ShowGameOver implements Screen {
@@ -53,6 +54,12 @@ public class ShowGameOver implements Screen {
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
             // Start new game if 'enter' key is pressed
             megaMariusGame.setScreen(new ShowGame(megaMariusGame, fileName));
+            if(fileName.equals("MapAndTileset/mario2.tmx")){
+                Display.updateLevel(1);
+            }
+            else if (fileName.equals("MapAndTileset/mario3.tmx")){
+                Display.updateLevel(2);
+            }
             dispose();
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             // Exit game if 'escape' key is pressed

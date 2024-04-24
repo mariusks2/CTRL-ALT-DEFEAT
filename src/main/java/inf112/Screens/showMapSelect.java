@@ -16,6 +16,7 @@ import java.util.List;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import inf112.Scenes.Display;
 import inf112.skeleton.app.MegaMarius;
 
 public class showMapSelect implements Screen {
@@ -95,10 +96,12 @@ public class showMapSelect implements Screen {
             }
             else if (map2.contains(clickPosition.x, clickPosition.y)  || map2Text.contains(clickPosition.x, clickPosition.y)){
                 megaMariusGame.setScreen(new ShowGame(megaMariusGame, mapList.get(1)));
+                Display.updateLevel(1);
                 dispose();
             }
             else if (map3.contains(clickPosition.x, clickPosition.y)  || map3Text.contains(clickPosition.x, clickPosition.y)){
                 megaMariusGame.setScreen(new ShowGame(megaMariusGame,  mapList.get(2)));
+                Display.updateLevel(2);
                 dispose();
             }
         }

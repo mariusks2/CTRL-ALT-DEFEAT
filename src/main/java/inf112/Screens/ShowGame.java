@@ -21,7 +21,6 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -243,7 +242,9 @@ public class ShowGame implements Screen{
             }
         }
     }
-
+    /*
+     * Method for drawing a light gray overlay when the game is won, used to display a clear difference between game and game win screen
+     */
     private void drawGrayOverlay() {
         Gdx.gl.glEnable(GL20.GL_BLEND);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
@@ -255,6 +256,9 @@ public class ShowGame implements Screen{
         Gdx.gl.glDisable(GL20.GL_BLEND);
     }
 
+    /*
+     * Method for checking whether the game is over or not, returns true if the player is dead or the timer is done. Otherwise it returns false
+     */
     private boolean gameIsOver() {
         if (player.currentState == Marius.State.DEAD && player.getStateTimer() > 1)
             return true;
@@ -262,7 +266,9 @@ public class ShowGame implements Screen{
             return false;
     }
 
-
+    /*
+     * Method for handling the user input
+     */
     private void handleInput(float dt) {
         //control our player using immediate impulses
         if (player.currentState != Marius.State.DEAD) {
@@ -274,7 +280,7 @@ public class ShowGame implements Screen{
                 player.b2body.applyLinearImpulse(new Vector2(-0.05f, 0), player.b2body.getWorldCenter(), true);
         } 
     }
-
+        
     public TiledMap getMap(){
         return map;
     }

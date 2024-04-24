@@ -106,16 +106,19 @@ public class Display implements Disposable{
             timeCount=0;
         }
     }
-    /*
-     * Method for updating the score when the player smashes a brick or gathers coins
-     *
+    /**
+     * Method for updating the score of the player. The score should be updated when the player smashes a brick or gathers a coin. Finally the display updates with the new score
+     * @param newScore The number the score should increase by
      */
     public static void updateScore (int newScore){
         scoreCount+=newScore;
         scoreDisplay.setText(String.format("%06d",scoreCount));
         
     }
-
+    /**
+     * Method for updating the level the player is on. Should be updated when the player completes a level. Finally the display updates with the new level.
+     * @param newLevel The new level we should set
+     */
     public static void updateLevel (int newLevel){
         level+=newLevel;
         levelDisplay.setText(String.format("%01d",level));
@@ -126,7 +129,10 @@ public class Display implements Disposable{
         coinsDisplay.setText(String.format("COINS: %02d",coins));
     }
 
-  
+    /**
+     * Method for checking if the time is up
+     * @return a boolean value for if the time is out, true if yes and false if not
+     */
     public boolean isTimeUp(){
         return timesOut;
     }
@@ -136,7 +142,10 @@ public class Display implements Disposable{
         stage.dispose();
         font.dispose();
     } 
-
+    /**
+     * Method for returning the score of the player
+     * @return the score of the player
+     */
     public Integer getScoreCount(){
         return scoreCount;
     }

@@ -115,6 +115,11 @@ public class Display implements Disposable{
         scoreDisplay.setText(String.format("%06d",scoreCount));
         
     }
+
+    public int getTimer() {
+        return this.timer;
+    }
+
     /**
      * Method for updating the level the player is on. Should be updated when the player completes a level. Finally the display updates with the new level.
      * @param newLevel The new level we should set

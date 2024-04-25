@@ -25,7 +25,7 @@ public class showAboutScreen implements Screen {
     public showAboutScreen (MegaMarius megaMariusGame){
         this.megaMariusGame = megaMariusGame;
         this.viewport = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());
-        this.stage = new Stage(viewport,( megaMariusGame).batch);
+        this.stage = new Stage(viewport,( megaMariusGame).getSpriteBatch());
         this.backgroundImage = new Texture("Screens/about-screen.png");
     }
 
@@ -37,9 +37,9 @@ public class showAboutScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         // Draw the background image
-        megaMariusGame.batch.begin();
-        megaMariusGame.batch.draw(backgroundImage, 0, 0, MegaMarius.M_Width, MegaMarius.M_Height);
-        megaMariusGame.batch.end();
+        megaMariusGame.getSpriteBatch().begin();
+        megaMariusGame.getSpriteBatch().draw(backgroundImage, 0, 0, MegaMarius.M_Width, MegaMarius.M_Height);
+        megaMariusGame.getSpriteBatch().end();
 
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();

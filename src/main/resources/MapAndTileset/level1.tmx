@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="240" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="19" nextobjectid="193">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="240" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="19" nextobjectid="220">
  <tileset firstgid="1" source="customtileset.tsx"/>
  <layer id="1" name="Background" width="240" height="16">
   <data encoding="base64" compression="zlib">
@@ -8,14 +8,13 @@
  </layer>
  <layer id="2" name="graphics" width="240" height="16">
   <data encoding="base64" compression="zlib">
-   eJztl01Ow0AMhVPCkp91r8C+7Rlgy4/EBugVYA1IbIDbAD0IcCNcmkjWMPbYE0+aFlf6pKp1PC9v/CbtvK6queM4juM4/5Zn4AV4HYCWbfVgAkyBmXHtEMj1bhGw6XPI6c/dU4knb8A78CHox+mQ+h/WSe/Naq5jfTQe5PhwBVwDN8a1Wu+tZiZ3fkJwfrv04bB4Sdei9FN7aumtJB+cjthakqxI51U717FzfdHByy4+WOwPV5vqozn7uF6aPpLnqvZMltbjNUvlt9XS528l7v4t5tqyp3S2qbrYuY7P+z78HgpWe6vpI3muanVx9Zej+EyUym+rxSozY2KdEvu4ySy3lIOqlfjbZW+odcPPxwZ6tpGnUfzzUvl1HIfntFohqfX8Os5waLPr+XWczQJnt1R+9xB95jf837OUiP8T1QXOi2Pw5oTwJ6dOc6911f3/noU31LU10Rfrpd5L+sfYqVZQ3+OZl85/W5t7behHrt9hdkvldx84AA57zm8JUrm7he/uBLmU1jnliGVQkoFYXjT5sdReOr/LZ+4EkXoG97l/Z3Af58BFcz+SZ2Iqd33lN9Tu6OAyyOWAykvq2q6/t/D1VHZL5LdumKL3pfL7Cbq+Gr4FXt1DzQPw2NRKMoVrYutp86vVTGnP9YpbU6ItVz/XR9JLop8inPl2zVQWuLykrg3nQqu/vZ7LrjS/u0Qdl99ZZn5BslPZeGLlq+/PXy/WrWOoHDm/4Myss4dln23AfeD5AQXXGQs=
+   eJztl01OwzAQhV2FJT/rXoF92zPAlh+JDdArwBqQ2AC3AXoQ4EZMaCwZyx4/J+M0TSfSJ1XV5Hn8PC9pl5UxS0VRFEVRdpYX4pV4G0AvY/VgRsyJhXDtEGjr3cpj2+eQ67/tmSKevBMfxCegx/WB+u/XoXuTmuuQTo4HbXy4Jm6IW+HaXO+lZqbt/Pi4+e2iwyFxoWvF+o+dqaS3SD64PkJrIVlB5zV3rkPP9VUHL7v4IHE+XG1KJ+fZx2nl6CDv1dxnMlrvrlkqv7aXPn8rcfuXmGtJTXS2Y3Wh57r7vO/D76EgdbY5Osh7Nbcvrv5qEp6JUvm1vUhlJrZOiXPsk3prFbC3XL0Ysdpphx5y7+X6mQr0M0aeJ+HvS+VXcg7s93qmypg4M2uQ2m3Ir6LsCja7ml9F2S7c7JbK775DX/mt26k8XWP+/18qsS6qd0IenkZ8zNWqmRqZ/5/2/qqjBncmod5TnxGdNrXuzKPzb2vb3uv31tZvP7ul8ntAHBJHXHCFc1SKVO7QfdyRxr1gfpV8QhlEMhDKS05+JHsvnd/6nTtzSL2D+zy/c9rHBXHZ7Ad5J6Zyh2ggOiktv3d0j8oaLoNcDmJ5Sd2LzgUyC7Hslshv1TA34d+tkvn9or6+G34Arx6o5pF4amqRTLk1ofUQDbeO65nT8ntH9+h7xfmE+JnrObIWooX0H8OfeXulssDlJXWvf5a5/dv7ueyi+d2L1HH5XbTML7WsGBlPpHwd2/nYq4sXm97DUDlW/nAzs0kNSZ2hYK8uXmx6D0PlF66ID3Q=
   </data>
  </layer>
  <objectgroup id="9" name="ground">
   <object id="18" x="0" y="224" width="1056" height="32"/>
   <object id="19" x="1104" y="224" width="224" height="32"/>
   <object id="20" x="1376" y="224" width="240" height="32"/>
-  <object id="21" x="1664" y="224" width="1024" height="32"/>
   <object id="22" x="2720" y="224" width="1120" height="32"/>
   <object id="84" x="2432" y="160" width="16" height="64"/>
   <object id="85" x="2416" y="176" width="16" height="48"/>
@@ -59,11 +58,12 @@
   <object id="126" x="3216" y="128" width="48" height="16"/>
   <object id="127" x="3232" y="112" width="32" height="16"/>
   <object id="157" x="3248" y="176" width="16" height="48"/>
+  <object id="218" x="1664" y="224" width="784" height="32"/>
+  <object id="219" x="2480" y="224" width="208" height="32"/>
  </objectgroup>
  <objectgroup id="4" name="pipes">
   <object id="23" x="432" y="192" width="32" height="32"/>
   <object id="24" x="576" y="176" width="32" height="48"/>
-  <object id="25" x="704" y="160" width="32" height="64"/>
   <object id="26" x="864" y="160" width="32" height="64"/>
   <object id="28" x="2848" y="192" width="32" height="32"/>
   <object id="29" x="3104" y="192" width="32" height="32"/>
@@ -74,6 +74,8 @@
   <object id="169" x="2384" y="208" width="32"/>
   <object id="170" x="2384" y="208" width="32" height="16"/>
   <object id="171" x="3408" y="208" width="16" height="16"/>
+  <object id="205" x="704" y="192" width="32" height="32"/>
+  <object id="207" x="1008" y="192" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="5" name="coins">
   <object id="35" x="1488" y="160" width="16" height="16">
@@ -82,26 +84,6 @@
    </properties>
   </object>
   <object id="36" x="1744" y="96" width="16" height="16">
-   <properties>
-    <property name="coin" value=""/>
-   </properties>
-  </object>
-  <object id="37" x="240" y="160" width="16" height="16">
-   <properties>
-    <property name="coin" value=""/>
-   </properties>
-  </object>
-  <object id="38" x="320" y="160" width="16" height="16">
-   <properties>
-    <property name="coin" value=""/>
-   </properties>
-  </object>
-  <object id="39" x="352" y="160" width="16" height="16">
-   <properties>
-    <property name="pepsi" value=""/>
-   </properties>
-  </object>
-  <object id="40" x="336" y="96" width="16" height="16">
    <properties>
     <property name="coin" value=""/>
    </properties>
@@ -135,6 +117,21 @@
   <object id="185" x="1232" y="160" width="16" height="16"/>
   <object id="189" x="2288" y="96" width="16" height="16"/>
   <object id="190" x="2320" y="96" width="16" height="16"/>
+  <object id="202" x="224" y="112" width="16" height="16">
+   <properties>
+    <property name="coin" value=""/>
+   </properties>
+  </object>
+  <object id="203" x="320" y="112" width="16" height="16">
+   <properties>
+    <property name="pepsi" value=""/>
+   </properties>
+  </object>
+  <object id="204" x="352" y="112" width="16" height="16">
+   <properties>
+    <property name="coin" value=""/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="6" name="bricks">
   <object id="49" x="2928" y="160" width="16" height="16"/>
@@ -162,13 +159,18 @@
   <object id="76" x="1520" y="96" width="16" height="16"/>
   <object id="77" x="1504" y="160" width="16" height="16"/>
   <object id="78" x="1472" y="160" width="16" height="16"/>
-  <object id="81" x="368" y="160" width="16" height="16"/>
-  <object id="82" x="336" y="160" width="16" height="16"/>
-  <object id="83" x="304" y="160" width="16" height="16"/>
   <object id="186" x="1200" y="160" width="16" height="16"/>
   <object id="187" x="1216" y="160" width="16" height="16"/>
   <object id="191" x="2304" y="96" width="16" height="16"/>
   <object id="192" x="2272" y="96" width="16" height="16"/>
+  <object id="197" x="320" y="160" width="16" height="16"/>
+  <object id="198" x="336" y="160" width="16" height="16"/>
+  <object id="199" x="352" y="160" width="16" height="16"/>
+  <object id="200" x="224" y="160" width="16" height="16"/>
+  <object id="201" x="240" y="160" width="16" height="16"/>
+  <object id="208" x="1200" y="96" width="16" height="16"/>
+  <object id="209" x="1216" y="96" width="16" height="16"/>
+  <object id="210" x="2144" y="160" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="12" name="Spider">
   <object id="137" x="672" y="208" width="16" height="16"/>

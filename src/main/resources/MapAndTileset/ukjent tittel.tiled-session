@@ -1,0 +1,49 @@
+{
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "custom1.tmx": {
+            "scale": 4,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 345.125,
+                "y": 353.125
+            }
+        },
+        "customtileset.tsx": {
+            "scaleInDock": 1
+        },
+        "level1.tmx": {
+            "scale": 0.25729166666666664,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1921.9433198380568,
+                "y": 130.20242914979735
+            }
+        },
+        "level2.tmx": {
+            "scale": 0.25729166666666664,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1921.9433198380568,
+                "y": 130.20242914979735
+            }
+        },
+        "mario1.tmx": {
+            "scale": 0.25729166666666664,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1921.9433198380568,
+                "y": 130.20242914979735
+            }
+        }
+    },
+    "openFiles": [
+    ],
+    "project": "ukjent tittel.tiled-project",
+    "recentFiles": [
+        "mario1.tmx",
+        "custom1.tmx"
+    ]
+}

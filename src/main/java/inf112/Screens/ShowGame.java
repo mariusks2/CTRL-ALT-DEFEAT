@@ -320,7 +320,8 @@ public class ShowGame implements Screen{
         map.dispose();
         renderer.dispose();
         world.dispose();
-        display.dispose();
+        if(!Marius.getGameWon())
+            display.dispose();
     }
     
     public Display getDisplay(){

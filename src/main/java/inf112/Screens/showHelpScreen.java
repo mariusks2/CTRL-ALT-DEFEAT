@@ -1,20 +1,14 @@
 package inf112.Screens;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -23,18 +17,17 @@ import inf112.skeleton.app.MegaMarius;
 
 public class showHelpScreen implements Screen{
 
-    private Game game;
+    private MegaMarius megaMariusGame;
     private Viewport viewport;
     private Stage stage;
     private Texture backgroundImage;
 
 
-    public showHelpScreen (Game game){
-        this.game=game;
+    public showHelpScreen (MegaMarius megaMariusGame){
+        this.megaMariusGame=megaMariusGame;
         this.viewport=new FitViewport(MegaMarius.M_Width,MegaMarius.M_Height, new OrthographicCamera());
-        this.stage=new Stage(viewport,((MegaMarius)game).batch);
+        this.stage=new Stage(viewport,megaMariusGame.batch);
         this.backgroundImage = new Texture("Screens/help-screen.png");
-
     }
 
 
@@ -44,7 +37,6 @@ public class showHelpScreen implements Screen{
 
     @Override
     public void render(float delta) {
-        MegaMarius megaMariusGame = (MegaMarius) game;
         // Clear the screen
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -59,7 +51,7 @@ public class showHelpScreen implements Screen{
         
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
             dispose();
-            game.setScreen(new ShowStartGame(megaMariusGame));
+            megaMariusGame.setScreen(new ShowStartGame(megaMariusGame));
        }
 
        // Check if the left mouse button is clicked
@@ -98,6 +90,7 @@ public class showHelpScreen implements Screen{
     @Override
     public void dispose() {
         stage.dispose();
+        backgroundImage.dispose();
     }
     
 }

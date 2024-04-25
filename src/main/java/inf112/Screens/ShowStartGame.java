@@ -1,6 +1,6 @@
 package inf112.Screens;
 
-import com.badlogic.gdx.Game;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -18,22 +18,16 @@ import inf112.skeleton.app.MegaMarius;
 
 public class ShowStartGame implements Screen {
 
-    private Game game;
+    private MegaMarius megaMariusGame;
     private Viewport viewport;
     private Stage stage;
-    //private Label.LabelStyle fontStyle;
-    //private Table table;
     private Texture backgroundImage;
-    private String fileName;
 
-    public ShowStartGame(Game game) {
-        this.game = game;
+    public ShowStartGame(MegaMarius megaMariusGame) {
+        this.megaMariusGame = megaMariusGame;
         this.viewport = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());
-        this.stage = new Stage(viewport, ((MegaMarius) game).batch);
-        //this.fontStyle = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
-        //this.table = new Table();
+        this.stage = new Stage(viewport, ((MegaMarius) megaMariusGame).batch);
         this.backgroundImage = new Texture("src/main/resources/Screens/start-screen.png");
-        fileName = "MapAndTileset/mario1.tmx";
     }
 
    
@@ -47,10 +41,13 @@ public class ShowStartGame implements Screen {
     @Override
     public void render(float delta) {
         
-        MegaMarius megaMariusGame = (MegaMarius) game;
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-            game.setScreen(new ShowGame(megaMariusGame, fileName));
+            megaMariusGame.setScreen(new showMapSelect(megaMariusGame));
             dispose();
+        }
+        else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
+            dispose();
+            System.exit(0);
         }
 
         // Check if the left mouse button is clicked
@@ -70,7 +67,7 @@ public class ShowStartGame implements Screen {
 
             // Check if the click is within the bounds of "Start Game"
             if (startGameBounds.contains(clickPosition.x, clickPosition.y)) {
-                megaMariusGame.setScreen(new ShowGame(megaMariusGame, fileName));
+                megaMariusGame.setScreen(new showMapSelect(megaMariusGame));
                 dispose();
             }
             //Checks for if the button click is on help

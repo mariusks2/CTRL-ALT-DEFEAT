@@ -1,9 +1,6 @@
 package inf112.Scenes;
 
 
-
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -31,8 +28,6 @@ public class Display implements Disableable{
     private static Integer scoreCount;
     private static Integer coins;
     private static Integer level;
-    private Stage uiStage;
-    private MegaMarius game;
 
     //Create the labels to display in the 
     private Label countdownDisplay;
@@ -46,7 +41,6 @@ public class Display implements Disableable{
     private Label coinsTextLabel;
     private Label worldTextLabel;
     private Label timeTextLabel;
-    
 
   
     
@@ -105,7 +99,6 @@ public class Display implements Disableable{
 
         // Add the table to the stage
         stage.addActor(table);
-        
     }
 
 
@@ -160,6 +153,11 @@ public class Display implements Disableable{
         return timesOut;
     }
 
+    
+    public void dispose() {
+        stage.dispose();
+        font.dispose();
+    } 
     /**
      * Method for returning the score of the player
      * @return the score of the player

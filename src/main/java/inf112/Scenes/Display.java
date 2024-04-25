@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -33,6 +35,8 @@ public class Display implements Disposable{
     private static Label scoreDisplay;
     private static Label coinsDisplay;
     private static Label levelDisplay;
+    private TextButton pauseButton;
+    private TextButtonStyle textButtonStyle;
 
     // Descriptor labels
     private Label scoreTextLabel;
@@ -90,7 +94,7 @@ public class Display implements Disposable{
 
         // Add the table to the stage
         stage.addActor(table);
-        
+
     }
 
     public void updateTime (float newTime){

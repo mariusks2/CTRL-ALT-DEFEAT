@@ -181,7 +181,7 @@ public class ShowGame implements Screen{
             dispose();
         }
         if (Marius.getGameWon()) {
-            game.setScreen(new ShowGameWon(game, fileName));
+            game.setScreen(new ShowGameWon(game, fileName, getDisplay()));
             dispose();
         }
     }
@@ -245,7 +245,8 @@ public class ShowGame implements Screen{
         map.dispose();
         renderer.dispose();
         world.dispose();
-        display.dispose();
+        if(!Marius.getGameWon())
+            display.dispose();
     }
     
     public Display getDisplay(){

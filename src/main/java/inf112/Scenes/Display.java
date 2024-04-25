@@ -110,6 +110,10 @@ public class Display implements Disposable{
         }
     }
 
+    public int getTimer() {
+        return this.timer;
+    }
+
     public static void updateScore (int newScore){
         scoreCount+=newScore;
         scoreDisplay.setText(String.format("%06d",scoreCount));

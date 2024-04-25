@@ -1,5 +1,7 @@
 package inf112.Screens;
 
+import javax.swing.plaf.LabelUI;
+
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -16,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import inf112.Scenes.Display;
 import inf112.skeleton.app.MegaMarius;
 
 public class ShowGameWon implements Screen {
@@ -27,35 +30,54 @@ public class ShowGameWon implements Screen {
         private Table table;
         private Texture backgroundImage;
         private String fileName;
+        private Display display;
 
-        public ShowGameWon(Game game, String fileName) {
+        public ShowGameWon(Game game, String fileName, Display display) {
            // Initialize variables
            this.game = game;
            this.fileName = fileName;
            this.camera = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());
            this.stage = new Stage(camera, ((MegaMarius) game).batch);
+           this.display = display;
            font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
            table = new Table();
            // Create game over label
-           createGameOverScreen(stage, table, font);
+           ShowScoreboardScreen scoreboard = new ShowScoreboardScreen();
+           scoreboard.createNewScore(display.getTimer(), display.getScoreCount(), getLevel(fileName), "username");
+           createGameWonScreen(stage, table, font, display);
        }
    
-       public void createGameOverScreen(Stage stage, Table table, LabelStyle font) {
+       public void createGameWonScreen(Stage stage, Table table, LabelStyle font, Display display) {
            // Initialize tabel
            table.center();
            table.setFillParent(true);
-   
+        
+            int time = display.getTimer();
+
            // Creating labels
            Label gameOverLabel = new Label("Game Won", font);
            Label retryLabel = new Label("Press 'Enter' to retry or 'Escape' to exit", font);
-   
+           Label highScore = new Label("You finished the level in:" + time, font);
+    
+
            // Adding labels to table
            table.add(gameOverLabel).expandX();
            table.row();
            table.add(retryLabel).expandX().padTop(10f);
+           table.row();
+           table.add(highScore).expandX().padTop(10f);
    
            // Adding actor to stage
            stage.addActor(table);
+       }
+
+       public int getLevel(String filename) {
+        if (filename == "MapAndTileset/mario1.tmx")
+            return 1;
+        else if (filename == "MapAndTileset/custom1.tmx")
+            return 2;
+        else if (filename == "");
+            return 3;
        }
    
    
@@ -109,6 +131,7 @@ public class ShowGameWon implements Screen {
        @Override
        public void dispose() {
            stage.dispose();
+           display.dispose();
        }
 }
 

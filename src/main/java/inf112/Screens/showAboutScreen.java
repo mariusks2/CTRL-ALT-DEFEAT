@@ -15,14 +15,14 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import inf112.skeleton.app.MegaMarius;
 
 
-public class ShowAboutScreen implements Screen {
+public class showAboutScreen implements Screen {
 
     private MegaMarius megaMariusGame;
     private Viewport viewport;
     private Stage stage;
     private Texture backgroundImage;
 
-    public ShowAboutScreen (MegaMarius megaMariusGame){
+    public showAboutScreen (MegaMarius megaMariusGame){
         this.megaMariusGame = megaMariusGame;
         this.viewport = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());
         this.stage = new Stage(viewport,( megaMariusGame).batch);

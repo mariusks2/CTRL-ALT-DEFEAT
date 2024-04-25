@@ -34,9 +34,9 @@ public class showMapSelect implements Screen {
         this.backgroundImage = new Texture("Screens/mapSelect-screen.png");
         //Add maps here
         this.mapList = new ArrayList<String>();
-        mapList.add("MapAndTileset/mario1.tmx");
-        mapList.add("MapAndTileset/mario2.tmx");
-        mapList.add("MapAndTileset/mario3.tmx");
+        mapList.add("MapAndTileset/level1.tmx");
+        mapList.add("MapAndTileset/level2.tmx");
+        mapList.add("MapAndTileset/level3.tmx");
     }
 
     @Override

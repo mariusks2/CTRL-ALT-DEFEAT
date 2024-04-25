@@ -103,7 +103,7 @@ public class ShowGame implements Screen{
         itemsToSpawn = new LinkedBlockingQueue<ItemDef>();
 
         //Display map winning text:
-        this.uiStage = new Stage (new FitViewport(MegaMarius.M_Width,MegaMarius.M_Height, new OrthographicCamera()), game.batch);
+        this.uiStage = new Stage (new FitViewport(MegaMarius.M_Width,MegaMarius.M_Height, new OrthographicCamera()), game.getSpriteBatch());
         this.font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
         // Configure the victory message
         victoryLabel = new Label("Level Complete!", font);

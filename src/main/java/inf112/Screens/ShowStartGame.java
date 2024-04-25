@@ -78,7 +78,7 @@ public class ShowStartGame implements Screen {
 
             //Checks if the button clik is on about
             else if (aboutBounds.contains(clickPosition.x,clickPosition.y)){
-                megaMariusGame.setScreen(new ShowAboutScreen(megaMariusGame));
+                megaMariusGame.setScreen(new showAboutScreen(megaMariusGame));
                 dispose();
             }
         }

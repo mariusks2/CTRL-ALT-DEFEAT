@@ -1,5 +1,4 @@
 package inf112.Entities.Blocks;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 
 import inf112.Entities.Item;

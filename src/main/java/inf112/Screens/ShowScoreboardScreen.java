@@ -2,8 +2,6 @@ package inf112.Screens;
 
 import java.util.ArrayList;
 
-import com.badlogic.gdx.scenes.scene2d.ui.List;
-
 import inf112.Scenes.Score;
 
 public class ShowScoreboardScreen {

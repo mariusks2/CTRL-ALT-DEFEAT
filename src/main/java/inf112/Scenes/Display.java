@@ -2,6 +2,7 @@ package inf112.Scenes;
 
 
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -10,12 +11,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.Disableable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import inf112.skeleton.app.MegaMarius;
 
-public class Display implements Screen{
+public class Display implements Disableable{
     
     //using scene2D.ui from libgdx to create 
     public Stage stage;
@@ -29,7 +31,8 @@ public class Display implements Screen{
     private static Integer scoreCount;
     private static Integer coins;
     private static Integer level;
-    private boolean isPaused;
+    private Stage uiStage;
+    private MegaMarius game;
 
     //Create the labels to display in the 
     private Label countdownDisplay;
@@ -43,6 +46,8 @@ public class Display implements Screen{
     private Label coinsTextLabel;
     private Label worldTextLabel;
     private Label timeTextLabel;
+    
+
   
     
 
@@ -100,10 +105,10 @@ public class Display implements Screen{
 
         // Add the table to the stage
         stage.addActor(table);
-
         
-
     }
+
+
         
 
     public void updateTime (float newTime){
@@ -155,11 +160,6 @@ public class Display implements Screen{
         return timesOut;
     }
 
-    @Override
-    public void dispose() {
-        stage.dispose();
-        font.dispose();
-    } 
     /**
      * Method for returning the score of the player
      * @return the score of the player
@@ -168,39 +168,22 @@ public class Display implements Screen{
         return scoreCount;
     }
 
-    @Override
-    public void show() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'show'");
-    }
+
+
 
     @Override
-    public void render(float delta) {
+    public void setDisabled(boolean isDisabled) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'render'");
+        throw new UnsupportedOperationException("Unimplemented method 'setDisabled'");
     }
 
-    @Override
-    public void resize(int width, int height) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'resize'");
-    }
+
+
 
     @Override
-    public void pause() {
+    public boolean isDisabled() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'pause'");
+        throw new UnsupportedOperationException("Unimplemented method 'isDisabled'");
     }
 
-    @Override
-    public void resume() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'resume'");
-    }
-
-    @Override
-    public void hide() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'hide'");
-    }
 }

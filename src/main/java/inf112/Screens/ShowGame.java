@@ -48,6 +48,8 @@ public class ShowGame implements Screen{
     private Label victoryLabel;
     private Label retryLabel;
     private showMapSelect mapSelect;
+    private Label resumeGameLabel;
+    private Label settingsGameLabel;
     //For creating a grayed out screen when the game is won
     private ShapeRenderer shapeRenderer;
 
@@ -116,6 +118,15 @@ public class ShowGame implements Screen{
         retryLabel.setVisible(false);  // Initially invisible
         retryLabel.setPosition(MegaMarius.M_Width / 2 - retryLabel.getWidth() / 2, MegaMarius.M_Height / 2 - 20);  // Slightly below the victoryLabel
         uiStage.addActor(retryLabel);
+
+        this.resumeGameLabel = new Label("Resume Game",font);
+        this.settingsGameLabel = new Label("Settings", font);
+        resumeGameLabel.setVisible(false);
+        settingsGameLabel.setVisible(false);
+        resumeGameLabel.setPosition(MegaMarius.M_Width / 2 -resumeGameLabel.getWidth() / 2, MegaMarius.M_Height / 2 + 20);  // Adjust Y position for visibility
+        uiStage.addActor(resumeGameLabel);
+        settingsGameLabel.setPosition(MegaMarius.M_Width / 2 - settingsGameLabel.getWidth() / 2, MegaMarius.M_Height / 2 - 20);  // Slightly below the victoryLabel
+        uiStage.addActor(settingsGameLabel);
 
         this.mapSelect = new showMapSelect(game);
         this.shapeRenderer = new ShapeRenderer();

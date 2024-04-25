@@ -35,7 +35,7 @@ public class ShowGameWon implements Screen {
            this.megaMariusGame = megaMariusGame;
            this.fileName = fileName;
            this.camera = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());
-           this.stage = new Stage(camera, megaMariusGame.batch);
+           this.stage = new Stage(camera, megaMariusGame.getSpriteBatch());
            font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
            table = new Table();
            this.mapSelect = new showMapSelect(megaMariusGame);

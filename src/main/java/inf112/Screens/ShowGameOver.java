@@ -25,7 +25,7 @@ public class ShowGameOver implements Screen {
         // Initialize variables
         this.megaMariusGame = megaMariusGame;
         this.camera = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());
-        this.stage = new Stage(camera, megaMariusGame.batch);
+        this.stage = new Stage(camera, megaMariusGame.getSpriteBatch());
         this.fileName = fileName;
         this.backgroundImage = new Texture("Screens/game-over.png");
     }
@@ -44,9 +44,9 @@ public class ShowGameOver implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         // Draw the background image
-        megaMariusGame.batch.begin();
-        megaMariusGame.batch.draw(backgroundImage, 0, 0, MegaMarius.M_Width, MegaMarius.M_Height);
-        megaMariusGame.batch.end();
+        megaMariusGame.getSpriteBatch().begin();
+        megaMariusGame.getSpriteBatch().draw(backgroundImage, 0, 0, MegaMarius.M_Width, MegaMarius.M_Height);
+        megaMariusGame.getSpriteBatch().end();
 
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();

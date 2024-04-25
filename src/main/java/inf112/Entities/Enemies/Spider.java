@@ -142,4 +142,8 @@ public class Spider extends Enemy{
         else
             revVelocity(true, false);
     }
+
+    public boolean entityIsDead(){
+        return destroyed;
+    }
 }

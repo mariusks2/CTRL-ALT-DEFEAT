@@ -221,4 +221,8 @@ public class Turtle extends Enemy {
         }
         else revVelocity(true, false);
     }
+
+    public boolean entityIsDead(){
+        return destroyed;
+    }
 }

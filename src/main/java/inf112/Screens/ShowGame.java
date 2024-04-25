@@ -64,7 +64,7 @@ public class ShowGame implements Screen{
         gameCam = new OrthographicCamera();
         gamePort = new FitViewport(MegaMarius.M_Width / MegaMarius.PPM, MegaMarius.M_Height / MegaMarius.PPM, gameCam);
 
-        display = new Display(game.batch);
+        display = new Display(game.getSpriteBatch());
 
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
@@ -164,18 +164,18 @@ public class ShowGame implements Screen{
             dispose();
         }
 
-        game.batch.setProjectionMatrix(gameCam.combined);
-        game.batch.begin();
-        player.draw(game.batch);
+        game.getSpriteBatch().setProjectionMatrix(gameCam.combined);
+        game.getSpriteBatch().begin();
+        player.draw(game.getSpriteBatch());
         for(Enemy enemy : creator.getEnemies()){
-            enemy.draw(game.batch);
+            enemy.draw(game.getSpriteBatch());
         for(Item item : items){
-            item.draw(game.batch);
+            item.draw(game.getSpriteBatch());
         }
         }
-        game.batch.end();
+        game.getSpriteBatch().end();
 
-        game.batch.setProjectionMatrix(display.stage.getCamera().combined);
+        game.getSpriteBatch().setProjectionMatrix(display.stage.getCamera().combined);
         display.stage.draw();
 
         // Check if game is over

@@ -1,4 +1,8 @@
 {
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
     "activeFile": "",
     "expandedProjectPaths": [
     ],
@@ -15,19 +19,34 @@
             "scaleInDock": 1
         },
         "level1.tmx": {
-            "scale": 0.25729166666666664,
-            "selectedLayer": 0,
+            "expandedObjectLayers": [
+                5,
+                14,
+                6,
+                9,
+                4
+            ],
+            "scale": 0.75,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 1921.9433198380568,
-                "y": 130.20242914979735
+                "x": 1822,
+                "y": 295.33333333333326
             }
         },
         "level2.tmx": {
-            "scale": 0.25729166666666664,
-            "selectedLayer": 0,
+            "scale": 1,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 1921.9433198380568,
-                "y": 130.20242914979735
+                "x": 1699.5,
+                "y": 89.5
+            }
+        },
+        "level3.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 826.3333333333333,
+                "y": 155.66666666666663
             }
         },
         "mario1.tmx": {
@@ -39,10 +58,18 @@
             }
         }
     },
+    "map.height": 16,
+    "map.lastUsedFormat": "tmx",
+    "map.layerDataFormat": null,
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 240,
     "openFiles": [
     ],
     "project": "ukjent tittel.tiled-project",
     "recentFiles": [
+        "level2.tmx",
+        "level1.tmx",
         "mario1.tmx",
         "custom1.tmx"
     ]

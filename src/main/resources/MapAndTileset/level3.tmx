@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="240" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="20">
+ <tileset firstgid="1" source="customtileset.tsx"/>
+ <layer id="1" name="Background" width="240" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztwzEJAAAMA7DClNa/idrYkUB6SVVVVVVVVVVVVVVVVVVV1RcHFQLcTA==
+  </data>
+ </layer>
+ <layer id="2" name="Graphics" width="240" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztmOEJgzAQRiNO4Qpu0v7tJu2CHa2RGkhDDi+aaNK8Bx8el6BWeFzVGPhXXoN5P22kdbu27AGACsFfgHbBX4B2wV8ozWONtBbbK+2HX/AXcpPDP/zVgb9wlFTXNPvxV4fzd/J6fo2/cAX4q4P5CzWCvzq2/N1ah74p8d95z3l7hfkLIaP5vkONQb/kd2F3PffuJl1n9DIJe2Ln3turHeen/93e/x136/bNxj0zWy89gKLUPH8lB0r3Y6TOV+YxnEHN/koOlO7HcPNVtxt/4Rzw9/h9xsDf9hg6iEmopaO2nteE5O5f/UxJHZk7iEmopaO2PstfQpZ8ABlZZso=
+  </data>
+ </layer>
+ <objectgroup id="3" name="Ground"/>
+ <objectgroup id="8" name="Pipes"/>
+ <objectgroup id="4" name="Coins">
+  <object id="9" x="1984" y="160" width="16" height="16">
+   <properties>
+    <property name="pepsi" value=""/>
+   </properties>
+  </object>
+  <object id="10" x="1984" y="96" width="16" height="16">
+   <properties>
+    <property name="coin" value=""/>
+   </properties>
+  </object>
+  <object id="11" x="1936" y="96" width="16" height="16">
+   <properties>
+    <property name="coin" value=""/>
+   </properties>
+  </object>
+  <object id="12" x="1184" y="160" width="16" height="16" rotation="180">
+   <properties>
+    <property name="coin" value=""/>
+   </properties>
+  </object>
+  <object id="13" x="1104" y="160" width="16" height="16">
+   <properties>
+    <property name="coin" value=""/>
+   </properties>
+  </object>
+  <object id="15" x="1024" y="160" width="16" height="16">
+   <properties>
+    <property name="coin" value=""/>
+   </properties>
+  </object>
+  <object id="16" x="864" y="160" width="16" height="16">
+   <properties>
+    <property name="pepsi" value=""/>
+   </properties>
+  </object>
+  <object id="17" x="208" y="160" width="16" height="16">
+   <properties>
+    <property name="coin" value=""/>
+   </properties>
+  </object>
+  <object id="18" x="656" y="160" width="16" height="16">
+   <properties>
+    <property name="coin" value=""/>
+   </properties>
+  </object>
+  <object id="19" x="688" y="160" width="16" height="16">
+   <properties>
+    <property name="coin" value=""/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="5" name="Bricks"/>
+ <objectgroup id="7" name="Spiders">
+  <object id="7" x="1968" y="208" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="9" name="Turtles"/>
+</map>

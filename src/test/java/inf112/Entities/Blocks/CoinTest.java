@@ -38,7 +38,7 @@ public class CoinTest {
     Coin coin;
     RectangleMapObject object;
     TmxMapLoader mapLoader;
-    String fileName = "MapAndTileset/mario1.tmx";
+    String fileName = "MapAndTileset/level1.tmx";
     TiledMap map;
     GL20 gl;
     Display display;

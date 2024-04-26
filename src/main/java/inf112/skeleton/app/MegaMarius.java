@@ -46,10 +46,8 @@ public class MegaMarius extends Game {
     }
 
     public void createTest(SpriteBatch spriteBatch) {
-        //if(!headless)
         batch = spriteBatch;
         manager = new AssetManager();
-        manager.load("audio/music/music1.mp3", Music.class);
         manager.finishLoading();
     }
         

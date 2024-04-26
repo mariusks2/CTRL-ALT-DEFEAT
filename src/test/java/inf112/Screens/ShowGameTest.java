@@ -40,32 +40,20 @@ public class ShowGameTest {
 	Brick brick;
     RectangleMapObject object;
     TmxMapLoader mapLoader;
-    String fileName = "MapAndTileset/mario1.tmx";
+    String fileName = "MapAndTileset/level1.tmx";
     TiledMap map;
-    GL20 gl;
+    static GL20 gl;
     Display display;
 	ShowGame sGame;
+    SpriteBatch batch;
+    private static HeadlessApplication headlessApplication;
+    
 
-
-	/**
-	 * Setup method called before each of the test methods
-	 */
-	@BeforeEach
-	void setUpBeforeEach() {
-		
-		Lwjgl3NativesLoader.load();
-
-        // Initialize Box2D
+    @BeforeAll
+    static void setUpBeforeAll(){
+        Lwjgl3NativesLoader.load();
         Box2D.init();
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-		ApplicationListener listener = new ApplicationAdapter() {
-		};
-
-        // Provide a stub for glGenTexture() method to avoid further issues
-
-        // Provide a stub for glGenTexture() method to avoid further issues
-        
-
         Application app = mock(Application.class);
         //Graphics graphics = mock(com.badlogic.gdx.Graphics.class);
         //when(app.getGraphics()).thenReturn(graphics);
@@ -73,21 +61,41 @@ public class ShowGameTest {
         //when(gl.glGenTexture()).thenReturn(1);
         //Mock Gdx
         Gdx.app = app;
-		Gdx.graphics = mock(com.badlogic.gdx.Graphics.class);
+		//Gdx.graphics = mock(com.badlogic.gdx.Graphics.class);
 		gl = mock(GL20.class);
 		when(gl.glCreateShader(anyInt())).thenReturn(1);
-        Gdx.gl = gl;
-		when(Gdx.graphics.getGL20()).thenReturn(gl);
-		when(Gdx.graphics.getWidth()).thenReturn(800); // Example width
-		when(Gdx.graphics.getHeight()).thenReturn(600);
+        Gdx.gl = gl; 
+        MegaMarius megaMarius = new MegaMarius(); // Your implementation of ApplicationListener
+
+        headlessApplication = new HeadlessApplication(megaMarius, config);
+    }
+
+	/**
+	 * Setup method called before each of the test methods
+	 */
+	@BeforeEach
+	void setUpBeforeEach() {
+	
+        // Initialize Box2D
+      
+        MegaMarius megaMarius = (MegaMarius) headlessApplication.getApplicationListener();
+
+        // Provide a stub for glGenTexture() method to avoid further issues
+
+        // Provide a stub for glGenTexture() method to avoid further issues
         
-        new HeadlessApplication(listener, config);
+
+        
+		//when(Gdx.graphics.getGL20()).thenReturn(gl);
+		//when(Gdx.graphics.getWidth()).thenReturn(800); // Example width
+		//when(Gdx.graphics.getHeight()).thenReturn(600);
+        
         World world = new World(new Vector2(0, -10), true);
         display = new Display(mock(SpriteBatch.class));
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
-		MegaMarius megaMarius = new MegaMarius();
-		megaMarius.createTest(new SpriteBatch());
+        batch = new SpriteBatch();
+		megaMarius.createTest(batch);
         sGame = new ShowGame(megaMarius, fileName);
 	}
 

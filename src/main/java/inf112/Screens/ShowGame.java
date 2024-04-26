@@ -16,6 +16,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 //import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer; Uncomment to show hitbox
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -48,6 +49,8 @@ public class ShowGame implements Screen{
     private Label victoryLabel;
     private Label retryLabel;
     private showMapSelect mapSelect;
+    private Label resumeGameLabel;
+    private Label settingsGameLabel;
     //For creating a grayed out screen when the game is won
     private ShapeRenderer shapeRenderer;
 
@@ -66,7 +69,7 @@ public class ShowGame implements Screen{
     private Array<Item> items;
     public LinkedBlockingQueue<ItemDef> itemsToSpawn;
     public String fileName;
-    //private Box2DDebugRenderer b2dr;
+    private Box2DDebugRenderer b2dr;
 
 
     public ShowGame(MegaMarius game, String fileName){
@@ -86,7 +89,7 @@ public class ShowGame implements Screen{
 
         world = new World(new Vector2(0, -10), true);
         world.step(0, 0, 0);
-        //b2dr = new Box2DDebugRenderer(); // uncomment to show hitbox 
+        b2dr = new Box2DDebugRenderer(); // uncomment to show hitbox 
 
         creator = new MakeMap(this);
 
@@ -116,6 +119,15 @@ public class ShowGame implements Screen{
         retryLabel.setVisible(false);  // Initially invisible
         retryLabel.setPosition(MegaMarius.M_Width / 2 - retryLabel.getWidth() / 2, MegaMarius.M_Height / 2 - 20);  // Slightly below the victoryLabel
         uiStage.addActor(retryLabel);
+
+        this.resumeGameLabel = new Label("Resume Game",font);
+        this.settingsGameLabel = new Label("Settings", font);
+        resumeGameLabel.setVisible(false);
+        settingsGameLabel.setVisible(false);
+        resumeGameLabel.setPosition(MegaMarius.M_Width / 2 -resumeGameLabel.getWidth() / 2, MegaMarius.M_Height / 2 + 20);  // Adjust Y position for visibility
+        uiStage.addActor(resumeGameLabel);
+        settingsGameLabel.setPosition(MegaMarius.M_Width / 2 - settingsGameLabel.getWidth() / 2, MegaMarius.M_Height / 2 - 20);  // Slightly below the victoryLabel
+        uiStage.addActor(settingsGameLabel);
 
         this.mapSelect = new showMapSelect(game);
         this.shapeRenderer = new ShapeRenderer();
@@ -192,7 +204,7 @@ public class ShowGame implements Screen{
 
         renderer.render();
 
-        //b2dr.render(world, gameCam.combined); // Uncomment to show hitbox
+        b2dr.render(world, gameCam.combined); // Uncomment to show hitbox
         if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
             game.setScreen(new showMapSelect(game));
             dispose();

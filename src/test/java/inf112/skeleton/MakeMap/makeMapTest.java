@@ -78,12 +78,6 @@ public class makeMapTest {
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
         makeMap = new MakeMap(cScreen);
 	}
-    // Not Implemented
-    @Test
-    void getSpidersTest(){
-        assertNotNull(makeMap.getSpiders());
-    }
-
     @Test
     void getEnemiesTest(){
         assertNotNull(makeMap.getEnemies());

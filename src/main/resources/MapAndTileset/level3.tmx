@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="240" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="147">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="240" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="151">
  <tileset firstgid="1" source="customtileset.tsx"/>
  <layer id="1" name="Background" width="240" height="16">
   <data encoding="base64" compression="zlib">
@@ -59,7 +59,6 @@
   <object id="42" x="720" y="64" width="32" height="160"/>
   <object id="70" x="2096" y="160" width="32" height="64"/>
   <object id="73" x="2032" y="0" width="32" height="176"/>
-  <object id="74" x="1904" y="0" width="32" height="208"/>
   <object id="76" x="1632" y="176" width="32" height="48"/>
   <object id="77" x="1536" y="176" width="32" height="48"/>
   <object id="79" x="1440" y="176" width="32" height="48"/>
@@ -89,6 +88,8 @@
   <object id="139" x="3424" y="144" width="32" height="16"/>
   <object id="140" x="3440" y="128" width="16" height="16"/>
   <object id="144" x="1776" y="176" width="32" height="48"/>
+  <object id="149" x="1906.36" y="0" width="27.303" height="192.364"/>
+  <object id="150" x="1904.18" y="193" width="30.9091" height="12.1818"/>
  </objectgroup>
  <objectgroup id="4" name="Coins">
   <properties>
@@ -192,6 +193,7 @@
   <object id="118" x="2144" y="208" width="16" height="16"/>
   <object id="119" x="2160" y="208" width="16" height="16"/>
   <object id="120" x="2153" y="437.5" width="14" height="0.5"/>
+  <object id="147" x="1856" y="208" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="9" name="Turtles">
   <object id="28" x="2368" y="208" width="16" height="16"/>

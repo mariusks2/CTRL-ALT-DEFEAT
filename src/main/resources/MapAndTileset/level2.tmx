@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="240" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="18" nextobjectid="246">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="240" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="18" nextobjectid="253">
  <tileset firstgid="1" source="customtileset.tsx"/>
  <layer id="2" name="Background" width="240" height="16">
   <data encoding="base64" compression="zlib">
@@ -41,7 +41,6 @@
   <object id="114" x="2096" y="208" width="48" height="16"/>
   <object id="115" x="2112" y="192" width="32" height="16"/>
   <object id="116" x="2128" y="176" width="16" height="16"/>
-  <object id="122" x="3376" y="208" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="4" name="Pipes">
   <object id="95" x="3040" y="160" width="32" height="64"/>
@@ -56,7 +55,10 @@
   <object id="112" x="720" y="160" width="32" height="64"/>
   <object id="113" x="640" y="160" width="32" height="64"/>
   <object id="123" x="3216" y="192" width="16" height="32"/>
-  <object id="125" x="-2.75" y="48.5" width="2.25" height="175"/>
+  <object id="125" x="-2.75" y="48.5" width="2.25" height="175">
+   <polygon points="0,0 2.25,0 2.25,175 0,175"/>
+  </object>
+  <object id="251" x="3392" y="208" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="5" name="Coins">
   <object id="13" x="352" y="96" width="16" height="16">
@@ -173,5 +175,6 @@
   <object id="27" x="2992" y="208" width="16" height="16"/>
   <object id="28" x="2864" y="208" width="16" height="16"/>
   <object id="29" x="3328" y="208" width="16" height="16"/>
+  <object id="247" x="3301" y="416" width="4" height="1"/>
  </objectgroup>
 </map>

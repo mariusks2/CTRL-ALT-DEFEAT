@@ -81,8 +81,8 @@ public class showMapSelect implements Screen {
             Rectangle map2Text = new Rectangle(111,53,54,5);
 
             //Defines the bounds where the third map is defined and the text box below is defined
-            Rectangle map3 = new Rectangle();
-            Rectangle map3Text = new Rectangle();
+            Rectangle map3 = new Rectangle(212,63,100,51);
+            Rectangle map3Text = new Rectangle(223,103,54,5);
 
             // Check if the click is within the bounds of any of the rectangles
             if (backBounds.contains(clickPosition.x, clickPosition.y)) {

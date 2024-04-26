@@ -55,7 +55,6 @@ public class ShowGameOver implements Screen {
             // Start new game if 'enter' key is pressed
             megaMariusGame.setScreen(new ShowGame(megaMariusGame, fileName));
             if(fileName.equals("MapAndTileset/level1.tmx")){
-            if(fileName.equals("MapAndTileset/level2.tmx")){
                 Display.updateLevel(1);
             }
             else if (fileName.equals("MapAndTileset/level2.tmx")){

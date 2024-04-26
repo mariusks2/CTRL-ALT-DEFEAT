@@ -54,11 +54,14 @@ public class ShowGameOver implements Screen {
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
             // Start new game if 'enter' key is pressed
             megaMariusGame.setScreen(new ShowGame(megaMariusGame, fileName));
-            if(fileName.equals("MapAndTileset/level2.tmx")){
+            if(fileName.equals("MapAndTileset/level1.tmx")){
                 Display.updateLevel(1);
             }
-            else if (fileName.equals("MapAndTileset/level3.tmx")){
+            else if (fileName.equals("MapAndTileset/level2.tmx")){
                 Display.updateLevel(2);
+            }
+            else if (fileName.equals("MapAndTileset/level3.tmx")){
+                Display.updateLevel(3);
             }
             dispose();
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
@@ -69,10 +72,10 @@ public class ShowGameOver implements Screen {
     }
 
     public String getCurrentGame() {
-        if(fileName == "custom1.tmx"){
+        if(fileName == "level1.tmx"){
             System.out.println("GAME DONE");
         }
-        return "custom1.tmx";
+        return "level1.tmx";
     }
 
     @Override

@@ -36,7 +36,7 @@ public class SpiderTest {
     Spider spider;
     RectangleMapObject object;
     TmxMapLoader mapLoader;
-    String fileName = "MapAndTileset/mario1.tmx";
+    String fileName = "MapAndTileset/level1.tmx";
     TiledMap map;
     GL20 gl;
     Display display;

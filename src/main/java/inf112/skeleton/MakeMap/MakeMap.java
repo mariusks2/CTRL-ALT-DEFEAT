@@ -76,9 +76,6 @@ public class MakeMap {
             turtles.add(new Turtle(screen, rect.getX() / MegaMarius.PPM, rect.getY() / MegaMarius.PPM));
         }
     }
-    public Array<Spider> getSpiders() {
-        return spiders;
-    }
     public Array<Enemy> getEnemies(){
         Array<Enemy> enemies = new Array<Enemy>();
         enemies.addAll(spiders);

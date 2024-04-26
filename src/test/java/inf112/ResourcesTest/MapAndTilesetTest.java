@@ -26,12 +26,17 @@ public class MapAndTilesetTest {
 
     @Test
     void map1Test() {
-        assertTrue(Gdx.files.internal("MapAndTileset/mario1.tmx").exists());
+        assertTrue(Gdx.files.internal("MapAndTileset/level1.tmx").exists());
     }
 
     @Test
     void map2Test() {
-        assertTrue(Gdx.files.internal("MapAndTileset/custom1.tmx").exists());
+        assertTrue(Gdx.files.internal("MapAndTileset/level2.tmx").exists());
+    }
+
+    @Test
+    void map3Test() {
+        assertTrue(Gdx.files.internal("MapAndTileset/level3.tmx").exists());
     }
 
     @Test

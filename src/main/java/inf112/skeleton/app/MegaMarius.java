@@ -10,7 +10,7 @@ import inf112.Screens.ShowStartGame;
 public class MegaMarius extends Game {
     public static final int M_Width = 400;
     public static final int M_Height = 208;
-    public SpriteBatch batch;
+    private SpriteBatch batch;
     public static final float PPM = 100;
 
 	//Box2D Collision Bits
@@ -32,15 +32,23 @@ public class MegaMarius extends Game {
     public AssetManager manager;
     public boolean headless;
 
+
+
     @Override
     public void create() {
-        if(!headless)
-            batch = new SpriteBatch();
+        //if(!headless)
+        batch = new SpriteBatch();
         manager = new AssetManager();
         manager.load("audio/music/music1.mp3", Music.class);
         manager.finishLoading();
         if(!headless)
             setScreen(new ShowStartGame(this));
+    }
+
+    public void createTest(SpriteBatch spriteBatch) {
+        batch = spriteBatch;
+        manager = new AssetManager();
+        manager.finishLoading();
     }
         
     @Override

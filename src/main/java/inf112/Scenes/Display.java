@@ -8,18 +8,19 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.utils.Disposable;
+import com.badlogic.gdx.scenes.scene2d.utils.Disableable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import inf112.skeleton.app.MegaMarius;
 
-public class Display implements Disposable{
+public class Display implements Disableable{
     
     //using scene2D.ui from libgdx to create 
     public Stage stage;
     private Viewport viewport;
     private BitmapFont font;
+    private BitmapFont boldFont;
 
     private Integer timer;
     private boolean timesOut;
@@ -33,16 +34,18 @@ public class Display implements Disposable{
     private static Label scoreDisplay;
     private static Label coinsDisplay;
     private static Label levelDisplay;
+    private Label pauseDisplay;
 
     // Descriptor labels
     private Label scoreTextLabel;
     private Label coinsTextLabel;
     private Label worldTextLabel;
     private Label timeTextLabel;
+
   
     
 
-    public Display(SpriteBatch sb){
+    public Display(SpriteBatch sb) {
         timer=300;
         timeCount=0;
         scoreCount=0;
@@ -57,16 +60,21 @@ public class Display implements Disposable{
         font = new BitmapFont();
         font.getData().setScale(0.5f);
 
+        boldFont = new BitmapFont();
+        boldFont.getData().setScale(1f);
+
         Table table= new Table();
         table.top(); //put the table at the top of the screen
         table.setFillParent(true);
 
         //Define the labels:
         Label.LabelStyle labelStyle = new Label.LabelStyle(font,Color.WHITE);
+        Label.LabelStyle boldLabelStyle = new Label.LabelStyle(boldFont, Color.WHITE);
         scoreDisplay =new Label(String.format("%03d", scoreCount), labelStyle);
         coinsDisplay = new Label (String.format("%02d",coins),labelStyle);
         levelDisplay = new Label (String.format("%01d",level ), labelStyle);
         countdownDisplay= new Label(String.format("%03d",timer),labelStyle);
+        pauseDisplay = new Label("| |",boldLabelStyle);
 
         // Create descriptor labels
         scoreTextLabel = new Label("SCORE", labelStyle);
@@ -80,6 +88,7 @@ public class Display implements Disposable{
         table.add(coinsTextLabel).expandX().padTop(4);
         table.add(worldTextLabel).expandX().padTop(4);
         table.add(timeTextLabel).expandX().padTop(4);
+        table.add(pauseDisplay).expandX().padTop(8);
 
         // Add a new row to the table for the values
         table.row();
@@ -90,8 +99,10 @@ public class Display implements Disposable{
 
         // Add the table to the stage
         stage.addActor(table);
-        
     }
+
+
+        
 
     public void updateTime (float newTime){
         timeCount+=newTime;
@@ -142,7 +153,7 @@ public class Display implements Disposable{
         return timesOut;
     }
 
-    @Override
+    
     public void dispose() {
         stage.dispose();
         font.dispose();
@@ -154,4 +165,23 @@ public class Display implements Disposable{
     public Integer getScoreCount(){
         return scoreCount;
     }
+
+
+
+
+    @Override
+    public void setDisabled(boolean isDisabled) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setDisabled'");
+    }
+
+
+
+
+    @Override
+    public boolean isDisabled() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'isDisabled'");
+    }
+
 }

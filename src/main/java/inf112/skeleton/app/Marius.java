@@ -405,4 +405,15 @@ import inf112.Screens.ShowGame;
 		public ShowGame getScreen(){
 			return screen;
 		}
+
+		public void setCurrentState(State newState) {
+			// Before changing the state, update previousState
+			this.previousState = this.currentState;
+		
+			// Change the current state to the new state
+			this.currentState = newState;
+		
+			// Reset the state timer because the state has changed
+			this.stateTimer = 0;
+		}
 }

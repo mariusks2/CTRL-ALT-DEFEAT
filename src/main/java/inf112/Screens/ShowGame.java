@@ -187,7 +187,7 @@ public class ShowGame implements Screen{
     @Override
     public void render(float delta) {
         updateState(delta);
-        clearScreen();
+        ScreenManager.getInstance().clearScreen();
         drawGameWorld();
         drawUI();
         handleScreenTransitions();
@@ -196,11 +196,6 @@ public class ShowGame implements Screen{
     private void updateState(float delta) {
         update(delta);
         handleInput();
-    }
-
-    private void clearScreen() {
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     }
 
     private void drawGameWorld() {
@@ -250,9 +245,7 @@ public class ShowGame implements Screen{
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
             ScreenManager.getInstance().showScreen("ShowGame", new ShowGame(game, nextMap));
             Display.updateLevel(1);
-            dispose();
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            dispose();
             System.exit(0);
         }
     }

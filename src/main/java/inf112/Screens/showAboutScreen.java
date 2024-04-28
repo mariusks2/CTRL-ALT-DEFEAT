@@ -33,23 +33,10 @@ public class showAboutScreen implements Screen {
     @Override
     public void render(float delta) {
         handleInput();
-        clearScreen();
-        drawBackground();
+        ScreenManager.getInstance().clearScreen();
+        ScreenManager.getInstance().drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();   
-    }
-
-    private void clearScreen(){
-        // Clear the screen
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-    }
-
-    private void drawBackground(){
-        // Draw the background image
-        megaMariusGame.getSpriteBatch().begin();
-        megaMariusGame.getSpriteBatch().draw(backgroundImage, 0, 0, MegaMarius.M_Width, MegaMarius.M_Height);
-        megaMariusGame.getSpriteBatch().end();
     }
 
     private void handleInput(){

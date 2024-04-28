@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import java.util.List;
@@ -46,66 +47,65 @@ public class showMapSelect implements Screen {
 
     @Override
     public void render(float delta) {
-        // Clear the screen
+        clearScreen();
+        drawBackground();
+        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+        stage.draw();
+        handleInputs();
+    }
+
+    private void clearScreen(){
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+    }
 
-        // Draw the background image
+    private void drawBackground(){
         megaMariusGame.getSpriteBatch().begin();
         megaMariusGame.getSpriteBatch().draw(backgroundImage, 0, 0, MegaMarius.M_Width, MegaMarius.M_Height);
         megaMariusGame.getSpriteBatch().end();
+    }
 
-        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
-        stage.draw();
-        
+    private void handleInputs(){
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
-            dispose();
-            megaMariusGame.setScreen(new ShowStartGame(megaMariusGame));
-       }
+            ScreenManager.getInstance().showScreen("StartGame", new ShowStartGame(megaMariusGame));
+        }
 
-       // Check if the left mouse button is clicked
-        if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
-            Vector3 clickPosition = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+        if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
+            Vector2 clickPosition = new Vector2(Gdx.input.getX(),Gdx.input.getY());
             viewport.unproject(clickPosition);
+            handleClickInput(clickPosition);
+        }
+    }
+    
+    private void handleClickInput(Vector2 clickPosition){
+        //Define back arrow
+        Rectangle backBound = new Rectangle(6,197,25,8);
+        //Defines the bounds where the first map is defined, and the text box below is defined
+        Rectangle map1 = new Rectangle(150,131,100,51);
+        Rectangle map1Text = new Rectangle(187,121,34,5);
 
-            System.out.println("Clicked at: " + clickPosition.x + ", " + clickPosition.y);
+        //Defines the bounds where the second map is defined and the text box below is defined
+        Rectangle map2 = new Rectangle(88,63,99,50);
+        Rectangle map2Text = new Rectangle(111,53,54,5);
 
-            // Defines the boundin box where the back arrow is defined
-            Rectangle backBounds = new Rectangle(6, 197,35 , 8);
+        //Defines the bounds where the third map is defined and the text box below is defined
+        Rectangle map3 = new Rectangle(212,63,100,51);
+        Rectangle map3Text = new Rectangle(223,103,54,5);
 
-            //Defines the bounds where the first map is defined, and the text box below is defined
-            Rectangle map1 = new Rectangle(150,131,100,51);
-            Rectangle map1Text = new Rectangle(187,121,34,5);
+        // Check if the click is within the bounds of any of the rectangles
+        //Here we could use a for loop for the map list for better implementation with more maps
+        if (backBound.contains(clickPosition)) {
+            ScreenManager.getInstance().showScreen("StartGame", new ShowStartGame(megaMariusGame));
+        }
+        else if (map1.contains(clickPosition) || map1Text.contains(clickPosition)){
+            ScreenManager.getInstance().showScreen("ShowGame", new ShowGame(megaMariusGame, mapList.get(0)));
 
-            //Defines the bounds where the second map is defined and the text box below is defined
-            Rectangle map2 = new Rectangle(88,63,99,50);
-            Rectangle map2Text = new Rectangle(111,53,54,5);
-
-            //Defines the bounds where the third map is defined and the text box below is defined
-            Rectangle map3 = new Rectangle(212,63,100,51);
-            Rectangle map3Text = new Rectangle(223,103,54,5);
-
-            // Check if the click is within the bounds of any of the rectangles
-            if (backBounds.contains(clickPosition.x, clickPosition.y)) {
-                megaMariusGame.setScreen(new ShowStartGame(megaMariusGame));
-                dispose();
-            }
-            else if (map1.contains(clickPosition.x,clickPosition.y) || map1Text.contains(clickPosition.x,clickPosition.y)){
-                showGame = new ShowGame(megaMariusGame, mapList.get(0));
-                megaMariusGame.setScreen(showGame);
-                dispose();
-
-            }
-            else if (map2.contains(clickPosition.x, clickPosition.y)  || map2Text.contains(clickPosition.x, clickPosition.y)){
-                megaMariusGame.setScreen(new ShowGame(megaMariusGame, mapList.get(1)));
-                Display.updateLevel(1);
-                dispose();
-            }
-            else if (map3.contains(clickPosition.x, clickPosition.y)  || map3Text.contains(clickPosition.x, clickPosition.y)){
-                megaMariusGame.setScreen(new ShowGame(megaMariusGame,  mapList.get(2)));
-                Display.updateLevel(2);
-                dispose();
-            }
+        }
+        else if (map2.contains(clickPosition)  || map2Text.contains(clickPosition)){
+            ScreenManager.getInstance().showScreen("ShowGame", new ShowGame(megaMariusGame, mapList.get(1)));
+        }
+        else if (map3.contains(clickPosition) || map3Text.contains(clickPosition)){
+           ScreenManager.getInstance().showScreen("ShowGame", new ShowGame(megaMariusGame, mapList.get(2)));
         }
     }
 

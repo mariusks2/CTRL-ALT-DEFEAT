@@ -20,16 +20,15 @@ public class showPauseScreen implements Screen{
     private Viewport viewport;
     private Stage stage;
     private Texture backgroundImage;
-    private ShowGame showGame;
 
 
-    public showPauseScreen(MegaMarius game, Marius player, ShowGame showGame){
+
+    public showPauseScreen(MegaMarius game, Marius player){
         this.game = game;
         this.player = player;
         this.viewport = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());
         this.stage = new Stage(viewport,game.getSpriteBatch());
         this.backgroundImage = new Texture("Screens/pause-screen.png");
-        this.showGame = showGame;
   
         
     }
@@ -57,7 +56,7 @@ public class showPauseScreen implements Screen{
             player.setCurrentState(Marius.State.STANDING);
             //game.setScreen();
             dispose();
-            game.setScreen(showGame);
+            game.setScreen(ScreenManager.getInstance().getCurrentGameScreen());
         }
     }
 

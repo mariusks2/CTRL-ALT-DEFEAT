@@ -186,60 +186,74 @@ public class ShowGame implements Screen{
 
     @Override
     public void render(float delta) {
-        
+        updateState(delta);
+        clearScreen();
+        drawGameWorld();
+        drawUI();
+        handleScreenTransitions();
+    }
 
+    private void updateState(float delta) {
         update(delta);
+        handleInput();
+    }
 
-        Gdx.gl.glClearColor(0,0,0,1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); //clears screen
+    private void clearScreen() {
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+    }
 
+    private void drawGameWorld() {
         renderer.render();
-
-        //b2dr.render(world, gameCam.combined); // Uncomment to show hitbox
-        if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
-            game.setScreen(new showPauseScreen(game, player,mapSelect.getShowGame()));
-            player.setCurrentState(Marius.State.PAUSED);
-        }
-
-
         game.getSpriteBatch().setProjectionMatrix(gameCam.combined);
         game.getSpriteBatch().begin();
         player.draw(game.getSpriteBatch());
-        for(Enemy enemy : creator.getEnemies()){
+        for (Enemy enemy : creator.getEnemies()) {
             enemy.draw(game.getSpriteBatch());
-        for(Item item : items){
+        }
+        for (Item item : items) {
             item.draw(game.getSpriteBatch());
         }
-        }
         game.getSpriteBatch().end();
+    }
 
+    private void drawUI() {
         game.getSpriteBatch().setProjectionMatrix(display.stage.getCamera().combined);
         display.stage.draw();
-
-        // Check if game is over
-        if(gameIsOver()) {
-            game.setScreen(new ShowGameOver(game, fileName));
-            dispose();
-        }
         if (Marius.getGameWon()) {
             drawGrayOverlay();
             uiStage.draw();
             retryLabel.setVisible(true);
             victoryLabel.setVisible(true);
-            String nextMap = mapSelect.getNextMap(fileName);
-            if (nextMap=="GameCompleted"){
-                game.setScreen(new showGameCompleted(game));
-            }
-            if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-                // Start next map if enter is pressed
-                game.setScreen(new ShowGame(game,nextMap));
-                Display.updateLevel(1);
-                dispose();
-            } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-                // Exit game if 'escape' key is pressed
-                dispose();
-                System.exit(0);
-            }
+        }
+    }
+
+    private void handleScreenTransitions() {
+        if (gameIsOver()) {
+            ScreenManager.getInstance().showScreen("GameOver", new ShowGameOver(game, fileName));
+        } else if (Marius.getGameWon()) {
+            handleVictoryTransition();
+        }
+    }
+
+    private void handleInput() {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            ScreenManager.getInstance().showScreen("PauseGame", new showPauseScreen(game, player));
+            player.setCurrentState(Marius.State.PAUSED);
+        }
+    }
+
+    private void handleVictoryTransition() {
+        String nextMap = mapSelect.getNextMap(fileName);
+        if (nextMap.equals("GameCompleted")) {
+            ScreenManager.getInstance().showScreen("GameCompleted", new showGameCompleted(game));
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+            ScreenManager.getInstance().showScreen("ShowGame", new ShowGame(game, nextMap));
+            Display.updateLevel(1);
+            dispose();
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            dispose();
+            System.exit(0);
         }
     }
     /*

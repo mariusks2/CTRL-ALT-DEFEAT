@@ -39,43 +39,44 @@ public class ShowGameOver implements Screen {
 
     @Override
     public void render(float delta) {
+        clearScreen();
+        drawBackground();
+        handleInput();
+        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+        stage.draw();
+
+        
+    }
+
+    
+    private void clearScreen(){
         // Clear the screen
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+    }
 
+    private void drawBackground(){
         // Draw the background image
         megaMariusGame.getSpriteBatch().begin();
         megaMariusGame.getSpriteBatch().draw(backgroundImage, 0, 0, MegaMarius.M_Width, MegaMarius.M_Height);
         megaMariusGame.getSpriteBatch().end();
+    }
 
-        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
-        stage.draw();
-
+    private void handleInput(){
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
             // Start new game if 'enter' key is pressed
-            megaMariusGame.setScreen(new ShowGame(megaMariusGame, fileName));
-            if(fileName.equals("MapAndTileset/level1.tmx")){
-                Display.updateLevel(1);
-            }
-            else if (fileName.equals("MapAndTileset/level2.tmx")){
+            ScreenManager.getInstance().showScreen("ShowGame", new ShowGame(megaMariusGame, fileName));
+            if (fileName.equals("MapAndTileset/level2.tmx")){
                 Display.updateLevel(2);
             }
             else if (fileName.equals("MapAndTileset/level3.tmx")){
                 Display.updateLevel(3);
             }
-            dispose();
+
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             // Exit game if 'escape' key is pressed
-            dispose();
             System.exit(0);
         }
-    }
-
-    public String getCurrentGame() {
-        if(fileName == "level1.tmx"){
-            System.out.println("GAME DONE");
-        }
-        return "level1.tmx";
     }
 
     @Override

@@ -233,7 +233,7 @@ public class ShowGame implements Screen{
 
     private void handleInput() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            ScreenManager.getInstance().showScreen("PauseGame", new showPauseScreen(game, player));
+            ScreenManager.getInstance().showScreen("PauseGame", new showPauseScreen(game, player, player.currentState));
             player.setCurrentState(Marius.State.PAUSED);
         }
     }

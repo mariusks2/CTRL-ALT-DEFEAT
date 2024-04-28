@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import inf112.skeleton.app.Marius;
+import inf112.skeleton.app.Marius.State;
 import inf112.skeleton.app.MegaMarius;
 
 public class showPauseScreen implements Screen{
@@ -20,15 +21,17 @@ public class showPauseScreen implements Screen{
     private Viewport viewport;
     private Stage stage;
     private Texture backgroundImage;
+    private State previousState;
 
 
 
-    public showPauseScreen(MegaMarius game, Marius player){
+    public showPauseScreen(MegaMarius game, Marius player, State state){
         this.game = game;
         this.player = player;
         this.viewport = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());
         this.stage = new Stage(viewport,game.getSpriteBatch());
         this.backgroundImage = new Texture("Screens/pause-screen.png");
+        this.previousState = state;
   
         
     }
@@ -53,7 +56,7 @@ public class showPauseScreen implements Screen{
         stage.draw();
         if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
             System.out.println("Hei");
-            player.setCurrentState(Marius.State.STANDING);
+            player.setCurrentState(previousState);
             //game.setScreen();
             dispose();
             game.setScreen(ScreenManager.getInstance().getCurrentGameScreen());

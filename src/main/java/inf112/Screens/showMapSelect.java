@@ -85,6 +85,7 @@ public class showMapSelect implements Screen {
         }
         else if (map1.contains(clickPosition) || map1Text.contains(clickPosition)){
             ScreenManager.getInstance().showScreen("ShowGame", new ShowGame(megaMariusGame, mapList.get(0)));
+            
 
         }
         else if (map2.contains(clickPosition)  || map2Text.contains(clickPosition)){

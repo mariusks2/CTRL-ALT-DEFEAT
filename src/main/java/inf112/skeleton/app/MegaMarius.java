@@ -5,6 +5,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import inf112.Screens.ScreenManager;
 import inf112.Screens.ShowStartGame;
 
 public class MegaMarius extends Game {
@@ -41,8 +42,9 @@ public class MegaMarius extends Game {
         manager = new AssetManager();
         manager.load("audio/music/music1.mp3", Music.class);
         manager.finishLoading();
+        ScreenManager.getInstance().initialize(this);
         if(!headless)
-            setScreen(new ShowStartGame(this));
+            ScreenManager.getInstance().showScreen("ShowStartGame", new ShowStartGame(this));
     }
 
     public void createTest(SpriteBatch spriteBatch) {

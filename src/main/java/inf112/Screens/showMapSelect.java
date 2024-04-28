@@ -26,6 +26,7 @@ public class showMapSelect implements Screen {
     private Stage stage;
     private Texture backgroundImage;
     private List<String> mapList;
+    private ShowGame showGame;
 
     public showMapSelect (MegaMarius megaMariusGame){
         this.megaMariusGame=megaMariusGame;
@@ -90,7 +91,8 @@ public class showMapSelect implements Screen {
                 dispose();
             }
             else if (map1.contains(clickPosition.x,clickPosition.y) || map1Text.contains(clickPosition.x,clickPosition.y)){
-                megaMariusGame.setScreen(new ShowGame(megaMariusGame,  mapList.get(0)));
+                showGame = new ShowGame(megaMariusGame, mapList.get(0));
+                megaMariusGame.setScreen(showGame);
                 dispose();
 
             }
@@ -125,6 +127,9 @@ public class showMapSelect implements Screen {
     @Override
     public void hide() {
        
+    }
+    public ShowGame getShowGame(){
+        return showGame;
     }
 
     @Override

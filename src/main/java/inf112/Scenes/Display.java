@@ -8,13 +8,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.utils.Disableable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import inf112.skeleton.app.MegaMarius;
 
-public class Display implements Disableable{
+public class Display {
     
     //using scene2D.ui from libgdx to create 
     public Stage stage;
@@ -166,22 +165,5 @@ public class Display implements Disableable{
         return scoreCount;
     }
 
-
-
-
-    @Override
-    public void setDisabled(boolean isDisabled) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setDisabled'");
-    }
-
-
-
-
-    @Override
-    public boolean isDisabled() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isDisabled'");
-    }
 
 }

@@ -1,9 +1,8 @@
 package inf112.ResourcesTest;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.badlogic.gdx.ApplicationAdapter;
@@ -19,27 +18,18 @@ public class CharactersTest {
 		ApplicationListener listener = new ApplicationAdapter() {
 		};
 
-        
         new HeadlessApplication(listener, config);
         }
 
-	/**
-	 * Setup method called before each of the test methods
-	 */
-	@BeforeEach
-	void setUpBeforeEach() {
-    
-	}
-
     @Test
-    void customCharacter(){
-        assertNotNull(Gdx.files.internal("Characters/CustomCharacter.png"));
+    void customCharacterTest() {
+        assertTrue(Gdx.files.internal("Characters/CustomCharacter.png").exists());
     }
 
     @Test
-    void marioAndEnemies(){
-        assertNotNull(Gdx.files.internal("Characters/Mario_and_Enemies.pack"));
-        assertNotNull(Gdx.files.internal("Characters/Mario_and_Enemies.png"));
+    void marioAndEnemiesTest() {
+        assertTrue(Gdx.files.internal("Characters/Mario_and_Enemies.png").exists());
+        assertTrue(Gdx.files.internal("Characters/Mario_and_Enemies.png").exists());
     }
     
 }

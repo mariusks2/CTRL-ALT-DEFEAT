@@ -10,7 +10,6 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.utils.Array;
 
-import inf112.Entities.Enemies.Turtle.State;
 import inf112.Screens.ShowGame;
 import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.MegaMarius;
@@ -109,14 +108,15 @@ public class Spider extends Enemy{
         Vector2[] vertice = new Vector2[4]; //defines hitbox for spider
         vertice[0] = new Vector2(-5,10).scl(1/MegaMarius.PPM);
         vertice[1] = new Vector2(5,10).scl(1/MegaMarius.PPM);
-        vertice[2] = new Vector2(-3,3).scl(1/MegaMarius.PPM);
-        vertice[3] = new Vector2(3,3).scl(1/MegaMarius.PPM);
+        vertice[2] = new Vector2(-4,6).scl(1/MegaMarius.PPM);
+        vertice[3] = new Vector2(4,6).scl(1/MegaMarius.PPM);
         head.set(vertice);
 
         fdef.shape = head;
         fdef.restitution = 0.5f;
         fdef.filter.categoryBits = MegaMarius.ENEMY_HEAD_BIT;
         b2body.createFixture(fdef).setUserData(this);
+        
     }
 
     /**
@@ -141,5 +141,9 @@ public class Spider extends Enemy{
             setToDestroy = true;
         else
             revVelocity(true, false);
+    }
+
+    public boolean entityIsDead(){
+        return destroyed;
     }
 }

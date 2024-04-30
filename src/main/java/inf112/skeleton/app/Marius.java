@@ -19,11 +19,12 @@ import com.badlogic.gdx.utils.Array;
 import inf112.Entities.Enemies.Enemy;
 import inf112.Entities.Enemies.Turtle;
 import inf112.Screens.ShowGame;
+import inf112.Screens.ShowGameOver;
 
 	public class Marius extends Sprite {
 
 		// Enum and states
-		public enum State {START, FALLING, JUMPING, STANDING, RUNNING, DEAD, GROWING};
+		public enum State {START, FALLING, JUMPING, STANDING, RUNNING, DEAD, GROWING, PAUSED};
 		public State currentState;
 		public State previousState;
 		
@@ -46,6 +47,7 @@ import inf112.Screens.ShowGame;
 		private boolean runGrowAnimation;
 		private boolean timeToDefineBigMarius;
 		private boolean timetoReDefineMarius;
+
 
 		// Marius animation
 		private Animation<TextureRegion> mariusRun;
@@ -111,6 +113,10 @@ import inf112.Screens.ShowGame;
 		}
 	
 		public void update(float dt){
+			
+			if(currentState==State.PAUSED){
+				return;
+			}
 			// Check if time is up or marius has died
 			if((screen.getDisplay().isTimeUp() && !entityIsDead()) || fallOfMap()) {
 				entityDie();
@@ -201,25 +207,25 @@ import inf112.Screens.ShowGame;
 					break;
 			}
 	
-		// Flip marius to the left if body is running left
-		if((b2body.getLinearVelocity().x < 0 || !runningRight) && !animationFrame.isFlipX()){
-			animationFrame.flip(true, false);
-			runningRight = false;
-		}
+			// Flip marius to the left if body is running left
+			if((b2body.getLinearVelocity().x < 0 || !runningRight) && !animationFrame.isFlipX()){
+				animationFrame.flip(true, false);
+				runningRight = false;
+			}
 
-		// Flip marius to the right if body is running right
-		else if((b2body.getLinearVelocity().x > 0 || runningRight) && animationFrame.isFlipX()){
-			animationFrame.flip(true, false);
-			runningRight = true;
-		}
+			// Flip marius to the right if body is running right
+			else if((b2body.getLinearVelocity().x > 0 || runningRight) && animationFrame.isFlipX()){
+				animationFrame.flip(true, false);
+				runningRight = true;
+			}
 
-		// If the current state is the same as the previous state increase the state timer.
-		// Otherwise the state has changed and we need to reset timer.
-		stateTimer = currentState == previousState ? stateTimer + dt : 0;
-		// Update previous state
-		previousState = currentState;
-		// Return animation frame
-		return animationFrame;
+			// If the current state is the same as the previous state increase the state timer.
+			// Otherwise the state has changed and we need to reset timer.
+			stateTimer = currentState == previousState ? stateTimer + dt : 0;
+			// Update previous state
+			previousState = currentState;
+			// Return animation frame
+			return animationFrame;
 		}
 	
 		public State getState(){
@@ -227,6 +233,9 @@ import inf112.Screens.ShowGame;
 			//if mario is going positive in Y-Axis he is jumping... or if he just jumped and is falling remain in jump state
 			if(runGrowAnimation){
 				return State.GROWING;
+			}
+			if (gameWon){
+				return State.PAUSED;
 			}
 			if(mariusIsDead)
 				return State.DEAD;
@@ -397,5 +406,20 @@ import inf112.Screens.ShowGame;
 			b2body.createFixture(fdef).setUserData(this);
 
 			timetoReDefineMarius = false;
+		}
+
+		public ShowGame getScreen(){
+			return screen;
+		}
+
+		public void setCurrentState(State newState) {
+			// Before changing the state, update previousState
+			this.previousState = this.currentState;
+		
+			// Change the current state to the new state
+			this.currentState = newState;
+		
+			// Reset the state timer because the state has changed
+			this.stateTimer = 0;
 		}
 }

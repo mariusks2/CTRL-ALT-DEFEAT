@@ -1,6 +1,5 @@
 package inf112.Entities.Blocks;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
@@ -12,6 +11,8 @@ import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.MegaMarius;
 
 public class Pepsi extends Item{
+
+    FixtureDef fdef;
 
     public Pepsi(ShowGame screen, float x, float y){
         super(screen, x, y);
@@ -26,7 +27,7 @@ public class Pepsi extends Item{
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2body = world.createBody(bdef);
 
-        FixtureDef fdef = new FixtureDef();
+        fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
         shape.setRadius(6 / MegaMarius.PPM);
         fdef.filter.categoryBits = MegaMarius.ITEM_BIT;
@@ -49,5 +50,9 @@ public class Pepsi extends Item{
         setCenter(b2body.getPosition().x, b2body.getPosition().y);
         velocity.y = b2body.getLinearVelocity().y;
         b2body.setLinearVelocity(velocity);
+    }
+
+    public short getCatergoryBits(){
+        return fdef.filter.categoryBits;
     }
 }

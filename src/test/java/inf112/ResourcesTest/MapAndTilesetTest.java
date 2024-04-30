@@ -1,6 +1,7 @@
 package inf112.ResourcesTest;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,31 +20,28 @@ public class MapAndTilesetTest {
 		ApplicationListener listener = new ApplicationAdapter() {
 		};
 
-        
         new HeadlessApplication(listener, config);
         }
 
-	/**
-	 * Setup method called before each of the test methods
-	 */
-	@BeforeEach
-	void setUpBeforeEach() {
-    
-	}
 
     @Test
-    void map1Test(){
-        assertNotNull(Gdx.files.internal("Characters/mario1.tmx"));
+    void map1Test() {
+        assertTrue(Gdx.files.internal("MapAndTileset/level1.tmx").exists());
     }
 
     @Test
-    void map2Test(){
-        assertNotNull(Gdx.files.internal("Characters/custom1.tmx"));
+    void map2Test() {
+        assertTrue(Gdx.files.internal("MapAndTileset/level2.tmx").exists());
     }
 
     @Test
-    void customTilesetTest(){
-        assertNotNull(Gdx.files.internal("Characters/customtilset.pack"));
-        assertNotNull(Gdx.files.internal("Characters/customtilset.png"));
+    void map3Test() {
+        assertTrue(Gdx.files.internal("MapAndTileset/level3.tmx").exists());
+    }
+
+    @Test
+    void tilesetTest() {
+        assertTrue(Gdx.files.internal("MapAndTileset/customtileset.png").exists());
+        assertTrue(Gdx.files.internal("MapAndTileset/customtileset.tsx").exists());
     }
 }

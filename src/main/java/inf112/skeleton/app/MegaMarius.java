@@ -5,12 +5,13 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import inf112.Screens.ScreenManager;
 import inf112.Screens.ShowStartGame;
 
 public class MegaMarius extends Game {
     public static final int M_Width = 400;
     public static final int M_Height = 208;
-    public SpriteBatch batch;
+    private SpriteBatch batch;
     public static final float PPM = 100;
 
 	//Box2D Collision Bits
@@ -29,29 +30,35 @@ public class MegaMarius extends Game {
 	public static final short ITEM_BIT = 256;
 	public static final short MARIUS_HEAD_BIT = 512;
 
-    public static AssetManager manager;
+    public AssetManager manager;
+    public boolean headless;
+
+
 
     @Override
     public void create() {
+        //if(!headless)
         batch = new SpriteBatch();
         manager = new AssetManager();
         manager.load("audio/music/music1.mp3", Music.class);
         manager.finishLoading();
-        setScreen(new ShowStartGame(this));
+        ScreenManager.getInstance().initialize(this);
+        if(!headless)
+            ScreenManager.getInstance().showScreen("ShowStartGame", new ShowStartGame(this));
+    }
+
+    public void createTest(SpriteBatch spriteBatch) {
+        batch = spriteBatch;
+        manager = new AssetManager();
+        manager.finishLoading();
     }
         
-
     @Override
 	public void dispose() {
 		super.dispose();
         manager.dispose();
         batch.dispose();
 	}
-
-    @Override
-    public void render() {
-        super.render();
-    }
 
     public SpriteBatch getSpriteBatch() {
         return this.batch;
@@ -61,4 +68,11 @@ public class MegaMarius extends Game {
         this.batch = batch;
     }
 
+    public AssetManager getAssetManager() {
+        return this.manager;
+    }
+
+	public void setMockMode(boolean headless) {
+		this.headless = headless;
+	}
 }

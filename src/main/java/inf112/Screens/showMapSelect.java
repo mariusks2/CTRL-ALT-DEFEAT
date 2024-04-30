@@ -48,8 +48,8 @@ public class showMapSelect implements Screen {
         handleInputs();
         ScreenManager.getInstance().clearScreen();
         ScreenManager.getInstance().drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
-        //stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
-        //stage.draw();
+        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+        stage.draw();
     }
 
     private void handleInputs(){
@@ -122,7 +122,7 @@ public class showMapSelect implements Screen {
 
     @Override
     public void dispose() {
-        //stage.dispose();
+        stage.dispose();
         backgroundImage.dispose();
     }
 

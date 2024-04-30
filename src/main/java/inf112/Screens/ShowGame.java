@@ -71,7 +71,7 @@ public class ShowGame implements Screen{
 
 
     public ShowGame(MegaMarius game, String fileName){
-        atlas = new TextureAtlas("Characters/Mario_and_Enemies.pack");
+        atlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
 
         this.game = game;
         this.fileName = fileName;

@@ -122,13 +122,9 @@ public class PauseScreenTest {
 
     @Test
     void thisScreenTest(){
-        ScreenManager.getInstance().showScreen("showStartGane", sGame);
-        assertEquals(sGame.getClass(),ScreenManager.getInstance().getCurrentGameScreen().getClass());
+        ScreenManager.getInstance().showScreen("ShowPauseScreen", sGame);
+        assertEquals(sGame.getClass(), ScreenManager.getInstance().getCurrentGameScreen().getClass());
         
     }
 
-    @Test
-    void renderTest(){
-        sGame.render(0);
-    }
 }

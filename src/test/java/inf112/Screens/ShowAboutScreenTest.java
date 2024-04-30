@@ -23,19 +23,17 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
 
-import inf112.Entities.Blocks.Brick;
 import inf112.Scenes.Display;
 import inf112.skeleton.app.MegaMarius;
 
-public class ShowStartScreenTest {
-
+public class ShowAboutScreenTest {
     RectangleMapObject object;
     TmxMapLoader mapLoader;
     String fileName = "MapAndTileset/level1.tmx";
     TiledMap map;
     static GL20 gl;
     Display display;
-	ShowStartGame sGame;
+	showAboutScreen sGame;
     SpriteBatch batch;
     private static HeadlessApplication headlessApplication;
     
@@ -90,7 +88,7 @@ public class ShowStartScreenTest {
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
 		megaMarius.createTest((mock(SpriteBatch.class)));
-        sGame = new ShowStartGame(megaMarius);
+        sGame = new showAboutScreen(megaMarius);
         ScreenManager.getInstance().initialize(megaMarius);
 	}
 
@@ -113,10 +111,8 @@ public class ShowStartScreenTest {
 
     @Test
     void thisScreenTest(){
-        ScreenManager.getInstance().showScreen("showStartGane", sGame);
+        ScreenManager.getInstance().showScreen("showAboutScreen", sGame);
         assertEquals(sGame.getClass(),ScreenManager.getInstance().getCurrentGameScreen().getClass());
         
     }
-
-
 }

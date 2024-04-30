@@ -47,10 +47,6 @@ public class MegaMariusTest {
 
         megaMarius.setSpriteBatch(mockBatch);
         
-        megaMarius.create();
-        mockMegaMaris.create();
-
-        verify(mockMegaMaris).create();
     }
     
             

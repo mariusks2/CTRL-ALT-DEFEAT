@@ -74,7 +74,7 @@ public class makeMapTest {
         when(cScreen.getWorld()).thenReturn(world);
         when(cScreen.getMap()).thenReturn(map);
         object = new RectangleMapObject();
-        textureAtlas = new TextureAtlas("Characters/Mario_and_Enemies.pack");
+        textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
         makeMap = new MakeMap(cScreen);
 	}

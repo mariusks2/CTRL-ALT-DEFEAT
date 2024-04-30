@@ -31,8 +31,10 @@ public class CoinAnimation extends Item{
     @Override
     public void defineItem() {
         BodyDef bdef = new BodyDef();
-        bdef.position.set(getX(), getY());
-        bdef.type = BodyDef.BodyType.DynamicBody;
-        b2body = world.createBody(bdef);
+        if (bdef != null){
+            bdef.position.set(getX(), getY());
+            bdef.type = BodyDef.BodyType.DynamicBody;
+            b2body = world.createBody(bdef);
+        }
     }
 }

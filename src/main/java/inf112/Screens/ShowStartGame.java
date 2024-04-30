@@ -24,7 +24,7 @@ public class ShowStartGame implements Screen {
     public ShowStartGame(MegaMarius megaMariusGame) {
         this.megaMariusGame = megaMariusGame;
         this.viewport = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());
-        this.stage = new Stage(viewport, megaMariusGame.getSpriteBatch());
+        //this.stage = new Stage(viewport, megaMariusGame.getSpriteBatch());
         this.backgroundImage = new Texture("src/main/resources/Screens/start-screen.png");
     }
 
@@ -40,8 +40,8 @@ public class ShowStartGame implements Screen {
         handleInput();
         ScreenManager.getInstance().clearScreen();
         ScreenManager.getInstance().drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
-        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
-        stage.draw();
+        //stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+        //stage.draw();
     }
 
     private void handleInput(){
@@ -101,7 +101,7 @@ public class ShowStartGame implements Screen {
 
     @Override
     public void dispose() {
-        stage.dispose();
+        //stage.dispose();
         backgroundImage.dispose();
     }
 }

@@ -24,7 +24,7 @@ public class ShowGameOver implements Screen {
         // Initialize variables
         this.megaMariusGame = megaMariusGame;
         this.camera = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());
-        this.stage = new Stage(camera, megaMariusGame.getSpriteBatch());
+        //this.stage = new Stage(camera, megaMariusGame.getSpriteBatch());
         this.fileName = fileName;
         this.backgroundImage = new Texture("Screens/game-over.png");
     }
@@ -41,8 +41,8 @@ public class ShowGameOver implements Screen {
         ScreenManager.getInstance().clearScreen();
         ScreenManager.getInstance().drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
         handleInput();
-        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
-        stage.draw();
+        //stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+        //stage.draw();
 
         
     }
@@ -82,7 +82,7 @@ public class ShowGameOver implements Screen {
 
     @Override
     public void dispose() {
-        stage.dispose();
+        //stage.dispose();
         backgroundImage.dispose();
     }
     

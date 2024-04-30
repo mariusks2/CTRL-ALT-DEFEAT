@@ -30,7 +30,7 @@ public class showPauseScreen implements Screen{
         this.game = game;
         this.player = player;
         this.viewport = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());
-        this.stage = new Stage(viewport,game.getSpriteBatch());
+        //this.stage = new Stage(viewport,game.getSpriteBatch());
         this.backgroundImage = new Texture("Screens/pause-screen.png");
         this.previousState = state;
   
@@ -47,8 +47,8 @@ public class showPauseScreen implements Screen{
         handleInput();
         ScreenManager.getInstance().clearScreen();
         ScreenManager.getInstance().drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
-        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
-        stage.draw();
+        //stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+        //stage.draw();
         
     }
 
@@ -117,7 +117,7 @@ public class showPauseScreen implements Screen{
 
     @Override
     public void dispose() {
-        stage.dispose();
+        //stage.dispose();
         backgroundImage.dispose();
     }
     

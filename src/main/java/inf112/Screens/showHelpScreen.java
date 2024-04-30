@@ -25,7 +25,7 @@ public class showHelpScreen implements Screen{
     public showHelpScreen (MegaMarius megaMariusGame){
         this.megaMariusGame=megaMariusGame;
         this.viewport=new FitViewport(MegaMarius.M_Width,MegaMarius.M_Height, new OrthographicCamera());
-        this.stage=new Stage(viewport,megaMariusGame.getSpriteBatch());
+        //this.stage=new Stage(viewport,megaMariusGame.getSpriteBatch());
         this.backgroundImage = new Texture("Screens/help-screen.png");
     }
 
@@ -39,8 +39,8 @@ public class showHelpScreen implements Screen{
         handleInput();
         ScreenManager.getInstance().clearScreen();
         ScreenManager.getInstance().drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
-        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
-        stage.draw();
+        //stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+        //stage.draw();
     }
 
    
@@ -81,7 +81,7 @@ public class showHelpScreen implements Screen{
 
     @Override
     public void dispose() {
-        stage.dispose();
+        //stage.dispose();
         backgroundImage.dispose();
     }
     

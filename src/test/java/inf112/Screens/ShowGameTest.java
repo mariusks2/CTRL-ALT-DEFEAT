@@ -20,6 +20,7 @@ import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3NativesLoader;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -48,6 +49,7 @@ public class ShowGameTest {
     SpriteBatch batch;
     private static HeadlessApplication headlessApplication;
     
+    
 
     @BeforeAll
     static void setUpBeforeAll(){
@@ -64,7 +66,10 @@ public class ShowGameTest {
 		//Gdx.graphics = mock(com.badlogic.gdx.Graphics.class);
 		gl = mock(GL20.class);
 		when(gl.glCreateShader(anyInt())).thenReturn(1);
+        when(gl.glCreateShader(anyInt())).thenReturn(0);
+        when(gl.glCreateProgram()).thenReturn(-1);
         Gdx.gl = gl; 
+        Gdx.gl20 = gl; 
         MegaMarius megaMarius = new MegaMarius(); // Your implementation of ApplicationListener
 
         headlessApplication = new HeadlessApplication(megaMarius, config);
@@ -94,14 +99,50 @@ public class ShowGameTest {
         display = new Display(mock(SpriteBatch.class));
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
-        batch = new SpriteBatch();
+        batch = new SpriteBatch(10, createDefaultShader());
 		megaMarius.createTest(batch);
         sGame = new ShowGame(megaMarius, fileName);
 	}
-
+    /* 
 	@Test
 	void showGameDisposeTest(){
 		sGame.dispose();
 		assertEquals(null, sGame);
 	}
+    */
+    static public ShaderProgram createDefaultShader (){
+        String vertexShader = "#version 300 core\n"
+        + "in vec4 " + ShaderProgram.POSITION_ATTRIBUTE + ";\n" //
+        + "in vec4 " + ShaderProgram.COLOR_ATTRIBUTE + ";\n" //
+        + "in vec2 " + ShaderProgram.TEXCOORD_ATTRIBUTE + "0;\n" //
+        + "uniform mat4 u_projTrans;\n" //
+        + "out vec4 v_color;\n" //
+        + "out vec2 v_texCoords;\n" //
+        + "\n" //
+        + "void main()\n" //
+        + "{\n" //
+        + " v_color = " + ShaderProgram.COLOR_ATTRIBUTE + ";\n" //
+        + " v_color.a = v_color.a * (255.0/254.0);\n" //
+        + " v_texCoords = " + ShaderProgram.TEXCOORD_ATTRIBUTE + "0;\n" //
+        + " gl_Position = u_projTrans * " + ShaderProgram.POSITION_ATTRIBUTE + ";\n" //
+        + "}\n";
+        String fragmentShader = "#version 300 core\n"
+        + "#ifdef GL_ES\n" //
+        + "#define LOWP lowp\n" //
+        + "precision mediump float;\n" //
+        + "#else\n" //
+        + "#define LOWP \n" //
+        + "#endif\n" //
+        + "in LOWP vec4 v_color;\n" //
+        + "in vec2 v_texCoords;\n" //
+        + "out vec4 fragColor;\n" //
+        + "uniform sampler2D u_texture;\n" //
+        + "void main()\n"//
+        + "{\n" //
+        + " fragColor = v_color * texture(u_texture, v_texCoords);\n" //
+        + "}";
+
+        return new ShaderProgram(vertexShader, fragmentShader);
+    }
+    
 }

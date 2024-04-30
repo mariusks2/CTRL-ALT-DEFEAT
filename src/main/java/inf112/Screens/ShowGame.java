@@ -16,7 +16,6 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 //import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer; Uncomment to show hitbox
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -49,8 +48,7 @@ public class ShowGame implements Screen{
     private Label victoryLabel;
     private Label retryLabel;
     private showMapSelect mapSelect;
-    private Label resumeGameLabel;
-    private Label settingsGameLabel;
+
     //For creating a grayed out screen when the game is won
     private ShapeRenderer shapeRenderer;
 
@@ -69,7 +67,7 @@ public class ShowGame implements Screen{
     private Array<Item> items;
     public LinkedBlockingQueue<ItemDef> itemsToSpawn;
     public String fileName;
-    private Box2DDebugRenderer b2dr;
+    //private Box2DDebugRenderer b2dr;
 
 
     public ShowGame(MegaMarius game, String fileName){
@@ -89,7 +87,7 @@ public class ShowGame implements Screen{
 
         world = new World(new Vector2(0, -10), true);
         world.step(0, 0, 0);
-        b2dr = new Box2DDebugRenderer(); // uncomment to show hitbox 
+        //b2dr = new Box2DDebugRenderer(); // uncomment to show hitbox 
 
         creator = new MakeMap(this);
 
@@ -120,14 +118,7 @@ public class ShowGame implements Screen{
         retryLabel.setPosition(MegaMarius.M_Width / 2 - retryLabel.getWidth() / 2, MegaMarius.M_Height / 2 - 20);  // Slightly below the victoryLabel
         uiStage.addActor(retryLabel);
 
-        this.resumeGameLabel = new Label("Resume Game",font);
-        this.settingsGameLabel = new Label("Settings", font);
-        resumeGameLabel.setVisible(false);
-        settingsGameLabel.setVisible(false);
-        resumeGameLabel.setPosition(MegaMarius.M_Width / 2 -resumeGameLabel.getWidth() / 2, MegaMarius.M_Height / 2 + 20);  // Adjust Y position for visibility
-        uiStage.addActor(resumeGameLabel);
-        settingsGameLabel.setPosition(MegaMarius.M_Width / 2 - settingsGameLabel.getWidth() / 2, MegaMarius.M_Height / 2 - 20);  // Slightly below the victoryLabel
-        uiStage.addActor(settingsGameLabel);
+      
 
         this.mapSelect = new showMapSelect(game);
         this.shapeRenderer = new ShapeRenderer();
@@ -195,63 +186,67 @@ public class ShowGame implements Screen{
 
     @Override
     public void render(float delta) {
-        
+        updateState(delta);
+        ScreenManager.getInstance().clearScreen();
+        drawGameWorld();
+        drawUI();
+        handleScreenTransitions();
+    }
 
+    private void updateState(float delta) {
         update(delta);
+        handleInput();
+    }
 
-        Gdx.gl.glClearColor(0,0,0,1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); //clears screen
-
+    private void drawGameWorld() {
         renderer.render();
-
-        b2dr.render(world, gameCam.combined); // Uncomment to show hitbox
-        if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
-            game.setScreen(new showMapSelect(game));
-            dispose();
-        }
-
-        if (Marius.getGameWon()){
-            drawGrayOverlay();
-        }
-
         game.getSpriteBatch().setProjectionMatrix(gameCam.combined);
         game.getSpriteBatch().begin();
         player.draw(game.getSpriteBatch());
-        for(Enemy enemy : creator.getEnemies()){
+        for (Enemy enemy : creator.getEnemies()) {
             enemy.draw(game.getSpriteBatch());
-        for(Item item : items){
+        }
+        for (Item item : items) {
             item.draw(game.getSpriteBatch());
         }
-        }
         game.getSpriteBatch().end();
+    }
 
+    private void drawUI() {
         game.getSpriteBatch().setProjectionMatrix(display.stage.getCamera().combined);
         display.stage.draw();
-
-        // Check if game is over
-        if(gameIsOver()) {
-            game.setScreen(new ShowGameOver(game, fileName));
-            dispose();
-        }
         if (Marius.getGameWon()) {
-            uiStage.act(delta);
+            drawGrayOverlay();
             uiStage.draw();
             retryLabel.setVisible(true);
             victoryLabel.setVisible(true);
-            String nextMap = mapSelect.getNextMap(fileName);
-            if (nextMap=="GameCompleted"){
-                game.setScreen(new showGameCompleted(game));
-            }
-            if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-                // Start next map if enter is pressed
-                game.setScreen(new ShowGame(game,nextMap));
-                Display.updateLevel(1);
-                dispose();
-            } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-                // Exit game if 'escape' key is pressed
-                dispose();
-                System.exit(0);
-            }
+        }
+    }
+
+    private void handleScreenTransitions() {
+        if (gameIsOver()) {
+            ScreenManager.getInstance().showScreen("GameOver", new ShowGameOver(game, fileName));
+        } else if (Marius.getGameWon()) {
+            handleVictoryTransition();
+        }
+    }
+
+    private void handleInput() {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            ScreenManager.getInstance().showScreen("PauseGame", new showPauseScreen(game, player, player.currentState));
+            player.setCurrentState(Marius.State.PAUSED);
+        }
+    }
+
+    private void handleVictoryTransition() {
+        String nextMap = mapSelect.getNextMap(fileName);
+        if (nextMap.equals("GameCompleted")) {
+            ScreenManager.getInstance().showScreen("GameCompleted", new showGameCompleted(game));
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+            ScreenManager.getInstance().showScreen("ShowGame", new ShowGame(game, nextMap));
+            Display.updateLevel(1);
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            System.exit(0);
         }
     }
     /*

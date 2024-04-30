@@ -113,6 +113,10 @@ import inf112.Screens.ShowGameOver;
 		}
 	
 		public void update(float dt){
+			
+			if(currentState==State.PAUSED){
+				return;
+			}
 			// Check if time is up or marius has died
 			if((screen.getDisplay().isTimeUp() && !entityIsDead()) || fallOfMap()) {
 				entityDie();
@@ -406,5 +410,16 @@ import inf112.Screens.ShowGameOver;
 
 		public ShowGame getScreen(){
 			return screen;
+		}
+
+		public void setCurrentState(State newState) {
+			// Before changing the state, update previousState
+			this.previousState = this.currentState;
+		
+			// Change the current state to the new state
+			this.currentState = newState;
+		
+			// Reset the state timer because the state has changed
+			this.stateTimer = 0;
 		}
 }

@@ -70,7 +70,7 @@ public class PepsiTest {
         map = mapLoader.load(fileName);
         when(cScreen.getWorld()).thenReturn(world);
         when(cScreen.getMap()).thenReturn(map);
-        textureAtlas = new TextureAtlas("Characters/Mario_and_Enemies.pack");
+        textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
         //when(cScreen.getAtlas().findRegion("pepsi")).thenReturn(textureAtlas.findRegion("pepsi"));
         pepsi = new Pepsi(cScreen, 0, 0);

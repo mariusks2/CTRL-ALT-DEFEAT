@@ -27,9 +27,8 @@ public class CharactersTest {
     }
 
     @Test
-    void marioAndEnemiesTest() {
-        assertTrue(Gdx.files.internal("Characters/Mario_and_Enemies.png").exists());
-        assertTrue(Gdx.files.internal("Characters/Mario_and_Enemies.png").exists());
+    void MMCharacterTest() {
+        assertTrue(Gdx.files.internal("Characters/MegaMariusCharacters.pack").exists());
     }
     
 }

@@ -78,7 +78,7 @@ public class MariusTest {
         when(cScreen.getWorld()).thenReturn(world);
         when(cScreen.getMap()).thenReturn(map);
 		when(cScreen.getDisplay()).thenReturn(display);
-        textureAtlas = new TextureAtlas("Characters/Mario_and_Enemies.pack");
+        textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
         //when(cScreen.getAtlas().findRegion("pepsi")).thenReturn(textureAtlas.findRegion("pepsi"));
         marius = new Marius(cScreen);

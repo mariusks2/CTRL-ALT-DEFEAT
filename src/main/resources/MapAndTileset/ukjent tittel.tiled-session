@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "level2.tmx",
+    "activeFile": "level3.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -57,11 +57,11 @@
                 3,
                 5
             ],
-            "scale": 1.5,
-            "selectedLayer": 1,
+            "scale": 8,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 1919.6666666666665,
-                "y": 128.33333333333331
+                "x": 1865.1875,
+                "y": 191.6875
             }
         },
         "mario1.tmx": {
@@ -87,8 +87,8 @@
     "project": "ukjent tittel.tiled-project",
     "recentFiles": [
         "level1.tmx",
-        "level3.tmx",
         "level2.tmx",
+        "level3.tmx",
         "mario1.tmx",
         "custom1.tmx"
     ]

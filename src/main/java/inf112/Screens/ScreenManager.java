@@ -82,6 +82,8 @@ public class ScreenManager {
         return currentGameScreen;
     }
 
+
+
     /**
      * Clears the screen with a solid black color
      */

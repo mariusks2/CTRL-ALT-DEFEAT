@@ -72,6 +72,13 @@ public class showHelpScreen implements Screen{
             ScreenManager.getInstance().showScreen("StartGame", new ShowStartGame(megaMariusGame));
         }
     }
+
+    public void renderTest(){
+        handleInput();
+        ScreenManager.getInstance().clearScreen();
+        ScreenManager.getInstance().drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
+    }
+
     //Lifecycle methods that are part of the Screen interface but are not used
     @Override
     public void show() {}

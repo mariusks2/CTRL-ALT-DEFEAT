@@ -29,7 +29,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import inf112.skeleton.app.MegaMarius;
 import inf112.Entities.Item;
 import inf112.Entities.ItemDef;
-import inf112.Entities.Blocks.CoinAnimation;
 import inf112.Entities.Blocks.Pepsi;
 import inf112.Entities.Enemies.Enemy;
 import inf112.Scenes.Display;
@@ -156,10 +155,8 @@ public class ShowGame implements Screen{
             if(itemDef.type == Pepsi.class){
                 items.add(new Pepsi(this, itemDef.positon.x, itemDef.positon.y));
             }
-            if(itemDef.type == CoinAnimation.class){
-                items.add(new CoinAnimation(this, itemDef.positon.x, itemDef.positon.y));
-            }
         }
+        
     }
 
     /**
@@ -251,6 +248,7 @@ public class ShowGame implements Screen{
         display.stage.draw();
         if (Marius.getGameWon()) {
             drawGrayOverlay();
+            //game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), 1);
             uiStage.draw();
             retryLabel.setVisible(true);
             victoryLabel.setVisible(true);
@@ -284,8 +282,10 @@ public class ShowGame implements Screen{
     private void handleVictoryTransition() {
         String nextMap = mapSelect.getNextMap(fileName);
         if (nextMap.equals("GameCompleted")) {
+            game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), 1); // TODO change the level parameter to get the current level
             ScreenManager.getInstance().showScreen("GameCompleted", new showGameCompleted(game));
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+            game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), 1); // TODO change the level parameter to get the current level
             ScreenManager.getInstance().showScreen("ShowGame", new ShowGame(game, nextMap));
             Display.updateLevel(1);
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {

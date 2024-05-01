@@ -1,8 +1,6 @@
-package inf112.skeleton.app;
+package inf112.Screens;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -23,38 +21,27 @@ import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2D;
-import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.badlogic.gdx.physics.box2d.Contact;
-import com.badlogic.gdx.physics.box2d.ContactListener;
-import com.badlogic.gdx.physics.box2d.EdgeShape;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 
-import inf112.Entities.Blocks.Pepsi;
-import inf112.Entities.Enemies.Spider;
-import inf112.Entities.Enemies.Turtle;
+import inf112.Entities.Blocks.Brick;
 import inf112.Scenes.Display;
-import inf112.Screens.ScreenManager;
-import inf112.Screens.ShowGame;
-import inf112.Screens.ShowStartGame;
+import inf112.skeleton.app.Marius;
+import inf112.skeleton.app.MegaMarius;
+import inf112.skeleton.app.Marius.State;
 
-public class WorldContactListenerTest {
+public class PauseScreenTest {
+    Brick brick;
     RectangleMapObject object;
     TmxMapLoader mapLoader;
     String fileName = "MapAndTileset/level1.tmx";
     TiledMap map;
     static GL20 gl;
     Display display;
-	ShowStartGame sGame;
+	showPauseScreen sGame;
     SpriteBatch batch;
     private static HeadlessApplication headlessApplication;
-    WorldContactListener wListener;
-    TextureAtlas textureAtlas;
-    ShowGame cScreen;
-    World world;
+    
     
 
     @BeforeAll
@@ -76,7 +63,7 @@ public class WorldContactListenerTest {
         when(gl.glCreateProgram()).thenReturn(-1);
         Gdx.gl = gl; 
         Gdx.gl20 = gl; 
-        MegaMarius megaMarius = new MegaMarius();
+        MegaMarius megaMarius = new MegaMarius(); // Your implementation of ApplicationListener
 
         headlessApplication = new HeadlessApplication(megaMarius, config);
     }
@@ -86,61 +73,58 @@ public class WorldContactListenerTest {
 	 */
 	@BeforeEach
 	void setUpBeforeEach() {
+	
+        // Initialize Box2D
+      
+        MegaMarius megaMarius = (MegaMarius) headlessApplication.getApplicationListener();
+
+        // Provide a stub for glGenTexture() method to avoid further issues
+
+        // Provide a stub for glGenTexture() method to avoid further issues
         
 
-        cScreen = mock(ShowGame.class);
+        
+		//when(Gdx.graphics.getGL20()).thenReturn(gl);
+		//when(Gdx.graphics.getWidth()).thenReturn(800); // Example width
+		//when(Gdx.graphics.getHeight()).thenReturn(600);
+        
+        World world = new World(new Vector2(0, -10), true);
         display = new Display(mock(SpriteBatch.class));
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
-        wListener = new WorldContactListener();
-        world = new World(new Vector2(10, 10), false);
-        world.setContactListener(wListener);
+		megaMarius.createTest((mock(SpriteBatch.class)));
+        ShowGame cScreen = mock(ShowGame.class);
         when(cScreen.getWorld()).thenReturn(world);
         when(cScreen.getMap()).thenReturn(map);
-		when(cScreen.getDisplay()).thenReturn(display);
-        textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
+        TextureAtlas textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
+        Marius marius = new Marius(cScreen);
+        sGame = new showPauseScreen(megaMarius, marius, State.STANDING);
+        ScreenManager.getInstance().initialize(megaMarius);
 	}
+
     @Test
-    void contactMariusItemTest(){
-        Marius marius = new Marius(cScreen);
-        Pepsi pepsi = new Pepsi(cScreen, 0, 0);
-        assertEquals(2, world.getBodyCount());
-        world.step(0, 0, 0);
-        wListener.beginContact(world.getContactList().first());
+    void resizeTest(){
+        sGame.resize(10, 10);
     }
-    /* 
     @Test
-    void contactMariusEnemyTest1(){
-        Marius marius = new Marius(cScreen);
-        Spider spider = new Spider(cScreen, 0, 0);
-        assertEquals(2, world.getBodyCount());
-        world.step(10, 1, 1);
-        //assertEquals(marius.getX(), spider.getX());
-        wListener.beginContact(world.getContactList().first());
+    void checkButtonPressTest(){
+        
+    }
+    @Test
+    void handleInputTest(){
+
+    }
+    @Test
+    void disposeTest(){
+        sGame.dispose();
     }
 
     @Test
-    void contactMariusEnemyTest(){
-        Marius marius = new Marius(cScreen);
-        Turtle turtle = new Turtle(cScreen, 0, 0);
-        turtle.update(0);
-        assertEquals(2, world.getBodyCount());
-        world.step(0, 0, 0);
-        wListener.beginContact(world.getContactList().first());
+    void thisScreenTest(){
+        ScreenManager.getInstance().showScreen("ShowPauseScreen", sGame);
+        assertEquals(sGame.getClass(), ScreenManager.getInstance().getCurrentGameScreen().getClass());
+        
     }
 
-    @Test
-    void contactEnemyTest(){
-        Spider spider = new Spider(cScreen, 0, 0);
-        spider.setPosition(0, 0);
-        Turtle turtle = new Turtle(cScreen, 0, 0);
-        turtle.setPosition(0, 1);
-        turtle.update(0);
-        assertEquals(2, world.getBodyCount());
-        world.step(0, 0, 0);
-        wListener.beginContact(world.getContactList().first());
-    }
-
-    */
 }

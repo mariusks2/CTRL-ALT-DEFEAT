@@ -1,6 +1,7 @@
 package inf112.Entities.Blocks;
 
-import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.maps.MapObject;
 
 import inf112.Entities.InteractiveTileObj;
@@ -21,16 +22,22 @@ import inf112.skeleton.app.MegaMarius;
 */
 public class Brick extends InteractiveTileObj{
 
+    private AssetManager manager;
+    private Music music;
+
     /**
      * Constructs a Brick object with given screen and map object.
      * 
      * @param screen Game screen
-     * @param object Map object
+     * @param object The Map
      */
     public Brick(ShowGame screen, MapObject object){
         super(screen, object);
         fixture.setUserData(this);
         setCategoryFilter(MegaMarius.BRICK_BIT); //Set the block to Brick bit.
+        manager = new AssetManager();
+        manager.load("audio/music/brick.wav", Music.class);
+        manager.finishLoading();
     }
 
     /**
@@ -40,19 +47,17 @@ public class Brick extends InteractiveTileObj{
      * when his head collides with it.
      * 
      * @param marius The Marius object. Must not be null.
-     * @throws NullPointerExpetion If Marius is null.
      */
     @Override
     public void HeadHit(Marius marius) {
 
         if(marius.isMariusBigNow()){
-            Gdx.app.log("Brick", "Collision"); // Console logging
+            music = manager.get("audio/music/brick.wav", Music.class);
+			music.setVolume(0.005f);
+			music.play(); // Comment this out to stop music from playing
             setCategoryFilter(MegaMarius.DESTROYED_BIT); // Set the block to Destroyed bit.
             getCell().setTile(null); // Set tile to null (removes the block from map)
             Display.updateScore(200); // Update score
-        }
-        else {
-            // Marius is not big
         }
     }
 }

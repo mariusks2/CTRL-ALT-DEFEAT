@@ -1,6 +1,7 @@
 package inf112.Entities.Blocks;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -79,6 +80,7 @@ public class PepsiTest {
     @Test
     void createTest() {
         pepsi.getClass().equals(Pepsi.class);
+        assertEquals(false, pepsi.isDestroyed());
     }
 
     @Test
@@ -87,6 +89,8 @@ public class PepsiTest {
         pepsi.use(mockMarius);
         assertEquals(MegaMarius.ITEM_BIT, pepsi.getCatergoryBits());
         verify(mockMarius).grow();
+        pepsi.update(0);
+        assertEquals(true, pepsi.isDestroyed());
     }
 
     @Test
@@ -101,6 +105,13 @@ public class PepsiTest {
         pepsi.update(1);
         assertEquals(0, pepsi.b2body.getPosition().x);
         assertEquals(0, pepsi.b2body.getPosition().y);
-        assertEquals(new Vector2(0.7f, 0), pepsi.b2body.getLinearVelocity());
+        assertEquals(new Vector2(0.6f, 0), pepsi.b2body.getLinearVelocity());
+    }
+
+    @Test
+    void testRev(){
+        pepsi.revVelocity(true, false);
+        pepsi.update(1);
+        assertNotEquals(0, pepsi.getX()); 
     }
 }

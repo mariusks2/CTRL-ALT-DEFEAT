@@ -63,6 +63,12 @@ public class showHelpScreen implements Screen{
         }
     }
 
+    public void renderTest(){
+        handleInput();
+        ScreenManager.getInstance().clearScreen();
+        ScreenManager.getInstance().drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
+    }
+
     @Override
     public void resize(int width, int height) {
     }

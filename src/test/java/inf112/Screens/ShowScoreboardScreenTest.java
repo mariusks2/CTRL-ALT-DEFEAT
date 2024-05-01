@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3NativesLoader;
@@ -27,14 +26,14 @@ import com.badlogic.gdx.physics.box2d.World;
 import inf112.Scenes.Display;
 import inf112.skeleton.app.MegaMarius;
 
-public class ShowHelpScreenTest {
-     RectangleMapObject object;
+public class ShowScoreboardScreenTest {
+    RectangleMapObject object;
     TmxMapLoader mapLoader;
     String fileName = "MapAndTileset/level1.tmx";
     TiledMap map;
     static GL20 gl;
     Display display;
-	showHelpScreen sGame;
+	ShowStartGame sGame;
     SpriteBatch batch;
     private static HeadlessApplication headlessApplication;
     
@@ -89,7 +88,7 @@ public class ShowHelpScreenTest {
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
 		megaMarius.createTest((mock(SpriteBatch.class)));
-        sGame = new showHelpScreen(megaMarius);
+        sGame = new ShowStartGame(megaMarius);
         ScreenManager.getInstance().initialize(megaMarius);
 	}
 
@@ -103,20 +102,8 @@ public class ShowHelpScreenTest {
     }
     @Test
     void handleInputTest(){
-        Input input = mock(Input.class);
-        Gdx.input = input;
-        when(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)).thenReturn(true);
-        sGame.renderTest();
-    }
 
-    @Test
-    void handleInputTest2(){
-        Input input = mock(Input.class);
-        Gdx.input = input;
-        when(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)).thenReturn(true);
-        sGame.renderTest();
     }
-
     @Test
     void disposeTest(){
         sGame.dispose();
@@ -124,8 +111,10 @@ public class ShowHelpScreenTest {
 
     @Test
     void thisScreenTest(){
-        ScreenManager.getInstance().showScreen("showHelpScreen", sGame);
+        ScreenManager.getInstance().showScreen("showStartGane", sGame);
         assertEquals(sGame.getClass(),ScreenManager.getInstance().getCurrentGameScreen().getClass());
         
     }
+
+
 }

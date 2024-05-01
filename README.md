@@ -25,3 +25,5 @@ Musikk fra <a href="https://pixabay.com/users/white_records-32584949/?utm_source
 Sprite resources, some we have edited : <a href= https://www.spriters-resource.com/nes/supermariobros/sheet/52571> </a>
 
 Powerup 10.wav by MATRIXXX_ -- https://freesound.org/s/523654/ -- License: Creative Commons 0
+
+Retro, Coin 02.wav by MATRIXXX_ -- https://freesound.org/s/402288/ -- License: Creative Commons 0

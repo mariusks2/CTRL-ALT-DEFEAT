@@ -29,7 +29,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import inf112.skeleton.app.MegaMarius;
 import inf112.Entities.Item;
 import inf112.Entities.ItemDef;
-import inf112.Entities.Blocks.CoinAnimation;
 import inf112.Entities.Blocks.Pepsi;
 import inf112.Entities.Enemies.Enemy;
 import inf112.Scenes.Display;
@@ -138,11 +137,7 @@ public class ShowGame implements Screen{
             if(itemDef.type == Pepsi.class){
                 items.add(new Pepsi(this, itemDef.positon.x, itemDef.positon.y));
             }
-            if(itemDef.type == CoinAnimation.class){
-                items.add(new CoinAnimation(this, itemDef.positon.x, itemDef.positon.y));
-            }
         }
-        
     }
 
 

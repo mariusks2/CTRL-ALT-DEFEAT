@@ -39,8 +39,8 @@ public class Spider extends Enemy{
      * Constructs a Spider object with given screen, x and y values.
      * 
      * @param screen ShowGame screen.
-     * @param x float x.
-     * @param y float y.
+     * @param x pos x.
+     * @param y pos y.
      */
     public Spider(ShowGame screen, float x, float y) {
         super(screen, x, y);
@@ -120,9 +120,9 @@ public class Spider extends Enemy{
     }
 
     /**
-     * 
-     * 
-     * @param batch Batch batch.
+     * Function for "drinking" a pepsi.
+     * checks if you are big marius, if not, you grow.
+     * @param Marius the playable character
      */
     public void draw(Batch batch){
         if (!destroyed || stateTime < 1) {

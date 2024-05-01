@@ -1,6 +1,5 @@
 package inf112.Entities.Blocks;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapObject;
 
 import inf112.Entities.InteractiveTileObj;
@@ -25,7 +24,7 @@ public class Brick extends InteractiveTileObj{
      * Constructs a Brick object with given screen and map object.
      * 
      * @param screen Game screen
-     * @param object Map object
+     * @param object The Map
      */
     public Brick(ShowGame screen, MapObject object){
         super(screen, object);
@@ -40,19 +39,14 @@ public class Brick extends InteractiveTileObj{
      * when his head collides with it.
      * 
      * @param marius The Marius object. Must not be null.
-     * @throws NullPointerExpetion If Marius is null.
      */
     @Override
     public void HeadHit(Marius marius) {
 
         if(marius.isMariusBigNow()){
-            Gdx.app.log("Brick", "Collision"); // Console logging
             setCategoryFilter(MegaMarius.DESTROYED_BIT); // Set the block to Destroyed bit.
             getCell().setTile(null); // Set tile to null (removes the block from map)
             Display.updateScore(200); // Update score
-        }
-        else {
-            // Marius is not big
         }
     }
 }

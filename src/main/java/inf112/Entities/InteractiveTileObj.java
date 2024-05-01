@@ -3,6 +3,7 @@ package inf112.Entities;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -59,8 +60,17 @@ public abstract class InteractiveTileObj {
     //Get the cells from layer 1.
     public TiledMapTileLayer.Cell getCell(){
         TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(1);
-        return layer.getCell((int)(body.getPosition().x * MegaMarius.PPM / 16),
-                (int)(body.getPosition().y * MegaMarius.PPM / 16));
+        return layer.getCell((int)(body.getPosition().x * MegaMarius.PPM / 16), (int)(body.getPosition().y * MegaMarius.PPM / 16));
+    }
+    //Get the cells from layer 1.
+    public TiledMapTileLayer.Cell getCellAbove(){
+        TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(1);
+        TiledMapTileLayer.Cell tile = layer.getCell((int)(body.getPosition().x * MegaMarius.PPM / 16), (int)(body.getPosition().y * MegaMarius.PPM / 16)+1);
+        if (tile == null) {
+        return getCell();
+        }else {
+            return tile;
+        }
     }
 
     //for testing

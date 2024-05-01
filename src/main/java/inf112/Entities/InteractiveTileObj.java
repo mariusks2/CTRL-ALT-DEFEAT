@@ -57,20 +57,16 @@ public abstract class InteractiveTileObj {
         filter.categoryBits = filterBit;
         fixture.setFilterData(filter);
     }
-    //Get the cells from layer 1.
+    //Get a cell from layer 1.
     public TiledMapTileLayer.Cell getCell(){
         TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(1);
         return layer.getCell((int)(body.getPosition().x * MegaMarius.PPM / 16), (int)(body.getPosition().y * MegaMarius.PPM / 16));
     }
-    //Get the cells from layer 1.
+    //Get a cellsfrom layer 1 but the one above the cell. !!NOT DONE
     public TiledMapTileLayer.Cell getCellAbove(){
         TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(1);
         TiledMapTileLayer.Cell tile = layer.getCell((int)(body.getPosition().x * MegaMarius.PPM / 16), (int)(body.getPosition().y * MegaMarius.PPM / 16)+1);
-        if (tile == null) {
-        return getCell();
-        }else {
-            return tile;
-        }
+        return tile;
     }
 
     //for testing

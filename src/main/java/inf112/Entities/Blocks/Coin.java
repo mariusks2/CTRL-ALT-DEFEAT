@@ -54,7 +54,6 @@ public class Coin extends InteractiveTileObj{
             else {
                 getCellAbove().setTile(tileSet.getTile(COIN));
             }
-             
         }
     }
 }

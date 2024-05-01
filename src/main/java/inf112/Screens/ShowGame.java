@@ -217,6 +217,7 @@ public class ShowGame implements Screen{
         display.stage.draw();
         if (Marius.getGameWon()) {
             drawGrayOverlay();
+            //game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), 1);
             uiStage.draw();
             retryLabel.setVisible(true);
             victoryLabel.setVisible(true);
@@ -241,14 +242,17 @@ public class ShowGame implements Screen{
     private void handleVictoryTransition() {
         String nextMap = mapSelect.getNextMap(fileName);
         if (nextMap.equals("GameCompleted")) {
+            game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), 1); // TODO change the level parameter to get the current level
             ScreenManager.getInstance().showScreen("GameCompleted", new showGameCompleted(game));
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+            game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), 1); // TODO change the level parameter to get the current level
             ScreenManager.getInstance().showScreen("ShowGame", new ShowGame(game, nextMap));
             Display.updateLevel(1);
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             System.exit(0);
         }
     }
+    
     /*
      * Method for drawing a light gray overlay when the game is won, used to display a clear difference between game and game win screen
      */

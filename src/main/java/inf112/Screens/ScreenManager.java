@@ -48,6 +48,7 @@ public class ScreenManager {
         return currentGameScreen; // Return the stored game screen
     }
 
+
     public void clearScreen() {
         // Clear the screen
         Gdx.gl.glClearColor(0, 0, 0, 1);

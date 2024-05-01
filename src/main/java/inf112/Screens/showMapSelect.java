@@ -48,8 +48,8 @@ public class showMapSelect implements Screen {
         handleInputs();
         ScreenManager.getInstance().clearScreen();
         ScreenManager.getInstance().drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
-        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
-        stage.draw();
+        //stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+        //stage.draw();
     }
 
     private void handleInputs(){
@@ -79,6 +79,9 @@ public class showMapSelect implements Screen {
         Rectangle map3 = new Rectangle(212,63,100,51);
         Rectangle map3Text = new Rectangle(223,103,54,5);
 
+        // Defines the bouds where the scoreboard button is defined.
+        Rectangle scoreboardButton = new Rectangle(182, 18, 33, 6);
+
         // Check if the click is within the bounds of any of the rectangles
         //Here we could use a for loop for the map list for better implementation with more maps
         if (backBound.contains(clickPosition)) {
@@ -94,6 +97,10 @@ public class showMapSelect implements Screen {
         else if (map3.contains(clickPosition) || map3Text.contains(clickPosition)){
            ScreenManager.getInstance().showScreen("ShowGame", new ShowGame(megaMariusGame, mapList.get(2)));
            Display.updateLevel(2);
+        }
+        else if (scoreboardButton.contains(clickPosition)) {
+            megaMariusGame.setScreen(megaMariusGame.getScoreboardScreen());
+            dispose();
         }
     }
 

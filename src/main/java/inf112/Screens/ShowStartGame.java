@@ -28,8 +28,6 @@ public class ShowStartGame implements Screen {
         this.backgroundImage = new Texture("src/main/resources/Screens/start-screen.png");
     }
 
-   
-
     @Override
     public void show() {
 

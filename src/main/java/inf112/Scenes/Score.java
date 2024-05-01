@@ -5,9 +5,8 @@ public class Score {
     private int time;
     private int score;
     private int level;
-    private String username;
 
-    public Score(int time, int score, int level, String username) {
+    public Score(int time, int score, int level) {
         this.time = time;
         this.score = score;
         this.level = level;
@@ -23,9 +22,5 @@ public class Score {
 
     public int getLevel() {
         return this.level;
-    }
-    
-    public String getUsername() {
-        return this.username;
     }
 }

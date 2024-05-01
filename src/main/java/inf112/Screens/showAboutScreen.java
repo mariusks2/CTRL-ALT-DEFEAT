@@ -14,14 +14,21 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import inf112.skeleton.app.MegaMarius;
 
-
+/**
+ * This screen displas the "About" page for the MegaMarius game.
+ * It displays general information about the game. 
+ */
 public class showAboutScreen implements Screen {
 
-    private MegaMarius megaMariusGame;
-    private Viewport viewport;
-    private Stage stage;
-    private Texture backgroundImage;
+    private MegaMarius megaMariusGame; //The main game object
+    private Viewport viewport; //Manages how the screen is displayed
+    private Stage stage; //Holds UI elements for the screen
+    private Texture backgroundImage; //The graphical texture for the screens background image
 
+    /**
+     * Constructs the About scren with the graphical components used to display the screen.
+     * @param megaMariusGame The main game object to enable screen changes. 
+     */
     public showAboutScreen (MegaMarius megaMariusGame){
         this.megaMariusGame = megaMariusGame;
         this.viewport = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());
@@ -29,7 +36,11 @@ public class showAboutScreen implements Screen {
         this.backgroundImage = new Texture("Screens/about-screen.png");
     }
 
-   
+   /**
+    * Renders the about screen with the background image.
+    * Handles user input for navigation between screens
+    * @param delta The time in seconds since the last frame was rendered
+    */
     @Override
     public void render(float delta) {
         handleInput();
@@ -39,6 +50,9 @@ public class showAboutScreen implements Screen {
         stage.draw();   
     }
 
+    /**
+     * Handles keyboard and mouse input for navigation between screens.
+     */
     private void handleInput(){
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
            ScreenManager.getInstance().showScreen("StartGame", new ShowStartGame(megaMariusGame));
@@ -50,6 +64,10 @@ public class showAboutScreen implements Screen {
         }
     }
 
+    /**
+     * Checks if a button press ocurred within specific screen coordinates 
+     * @param clickPosition The position of the mouse click, translated to game coordinates using the Rectangle object.
+     */
     private void checkButtonPress(Vector2 clickPosition){
         // Defines the bounding box where the back arrow is located
         Rectangle backBounds = new Rectangle(6, 197,35 , 8);
@@ -58,26 +76,22 @@ public class showAboutScreen implements Screen {
         }
     }
 
-    @Override
-    public void show() {
-    }
 
+    //Lifecycle methods that are part of the Screen interface but are not used
     @Override
-    public void resize(int width, int height) {
-    }
-
+    public void show() {}
     @Override
-    public void pause() {
-    }
-
+    public void resize(int width, int height) {}
     @Override
-    public void resume() {
-    }
-
+    public void pause() {}
     @Override
-    public void hide() {
-    }
+    public void resume() {}
+    @Override
+    public void hide() {}
 
+    /**
+     * Disposes of resources when the screen is no longer needed.
+     */
     @Override
     public void dispose() {
         stage.dispose();

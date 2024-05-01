@@ -37,39 +37,48 @@ import inf112.skeleton.MakeMap.MakeMap;
 import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.WorldContactListener;
 
+/**
+ * This class represents the main game screen and renders 
+ */
 public class ShowGame implements Screen{
-    private MegaMarius game;
-    private TextureAtlas atlas;
-    private OrthographicCamera gameCam;
-    private Viewport gamePort;
-    private Display display;
+    private MegaMarius game; //Reference to the main game object
+    private TextureAtlas atlas; //Contains textures related to characters
+    private OrthographicCamera gameCam; //
+    private Viewport gamePort; //Mangages how content is displayed
+    private Display display; //UI display for the game
     private Stage uiStage;
-    private LabelStyle font;
-    private Label victoryLabel;
-    private Label retryLabel;
-    private showMapSelect mapSelect;
+    private LabelStyle font; //Font style for UI labels
+    private Label victoryLabel; //Text to display when level is completed
+    private Label retryLabel; //Instruction on what to do after completing level
+    private showMapSelect mapSelect; //Used for getting next map when level is completed
 
     //For creating a grayed out screen when the game is won
     private ShapeRenderer shapeRenderer;
 
-    private TmxMapLoader mapLoader;
+    //Renderer for the tiled map
+    private TmxMapLoader mapLoader; //Loads the chosen map
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
     
-    private World world;
-    private MakeMap creator;
+    private World world; //Represents the physical world within the game
+    private MakeMap creator; //Creating the map
 
-    private Marius player;
-    private float accumulator = 0f;
-    private float stepTime = 1/60f;
+    private Marius player; //The players character
+    private float accumulator = 0f; //Fixed timestep in game loop
+    private float stepTime = 1/60f; //Timestep
 
-    private Music music;
-    private Array<Item> items;
-    public LinkedBlockingQueue<ItemDef> itemsToSpawn;
-    public String fileName;
-    //private Box2DDebugRenderer b2dr;
+    private Music music; //Background music for the game
+    private Array<Item> items; //Items present in the game
+    public LinkedBlockingQueue<ItemDef> itemsToSpawn; //items needed to be spawned
+    public String fileName; //Name of the current map file
+    
+    //private Box2DDebugRenderer b2dr; //Used to display hitbox if uncommented
 
-
+    /**
+     * Initialization of the game and variables used to display the game
+     * @param game Reference to the main game object
+     * @param fileName The filename of the map to display
+     */
     public ShowGame(MegaMarius game, String fileName){
         atlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
 
@@ -123,15 +132,24 @@ public class ShowGame implements Screen{
         this.mapSelect = new showMapSelect(game);
         this.shapeRenderer = new ShapeRenderer();
     }
-
+    /**
+     * @return Returns the TextureAtlas which contains characters textures
+     */
     public TextureAtlas getAtlas() {
         return atlas;
     }
 
+    /**
+     * Queues an item to be spawned into the game world
+     * @param itemDef The definition of the item to be spawned
+     */
     public void spawnItems(ItemDef itemDef){
         itemsToSpawn.add(itemDef);
     }
 
+    /**
+     * Handles the creation and addition of items to the game world from the spaw queue.
+     */
     public void handleSpawningItems(){
         if(!itemsToSpawn.isEmpty()){
             ItemDef itemDef = itemsToSpawn.poll();
@@ -142,10 +160,12 @@ public class ShowGame implements Screen{
                 items.add(new CoinAnimation(this, itemDef.positon.x, itemDef.positon.y));
             }
         }
-        
     }
 
-
+    /**
+     * Updates the game physics and enemies and renders the scene
+     * @param dt The time passed since the last frame
+     */
     public void update(float dt){
         if (player.currentState==Marius.State.PAUSED){
             return;
@@ -184,6 +204,10 @@ public class ShowGame implements Screen{
         renderer.setView(gameCam);
     }
 
+    /**
+     * Renders the game world and UI, and handles user input.
+     * @param delta Time passed since last frame
+     */
     @Override
     public void render(float delta) {
         updateState(delta);
@@ -193,11 +217,18 @@ public class ShowGame implements Screen{
         handleScreenTransitions();
     }
 
+    /**
+     * Updates the game state and handles input.
+     * @param delta Time passed since last frame
+     */
     private void updateState(float delta) {
         update(delta);
         handleInput();
     }
 
+    /**
+     * Draws all game world elements
+     */
     private void drawGameWorld() {
         renderer.render();
         game.getSpriteBatch().setProjectionMatrix(gameCam.combined);
@@ -212,6 +243,9 @@ public class ShowGame implements Screen{
         game.getSpriteBatch().end();
     }
 
+    /**
+     * Draws the game UI such as scores and status messages like game won and game over
+     */
     private void drawUI() {
         game.getSpriteBatch().setProjectionMatrix(display.stage.getCamera().combined);
         display.stage.draw();
@@ -223,6 +257,9 @@ public class ShowGame implements Screen{
         }
     }
 
+    /**
+     * Handles transitions between different game screens based on game state
+     */
     private void handleScreenTransitions() {
         if (gameIsOver()) {
             ScreenManager.getInstance().showScreen("GameOver", new ShowGameOver(game, fileName));
@@ -231,6 +268,9 @@ public class ShowGame implements Screen{
         }
     }
 
+    /**
+     * Handles user input for when the player wnats to pause the game
+     */
     private void handleInput() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             ScreenManager.getInstance().showScreen("PauseGame", new showPauseScreen(game, player, player.currentState));
@@ -238,6 +278,9 @@ public class ShowGame implements Screen{
         }
     }
 
+    /**
+     * Handles the game screens and user input when the game is won
+     */
     private void handleVictoryTransition() {
         String nextMap = mapSelect.getNextMap(fileName);
         if (nextMap.equals("GameCompleted")) {
@@ -249,7 +292,7 @@ public class ShowGame implements Screen{
             System.exit(0);
         }
     }
-    /*
+    /**
      * Method for drawing a light gray overlay when the game is won, used to display a clear difference between game and game win screen
      */
     private void drawGrayOverlay() {
@@ -263,7 +306,7 @@ public class ShowGame implements Screen{
         Gdx.gl.glDisable(GL20.GL_BLEND);
     }
 
-    /*
+    /**
      * Method for checking whether the game is over or not, returns true if the player is dead or the timer is done. Otherwise it returns false
      */
     private boolean gameIsOver() {
@@ -273,8 +316,9 @@ public class ShowGame implements Screen{
             return false;
     }
 
-    /*
+    /**
      * Method for handling the user input
+     * @param dt time since last frame.
      */
     private void handleInput(float dt) {
         //control our player using immediate impulses
@@ -287,41 +331,46 @@ public class ShowGame implements Screen{
                 player.b2body.applyLinearImpulse(new Vector2(-0.05f, 0), player.b2body.getWorldCenter(), true);
         } 
     }
-        
+    
+    /**
+     * Method for returning the tiledmap
+     * @return The tiled map
+     */
     public TiledMap getMap(){
         return map;
     }
 
+    /**
+     * Method for returning the current game world
+     * @return the current game world
+     */
     public World getWorld(){
         return world;
     }
 
 
-    @Override
-    public void show() {
-        
-    }
-
+  
+    /**
+     * Method for resizing the game screen
+     */
     @Override
     public void resize(int width, int height) {
         gamePort.update(width, height);
     }
 
+    //Lifecycle methods from the screen interface not used
     @Override
-    public void pause() {
-        
-    }
-
+    public void show() {}
     @Override
-    public void resume() {
-        
-    }
-
+    public void pause() {}
     @Override
-    public void hide() {
-        
-    }
+    public void resume() {}
+    @Override
+    public void hide() {}
 
+    /**
+     * Method for disposing UI elements
+     */
     @Override
     public void dispose() {
         map.dispose();
@@ -331,15 +380,21 @@ public class ShowGame implements Screen{
             display.dispose();
     }
     
+    /**
+     * Method for returning the current display
+     * @return current display
+     */
     public Display getDisplay(){
         return display; 
     }
+
+    /**
+     * Method for returning the current game object
+     * @return current game object
+     */
     public MegaMarius getGame() {
         return game;
     }
 
-    public void setDisplay(Display display) {
-        this.display = display;
-    }
 }
 

@@ -14,27 +14,32 @@ import com.badlogic.gdx.math.Vector2;
 
 import inf112.skeleton.app.MegaMarius;
 
+/**
+ * This screen represents the starting screen of the MegaMarius game,
+ * and handles navigatipn to different screens like map selection, help screen and the about screen
+ */
 public class ShowStartGame implements Screen {
 
-    private MegaMarius megaMariusGame;
-    private Viewport viewport;
-    private Stage stage;
-    private Texture backgroundImage;
+    private MegaMarius megaMariusGame; //Reference to the main game object for transition between screens
+    private Viewport viewport; //Manages how content is displayed
+    private Stage stage; //Stage to hold UI elements for this screen
+    private Texture backgroundImage; //Background image for the start screen
 
+    /**
+     * Constructor that initializes the start screen with necessary components
+     * @param megaMariusGame The main game object to enable screen changes
+     */
     public ShowStartGame(MegaMarius megaMariusGame) {
         this.megaMariusGame = megaMariusGame;
         this.viewport = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());
         this.stage = new Stage(viewport, megaMariusGame.getSpriteBatch());
         this.backgroundImage = new Texture("src/main/resources/Screens/start-screen.png");
     }
-
    
-
-    @Override
-    public void show() {
-
-    }
-
+    /**
+     * Renders the start screen and handles user input
+     * @param delta The time in seconds since the last frame was rendered
+     */
     @Override
     public void render(float delta) {
         handleInput();
@@ -44,6 +49,9 @@ public class ShowStartGame implements Screen {
         stage.draw();
     }
 
+    /**
+     * Handles user inputs such as keyboard presses and mouse clicks for navigation between screens
+     */
     private void handleInput(){
         if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
             ScreenManager.getInstance().showScreen("MapSelect", new showMapSelect(megaMariusGame));
@@ -58,6 +66,10 @@ public class ShowStartGame implements Screen {
         }
     }
 
+    /**
+     * Checks the position of a mouse click and responds by navigating to the correct screen.
+     * @param clickPosition The screen coordinates of the mouse click
+     */
     private void checkButtonPress(Vector2 clickPosition){
         //Define buttons bounds
         //Button for startgame
@@ -78,27 +90,23 @@ public class ShowStartGame implements Screen {
         }
     }
     
-
+    //Lifecycle methods from the screen interface which are not used
+    @Override
+    public void show() {}
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height, true);
     }
-
     @Override
-    public void pause() {
-
-    }
-
+    public void pause() {}
     @Override
-    public void resume() {
-
-    }
-
+    public void resume() {}
     @Override
-    public void hide() {
+    public void hide() {}
 
-    }
-
+    /**
+     * Disposes of resources like the stage and textures.
+     */
     @Override
     public void dispose() {
         stage.dispose();

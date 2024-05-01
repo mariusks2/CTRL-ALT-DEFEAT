@@ -81,7 +81,7 @@ public class showPauseScreen implements Screen{
 
         if(resumeBound.contains(clickPosition)){
             player.setCurrentState(previousState);
-            game.setScreen(ScreenManager.getInstance().getCurrentGameScreen());
+            game.setScreen(ScreenManager.getInstance().getShowGameScreen());
         }
         else if (settingsBound.contains(clickPosition)){
             ScreenManager.getInstance().showScreen("Settings", new ShowSettingsScreen(game));

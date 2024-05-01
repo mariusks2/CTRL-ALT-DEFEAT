@@ -39,8 +39,8 @@ public class Spider extends Enemy{
      * Constructs a Spider object with given screen, x and y values.
      * 
      * @param screen ShowGame screen.
-     * @param x float x.
-     * @param y float y.
+     * @param x pos x.
+     * @param y pos y.
      */
     public Spider(ShowGame screen, float x, float y) {
         super(screen, x, y);
@@ -106,8 +106,8 @@ public class Spider extends Enemy{
 
         PolygonShape head = new PolygonShape();
         Vector2[] vertice = new Vector2[4]; //defines hitbox for spider
-        vertice[0] = new Vector2(-5,10).scl(1/MegaMarius.PPM);
-        vertice[1] = new Vector2(5,10).scl(1/MegaMarius.PPM);
+        vertice[0] = new Vector2(-5,12).scl(1/MegaMarius.PPM);
+        vertice[1] = new Vector2(5,12).scl(1/MegaMarius.PPM);
         vertice[2] = new Vector2(-4,6).scl(1/MegaMarius.PPM);
         vertice[3] = new Vector2(4,6).scl(1/MegaMarius.PPM);
         head.set(vertice);
@@ -120,9 +120,9 @@ public class Spider extends Enemy{
     }
 
     /**
-     * 
-     * 
-     * @param batch Batch batch.
+     * Function for "drinking" a pepsi.
+     * checks if you are big marius, if not, you grow.
+     * @param Marius the playable character
      */
     public void draw(Batch batch){
         if (!destroyed || stateTime < 1) {

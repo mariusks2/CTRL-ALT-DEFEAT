@@ -17,6 +17,7 @@ public class ScreenManager {
     private MegaMarius game;
     private HashMap<String, Screen> screens;
     private Screen currentGameScreen; // Stores the currently active game screen
+    private Screen showGameScreen; //Stores the gameScreen for the pause screen
 
     private ScreenManager() {
         screens = new HashMap<>();
@@ -38,14 +39,19 @@ public class ScreenManager {
             screens.get(name).dispose();
         }
         screens.put(name, screen);
+        currentGameScreen = screen;
         if (name.equals("ShowGame")) {
-            currentGameScreen = screen; // Store the current game screen when it's shown, only necessary for the showgame, as we dont need to store the other. Only needed for pause.
+            showGameScreen = screen; // Store the current game screen when it's shown, only necessary for the showgame, as we dont need to store the other. Only needed for pause.
         }
         game.setScreen(screen);
     }
 
-    public Screen getCurrentGameScreen() {
-        return currentGameScreen; // Return the stored game screen
+    public Screen getShowGameScreen() {
+        return showGameScreen; // Return the stored game screen
+    }
+
+    public Screen getCurrentGameScreen(){
+        return currentGameScreen;
     }
 
 

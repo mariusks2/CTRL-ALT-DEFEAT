@@ -3,6 +3,7 @@ package inf112.Entities;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -56,11 +57,16 @@ public abstract class InteractiveTileObj {
         filter.categoryBits = filterBit;
         fixture.setFilterData(filter);
     }
-    //Get the cells from layer 1.
+    //Get a cell from layer 1.
     public TiledMapTileLayer.Cell getCell(){
         TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(1);
-        return layer.getCell((int)(body.getPosition().x * MegaMarius.PPM / 16),
-                (int)(body.getPosition().y * MegaMarius.PPM / 16));
+        return layer.getCell((int)(body.getPosition().x * MegaMarius.PPM / 16), (int)(body.getPosition().y * MegaMarius.PPM / 16));
+    }
+    //Get a cellsfrom layer 1 but the one above the cell. !!NOT DONE
+    public TiledMapTileLayer.Cell getCellAbove(){
+        TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(1);
+        TiledMapTileLayer.Cell tile = layer.getCell((int)(body.getPosition().x * MegaMarius.PPM / 16), (int)(body.getPosition().y * MegaMarius.PPM / 16)+1);
+        return tile;
     }
 
     //for testing

@@ -52,10 +52,10 @@ public class ShowGameOver implements Screen {
             // Start new game if 'enter' key is pressed
             ScreenManager.getInstance().showScreen("ShowGame", new ShowGame(megaMariusGame, fileName));
             if (fileName.equals("MapAndTileset/level2.tmx")){
-                Display.updateLevel(2);
+                Display.updateLevel(1);
             }
             else if (fileName.equals("MapAndTileset/level3.tmx")){
-                Display.updateLevel(3);
+                Display.updateLevel(2);
             }
 
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {

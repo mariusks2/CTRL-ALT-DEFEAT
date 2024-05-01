@@ -52,9 +52,7 @@ public class MegaMarius extends Game {
     }
 
     public void createTest(SpriteBatch spriteBatch) {
-        batch = spriteBatch;
-        manager = new AssetManager();
-        manager.finishLoading();
+        setSpriteBatch(spriteBatch);
     }
         
     @Override

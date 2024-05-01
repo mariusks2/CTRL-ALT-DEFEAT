@@ -111,7 +111,7 @@ import inf112.Screens.ShowGameOver;
 			setBounds(0, 0, 16 / MegaMarius.PPM, 16 / MegaMarius.PPM);
 			setRegion(mariusStand);
 		}
-	
+		
 		public void update(float dt){
 			
 			if(currentState==State.PAUSED){

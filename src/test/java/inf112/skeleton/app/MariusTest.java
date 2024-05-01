@@ -80,7 +80,6 @@ public class MariusTest {
 		when(cScreen.getDisplay()).thenReturn(display);
         textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
-        //when(cScreen.getAtlas().findRegion("pepsi")).thenReturn(textureAtlas.findRegion("pepsi"));
         marius = new Marius(cScreen);
 	}
 

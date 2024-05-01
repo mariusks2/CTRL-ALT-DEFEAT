@@ -60,12 +60,12 @@ public class Coin extends InteractiveTileObj{
             if(object.getProperties().containsKey("pepsi")){ //if the property is pepsi, spawn pepsi. if not spawn a coin
                 screen.spawnItems(new ItemDef(new Vector2(body.getPosition().x, body.getPosition().y + 16/MegaMarius.PPM), Pepsi.class));
                 music = manager.get("audio/music/coin.wav", Music.class);
-                music.setVolume(0.005f);
+                music.setVolume(0.009f);
                 music.play(); // Comment this out to stop music from playing
             }
             else {
                 music = manager.get("audio/music/coin.wav", Music.class);
-                music.setVolume(0.005f);
+                music.setVolume(0.009f);
                 music.play(); // Comment this out to stop music from playing
                 getCellAbove().setTile(tileSet.getTile(COIN));
             }

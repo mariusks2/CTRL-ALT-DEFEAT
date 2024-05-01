@@ -87,33 +87,50 @@ public class ShowSettingsScreenTest {
         display = new Display(mock(SpriteBatch.class));
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
-		megaMarius.createTest((mock(SpriteBatch.class)));
+        megaMarius.createTest((mock(SpriteBatch.class)));
         sGame = new ShowSettingsScreen(megaMarius);
         ScreenManager.getInstance().initialize(megaMarius);
 	}
-    /* 
-    @Test
+    
+    //@Test
+    void showTest() {
+        sGame.show();
+    }
+
+    //@Test
+    void remderTest() {
+        sGame.render(1f);
+    }
+
+    //@Test
     void resizeTest(){
         sGame.resize(10, 10);
     }
-    @Test
-    void checkButtonPressTest(){
-        
-    }
-    @Test
-    void handleInputTest(){
 
+    //@Test
+    void pauseTest() {
+        sGame.pause();
     }
-    @Test
-    void disposeTest(){
+
+    //@Test
+    void resumeTest() {
+        sGame.resume();
+    }
+
+    //@Test
+    void hideTest() {
+        sGame.hide();
+    }
+
+    //@Test
+    void disposeTest() {
         sGame.dispose();
     }
 
-    @Test
+    //@Test
     void thisScreenTest(){
         ScreenManager.getInstance().showScreen("showAboutScreen", sGame);
         assertEquals(sGame.getClass(),ScreenManager.getInstance().getCurrentGameScreen().getClass());
         
     }
-    */
 }

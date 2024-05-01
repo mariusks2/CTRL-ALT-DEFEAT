@@ -12,14 +12,22 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import inf112.Scenes.Display;
 import inf112.skeleton.app.MegaMarius;
 
+/**
+ * This screen displays the Game over screen for the MegaMarius game
+ */
 public class ShowGameOver implements Screen {
 
-    private MegaMarius megaMariusGame;
-    private Viewport camera;
-    private Stage stage;
-    private Texture backgroundImage;
-    private String fileName;
+    private MegaMarius megaMariusGame; //The main game object 
+    private Viewport camera; //Viewport for handling screen rendering aspects
+    private Stage stage; //Stage to render UI components
+    private Texture backgroundImage; //Background image for the game over screen
+    private String fileName; //File name indicating the level to restart on
 
+    /**
+     * Constructs the game over screen and loads the image
+     * @param megaMariusGame The main game object.
+     * @param fileName Th level file name to restartd on.
+     */
     public ShowGameOver(MegaMarius megaMariusGame, String fileName) {
         // Initialize variables
         this.megaMariusGame = megaMariusGame;
@@ -29,13 +37,10 @@ public class ShowGameOver implements Screen {
         this.backgroundImage = new Texture("Screens/game-over.png");
     }
 
-
-
-    @Override
-    public void show() {
-
-    }
-
+    /**
+     * Renders the game over screen
+     * @param delta The time in seconds since the last frame
+     */
     @Override
     public void render(float delta) {
         ScreenManager.getInstance().clearScreen();
@@ -43,10 +48,11 @@ public class ShowGameOver implements Screen {
         handleInput();
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
-
-        
     }
 
+    /**
+     * Handles user input to either restart the game at the same level or exits
+     */
     private void handleInput(){
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
             // Start new game if 'enter' key is pressed
@@ -64,22 +70,21 @@ public class ShowGameOver implements Screen {
         }
     }
 
+    //Unused lifecycle methods from the screen interface
     @Override
-    public void resize(int width, int height) {
-    }
-
+    public void show() {}
     @Override
-    public void pause() {
-    }
-
+    public void resize(int width, int height) {}
     @Override
-    public void resume() {
-    }
-
+    public void pause() {}
     @Override
-    public void hide() {
-    }
-
+    public void resume() {}
+    @Override
+    public void hide() {}
+    
+    /**
+     * Disposes of all resources and the image.
+     */
     @Override
     public void dispose() {
         stage.dispose();

@@ -18,15 +18,22 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import inf112.Scenes.Display;
 import inf112.skeleton.app.MegaMarius;
 
+/**
+ * A screen for selecting different game maps in the MegaMarius game.
+ * Users can choose from three different maps to play
+ */
 public class showMapSelect implements Screen {
 
-    private MegaMarius megaMariusGame;
-    private Viewport viewport;
-    private Stage stage;
-    private Texture backgroundImage;
-    private List<String> mapList;
-    private ShowGame showGame;
+    private MegaMarius megaMariusGame; //Main game object
+    private Viewport viewport; //Manages how content is displayed
+    private Stage stage; //Stage to manage UI elements
+    private Texture backgroundImage; //Background image for the map selection
+    private List<String> mapList; //List of available maps
 
+    /**
+     * Constructor to initialize the map selection screen with necessary components 
+     * @param megaMariusGame Reference to the main game object for screen transitions
+     */
     public showMapSelect (MegaMarius megaMariusGame){
         this.megaMariusGame=megaMariusGame;
         this.viewport=new FitViewport(MegaMarius.M_Width,MegaMarius.M_Height, new OrthographicCamera());
@@ -39,10 +46,10 @@ public class showMapSelect implements Screen {
         mapList.add("MapAndTileset/level3.tmx");
     }
 
-    @Override
-    public void show() {
-    }
-
+    /**
+     * Renders the map selection screen.
+     * @param delta The time in seconds since the last frame.
+     */
     @Override
     public void render(float delta) {
         handleInputs();
@@ -52,6 +59,9 @@ public class showMapSelect implements Screen {
         //stage.draw();
     }
 
+    /**
+     * Handles user input for navigating the map selection
+     */
     private void handleInputs(){
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
             ScreenManager.getInstance().showScreen("StartGame", new ShowStartGame(megaMariusGame));
@@ -64,6 +74,10 @@ public class showMapSelect implements Screen {
         }
     }
     
+    /**
+     * Handles mouse click inputs on the map selection screen
+     * @param clickPosition The position of the click in screen coordinates
+     */
     private void handleClickInput(Vector2 clickPosition){
         //Define back arrow
         Rectangle backBound = new Rectangle(6,197,25,8);
@@ -104,38 +118,32 @@ public class showMapSelect implements Screen {
         }
     }
 
+    //Lifecycle methods that are from the screen interface but are not used
     @Override
-    public void resize(int width, int height) {
-        
-    }
-
+    public void show() {}
     @Override
-    public void pause() {
-
-    }
-
+    public void resize(int width, int height) {}
     @Override
-    public void resume() {
-        
-    }
-
+    public void pause() {}
     @Override
-    public void hide() {
-       
-    }
-    public ShowGame getShowGame(){
-        return showGame;
-    }
+    public void resume() {}
+    @Override
+    public void hide() {}
 
+    /**
+     * Disposes of the background image and UI elements
+     */
     @Override
     public void dispose() {
         stage.dispose();
         backgroundImage.dispose();
     }
 
-    /*
-     * Method for getting the next map in the list, and checking if you have completed all the maps
-     */
+   /**
+    * Method for getting the next map in the list, and checking if you have completed all the maps
+    * @param currentMap The current map on the game
+    * @return The next map in the map list
+    */
     public String getNextMap (String currentMap){
         int currentIndex = mapList.indexOf(currentMap);
         if (currentIndex+1 <mapList.size()){

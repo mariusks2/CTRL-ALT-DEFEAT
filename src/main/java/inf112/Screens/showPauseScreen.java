@@ -15,17 +15,26 @@ import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.Marius.State;
 import inf112.skeleton.app.MegaMarius;
 
+
+/**
+ * Screen for handling the pause functionality of the game
+ */
 public class showPauseScreen implements Screen{
 
-    private MegaMarius game;
-    private Marius player;
-    private Viewport viewport;
-    private Stage stage;
-    private Texture backgroundImage;
-    private State previousState;
+    private MegaMarius game; //Reference to the main game instance for scree transitions
+    private Marius player; //Reference to the player character to manage it's state when pausing the game
+    private Viewport viewport; //Manages how content is displayed
+    private Stage stage; //Stage for holding UI elements for the screen
+    private Texture backgroundImage; //Backgroundimage of the pause screen
+    private State previousState; //The previous state of the player before the game was paused
 
 
-
+    /**
+     * Constructor that initializes the pause screen with necessary components. 
+     * @param game The main game instance
+     * @param player The player instance to manage state
+     * @param state The previous state of the player before pausing
+     */
     public showPauseScreen(MegaMarius game, Marius player, State state){
         this.game = game;
         this.player = player;
@@ -37,11 +46,10 @@ public class showPauseScreen implements Screen{
         
     }
 
-    @Override
-    public void show() {
-        
-    }
-
+    /**
+     * Renders the pause screen and handles user input in the pause screen
+     * @param delta The time in seconds since the last frame was rendered
+     */
     @Override
     public void render(float delta) {
         handleInput();
@@ -49,9 +57,11 @@ public class showPauseScreen implements Screen{
         ScreenManager.getInstance().drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
-        
     }
 
+    /**
+     * Method for handling keyboard and mouse input to navigate pause menu options.
+     */
     private void handleInput(){
         if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
             player.setCurrentState(previousState);
@@ -64,6 +74,11 @@ public class showPauseScreen implements Screen{
         }
     }
 
+    /**
+     * Checks the position of a mouse click and responds by executing the correspondin action, like resuming game,
+     * return to map selection or quit game
+     * @param clickPosition The screen coordinates where the mouse was clicked
+     */
     private void checkButtonPress(Vector2 clickPosition){
 
         System.out.println("Clicked at: " + clickPosition.x + ", " + clickPosition.y);
@@ -95,26 +110,21 @@ public class showPauseScreen implements Screen{
         
     }
 
+    //Lifecycle methods form the implemenation of screen that are not used
     @Override
-    public void resize(int width, int height) {
-       
-    }
-
+    public void show() {}
     @Override
-    public void pause() {
-
-    }
-
+    public void resize(int width, int height) {}
     @Override
-    public void resume() {
-       
-    }
-
+    public void pause() {}
     @Override
-    public void hide() {
-        
-    }
+    public void resume() {}
+    @Override
+    public void hide() {}
 
+    /**
+     * Disposes of resources like stages and textures
+     */
     @Override
     public void dispose() {
         stage.dispose();

@@ -14,6 +14,12 @@ public abstract class Enemy extends Sprite{ //Abstract class for enemies.
     public Body b2body;
     public Vector2 velocity;
 
+    /**
+     * Constructor for Enemy
+     * @param screen game screen
+     * @param x position x
+     * @param y position y
+     */
     public Enemy(ShowGame screen, float x, float y){
         this.world = screen.getWorld();
         this.screen = screen;
@@ -28,6 +34,11 @@ public abstract class Enemy extends Sprite{ //Abstract class for enemies.
     public abstract void hitOnHead(Marius marius);
     public abstract void hitByEnemy(Enemy enemy);
 
+    /**
+     * Function to reverse velocity on wall hit
+     * @param x 
+     * @param y
+     */
     public void revVelocity(boolean x, boolean y){
         if (x) {
             velocity.x = -velocity.x;

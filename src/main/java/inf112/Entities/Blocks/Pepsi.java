@@ -10,16 +10,35 @@ import inf112.Screens.ShowGame;
 import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.MegaMarius;
 
+/** 
+ * Represents a Coin block with Pepsi inside
+ * 
+ * This class provieds functionality neccesary to hit 
+ * coin blocks and give out a pepsi
+ * 
+ * @author CTRL-ALT-DEFEAT
+ * @version 1.0
+ * @since 2024-02
+*/
 public class Pepsi extends Item{
-
     FixtureDef fdef;
 
+    /**
+     * Constructor for Pepsi
+     * @param screen game screen
+     * @param x position x
+     * @param y position y
+     */
     public Pepsi(ShowGame screen, float x, float y){
         super(screen, x, y);
         setRegion(screen.getAtlas().findRegion("pepsi"));
-        velocity = new Vector2(0.7f, 0);
+        velocity = new Vector2(0.6f, 0);
     } 
 
+    /**
+     * Function for defining the pepsi.
+     * Defines the pepsi after a headhit on a coin block with pepsi as a property.
+     */
     @Override
     public void defineItem() {
         BodyDef bdef = new BodyDef();
@@ -38,12 +57,20 @@ public class Pepsi extends Item{
         b2body.createFixture(fdef).setUserData(this);
     }
 
+    /**
+     * Function for "drinking" a pepsi.
+     * checks if you are big marius, if not, you grow.
+     * @param Marius the playable character
+     */
     @Override
     public void use(Marius marius) {
         destroy();
         if(!marius.isMariusBigNow()) marius.grow();
     }
-    
+    /**
+     * Function for updating
+     * @param dt deltatime for updating. 
+     */
     @Override
     public void update(float dt){
         super.update(dt);
@@ -51,7 +78,10 @@ public class Pepsi extends Item{
         velocity.y = b2body.getLinearVelocity().y;
         b2body.setLinearVelocity(velocity);
     }
-
+    /**
+     * Function for getting category bits
+     * used for testing. 
+     */
     public short getCatergoryBits(){
         return fdef.filter.categoryBits;
     }

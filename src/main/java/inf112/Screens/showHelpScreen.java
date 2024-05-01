@@ -13,15 +13,20 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import inf112.skeleton.app.MegaMarius;
 
-
+/**
+ * This screen provides help to players on how to play the game
+ */
 public class showHelpScreen implements Screen{
 
-    private MegaMarius megaMariusGame;
-    private Viewport viewport;
-    private Stage stage;
-    private Texture backgroundImage;
+    private MegaMarius megaMariusGame; //Main game object
+    private Viewport viewport; //Viewport for handling screen rendering
+    private Stage stage; //Stage to render UI components
+    private Texture backgroundImage; //Background image for the hekp screen
 
-
+    /**
+     * Constructor to initialize the help screen and loading in the backgroundimage
+     * @param megaMariusGame The main game object to enable screen changes
+     */
     public showHelpScreen (MegaMarius megaMariusGame){
         this.megaMariusGame=megaMariusGame;
         this.viewport=new FitViewport(MegaMarius.M_Width,MegaMarius.M_Height, new OrthographicCamera());
@@ -29,11 +34,10 @@ public class showHelpScreen implements Screen{
         this.backgroundImage = new Texture("Screens/help-screen.png");
     }
 
-
-    @Override
-    public void show() {
-    }
-
+    /**
+     * Renders the help screen
+     * @param delta The time in seconds since the last fram
+     */
     @Override
     public void render(float delta) {
         handleInput();
@@ -43,7 +47,9 @@ public class showHelpScreen implements Screen{
         stage.draw();
     }
 
-   
+   /**
+    * Handles user input for navigating away from the help screen
+    */
     private void handleInput(){
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
             ScreenManager.getInstance().showScreen("StartGame", new ShowStartGame(megaMariusGame));
@@ -55,6 +61,10 @@ public class showHelpScreen implements Screen{
         }
     }
 
+    /**
+     * Checks if a mouse click happened within define screen regions, particularly for navigation between screens
+     * @param clickPosition The position of the click on the screen
+     */
     private void handleButtonPress(Vector2 clickPosition){
         // Defines the bounding box where back arrow is located
         Rectangle backBounds = new Rectangle(6, 197,35 , 8);
@@ -69,22 +79,21 @@ public class showHelpScreen implements Screen{
         ScreenManager.getInstance().drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
     }
 
+    //Lifecycle methods that are part of the Screen interface but are not used
     @Override
-    public void resize(int width, int height) {
-    }
-
+    public void show() {}
     @Override
-    public void pause() {
-    }
-
+    public void resize(int width, int height) {}
     @Override
-    public void resume() {
-    }
-
+    public void pause() {}
     @Override
-    public void hide() {
-    }
+    public void resume() {}
+    @Override
+    public void hide() {}
 
+    /**
+     * Disposes of resources like stages and textures
+     */
     @Override
     public void dispose() {
         stage.dispose();

@@ -26,7 +26,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import inf112.Scenes.Display;
 import inf112.skeleton.app.MegaMarius;
 
-public class ShowSettingsScreen {
+public class ShowSettingsScreenTest {
     RectangleMapObject object;
     TmxMapLoader mapLoader;
     String fileName = "MapAndTileset/level1.tmx";
@@ -39,7 +39,7 @@ public class ShowSettingsScreen {
     
     
 
-    @BeforeAll
+    //@BeforeAll
     static void setUpBeforeAll(){
         Lwjgl3NativesLoader.load();
         Box2D.init();
@@ -66,7 +66,7 @@ public class ShowSettingsScreen {
 	/**
 	 * Setup method called before each of the test methods
 	 */
-	@BeforeEach
+	//@BeforeEach
 	void setUpBeforeEach() {
 	
         // Initialize Box2D
@@ -88,7 +88,7 @@ public class ShowSettingsScreen {
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
 		megaMarius.createTest((mock(SpriteBatch.class)));
-        sGame = new ShowSettingsScreen();
+        sGame = new ShowSettingsScreen(megaMarius);
         ScreenManager.getInstance().initialize(megaMarius);
 	}
     /* 

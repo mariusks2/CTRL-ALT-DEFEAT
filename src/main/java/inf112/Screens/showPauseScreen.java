@@ -65,7 +65,7 @@ public class showPauseScreen implements Screen{
     private void handleInput(){
         if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
             player.setCurrentState(previousState);
-            game.setScreen(ScreenManager.getInstance().getCurrentGameScreen());
+            game.setScreen(ScreenManager.getInstance().getShowGameScreen());
         }
         if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
             Vector2 clickPosition = new Vector2(Gdx.input.getX(), Gdx.input.getY());
@@ -80,27 +80,19 @@ public class showPauseScreen implements Screen{
      * @param clickPosition The screen coordinates where the mouse was clicked
      */
     private void checkButtonPress(Vector2 clickPosition){
-
-        System.out.println("Clicked at: " + clickPosition.x + ", " + clickPosition.y);
         //Defining resume game bounds
-        Rectangle resumeBound = new Rectangle(163,146,65,7);
-
-        //Defining settings game bounds
-        Rectangle settingsBound = new Rectangle(176,117,37,9);
+        Rectangle resumeBound = new Rectangle(165,141,66,7);
 
         //Defining back to map selection button
-        Rectangle mapSelectionBound = new Rectangle(146,90,108,7);
+        Rectangle mapSelectionBound = new Rectangle(150,114,111,7);
 
         //Defining quit game bound
-        Rectangle quitGameBound = new Rectangle(172,57,49,8);
+        Rectangle quitGameBound = new Rectangle(176,84,49,6);
 
         if(resumeBound.contains(clickPosition)){
             player.setCurrentState(previousState);
             game.setScreen(ScreenManager.getInstance().getShowGameScreen());
         }
-        else if (settingsBound.contains(clickPosition)){
-            ScreenManager.getInstance().showScreen("Settings", new ShowSettingsScreen(game));
-        } 
         else if (mapSelectionBound.contains(clickPosition)){
             ScreenManager.getInstance().showScreen("MapSelect", new showMapSelect(game));
         }

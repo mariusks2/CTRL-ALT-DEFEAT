@@ -1,4 +1,6 @@
 package inf112.Entities.Blocks;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.math.Vector2;
@@ -25,6 +27,8 @@ public class Coin extends InteractiveTileObj{
     private static TiledMapTileSet tileSet;
     private final int BLANK_COIN = 28;
     private final int COIN = 66;
+    private AssetManager manager;
+    private Music music;
 
     /**
      * Constructor for coin
@@ -36,6 +40,9 @@ public class Coin extends InteractiveTileObj{
         tileSet = map.getTileSets().getTileSet("customtileset");
         fixture.setUserData(this);
         setCategoryFilter(MegaMarius.COIN_BIT); //Set the block to Coin bit.
+        manager = new AssetManager();
+        manager.load("audio/music/coin.wav", Music.class);
+        manager.finishLoading();
     }
     
     /**
@@ -45,6 +52,10 @@ public class Coin extends InteractiveTileObj{
     @Override
     public void HeadHit(Marius marius) {
         if(getCell().getTile().getId() != BLANK_COIN){
+            music = manager.get("audio/music/coin.wav", Music.class);
+			music.setVolume(0.005f);
+			music.play(); // Comment this out to stop music from playing
+
             getCell().setTile(tileSet.getTile(BLANK_COIN)); //Set the graphic block to Blank Coin
             
             Display.updateScore(200); //Add score

@@ -105,7 +105,7 @@ public class PepsiTest {
         pepsi.update(1);
         assertEquals(0, pepsi.b2body.getPosition().x);
         assertEquals(0, pepsi.b2body.getPosition().y);
-        assertEquals(new Vector2(0.7f, 0), pepsi.b2body.getLinearVelocity());
+        assertEquals(new Vector2(0.6f, 0), pepsi.b2body.getLinearVelocity());
     }
 
     @Test

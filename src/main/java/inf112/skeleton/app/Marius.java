@@ -1,5 +1,7 @@
 package inf112.skeleton.app;
 
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -57,6 +59,8 @@ import inf112.Screens.ShowGameOver;
 		// Timer & Screen
 		private float stateTimer;
 		private ShowGame screen;
+		private AssetManager manager;
+		private Music music;
 
 		@SuppressWarnings({ "rawtypes", "unchecked" })
 		public Marius(ShowGame screen){
@@ -103,6 +107,9 @@ import inf112.Screens.ShowGameOver;
 			// Create texture region for dead marius
 			mariusDead = new TextureRegion(screen.getAtlas().findRegion("little_mario"), 96, 0, 16, 16);
 			
+			manager = new AssetManager();
+			manager.load("audio/music/powerup.wav", Music.class);
+			manager.finishLoading();
 	
 			// Define marius in Box2d
 			defineMarius();
@@ -367,6 +374,10 @@ import inf112.Screens.ShowGameOver;
 		}
 
 		public void grow(){
+			music = manager.get("audio/music/powerup.wav", Music.class);
+			music.setVolume(0.005f);
+			music.play(); // Comment this out to stop music from playing
+
 			runGrowAnimation = true;
 			isMariusBig = true;
 			timeToDefineBigMarius = true;

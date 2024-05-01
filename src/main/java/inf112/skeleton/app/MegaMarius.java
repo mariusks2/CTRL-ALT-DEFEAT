@@ -44,6 +44,7 @@ public class MegaMarius extends Game {
         manager = new AssetManager();
         manager.load("audio/music/music1.mp3", Music.class);
         manager.finishLoading();
+
         ScreenManager.getInstance().initialize(this);
         this.scoreboard = new ShowScoreboardScreen(this);
         if(!headless)

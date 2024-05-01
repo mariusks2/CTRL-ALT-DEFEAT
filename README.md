@@ -27,3 +27,5 @@ Sprite resources, some we have edited : <a href= https://www.spriters-resource.c
 Powerup 10.wav by MATRIXXX_ -- https://freesound.org/s/523654/ -- License: Creative Commons 0
 
 Retro, Coin 02.wav by MATRIXXX_ -- https://freesound.org/s/402288/ -- License: Creative Commons 0
+
+Trúng Gạch Đá by SieuAmThanh -- https://freesound.org/s/530812/ -- License: Creative Commons 0

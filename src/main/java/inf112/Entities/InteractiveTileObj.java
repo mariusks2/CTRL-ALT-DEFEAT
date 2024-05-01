@@ -65,8 +65,7 @@ public abstract class InteractiveTileObj {
     //Get a cellsfrom layer 1 but the one above the cell. !!NOT DONE
     public TiledMapTileLayer.Cell getCellAbove(){
         TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(1);
-        TiledMapTileLayer.Cell tile = layer.getCell((int)(body.getPosition().x * MegaMarius.PPM / 16), (int)(body.getPosition().y * MegaMarius.PPM / 16)+1);
-        return tile;
+        return layer.getCell((int)(body.getPosition().x * MegaMarius.PPM / 16), (int)(body.getPosition().y * MegaMarius.PPM / 16)+1);
     }
 
     //for testing

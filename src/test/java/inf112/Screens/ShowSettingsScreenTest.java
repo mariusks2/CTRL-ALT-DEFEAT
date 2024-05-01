@@ -26,7 +26,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import inf112.Scenes.Display;
 import inf112.skeleton.app.MegaMarius;
 
-public class ShowSettingsScreen {
+public class ShowSettingsScreenTest {
     RectangleMapObject object;
     TmxMapLoader mapLoader;
     String fileName = "MapAndTileset/level1.tmx";
@@ -39,7 +39,7 @@ public class ShowSettingsScreen {
     
     
 
-    @BeforeAll
+    //@BeforeAll
     static void setUpBeforeAll(){
         Lwjgl3NativesLoader.load();
         Box2D.init();
@@ -66,7 +66,7 @@ public class ShowSettingsScreen {
 	/**
 	 * Setup method called before each of the test methods
 	 */
-	@BeforeEach
+	//@BeforeEach
 	void setUpBeforeEach() {
 	
         // Initialize Box2D
@@ -87,33 +87,50 @@ public class ShowSettingsScreen {
         display = new Display(mock(SpriteBatch.class));
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
-		megaMarius.createTest((mock(SpriteBatch.class)));
-        sGame = new ShowSettingsScreen();
+        megaMarius.createTest((mock(SpriteBatch.class)));
+        sGame = new ShowSettingsScreen(megaMarius);
         ScreenManager.getInstance().initialize(megaMarius);
 	}
-    /* 
-    @Test
+    
+    //@Test
+    void showTest() {
+        sGame.show();
+    }
+
+    //@Test
+    void remderTest() {
+        sGame.render(1f);
+    }
+
+    //@Test
     void resizeTest(){
         sGame.resize(10, 10);
     }
-    @Test
-    void checkButtonPressTest(){
-        
-    }
-    @Test
-    void handleInputTest(){
 
+    //@Test
+    void pauseTest() {
+        sGame.pause();
     }
-    @Test
-    void disposeTest(){
+
+    //@Test
+    void resumeTest() {
+        sGame.resume();
+    }
+
+    //@Test
+    void hideTest() {
+        sGame.hide();
+    }
+
+    //@Test
+    void disposeTest() {
         sGame.dispose();
     }
 
-    @Test
+    //@Test
     void thisScreenTest(){
         ScreenManager.getInstance().showScreen("showAboutScreen", sGame);
         assertEquals(sGame.getClass(),ScreenManager.getInstance().getCurrentGameScreen().getClass());
         
     }
-    */
 }

@@ -12,9 +12,10 @@ public class MainTest {
     
     @Test
     void mainTest() {
+
         // Mock Lwjgl3Application
         Lwjgl3ApplicationConfiguration mockConfiguration = mock(Lwjgl3ApplicationConfiguration.class);
-    
+
         // Call the main method
         mockConfiguration.setTitle("ctrl+alt+defeat");
         mockConfiguration.setWindowedMode(1900, 1000);

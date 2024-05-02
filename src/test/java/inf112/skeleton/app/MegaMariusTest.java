@@ -7,7 +7,6 @@ import static org.mockito.Mockito.*;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3NativesLoader;
 
 import org.junit.jupiter.api.AfterAll;
@@ -37,7 +36,6 @@ public class MegaMariusTest {
     @Test
     void createTest() {
         MegaMarius megaMarius = (MegaMarius) headlessApplication.getApplicationListener();
-        MegaMarius mockMegaMaris = mock(MegaMarius.class);
 
         assertNull(megaMarius.getSpriteBatch());
         assertNull(megaMarius.getAssetManager());
@@ -55,24 +53,10 @@ public class MegaMariusTest {
     void disposeTest() {
         // Mock the SpriteBatch
         MegaMarius megaMarius = new MegaMarius();
-
-        SpriteBatch mockBatch = mock(SpriteBatch.class);
         AssetManager mockManager = mock(AssetManager.class);
-
         megaMarius.manager = mockManager;
-        
         // Check that the values actualy have value before
         assertNotNull(megaMarius.manager);
-        
-        // Call the dispose method
-        //megaMarius.dispose();
-
-        // Verify that the SpriteBatch and AssetManager are disposed
-        //verify(mockBatch).dispose();
-        //verify(mockManager).dispose();
-
-        //assertNull(megaMarius.batch);
-        //assertNull(MegaMarius.manager);
     }
     @Test
     void renderTest() {

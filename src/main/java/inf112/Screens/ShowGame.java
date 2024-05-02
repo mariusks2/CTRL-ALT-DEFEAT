@@ -125,7 +125,7 @@ public class ShowGame implements Screen{
         uiStage.addActor(victoryLabel);
 
         // Configure the instruction message
-        retryLabel = new Label("Press ENTER for next level or ESC to quit game", font);
+        retryLabel = new Label("Press ENTER for next level or ESC to go back to start game", font);
         retryLabel.setVisible(false);  // Initially invisible
         retryLabel.setPosition(MegaMarius.M_Width / 2 - retryLabel.getWidth() / 2, MegaMarius.M_Height / 2 - 20);  // Slightly below the victoryLabel
         uiStage.addActor(retryLabel);
@@ -306,12 +306,18 @@ public class ShowGame implements Screen{
             uiStage.draw();
             gameCompletedLabel.setVisible(true);
             completedDescriptionLabel.setVisible(true);
+            if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
+                ScreenManager.getInstance().showScreen("StartGame", new ShowStartGame(game));
+            }
+            else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
+                Gdx.app.exit();
+            }
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
             game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), 1); // TODO change the level parameter to get the current level
             ScreenManager.getInstance().showScreen("ShowGame", new ShowGame(game, nextMap));
             Display.updateLevel(1);
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            System.exit(0);
+            ScreenManager.getInstance().showScreen("StartGame", new ShowStartGame(game));
         }
     }
     /**

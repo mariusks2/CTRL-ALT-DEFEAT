@@ -33,7 +33,7 @@ import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.MegaMarius;
 
 public class PepsiTest {
-    Pepsi pepsi;
+    Pessi pepsi;
     RectangleMapObject object;
     TmxMapLoader mapLoader;
     String fileName = "MapAndTileset/level1.tmx";
@@ -74,12 +74,12 @@ public class PepsiTest {
         textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
         //when(cScreen.getAtlas().findRegion("pepsi")).thenReturn(textureAtlas.findRegion("pepsi"));
-        pepsi = new Pepsi(cScreen, 0, 0);
+        pepsi = new Pessi(cScreen, 0, 0);
 	}
 
     @Test
     void createTest() {
-        pepsi.getClass().equals(Pepsi.class);
+        pepsi.getClass().equals(Pessi.class);
         assertEquals(false, pepsi.isDestroyed());
     }
 

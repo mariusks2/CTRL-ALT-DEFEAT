@@ -33,7 +33,7 @@ import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 
-import inf112.Entities.Blocks.Pepsi;
+import inf112.Entities.Blocks.Pessi;
 import inf112.Entities.Enemies.Spider;
 import inf112.Entities.Enemies.Turtle;
 import inf112.Scenes.Display;
@@ -104,7 +104,7 @@ public class WorldContactListenerTest {
     @Test
     void contactMariusItemTest(){
         Marius marius = new Marius(cScreen);
-        Pepsi pepsi = new Pepsi(cScreen, 0, 0);
+        Pessi pepsi = new Pessi(cScreen, 0, 0);
         assertEquals(2, world.getBodyCount());
         world.step(0, 0, 0);
         wListener.beginContact(world.getContactList().first());

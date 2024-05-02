@@ -120,9 +120,8 @@ public class Spider extends Enemy{
     }
 
     /**
-     * Function for "drinking" a pepsi.
-     * checks if you are big marius, if not, you grow.
-     * @param Marius the playable character
+     * Function for drawing
+     * @param Batch the drawable batch
      */
     public void draw(Batch batch){
         if (!destroyed || stateTime < 1) {
@@ -130,11 +129,21 @@ public class Spider extends Enemy{
         }
     }
 
+    /**
+     * Function for setting an entity to destroy
+     * checks if an entity is hitonhead by marius
+     * @param Marius the playable character
+     */
     @Override
     public void hitOnHead(Marius marius) {
         setToDestroy = true;
     }
 
+    /**
+     * Function to check if enemy hit by other enemy is a turtle.
+     * checks if an entity is hit by an turtle whos moving.
+     * @param enemy the enemy who hit the other enemy.
+     */
     @Override
     public void hitByEnemy(Enemy enemy) {
         if(enemy instanceof Turtle && ((Turtle) enemy).getCurrentState() == Turtle.State.MOVING_SHELL)
@@ -143,6 +152,10 @@ public class Spider extends Enemy{
             revVelocity(true, false);
     }
 
+    /**
+     * Function for checking if entity is dead.
+     * test function
+     */
     public boolean entityIsDead(){
         return destroyed;
     }

@@ -89,7 +89,7 @@ import inf112.Screens.ShowGameOver;
 			bigMariusRun = new Animation(0.1f, frames);
 			frames.clear();
 
-			// Animation when Marius gets pepsi
+			// Animation when Marius gets pessi
 			frames.add(new TextureRegion(screen.getAtlas().findRegion("big_mario"), 240, 0, 16, 32));
 			frames.add(new TextureRegion(screen.getAtlas().findRegion("big_mario"), 0, 0, 16, 32));
 			mariusGrow = new Animation(0.3f, frames);

@@ -30,7 +30,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
 
-import inf112.Entities.Blocks.Pepsi;
+import inf112.Entities.Blocks.Pessi;
 import inf112.Entities.Enemies.Spider;
 import inf112.Entities.Enemies.Turtle;
 import inf112.Scenes.Display;

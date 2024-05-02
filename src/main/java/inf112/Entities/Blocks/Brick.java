@@ -53,7 +53,7 @@ public class Brick extends InteractiveTileObj{
 
         if(marius.isMariusBigNow()){
             music = manager.get("audio/music/brick.wav", Music.class);
-			music.setVolume(0.005f);
+			music.setVolume(0.050f);
 			music.play(); // Comment this out to stop music from playing
             setCategoryFilter(MegaMarius.DESTROYED_BIT); // Set the block to Destroyed bit.
             getCell().setTile(null); // Set tile to null (removes the block from map)

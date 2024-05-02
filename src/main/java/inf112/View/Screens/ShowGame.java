@@ -29,13 +29,14 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 
 import inf112.skeleton.app.MegaMarius;
+import inf112.Controller.MegaMariusControllable;
+import inf112.Controller.MegaMariusController;
 import inf112.Entities.Item;
 import inf112.Entities.ItemDef;
 import inf112.Entities.Blocks.Pessi;
 import inf112.Entities.Enemies.Enemy;
 import inf112.View.Scenes.Display;
 import inf112.View.ScreenManagement.IScreenFactory;
-import inf112.View.ScreenManagement.ScreenManager;
 import inf112.skeleton.MakeMap.MakeMap;
 import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.WorldContactListener;
@@ -79,6 +80,7 @@ public class ShowGame implements Screen{
     private Box2DDebugRenderer b2dr;
 
     private IScreenFactory screenService;
+    private MegaMariusControllable playerController;
 
     /**
      * Initialization of the game and variables used to display the game
@@ -120,6 +122,8 @@ public class ShowGame implements Screen{
 
         items = new Array<Item>();
         itemsToSpawn = new LinkedBlockingQueue<ItemDef>();
+        
+        playerController = new MegaMariusController(player);
 
         //Display map winning text:
         this.uiStage = new Stage (new FitViewport(MegaMarius.M_Width,MegaMarius.M_Height, new OrthographicCamera()), game.getSpriteBatch());
@@ -191,7 +195,7 @@ public class ShowGame implements Screen{
             return;
         }
 
-        handleInput(dt);
+        playerController.handlePlayerMovement(dt);
         handleSpawningItems();
         
         accumulator += Math.min(dt, 0.25f);
@@ -355,22 +359,6 @@ public class ShowGame implements Screen{
             return true;
         else
             return false;
-    }
-
-    /**
-     * Method for handling the user input
-     * @param dt time since last frame.
-     */
-    private void handleInput(float dt) {
-        //control our player using immediate impulses
-        if (player.currentState != Marius.State.DEAD) {
-            if (Gdx.input.isKeyJustPressed(Input.Keys.UP))
-                player.jump();
-            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2)
-                player.b2body.applyLinearImpulse(new Vector2(0.05f, 0), player.b2body.getWorldCenter(), true);
-            if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2)
-                player.b2body.applyLinearImpulse(new Vector2(-0.05f, 0), player.b2body.getWorldCenter(), true);
-        } 
     }
     
     /**

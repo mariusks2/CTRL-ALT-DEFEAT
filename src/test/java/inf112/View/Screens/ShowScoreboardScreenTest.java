@@ -1,9 +1,12 @@
-package inf112.Screens;
+package inf112.View.Screens;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,7 +20,6 @@ import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3NativesLoader;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -25,25 +27,20 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
 
-import inf112.Entities.Blocks.Brick;
 import inf112.View.Scenes.Display;
+import inf112.View.Scenes.Score;
 import inf112.View.ScreenManagement.ScreenManager;
-import inf112.View.Screens.ShowGame;
-import inf112.View.Screens.showMapSelect;
-import inf112.skeleton.app.Marius;
-import inf112.skeleton.app.Marius.State;
-import inf112.Scenes.Display;
+import inf112.View.Screens.ShowScoreboardScreen;
 import inf112.skeleton.app.MegaMarius;
 
-public class ShowMapSelectTest {
-    Brick brick;
+public class ShowScoreboardScreenTest {
     RectangleMapObject object;
     TmxMapLoader mapLoader;
     String fileName = "MapAndTileset/level1.tmx";
     TiledMap map;
     static GL20 gl;
     Display display;
-	showMapSelect sGame;
+	ShowScoreboardScreen sGame;
     SpriteBatch batch;
     private static HeadlessApplication headlessApplication;
     
@@ -55,13 +52,8 @@ public class ShowMapSelectTest {
         Box2D.init();
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
         Application app = mock(Application.class);
-        //Graphics graphics = mock(com.badlogic.gdx.Graphics.class);
-        //when(app.getGraphics()).thenReturn(graphics);
-        //when(graphics.getGL20()).thenReturn(gl);
-        //when(gl.glGenTexture()).thenReturn(1);
         //Mock Gdx
         Gdx.app = app;
-		//Gdx.graphics = mock(com.badlogic.gdx.Graphics.class);
 		gl = mock(GL20.class);
 		when(gl.glCreateShader(anyInt())).thenReturn(1);
         when(gl.glCreateShader(anyInt())).thenReturn(0);
@@ -88,34 +80,65 @@ public class ShowMapSelectTest {
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
 		megaMarius.createTest((mock(SpriteBatch.class)));
-        ShowGame cScreen = mock(ShowGame.class);
-        when(cScreen.getWorld()).thenReturn(world);
-        when(cScreen.getMap()).thenReturn(map);
-        TextureAtlas textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
-        when(cScreen.getAtlas()).thenReturn(textureAtlas);
-        sGame = new showMapSelect(megaMarius);
+        sGame = new ShowScoreboardScreen(megaMarius, ScreenManager.getInstance());
         ScreenManager.getInstance().initialize(megaMarius);
 	}
 
     @Test
-    void resizeTest(){
-        sGame.resize(10, 10);
+    void createNewScoreTest() {
+        ShowScoreboardScreen showScoreboardScreen = mock(ShowScoreboardScreen.class);
+        doNothing().when(showScoreboardScreen).createNewScore(0, 0, 0);
+        sGame.createNewScore(0, 0, 0);
     }
-    
+
+    @Test
+    void getHighScores() {
+        ArrayList<Score> scores = new ArrayList<Score>();
+        Score score = new Score(200, 200, 1);
+        scores.add(score);
+        
+        ArrayList<Integer> listOne = sGame.getHighScores(scores, 1);
+        assertEquals(1, listOne.size());
+
+        ArrayList<Integer> listTwo = sGame.getHighScores(scores, 2);
+        assertEquals(0, listTwo.size());
+
+        
+    }
+
+    @Test
+    void drawScoresTest() {
+        ArrayList<Integer> scores = new ArrayList<Integer>();
+        sGame.drawScores(scores, 100, 0);
+
+        scores.add(200);
+        scores.add(100);
+        sGame.drawScores(scores, 100, 0);
+
+        scores.add(100);
+        scores.add(100);
+        scores.add(100);
+        scores.add(100);
+        sGame.drawScores(scores, 100, 0);
+
+    }
+
+    @Test
+    void drawScoreboardTest() {
+        sGame.drawScoreboard();
+    }
+
+    @Test
+    void renderTest() {
+        sGame.render(1f);
+    }
+
     @Test
     void handleInputTest(){
         Input input = mock(Input.class);
         Gdx.input = input;
+        sGame.render(1f);
         when(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)).thenReturn(true);
-        sGame.render(0);
-    }
-
-    @Test
-    void handleInput2Test(){
-        Input input = mock(Input.class);
-        Gdx.input = input;
-        when(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)).thenReturn(true);
-        sGame.render(0);
     }
 
     @Test
@@ -123,30 +146,35 @@ public class ShowMapSelectTest {
         sGame.dispose();
     }
 
-    @Test
+    //@Test
     void thisScreenTest(){
-        ScreenManager.getInstance().showScreen("ShowMapSelect", sGame);
-        assertEquals(sGame.getClass(), ScreenManager.getInstance().getCurrentGameScreen().getClass());
+        assertEquals(sGame.getClass(),ScreenManager.getInstance().getCurrentGameScreen().getClass());
         
     }
-
+    // Functions below are not in use so we dont test them either
     @Test
-    void getNextMapTest(){
-        String nextMap = sGame.getNextMap(fileName);
-        assertEquals("MapAndTileset/level2.tmx", nextMap);
+    void showTest() {
+        sGame.show();
     }
 
     @Test
-    void getNextMapTest2(){
-        fileName = "MapAndTileset/level2.tmx";
-        String nextMap = sGame.getNextMap(fileName);
-        assertEquals("MapAndTileset/level3.tmx", nextMap);
+    void resizeTest(){
+        sGame.resize(10, 10);
     }
 
     @Test
-    void getNextMapTest3(){
-        fileName = "MapAndTileset/level3.tmx";
-        String nextMap = sGame.getNextMap(fileName);
-        assertEquals("GameCompleted", nextMap);
+    void pauseTest() {
+        sGame.pause();
     }
+
+    @Test
+    void resumeTest() {
+        sGame.resume();
+    }
+
+    @Test
+    void hideTest() {
+        sGame.hide();
+    }
+
 }

@@ -1,12 +1,8 @@
-package inf112.Screens;
+package inf112.View.Screens;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
-import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,28 +19,22 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
-import com.badlogic.gdx.physics.box2d.World;
 
 import inf112.View.Scenes.Display;
-import inf112.View.Scenes.Score;
 import inf112.View.ScreenManagement.ScreenManager;
-import inf112.View.Screens.ShowScoreboardScreen;
 import inf112.skeleton.app.MegaMarius;
 
-public class ShowScoreboardScreenTest {
-    RectangleMapObject object;
+public class ShowHelpScreenTest {
+     RectangleMapObject object;
     TmxMapLoader mapLoader;
     String fileName = "MapAndTileset/level1.tmx";
     TiledMap map;
     static GL20 gl;
     Display display;
-	ShowScoreboardScreen sGame;
+	ShowHelpScreen sGame;
     SpriteBatch batch;
     private static HeadlessApplication headlessApplication;
-    
-    
 
     @BeforeAll
     static void setUpBeforeAll(){
@@ -55,9 +45,6 @@ public class ShowScoreboardScreenTest {
         //Mock Gdx
         Gdx.app = app;
 		gl = mock(GL20.class);
-		when(gl.glCreateShader(anyInt())).thenReturn(1);
-        when(gl.glCreateShader(anyInt())).thenReturn(0);
-        when(gl.glCreateProgram()).thenReturn(-1);
         Gdx.gl = gl; 
         Gdx.gl20 = gl; 
         MegaMarius megaMarius = new MegaMarius(); // Your implementation of ApplicationListener
@@ -70,75 +57,38 @@ public class ShowScoreboardScreenTest {
 	 */
 	@BeforeEach
 	void setUpBeforeEach() {
-	
-        // Initialize Box2D
-      
         MegaMarius megaMarius = (MegaMarius) headlessApplication.getApplicationListener();
-        
-        World world = new World(new Vector2(0, -10), true);
         display = new Display(mock(SpriteBatch.class));
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
 		megaMarius.createTest((mock(SpriteBatch.class)));
-        sGame = new ShowScoreboardScreen(megaMarius);
+        sGame = new ShowHelpScreen(megaMarius, ScreenManager.getInstance());
         ScreenManager.getInstance().initialize(megaMarius);
+        ScreenManager.getInstance().showHelpScreen();
 	}
 
     @Test
-    void createNewScoreTest() {
-        ShowScoreboardScreen showScoreboardScreen = mock(ShowScoreboardScreen.class);
-        doNothing().when(showScoreboardScreen).createNewScore(0, 0, 0);
-        sGame.createNewScore(0, 0, 0);
+    void resizeTest(){
+        sGame.resize(10, 10);
     }
-
     @Test
-    void getHighScores() {
-        ArrayList<Score> scores = new ArrayList<Score>();
-        Score score = new Score(200, 200, 1);
-        scores.add(score);
-        
-        ArrayList<Integer> listOne = sGame.getHighScores(scores, 1);
-        assertEquals(1, listOne.size());
-
-        ArrayList<Integer> listTwo = sGame.getHighScores(scores, 2);
-        assertEquals(0, listTwo.size());
-
+    void checkButtonPressTest(){
         
     }
-
-    @Test
-    void drawScoresTest() {
-        ArrayList<Integer> scores = new ArrayList<Integer>();
-        sGame.drawScores(scores, 100, 0);
-
-        scores.add(200);
-        scores.add(100);
-        sGame.drawScores(scores, 100, 0);
-
-        scores.add(100);
-        scores.add(100);
-        scores.add(100);
-        scores.add(100);
-        sGame.drawScores(scores, 100, 0);
-
-    }
-
-    @Test
-    void drawScoreboardTest() {
-        sGame.drawScoreboard();
-    }
-
-    @Test
-    void renderTest() {
-        sGame.render(1f);
-    }
-
     @Test
     void handleInputTest(){
         Input input = mock(Input.class);
         Gdx.input = input;
-        sGame.render(1f);
+        when(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)).thenReturn(true);
+        sGame.renderTest();
+    }
+
+    @Test
+    void handleInputTest2(){
+        Input input = mock(Input.class);
+        Gdx.input = input;
         when(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)).thenReturn(true);
+        sGame.renderTest();
     }
 
     @Test
@@ -146,36 +96,9 @@ public class ShowScoreboardScreenTest {
         sGame.dispose();
     }
 
-    //@Test
+    @Test
     void thisScreenTest(){
-        ScreenManager.getInstance().showScreen("showScoreBoardScreen", sGame);
         assertEquals(sGame.getClass(),ScreenManager.getInstance().getCurrentGameScreen().getClass());
         
     }
-    // Functions below are not in use so we dont test them either
-    @Test
-    void showTest() {
-        sGame.show();
-    }
-
-    @Test
-    void resizeTest(){
-        sGame.resize(10, 10);
-    }
-
-    @Test
-    void pauseTest() {
-        sGame.pause();
-    }
-
-    @Test
-    void resumeTest() {
-        sGame.resume();
-    }
-
-    @Test
-    void hideTest() {
-        sGame.hide();
-    }
-
 }

@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.Array;
 
 import inf112.Model.Entities.Blocks.Brick;
 import inf112.Model.Entities.Blocks.Coin;
+import inf112.Model.Entities.Blocks.Flag;
 import inf112.Model.Entities.Enemies.Enemy;
 import inf112.Model.Entities.Enemies.Spider;
 import inf112.Model.Entities.Enemies.Turtle;

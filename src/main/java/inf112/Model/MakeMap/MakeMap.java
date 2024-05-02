@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.Array;
 
 import inf112.Model.Entities.Blocks.Brick;
 import inf112.Model.Entities.Blocks.Coin;
+import inf112.Model.Entities.Blocks.Flag;
 import inf112.Model.Entities.Enemies.Enemy;
 import inf112.Model.Entities.Enemies.Spider;
 import inf112.Model.Entities.Enemies.Turtle;
@@ -74,6 +75,9 @@ public class MakeMap {
         for(MapObject object : map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class)){
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
             turtles.add(new Turtle(screen, rect.getX() / MegaMarius.PPM, rect.getY() / MegaMarius.PPM));
+        }
+        for(MapObject object : map.getLayers().get(8).getObjects().getByType(RectangleMapObject.class)){
+            new Flag(screen, object);
         }
     }
     public Array<Enemy> getEnemies(){

@@ -95,13 +95,13 @@ public class ShowGame implements Screen, InputHandler{
         camera = new OrthographicCamera();
         gamePort = new StretchViewport(MegaMarius.M_Width / MegaMarius.PPM, MegaMarius.M_Height / MegaMarius.PPM, camera);
         //gamePort = new FitViewport(MegaMarius.M_Width / MegaMarius.PPM, MegaMarius.M_Height / MegaMarius.PPM, camera);
-
+        
         display = new Display(game.getSpriteBatch());
 
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
         renderer = new OrthogonalTiledMapRenderer(map, 1  / MegaMarius.PPM);
-        camera.position.set(-10, gamePort.getWorldHeight()/2, 0);
+        camera.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2, 0);
 
         world = new World(new Vector2(0, -10), true); //world with gravity -10
         world.step(0, 0, 0);
@@ -208,7 +208,7 @@ public class ShowGame implements Screen, InputHandler{
         player.update(dt);
         for(Enemy enemy : creator.getEnemies()){
             enemy.update(dt);
-            if (enemy.getX() < player.getX() + 224/MegaMarius.PPM) {
+            if (enemy.getX() < player.getX() + 276/MegaMarius.PPM) {
                 enemy.b2body.setActive(true);
             }
         }
@@ -219,7 +219,7 @@ public class ShowGame implements Screen, InputHandler{
         display.updateTime(dt);
 
         //attach our gamecam to our players.x coordinate
-        if(player.currentState != Marius.State.DEAD) {
+        if(player.currentState != Marius.State.DEAD && player.b2body.getPosition().x > 2) {
             camera.position.x = player.b2body.getPosition().x;
         }
 

@@ -61,6 +61,8 @@ public class WorldContactListener implements ContactListener {
                 else
                     ((Item)fixtureB.getUserData()).use((Marius) fixtureA.getUserData());
                 break;
+            case MegaMarius.MARIUS_BIT | MegaMarius.FLAG_BIT:
+                Marius.setGameWon();
         }
     }
 

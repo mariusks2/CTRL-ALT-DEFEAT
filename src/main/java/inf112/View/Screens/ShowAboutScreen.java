@@ -19,7 +19,7 @@ import inf112.skeleton.app.MegaMarius;
  * This screen displas the "About" page for the MegaMarius game.
  * It displays general information about the game. 
  */
-public class ShowAboutScreen implements Screen {
+public class ShowAboutScreen implements Screen, InputHandler {
 
     private MegaMarius megaMariusGame; //The main game object
     private Viewport viewport; //Manages how the screen is displayed
@@ -53,33 +53,6 @@ public class ShowAboutScreen implements Screen {
         stage.draw();   
     }
 
-    /**
-     * Handles keyboard and mouse input for navigation between screens.
-     */
-    private void handleInput(){
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
-           screenService.showStartGame();
-        }
-        if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
-            Vector2 clickPosition = new Vector2(Gdx.input.getX(), Gdx.input.getY());
-            viewport.unproject(clickPosition);
-            checkButtonPress(clickPosition, screenService);
-        }
-    }
-
-    /**
-     * Checks if a button press ocurred within specific screen coordinates 
-     * @param clickPosition The position of the mouse click, translated to game coordinates using the Rectangle object.
-     */
-    private void checkButtonPress(Vector2 clickPosition, IScreenFactory screenService){
-        // Defines the bounding box where the back arrow is located
-        Rectangle backBounds = new Rectangle(6, 197,35 , 8);
-        if (backBounds.contains(clickPosition)) {
-            screenService.showStartGame();
-        }
-    }
-
-
     //Lifecycle methods that are part of the Screen interface but are not used
     @Override
     public void show() {}
@@ -99,6 +72,27 @@ public class ShowAboutScreen implements Screen {
     public void dispose() {
         stage.dispose();
         backgroundImage.dispose();
+    }
+
+    @Override
+    public void handleInput() {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
+            screenService.showStartGame();
+         }
+         if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
+             Vector2 clickPosition = new Vector2(Gdx.input.getX(), Gdx.input.getY());
+             viewport.unproject(clickPosition);
+             checkButtonPress(clickPosition, screenService);
+         }
+    }
+
+    @Override
+    public void checkButtonPress(Vector2 clickPosition, IScreenFactory screenService) {
+        // Defines the bounding box where the back arrow is located
+        Rectangle backBounds = new Rectangle(6, 197,35 , 8);
+        if (backBounds.contains(clickPosition)) {
+            screenService.showStartGame();
+        }
     }
     
 }

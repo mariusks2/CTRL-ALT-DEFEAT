@@ -1,6 +1,7 @@
 # INF112 Prosjekt – _Mega Marius_
 - Team: _Ctrl+Alt+Defeat_ (Gruppe 5): _Christoffer A. Slettebø, Marius Soma, Henrik Johansen, Olav Høysæther Opheim_
-- Lenke til <a href="https://trello.com/b/naQJzzQZ/ctrlaltdefeat">Trello</a>.
+- Lenke til <a href="https://trello.com/b/naQJzzQZ/ctrlaltdefeat" target="_blank">Trello</a>.
+- Lenke til <a href="https://git.app.uib.no/Christoffer.Slettebo/ctrl-alt-defeat" target="_blank">GitLab</a>
 
 ## Om spillet
 - Lore:
@@ -26,8 +27,8 @@ Man kan sjekke scoren sin ved å trykke på scoreboard knappen i map select meny
 - Spillet krasjer noen ganger hvis man hopper opp i coin/pessi block, feil er utbedret slik at de skjer skjeldnere. 
 
 ## Credits
-- Musikk fra <a href="https://pixabay.com/users/white_records-32584949/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=164702">Maksym Dudchyk</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=164702">Pixabay</a>
-- Sprites, vi har redigert de fleste : <a href= https://www.spriters-resource.com/nes/supermariobros/sheet/52571>Spriters-resource</a>
-- Powerup 10.wav av MATRIXXX_ -- https://freesound.org/s/523654/ -- License: Creative Commons 0
-- Retro, Coin 02.wav av MATRIXXX_ -- https://freesound.org/s/402288/ -- License: Creative Commons 0
-- Trúng Gạch Đá av SieuAmThanh -- https://freesound.org/s/530812/ -- License: Creative Commons 0
+- Musikk fra <a href="https://pixabay.com/users/white_records-32584949/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=164702" target="_blank">Maksym Dudchyk</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=164702" target="_blank">Pixabay</a>.
+- Sprites, vi har redigert de fleste : <a href= https://www.spriters-resource.com/nes/supermariobros/sheet/52571 target="_blank">Spriters-resource</a>.
+- Powerup 10.wav av MATRIXXX_ <a href="https://freesound.org/s/523654/" target="_blank">Freesound</a> License: Creative Commons 0.
+- Retro, Coin 02.wav av MATRIXXX_ <a href="https://freesound.org/s/402288/" target="_blank">Freesound</a> License: Creative Commons 0.
+- Trúng Gạch Đá av SieuAmThanh <a href="https://freesound.org/s/530812/" target="_blank">Freesound</a> License: Creative Commons 0.

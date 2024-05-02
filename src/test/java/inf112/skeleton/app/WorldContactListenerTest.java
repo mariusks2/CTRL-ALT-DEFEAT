@@ -32,14 +32,18 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 
 import inf112.Entities.Blocks.Pepsi;
+import inf112.Entities.Enemies.Enemy;
 import inf112.Entities.Enemies.Spider;
 import inf112.Entities.Enemies.Turtle;
 import inf112.Scenes.Display;
 import inf112.Screens.ScreenManager;
 import inf112.Screens.ShowGame;
 import inf112.Screens.ShowStartGame;
+import inf112.skeleton.MakeMap.MakeMap;
+import inf112.skeleton.app.Marius.State;
 
 public class WorldContactListenerTest {
     RectangleMapObject object;
@@ -48,13 +52,13 @@ public class WorldContactListenerTest {
     TiledMap map;
     static GL20 gl;
     Display display;
-	ShowStartGame sGame;
     SpriteBatch batch;
     private static HeadlessApplication headlessApplication;
     WorldContactListener wListener;
     TextureAtlas textureAtlas;
     ShowGame cScreen;
     World world;
+    MakeMap makeMap;
     
 
     @BeforeAll
@@ -93,33 +97,64 @@ public class WorldContactListenerTest {
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
         wListener = new WorldContactListener();
-        world = new World(new Vector2(10, 10), false);
+        world = new World(new Vector2(0, 0), true);
         world.setContactListener(wListener);
         when(cScreen.getWorld()).thenReturn(world);
         when(cScreen.getMap()).thenReturn(map);
 		when(cScreen.getDisplay()).thenReturn(display);
         textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
+        makeMap = new MakeMap(cScreen);
+        
 	}
     @Test
     void contactMariusItemTest(){
+        Integer countBeforeMaking = world.getBodyCount();
         Marius marius = new Marius(cScreen);
         Pepsi pepsi = new Pepsi(cScreen, 0, 0);
-        assertEquals(2, world.getBodyCount());
+        assertEquals(countBeforeMaking+2, world.getBodyCount());
         world.step(0, 0, 0);
         wListener.beginContact(world.getContactList().first());
     }
-    /* 
+    
     @Test
     void contactMariusEnemyTest1(){
+        Integer countBeforeMaking = world.getBodyCount();
         Marius marius = new Marius(cScreen);
-        Spider spider = new Spider(cScreen, 0, 0);
-        assertEquals(2, world.getBodyCount());
-        world.step(10, 1, 1);
-        //assertEquals(marius.getX(), spider.getX());
-        wListener.beginContact(world.getContactList().first());
+        Turtle turtle = new Turtle(cScreen, 64/MegaMarius.PPM, 32/MegaMarius.PPM);
+        turtle.update(0);
+        //marius.jump();
+        marius.update(0);
+        Array<Enemy> enemies = makeMap.getEnemies();
+        for(Enemy enemy : makeMap.getEnemies()){
+            enemy.update(0);
+            if (enemy.getX() < marius.getX() + 224/MegaMarius.PPM) {
+                enemy.b2body.setActive(true);
+            }
+        }
+        marius.update(0);
+        assertEquals(16, enemies.size);
+        assertEquals(countBeforeMaking+2, world.getBodyCount());
+        world.step(10f, 0, 0);
+        assertEquals(countBeforeMaking+2, world.getBodyCount());
+        for(Enemy enemy : makeMap.getEnemies()){
+            enemy.update(0);
+            if (enemy.getX() < marius.getX() + 224/MegaMarius.PPM) {
+                enemy.b2body.setActive(true);
+            }
+        }
+        world.step(0.5f, 0, 0);
+        //marius.b2body.applyLinearImpulse(new Vector2(1.0f, 0), marius.b2body.getWorldCenter(), true);
+        //assertEquals(new Vector2(0,0), marius.b2body.getPosition());
+        //assertEquals(new Vector2(0,0), turtle.b2body.getPosition());
+        assertEquals(8, world.getContactCount());
+        assertEquals(2, world.getContactList().get(3).getFixtureB().getFilterData().categoryBits);
+        assertEquals(128, world.getContactList().get(3).getFixtureA().getFilterData().categoryBits);
+        for (int i = 0; i<world.getContactCount(); i++){
+            wListener.beginContact(world.getContactList().get(0));
+        }
     }
-
+    /* 
     @Test
     void contactMariusEnemyTest(){
         Marius marius = new Marius(cScreen);

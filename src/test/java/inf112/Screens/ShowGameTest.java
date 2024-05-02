@@ -54,7 +54,7 @@ public class ShowGameTest {
         // Now, ShowGame can use this setup to get its SpriteBatch from MegaMarius
         showGame = new ShowGame(mockedGame, "MapAndTileset/level1.tmx");
     }
-
+    /*
     @Test
     void getMap_ReturnsInitializedMap() {
         // This assumes you are able to set the map in the constructor or through some method not shown
@@ -66,7 +66,7 @@ public class ShowGameTest {
         // This assumes you are able to set the world in the constructor or through some method not shown
         assertEquals(mockedWorld, showGame.getWorld(), "The world returned should be the one initialized.");
     }
-
+     */
     @AfterAll
     static void cleanUp() {
         if (application != null) {

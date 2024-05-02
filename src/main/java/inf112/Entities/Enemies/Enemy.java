@@ -47,5 +47,9 @@ public abstract class Enemy extends Sprite{ //Abstract class for enemies.
             velocity.y = -velocity.y;
         }
     }
+
+    public Vector2 getVelocity(){
+        return velocity;
+    }
     
 }

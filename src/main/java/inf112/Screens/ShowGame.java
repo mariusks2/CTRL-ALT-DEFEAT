@@ -15,6 +15,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 //import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer; Uncomment to show hitbox
@@ -273,6 +274,7 @@ public class ShowGame implements Screen{
             player.setCurrentState(Marius.State.PAUSED);
         }
     }
+  
 
     /**
      * Handles the game screens and user input when the game is won

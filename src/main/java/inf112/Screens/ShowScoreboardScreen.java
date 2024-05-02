@@ -36,7 +36,6 @@ public class ShowScoreboardScreen implements Screen {
         this.backgroundImage = new Texture("Screens/scoreboard-screen.png");
         this.viewport = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());
         this.stage = new Stage(viewport,megaMariusGame.getSpriteBatch());
-        this.batch = new SpriteBatch();
         this.font = new BitmapFont();
     }
 
@@ -57,7 +56,7 @@ public class ShowScoreboardScreen implements Screen {
 
     public void drawScores(ArrayList<Integer> scores, int x, int y) {
         if (scores.isEmpty()) {
-            font.draw(batch, "No scores available", x, y);
+            font.draw(stage.getBatch(), "No scores available", x, y);
             return;
         }
 
@@ -69,35 +68,29 @@ public class ShowScoreboardScreen implements Screen {
             count = Math.min(scores.size(), 5);
         }
         for (int i = 0; i < count; i++) {
-            if(scores.get(i) != null) {
-                font.draw(batch, (i + 1) + ". Time: " + scores.get(i), x, y - (i + 1) * 20);
-            }
+            font.draw(stage.getBatch(), (i + 1) + ". Time: " + scores.get(i), x, y - (i + 1) * 20);
         }
     }
 
     public void drawScoreboard() {
+        
         ArrayList<Integer> scores_level_one = getHighScores(scoreboardList, 1);
         ArrayList<Integer> scores_level_two = getHighScores(scoreboardList, 2);
         ArrayList<Integer> scores_level_three = getHighScores(scoreboardList, 3);
 
-        batch.begin();
-        font.draw(batch, "Top 5 Scores for Level 1:", 50, 400);
-        drawScores(scores_level_one, 50, 370);
+        stage.getBatch().begin();
+        font.getData().setScale(0.5f);
+        font.draw(stage.getBatch(), "Top 5: Level 1:", 100, 150);
+        drawScores(scores_level_one, 100, 140);
 
-        font.draw(batch, "Top 5 Scores for Level 2:", 50, 250);
-        drawScores(scores_level_two, 50, 220);
+        font.draw(stage.getBatch(), "Top 5: Level 2:", 175, 150);
+        drawScores(scores_level_two, 175, 140);
 
-        font.draw(batch, "Top 5 Scores for Level 3:", 50, 100);
-        drawScores(scores_level_three, 50, 70);
-        batch.end();
-
+        font.draw(stage.getBatch(), "Top 5: Level 3:", 250, 150);
+        drawScores(scores_level_three, 250, 140);
+        stage.getBatch().end();
         
     }
-
-    @Override
-    public void show() {
-    }
-
 
     @Override
     public void render(float delta) {
@@ -105,8 +98,8 @@ public class ShowScoreboardScreen implements Screen {
         ScreenManager.getInstance().drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
         drawScoreboard();
         handleInput();
-        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
-        stage.draw();
+        //stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+        //stage.draw();
     }
 
 
@@ -118,9 +111,12 @@ public class ShowScoreboardScreen implements Screen {
     }
 
     @Override
-    public void resize(int width, int height) {
+    public void show() {
     }
 
+    @Override
+    public void resize(int width, int height) {
+    }
 
     @Override
     public void pause() {

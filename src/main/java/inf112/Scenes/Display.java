@@ -19,7 +19,6 @@ public class Display {
     public Stage stage;
     private Viewport viewport;
     private BitmapFont font;
-    private BitmapFont boldFont;
 
     private Integer timer;
     private boolean timesOut;
@@ -33,7 +32,6 @@ public class Display {
     private static Label scoreDisplay;
     private static Label coinsDisplay;
     private static Label levelDisplay;
-    private Label pauseDisplay;
 
     // Descriptor labels
     private Label scoreTextLabel;
@@ -59,8 +57,7 @@ public class Display {
         font = new BitmapFont();
         font.getData().setScale(0.5f);
 
-        boldFont = new BitmapFont();
-        boldFont.getData().setScale(1f);
+
 
         Table table= new Table();
         table.top(); //put the table at the top of the screen
@@ -68,12 +65,10 @@ public class Display {
 
         //Define the labels:
         Label.LabelStyle labelStyle = new Label.LabelStyle(font,Color.WHITE);
-        Label.LabelStyle boldLabelStyle = new Label.LabelStyle(boldFont, Color.WHITE);
         scoreDisplay =new Label(String.format("%03d", scoreCount), labelStyle);
         coinsDisplay = new Label (String.format("%02d",coins),labelStyle);
         levelDisplay = new Label (String.format("%01d",level ), labelStyle);
         countdownDisplay= new Label(String.format("%03d",timer),labelStyle);
-        pauseDisplay = new Label("| |",boldLabelStyle);
 
         // Create descriptor labels
         scoreTextLabel = new Label("SCORE", labelStyle);
@@ -87,7 +82,6 @@ public class Display {
         table.add(coinsTextLabel).expandX().padTop(4);
         table.add(worldTextLabel).expandX().padTop(4);
         table.add(timeTextLabel).expandX().padTop(4);
-        table.add(pauseDisplay).expandX().padTop(8);
 
         // Add a new row to the table for the values
         table.row();

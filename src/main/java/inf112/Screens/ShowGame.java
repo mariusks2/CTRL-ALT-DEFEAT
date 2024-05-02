@@ -52,6 +52,8 @@ public class ShowGame implements Screen{
     private Label victoryLabel; //Text to display when level is completed
     private Label retryLabel; //Instruction on what to do after completing level
     private showMapSelect mapSelect; //Used for getting next map when level is completed
+    private Label gameCompletedLabel; //Label to display when the final map is completed
+    private Label completedDescriptionLabel; //Label to explain what the user should do after completing the game
 
     //For creating a grayed out screen when the game is won
     private ShapeRenderer shapeRenderer;
@@ -127,6 +129,19 @@ public class ShowGame implements Screen{
         retryLabel.setVisible(false);  // Initially invisible
         retryLabel.setPosition(MegaMarius.M_Width / 2 - retryLabel.getWidth() / 2, MegaMarius.M_Height / 2 - 20);  // Slightly below the victoryLabel
         uiStage.addActor(retryLabel);
+
+        //Configure the game completed text:
+        gameCompletedLabel = new Label("Congratulation you completed the game!", font);
+        gameCompletedLabel.setVisible(false);  // Initially invisible
+        gameCompletedLabel.setPosition(MegaMarius.M_Width / 2 - gameCompletedLabel.getWidth() / 2, MegaMarius.M_Height / 2 + 20);  // Adjust Y position for visibility
+        uiStage.addActor(gameCompletedLabel);
+
+        //Configure what to do 
+        // Configure the instruction message
+        completedDescriptionLabel = new Label("Press ENTER to return to start game or ESC to quit game", font);
+        completedDescriptionLabel.setVisible(false);  // Initially invisible
+        completedDescriptionLabel.setPosition(MegaMarius.M_Width / 2 - completedDescriptionLabel.getWidth() / 2, MegaMarius.M_Height / 2 - 20);  // Slightly below the victoryLabel
+        uiStage.addActor(completedDescriptionLabel);
 
       
 
@@ -287,7 +302,10 @@ public class ShowGame implements Screen{
         String nextMap = mapSelect.getNextMap(fileName);
         if (nextMap.equals("GameCompleted")) {
             game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), 1); // TODO change the level parameter to get the current level
-            ScreenManager.getInstance().showScreen("GameCompleted", new showGameCompleted(game));
+            drawGrayOverlay();
+            uiStage.draw();
+            gameCompletedLabel.setVisible(true);
+            completedDescriptionLabel.setVisible(true);
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
             game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), 1); // TODO change the level parameter to get the current level
             ScreenManager.getInstance().showScreen("ShowGame", new ShowGame(game, nextMap));

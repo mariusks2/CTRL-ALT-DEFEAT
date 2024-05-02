@@ -95,7 +95,7 @@ public class showMapSelect implements Screen {
         Rectangle map3Text = new Rectangle(254,55,47,5);
 
         // Defines the bouds where the scoreboard button is defined.
-        Rectangle scoreboardButton = new Rectangle(182, 18, 33, 6);
+        Rectangle scoreboardButton = new Rectangle(173, 17, 58, 12);
 
         // Check if the click is within the bounds of any of the rectangles
         //Here we could use a for loop for the map list for better implementation with more maps

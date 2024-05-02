@@ -52,7 +52,7 @@ public class ShowStartGame implements Screen {
     /**
      * Handles user inputs such as keyboard presses and mouse clicks for navigation between screens
      */
-    private void handleInput(){
+    public void handleInput(){
         if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
             ScreenManager.getInstance().showScreen("MapSelect", new showMapSelect(megaMariusGame));
         }
@@ -92,17 +92,25 @@ public class ShowStartGame implements Screen {
     
     //Lifecycle methods from the screen interface which are not used
     @Override
-    public void show() {}
+    public void show() {
+    }
+
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height, true);
     }
+
     @Override
-    public void pause() {}
+    public void pause() {
+    }
+
     @Override
-    public void resume() {}
+    public void resume() {
+    }
+
     @Override
-    public void hide() {}
+    public void hide() {
+    }
 
     /**
      * Disposes of resources like the stage and textures.

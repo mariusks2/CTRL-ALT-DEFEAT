@@ -32,14 +32,12 @@ public class MegaMarius extends Game {
 	public static final short MARIUS_HEAD_BIT = 512;
 
     public AssetManager manager;
-    public boolean headless;
     private ShowScoreboardScreen scoreboard;
 
 
 
     @Override
     public void create() {
-        //if(!headless)
         batch = new SpriteBatch();
         manager = new AssetManager();
         manager.load("audio/music/music1.mp3", Music.class);
@@ -47,9 +45,7 @@ public class MegaMarius extends Game {
 
         ScreenManager.getInstance().initialize(this);
         this.scoreboard = new ShowScoreboardScreen(this);
-        if(!headless)
-            ScreenManager.getInstance().showScreen("ShowStartGame", new ShowStartGame(this));
-        
+        ScreenManager.getInstance().showScreen("ShowStartGame", new ShowStartGame(this));
     }
 
     public void createTest(SpriteBatch spriteBatch) {
@@ -78,8 +74,4 @@ public class MegaMarius extends Game {
     public AssetManager getAssetManager() {
         return this.manager;
     }
-
-	public void setMockMode(boolean headless) {
-		this.headless = headless;
-	}
 }

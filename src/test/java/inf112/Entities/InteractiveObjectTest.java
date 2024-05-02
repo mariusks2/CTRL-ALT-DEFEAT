@@ -12,9 +12,9 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 
-import inf112.Entities.Blocks.Coin;
-import inf112.skeleton.app.Marius;
-import inf112.skeleton.app.MegaMarius;
+import inf112.Model.Entities.Blocks.Coin;
+import inf112.Model.app.Marius;
+import inf112.Model.app.MegaMarius;
 
 public class InteractiveObjectTest {
     @BeforeAll

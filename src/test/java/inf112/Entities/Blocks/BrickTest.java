@@ -31,8 +31,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import inf112.View.Scenes.Display;
 import inf112.View.Screens.ShowGame;
-import inf112.skeleton.app.Marius;
-import inf112.skeleton.app.MegaMarius;
+import inf112.Model.app.Marius;
+import inf112.Model.app.MegaMarius;
 
 public class BrickTest {
     

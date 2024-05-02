@@ -1,4 +1,4 @@
-package inf112.Entities;
+package inf112.Model.Entities;
 
 import com.badlogic.gdx.math.Vector2;
 

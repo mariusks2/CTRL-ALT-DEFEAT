@@ -31,7 +31,7 @@ import inf112.View.Scenes.Display;
 import inf112.View.Scenes.Score;
 import inf112.View.ScreenManagement.ScreenManager;
 import inf112.View.Screens.ShowScoreboardScreen;
-import inf112.skeleton.app.MegaMarius;
+import inf112.Model.app.MegaMarius;
 
 public class ShowScoreboardScreenTest {
     RectangleMapObject object;

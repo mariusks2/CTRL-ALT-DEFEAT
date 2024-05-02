@@ -28,18 +28,18 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 
-import inf112.skeleton.app.MegaMarius;
+import inf112.Model.app.MegaMarius;
 import inf112.Controller.MegaMariusControllable;
 import inf112.Controller.MegaMariusController;
-import inf112.Entities.Item;
-import inf112.Entities.ItemDef;
-import inf112.Entities.Blocks.Pessi;
-import inf112.Entities.Enemies.Enemy;
+import inf112.Model.Entities.Item;
+import inf112.Model.Entities.ItemDef;
+import inf112.Model.Entities.Blocks.Pessi;
+import inf112.Model.Entities.Enemies.Enemy;
 import inf112.View.Scenes.Display;
 import inf112.View.ScreenManagement.IScreenFactory;
-import inf112.skeleton.MakeMap.MakeMap;
-import inf112.skeleton.app.Marius;
-import inf112.skeleton.app.WorldContactListener;
+import inf112.Model.MakeMap.MakeMap;
+import inf112.Model.app.Marius;
+import inf112.Model.app.WorldContactListener;
 
 /**
  * This class represents the main game screen and renders 

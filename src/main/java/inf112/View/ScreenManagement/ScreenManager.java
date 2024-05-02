@@ -14,9 +14,9 @@ import inf112.View.Screens.ShowMapSelect;
 import inf112.View.Screens.ShowPauseScreen;
 import inf112.View.Screens.ShowScoreboardScreen;
 import inf112.View.Screens.ShowStartGame;
-import inf112.skeleton.app.Marius;
-import inf112.skeleton.app.Marius.State;
-import inf112.skeleton.app.MegaMarius;
+import inf112.Model.app.Marius;
+import inf112.Model.app.Marius.State;
+import inf112.Model.app.MegaMarius;
 
 import java.util.HashMap;
 

@@ -26,11 +26,11 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
 
-import inf112.Entities.Enemies.Spider;
-import inf112.Entities.Enemies.Turtle;
+import inf112.Model.Entities.Enemies.Spider;
+import inf112.Model.Entities.Enemies.Turtle;
 import inf112.View.Scenes.Display;
 import inf112.View.Screens.ShowGame;
-import inf112.skeleton.app.Marius.State;
+import inf112.Model.app.Marius.State;
 public class MariusTest {
 
 	Marius marius;

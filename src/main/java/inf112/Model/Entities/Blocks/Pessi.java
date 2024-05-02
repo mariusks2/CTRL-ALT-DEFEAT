@@ -1,14 +1,14 @@
-package inf112.Entities.Blocks;
+package inf112.Model.Entities.Blocks;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 
-import inf112.Entities.Item;
+import inf112.Model.Entities.Item;
 import inf112.View.Screens.ShowGame;
-import inf112.skeleton.app.Marius;
-import inf112.skeleton.app.MegaMarius;
+import inf112.Model.app.Marius;
+import inf112.Model.app.MegaMarius;
 
 /** 
  * Represents a Coin block with Pepsi inside

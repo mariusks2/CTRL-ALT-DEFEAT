@@ -273,12 +273,6 @@ public class ShowGame implements Screen{
                 uiStage.draw();
                 gameCompletedLabel.setVisible(true);
                 completedDescriptionLabel.setVisible(true);
-                if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
-                    ScreenManager.getInstance().showScreen("StartGame", new ShowStartGame(game));
-                }
-                else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
-                    Gdx.app.exit();
-                }
             }
             else{
             uiStage.draw();
@@ -315,13 +309,23 @@ public class ShowGame implements Screen{
      */
     private void handleVictoryTransition() {
         String nextMap = mapSelect.getNextMap(fileName);
-        
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-            game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), 1); // TODO change the level parameter to get the current level
-            ScreenManager.getInstance().showScreen("ShowGame", new ShowGame(game, nextMap));
-            Display.updateLevel(1);
-        } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            ScreenManager.getInstance().showScreen("StartGame", new ShowStartGame(game));
+
+        if(nextMap.equals("GameCompleted")){
+            if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
+                ScreenManager.getInstance().showScreen("StartGame", new ShowStartGame(game));
+            }
+            else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
+                Gdx.app.exit();
+            }
+        }
+        else{
+            if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+                game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), 1); // TODO change the level parameter to get the current level
+                ScreenManager.getInstance().showScreen("ShowGame", new ShowGame(game, nextMap));
+                Display.updateLevel(1);
+            } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+                ScreenManager.getInstance().showScreen("StartGame", new ShowStartGame(game));
+            }
         }
     }
     /**

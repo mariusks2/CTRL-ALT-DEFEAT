@@ -85,7 +85,7 @@ public class WorldContactListenerTest {
         Integer countBeforeMaking = world.getBodyCount();
         Marius marius = new Marius(cScreen);
         Pessi pepsi = new Pessi(cScreen, 0, 0);
-        assertEquals(2, world.getBodyCount());
+        assertEquals(countBeforeMaking+2, world.getBodyCount());
         world.step(0, 0, 0);
         wListener.beginContact(world.getContactList().first());
         marius.update(0);

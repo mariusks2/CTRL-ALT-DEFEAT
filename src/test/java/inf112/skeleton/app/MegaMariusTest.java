@@ -55,6 +55,7 @@ public class MegaMariusTest {
     void disposeTest() {
         // Mock the SpriteBatch
         MegaMarius megaMarius = new MegaMarius();
+        SpriteBatch mockBatch = mock(SpriteBatch.class);
         AssetManager mockManager = mock(AssetManager.class);
         megaMarius.manager = mockManager;
         //megaMarius.dispose();

@@ -22,7 +22,7 @@ _«Marius-Mario er i trøbbel nok engong! Han er helt tom for PepsiMax. Marius-M
 
 ## Credits
 - Musikk fra <a href="https://pixabay.com/users/white_records-32584949/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=164702">Maksym Dudchyk</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=164702">Pixabay</a>
-- Sprites, vi har redigert de fleste : <a href= https://www.spriters-resource.com/nes/supermariobros/sheet/52571> </a>
+- Sprites, vi har redigert de fleste : <a href= https://www.spriters-resource.com/nes/supermariobros/sheet/52571>Spriters-resource</a>
 - Powerup 10.wav av MATRIXXX_ -- https://freesound.org/s/523654/ -- License: Creative Commons 0
 - Retro, Coin 02.wav av MATRIXXX_ -- https://freesound.org/s/402288/ -- License: Creative Commons 0
 - Trúng Gạch Đá av SieuAmThanh -- https://freesound.org/s/530812/ -- License: Creative Commons 0

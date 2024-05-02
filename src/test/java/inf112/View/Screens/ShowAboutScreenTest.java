@@ -1,4 +1,4 @@
-package inf112.Screens;
+package inf112.View.Screens;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -16,36 +16,25 @@ import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3NativesLoader;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
-import com.badlogic.gdx.physics.box2d.World;
 
-import inf112.Entities.Blocks.Brick;
 import inf112.View.Scenes.Display;
 import inf112.View.ScreenManagement.ScreenManager;
-import inf112.View.Screens.ShowGame;
-import inf112.View.Screens.showPauseScreen;
-import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.MegaMarius;
-import inf112.skeleton.app.Marius.State;
 
-public class PauseScreenTest {
-    Brick brick;
+public class ShowAboutScreenTest {
     RectangleMapObject object;
     TmxMapLoader mapLoader;
     String fileName = "MapAndTileset/level1.tmx";
     TiledMap map;
     static GL20 gl;
     Display display;
-	showPauseScreen sGame;
+	ShowAboutScreen sGame;
     SpriteBatch batch;
     private static HeadlessApplication headlessApplication;
-    
-    
 
     @BeforeAll
     static void setUpBeforeAll(){
@@ -53,17 +42,9 @@ public class PauseScreenTest {
         Box2D.init();
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
         Application app = mock(Application.class);
-        //Graphics graphics = mock(com.badlogic.gdx.Graphics.class);
-        //when(app.getGraphics()).thenReturn(graphics);
-        //when(graphics.getGL20()).thenReturn(gl);
-        //when(gl.glGenTexture()).thenReturn(1);
         //Mock Gdx
         Gdx.app = app;
-		//Gdx.graphics = mock(com.badlogic.gdx.Graphics.class);
 		gl = mock(GL20.class);
-		when(gl.glCreateShader(anyInt())).thenReturn(1);
-        when(gl.glCreateShader(anyInt())).thenReturn(0);
-        when(gl.glCreateProgram()).thenReturn(-1);
         Gdx.gl = gl; 
         Gdx.gl20 = gl; 
         MegaMarius megaMarius = new MegaMarius(); // Your implementation of ApplicationListener
@@ -78,32 +59,13 @@ public class PauseScreenTest {
 	void setUpBeforeEach() {
 	
         // Initialize Box2D
-      
         MegaMarius megaMarius = (MegaMarius) headlessApplication.getApplicationListener();
-
-        // Provide a stub for glGenTexture() method to avoid further issues
-
-        // Provide a stub for glGenTexture() method to avoid further issues
-        
-
-        
-		//when(Gdx.graphics.getGL20()).thenReturn(gl);
-		//when(Gdx.graphics.getWidth()).thenReturn(800); // Example width
-		//when(Gdx.graphics.getHeight()).thenReturn(600);
-        
-        World world = new World(new Vector2(0, -10), true);
-        display = new Display(mock(SpriteBatch.class));
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
 		megaMarius.createTest((mock(SpriteBatch.class)));
-        ShowGame cScreen = mock(ShowGame.class);
-        when(cScreen.getWorld()).thenReturn(world);
-        when(cScreen.getMap()).thenReturn(map);
-        TextureAtlas textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
-        when(cScreen.getAtlas()).thenReturn(textureAtlas);
-        Marius marius = new Marius(cScreen);
-        sGame = new showPauseScreen(megaMarius, marius, State.STANDING);
+        sGame = new ShowAboutScreen(megaMarius, ScreenManager.getInstance());
         ScreenManager.getInstance().initialize(megaMarius);
+        ScreenManager.getInstance().showAboutScreen();
 	}
 
     @Test
@@ -125,9 +87,7 @@ public class PauseScreenTest {
 
     @Test
     void thisScreenTest(){
-        ScreenManager.getInstance().showScreen("ShowPauseScreen", sGame);
-        assertEquals(sGame.getClass(), ScreenManager.getInstance().getCurrentGameScreen().getClass());
+        assertEquals(sGame.getClass(),ScreenManager.getInstance().getCurrentGameScreen().getClass());
         
     }
-
 }

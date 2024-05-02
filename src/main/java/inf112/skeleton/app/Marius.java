@@ -128,10 +128,6 @@ import inf112.View.Screens.ShowGame;
 			if((screen.getDisplay().isTimeUp() && !entityIsDead()) || fallOfMap()) {
 				entityDie();
 			}
-			// Check if marius has won game
-			if (b2body.getPosition().x >= 34 + 0.1) {
-				setGameWon();
-			}
 			// Update our sprite to correspond with the position of our Box2D body and with correct frame depending on current state
 			if (isMariusBig) {
 				setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2 - 6/MegaMarius.PPM);
@@ -290,7 +286,8 @@ import inf112.View.Screens.ShowGame;
 					MegaMarius.ENEMY_BIT |
 					MegaMarius.OBJECT_BIT |
 					MegaMarius.ENEMY_HEAD_BIT |
-					MegaMarius.ITEM_BIT;
+					MegaMarius.ITEM_BIT | 
+					MegaMarius.FLAG_BIT;
 	
 			fdef.shape = shape;
 			b2body.createFixture(fdef).setUserData(this);
@@ -323,7 +320,8 @@ import inf112.View.Screens.ShowGame;
 					MegaMarius.ENEMY_BIT |
 					MegaMarius.OBJECT_BIT |
 					MegaMarius.ENEMY_HEAD_BIT |
-					MegaMarius.ITEM_BIT;
+					MegaMarius.ITEM_BIT |
+					MegaMarius. FLAG_BIT;
 	
 			fdef.shape = shape;
 			b2body.createFixture(fdef).setUserData(this);
@@ -345,7 +343,7 @@ import inf112.View.Screens.ShowGame;
 			super.draw(batch);
 		}
 
-		public void setGameWon() {
+		public static void setGameWon() {
 			gameWon = true;
 		}
 
@@ -403,7 +401,8 @@ import inf112.View.Screens.ShowGame;
 					MegaMarius.ENEMY_BIT |
 					MegaMarius.OBJECT_BIT |
 					MegaMarius.ENEMY_HEAD_BIT |
-					MegaMarius.ITEM_BIT;
+					MegaMarius.ITEM_BIT |
+					MegaMarius.FLAG_BIT;
 	
 			fdef.shape = shape;
 			b2body.createFixture(fdef).setUserData(this);

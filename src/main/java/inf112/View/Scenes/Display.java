@@ -24,7 +24,7 @@ public class Display {
     private boolean timesOut;
     private float timeCount;
     private static Integer scoreCount;
-    private static Integer coins;
+    private static Integer coinCount;
     private static Integer level;
 
     //Create the labels to display in the 
@@ -46,7 +46,7 @@ public class Display {
         timer=300;
         timeCount=0;
         scoreCount=0;
-        coins=0;
+        coinCount=0;
 
         level=1;
 
@@ -66,7 +66,7 @@ public class Display {
         //Define the labels:
         Label.LabelStyle labelStyle = new Label.LabelStyle(font,Color.WHITE);
         scoreDisplay =new Label(String.format("%03d", scoreCount), labelStyle);
-        coinsDisplay = new Label (String.format("%02d",coins),labelStyle);
+        coinsDisplay = new Label (String.format("%02d",coinCount),labelStyle);
         levelDisplay = new Label (String.format("%01d",level ), labelStyle);
         countdownDisplay= new Label(String.format("%03d",timer),labelStyle);
 
@@ -116,8 +116,12 @@ public class Display {
      */
     public static void updateScore (int newScore){
         scoreCount+=newScore;
-        scoreDisplay.setText(String.format("%06d",scoreCount));
-        
+        scoreDisplay.setText(String.format("%03d",scoreCount));
+    }
+
+    public static void updateCoin(int coin){
+        coinCount+= coin;
+        coinsDisplay.setText(String.format("%02d", coinCount));
     }
 
     public int getTimer() {
@@ -134,8 +138,8 @@ public class Display {
     }
 
     public static void addCoins(int newCoin){
-        coins+=newCoin;
-        coinsDisplay.setText(String.format("COINS: %02d",coins));
+        coinCount+=newCoin;
+        coinsDisplay.setText(String.format("COINS: %02d",coinCount));
     }
 
     /**

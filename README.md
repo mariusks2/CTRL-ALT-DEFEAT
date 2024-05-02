@@ -32,3 +32,4 @@ Man kan sjekke scoren sin ved å trykke på scoreboard knappen i map select meny
 - Powerup 10.wav av MATRIXXX_ <a href="https://freesound.org/s/523654/" target="_blank">Freesound</a> License: Creative Commons 0.
 - Retro, Coin 02.wav av MATRIXXX_ <a href="https://freesound.org/s/402288/" target="_blank">Freesound</a> License: Creative Commons 0.
 - Trúng Gạch Đá av SieuAmThanh <a href="https://freesound.org/s/530812/" target="_blank">Freesound</a> License: Creative Commons 0.
+- Like, Thumbs Up av MATRIXXX_ <a href = "https://freesound.org/people/MATRIXXX_/sounds/714568/">Freesound</a> License: Creative Commons 0.

@@ -40,6 +40,7 @@ public class Coin extends InteractiveTileObj{
         setCategoryFilter(MegaMarius.COIN_BIT); //Set the block to Coin bit.
         manager = new AssetManager();
         manager.load("audio/music/coin.wav", Music.class);
+        manager.load("audio/music/pessi.wav", Music.class);
         manager.finishLoading();
     }
     
@@ -57,11 +58,12 @@ public class Coin extends InteractiveTileObj{
             Display.updateScore(200); //Add score
             if(object.getProperties().containsKey("pessi")){ //if the property is pessi, spawn pessi. if not spawn a coin
                 screen.spawnItems(new ItemDef(new Vector2(body.getPosition().x, body.getPosition().y + 16/MegaMarius.PPM), Pessi.class));
-                music = manager.get("audio/music/coin.wav", Music.class);
-                music.setVolume(0.04f);
+                music = manager.get("audio/music/pessi.wav", Music.class);
+                music.setVolume(0.12f);
                 music.play(); // Comment this out to stop music from playing
             }
             else {
+                Display.updateCoin(1);
                 music = manager.get("audio/music/coin.wav", Music.class);
                 music.setVolume(0.04f);
                 music.play(); // Comment this out to stop music from playing

@@ -10,6 +10,7 @@ import inf112.Screens.ShowGame;
 import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.MegaMarius;
 
+
 public abstract class Item extends Sprite{ //Abstract class for enemies. 
     protected World world;
     protected ShowGame screen;
@@ -18,6 +19,13 @@ public abstract class Item extends Sprite{ //Abstract class for enemies.
     protected boolean destroyed;
     public Body b2body;
 
+    /**
+     * Constructor for item
+     * 
+     * @param screen Gamescreen
+     * @param x x position
+     * @param y y position
+     */
     public Item(ShowGame screen, float x, float y){
         this.world = screen.getWorld();
         this.screen = screen;
@@ -28,14 +36,33 @@ public abstract class Item extends Sprite{ //Abstract class for enemies.
         destroyed = false;
     }
 
+    /**
+     * Function for defining an item
+     * 
+     * @param screen Gamescreen
+     */
     public abstract void defineItem();
 
+    /**
+     * Function for using an item
+     * 
+     * @param marius character marius
+     */
     public abstract void use(Marius marius);
 
+    /**
+     * Function for checking if item is destroyed
+     * 
+     */
     public boolean isDestroyed(){
         return destroyed;
     }
 
+    /**
+     * Update the item state
+     * 
+     * @param dt float delta time.
+     */
     public void update(float dt){
         if(toDestroy && !destroyed){
             destroyed=true;
@@ -43,16 +70,29 @@ public abstract class Item extends Sprite{ //Abstract class for enemies.
         }
     }
 
+    /**
+     * Function for drawing
+     * @param Batch the drawable batch
+     */
     public void draw(Batch batch){
         if(!destroyed){
             super.draw(batch);
         }
     }
 
+    /**
+     * Function for setting an item to destroy
+     * 
+     */
     public void destroy(){
         toDestroy=true;
     }
 
+    /**
+     * Function to reverse velocity on wall or enemy hit
+     * @param x Boolean to decide if this axis will reverse velocity
+     * @param y Boolean to decide if this axis will reverse velocity
+     */
     public void revVelocity(boolean x, boolean y){
         if (x) {
             velocity.x = -velocity.x;

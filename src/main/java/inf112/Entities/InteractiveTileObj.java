@@ -84,18 +84,20 @@ public abstract class InteractiveTileObj {
         TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(1);
         return layer.getCell((int)(body.getPosition().x * MegaMarius.PPM / 16), (int)(body.getPosition().y * MegaMarius.PPM / 16));
     }
-        /**
+    /**
      * Function for getting every cell in layer 1 but the one above, 
      * used for putting coins above coin blocks on headhit
      * 
      */
-    //Get a cellsfrom layer 1 but the one above the cell.
     public TiledMapTileLayer.Cell getCellAbove(){
         TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(1);
         return layer.getCell((int)(body.getPosition().x * MegaMarius.PPM / 16), (int)(body.getPosition().y * MegaMarius.PPM / 16)+1);
     }
 
-    //for testing
+    /**
+     * Function for getting the filter of a fixture 
+     * used in testing
+     */
     public Filter getFilterData(){
         return fixture.getFilterData();
     }

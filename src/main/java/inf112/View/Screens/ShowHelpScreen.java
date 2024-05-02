@@ -1,4 +1,4 @@
-package inf112.Screens;
+package inf112.View.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -11,27 +11,31 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import inf112.View.ScreenManagement.IScreenFactory;
+import inf112.View.ScreenManagement.ScreenManager;
 import inf112.skeleton.app.MegaMarius;
 
 /**
  * This screen provides help to players on how to play the game
  */
-public class showHelpScreen implements Screen{
+public class ShowHelpScreen implements Screen{
 
     private MegaMarius megaMariusGame; //Main game object
     private Viewport viewport; //Viewport for handling screen rendering
     private Stage stage; //Stage to render UI components
     private Texture backgroundImage; //Background image for the hekp screen
+    private IScreenFactory screenService;
 
     /**
      * Constructor to initialize the help screen and loading in the backgroundimage
      * @param megaMariusGame The main game object to enable screen changes
      */
-    public showHelpScreen (MegaMarius megaMariusGame){
+    public ShowHelpScreen (MegaMarius megaMariusGame, IScreenFactory screenService){
         this.megaMariusGame=megaMariusGame;
         this.viewport=new FitViewport(MegaMarius.M_Width,MegaMarius.M_Height, new OrthographicCamera());
         this.stage=new Stage(viewport,megaMariusGame.getSpriteBatch());
         this.backgroundImage = new Texture("Screens/help-screen.png");
+        this.screenService = screenService;
     }
 
     /**
@@ -41,8 +45,8 @@ public class showHelpScreen implements Screen{
     @Override
     public void render(float delta) {
         handleInput();
-        ScreenManager.getInstance().clearScreen();
-        ScreenManager.getInstance().drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
+        screenService.clearScreen();
+        screenService.drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
     }
@@ -52,7 +56,7 @@ public class showHelpScreen implements Screen{
     */
     private void handleInput(){
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
-            ScreenManager.getInstance().showScreen("StartGame", new ShowStartGame(megaMariusGame));
+            screenService.showStartGame();
         }
         if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
             Vector2 clickPosition = new Vector2(Gdx.input.getX(), Gdx.input.getY());
@@ -69,14 +73,14 @@ public class showHelpScreen implements Screen{
         // Defines the bounding box where back arrow is located
         Rectangle backBounds = new Rectangle(6, 197,35 , 8);
         if (backBounds.contains(clickPosition)) {
-            ScreenManager.getInstance().showScreen("StartGame", new ShowStartGame(megaMariusGame));
+            screenService.showStartGame();
         }
     }
 
     public void renderTest(){
         handleInput();
-        ScreenManager.getInstance().clearScreen();
-        ScreenManager.getInstance().drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
+        screenService.clearScreen();
+        screenService.drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
     }
 
     //Lifecycle methods that are part of the Screen interface but are not used

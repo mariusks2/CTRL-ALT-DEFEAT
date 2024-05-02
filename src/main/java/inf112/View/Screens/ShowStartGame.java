@@ -1,4 +1,4 @@
-package inf112.Screens;
+package inf112.View.Screens;
 
 
 import com.badlogic.gdx.Gdx;
@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
+import inf112.View.ScreenManagement.IScreenFactory;
 import inf112.skeleton.app.MegaMarius;
 
 /**
@@ -24,16 +25,18 @@ public class ShowStartGame implements Screen {
     private Viewport viewport; //Manages how content is displayed
     private Stage stage; //Stage to hold UI elements for this screen
     private Texture backgroundImage; //Background image for the start screen
+    private IScreenFactory screenService;
 
     /**
      * Constructor that initializes the start screen with necessary components
      * @param megaMariusGame The main game object to enable screen changes
      */
-    public ShowStartGame(MegaMarius megaMariusGame) {
+    public ShowStartGame(MegaMarius megaMariusGame, IScreenFactory screenService) {
         this.megaMariusGame = megaMariusGame;
         this.viewport = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());
         this.stage = new Stage(viewport, megaMariusGame.getSpriteBatch());
         this.backgroundImage = new Texture("src/main/resources/Screens/start-screen.png");
+        this.screenService = screenService;
     }
    
     /**
@@ -43,8 +46,8 @@ public class ShowStartGame implements Screen {
     @Override
     public void render(float delta) {
         handleInput();
-        ScreenManager.getInstance().clearScreen();
-        ScreenManager.getInstance().drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
+        screenService.clearScreen();
+        screenService.drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
     }
@@ -54,7 +57,7 @@ public class ShowStartGame implements Screen {
      */
     public void handleInput(){
         if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
-            ScreenManager.getInstance().showScreen("MapSelect", new showMapSelect(megaMariusGame));
+            screenService.showMapSelectScreen();
         }
         else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
             Gdx.app.exit();
@@ -80,13 +83,13 @@ public class ShowStartGame implements Screen {
         Rectangle aboutBounds = new Rectangle(199,14,39,10);
 
         if (startGameBounds.contains(clickPosition)){
-            ScreenManager.getInstance().showScreen("MapSelect", new showMapSelect(megaMariusGame));
+            screenService.showMapSelectScreen();
         }
         else if (helpBounds.contains(clickPosition)){
-            ScreenManager.getInstance().showScreen("Help", new showHelpScreen(megaMariusGame));
+            screenService.showHelpScreen();
         }
         else if (aboutBounds.contains(clickPosition)){
-            ScreenManager.getInstance().showScreen("About", new showAboutScreen(megaMariusGame));
+            screenService.showAboutScreen();
         }
     }
     

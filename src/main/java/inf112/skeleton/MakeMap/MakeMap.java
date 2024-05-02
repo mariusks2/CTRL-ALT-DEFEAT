@@ -16,7 +16,7 @@ import inf112.Entities.Blocks.Coin;
 import inf112.Entities.Enemies.Enemy;
 import inf112.Entities.Enemies.Spider;
 import inf112.Entities.Enemies.Turtle;
-import inf112.Screens.ShowGame;
+import inf112.View.Screens.ShowGame;
 import inf112.skeleton.app.MegaMarius;
 
 public class MakeMap {

@@ -20,7 +20,7 @@ import com.badlogic.gdx.utils.Array;
 
 import inf112.Entities.Enemies.Enemy;
 import inf112.Entities.Enemies.Turtle;
-import inf112.Screens.ShowGame;
+import inf112.View.Screens.ShowGame;
 
 
 	public class Marius extends Sprite {

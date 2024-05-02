@@ -1,6 +1,5 @@
 package inf112.skeleton.app;
 
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -8,7 +7,6 @@ import static org.mockito.Mockito.*;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3NativesLoader;
 
 import org.junit.jupiter.api.AfterAll;
@@ -56,10 +54,8 @@ public class MegaMariusTest {
     void disposeTest() {
         // Mock the SpriteBatch
         MegaMarius megaMarius = new MegaMarius();
-
         SpriteBatch mockBatch = mock(SpriteBatch.class);
         AssetManager mockManager = mock(AssetManager.class);
-
         megaMarius.manager = mockManager;
         //megaMarius.dispose();
         megaMarius.setSpriteBatch(mockBatch);

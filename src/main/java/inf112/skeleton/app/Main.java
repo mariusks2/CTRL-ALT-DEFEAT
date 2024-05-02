@@ -10,6 +10,8 @@ public class Main {
         cfg.setTitle("ctrl+alt+defeat");
         cfg.setWindowedMode(1900, 1000);
         MegaMarius megaMarius = new MegaMarius();
+        // e
+        int a = 0;
         new Lwjgl3Application(megaMarius, cfg);
     }
 }

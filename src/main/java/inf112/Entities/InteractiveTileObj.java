@@ -18,7 +18,16 @@ import inf112.Screens.ShowGame;
 import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.MegaMarius;
 
-
+/** 
+ * Abstract class for interactive tile objects
+ * 
+ * This class provides the functionality neccesary to 
+ * interact with objects like coin and brick
+ * 
+ * @author CTRL-ALT-DEFEAT
+ * @version 1.0
+ * @since 2024-02
+*/
 public abstract class InteractiveTileObj {
     protected World world;
     protected TiledMap map;
@@ -62,7 +71,7 @@ public abstract class InteractiveTileObj {
         TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(1);
         return layer.getCell((int)(body.getPosition().x * MegaMarius.PPM / 16), (int)(body.getPosition().y * MegaMarius.PPM / 16));
     }
-    //Get a cellsfrom layer 1 but the one above the cell. !!NOT DONE
+    //Get a cellsfrom layer 1 but the one above the cell.
     public TiledMapTileLayer.Cell getCellAbove(){
         TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(1);
         return layer.getCell((int)(body.getPosition().x * MegaMarius.PPM / 16), (int)(body.getPosition().y * MegaMarius.PPM / 16)+1);

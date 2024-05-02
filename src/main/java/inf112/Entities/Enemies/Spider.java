@@ -106,23 +106,22 @@ public class Spider extends Enemy{
 
         PolygonShape head = new PolygonShape();
         Vector2[] vertice = new Vector2[4]; //defines hitbox for spider
-        vertice[0] = new Vector2(-4,11).scl(1/MegaMarius.PPM);
-        vertice[1] = new Vector2(4,11).scl(1/MegaMarius.PPM);
-        vertice[2] = new Vector2(-4,6).scl(1/MegaMarius.PPM);
-        vertice[3] = new Vector2(4,6).scl(1/MegaMarius.PPM);
+        vertice[0] = new Vector2(-5,12).scl(1/MegaMarius.PPM);
+        vertice[1] = new Vector2(5,12).scl(1/MegaMarius.PPM);
+        vertice[2] = new Vector2(-3,3).scl(1/MegaMarius.PPM);
+        vertice[3] = new Vector2(3,3).scl(1/MegaMarius.PPM);
         head.set(vertice);
 
         fdef.shape = head;
-        fdef.restitution = 0.5f;
+        fdef.restitution = 1f;
         fdef.filter.categoryBits = MegaMarius.ENEMY_HEAD_BIT;
         b2body.createFixture(fdef).setUserData(this);
         
     }
 
     /**
-     * Function for "drinking" a pepsi.
-     * checks if you are big marius, if not, you grow.
-     * @param Marius the playable character
+     * Function for drawing
+     * @param Batch the drawable batch
      */
     public void draw(Batch batch){
         if (!destroyed || stateTime < 1) {
@@ -130,11 +129,21 @@ public class Spider extends Enemy{
         }
     }
 
+    /**
+     * Function for setting an entity to destroy
+     * checks if an entity is hitonhead by marius
+     * @param Marius the playable character
+     */
     @Override
     public void hitOnHead(Marius marius) {
         setToDestroy = true;
     }
 
+    /**
+     * Function to check if enemy hit by other enemy is a turtle.
+     * checks if an entity is hit by an turtle whos moving.
+     * @param enemy the enemy who hit the other enemy.
+     */
     @Override
     public void hitByEnemy(Enemy enemy) {
         if(enemy instanceof Turtle && ((Turtle) enemy).getCurrentState() == Turtle.State.MOVING_SHELL)
@@ -143,6 +152,10 @@ public class Spider extends Enemy{
             revVelocity(true, false);
     }
 
+    /**
+     * Function for checking if entity is dead.
+     * test function
+     */
     public boolean entityIsDead(){
         return destroyed;
     }

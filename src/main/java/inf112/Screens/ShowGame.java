@@ -15,8 +15,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 //import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer; Uncomment to show hitbox
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -24,13 +24,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 
 import inf112.skeleton.app.MegaMarius;
 import inf112.Entities.Item;
 import inf112.Entities.ItemDef;
-import inf112.Entities.Blocks.Pepsi;
+import inf112.Entities.Blocks.Pessi;
 import inf112.Entities.Enemies.Enemy;
 import inf112.Scenes.Display;
 import inf112.skeleton.MakeMap.MakeMap;
@@ -43,7 +44,7 @@ import inf112.skeleton.app.WorldContactListener;
 public class ShowGame implements Screen{
     private MegaMarius game; //Reference to the main game object
     private TextureAtlas atlas; //Contains textures related to characters
-    private OrthographicCamera gameCam; //
+    private OrthographicCamera camera; //
     private Viewport gamePort; //Mangages how content is displayed
     private Display display; //UI display for the game
     private Stage uiStage;
@@ -51,6 +52,8 @@ public class ShowGame implements Screen{
     private Label victoryLabel; //Text to display when level is completed
     private Label retryLabel; //Instruction on what to do after completing level
     private showMapSelect mapSelect; //Used for getting next map when level is completed
+    private Label gameCompletedLabel; //Label to display when the final map is completed
+    private Label completedDescriptionLabel; //Label to explain what the user should do after completing the game
 
     //For creating a grayed out screen when the game is won
     private ShapeRenderer shapeRenderer;
@@ -71,8 +74,7 @@ public class ShowGame implements Screen{
     private Array<Item> items; //Items present in the game
     public LinkedBlockingQueue<ItemDef> itemsToSpawn; //items needed to be spawned
     public String fileName; //Name of the current map file
-    
-    //private Box2DDebugRenderer b2dr; //Used to display hitbox if uncommented
+    private Box2DDebugRenderer b2dr;
 
     /**
      * Initialization of the game and variables used to display the game
@@ -84,21 +86,22 @@ public class ShowGame implements Screen{
 
         this.game = game;
         this.fileName = fileName;
-        gameCam = new OrthographicCamera();
-        gamePort = new FitViewport(MegaMarius.M_Width / MegaMarius.PPM, MegaMarius.M_Height / MegaMarius.PPM, gameCam);
+        camera = new OrthographicCamera();
+        gamePort = new StretchViewport(MegaMarius.M_Width / MegaMarius.PPM, MegaMarius.M_Height / MegaMarius.PPM, camera);
+        //gamePort = new FitViewport(MegaMarius.M_Width / MegaMarius.PPM, MegaMarius.M_Height / MegaMarius.PPM, camera);
 
         display = new Display(game.getSpriteBatch());
 
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
         renderer = new OrthogonalTiledMapRenderer(map, 1  / MegaMarius.PPM);
-        gameCam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2, 0);
+        camera.position.set(-10, gamePort.getWorldHeight()/2, 0);
 
-        world = new World(new Vector2(0, -10), true);
+        world = new World(new Vector2(0, -10), true); //world with gravity -10
         world.step(0, 0, 0);
-        //b2dr = new Box2DDebugRenderer(); // uncomment to show hitbox 
 
         creator = new MakeMap(this);
+        b2dr = new Box2DDebugRenderer();
 
         player = new Marius(this);
 
@@ -122,10 +125,23 @@ public class ShowGame implements Screen{
         uiStage.addActor(victoryLabel);
 
         // Configure the instruction message
-        retryLabel = new Label("Press ENTER for next level or ESC to quit game", font);
+        retryLabel = new Label("Press ENTER for next level or ESC to go back to start game", font);
         retryLabel.setVisible(false);  // Initially invisible
         retryLabel.setPosition(MegaMarius.M_Width / 2 - retryLabel.getWidth() / 2, MegaMarius.M_Height / 2 - 20);  // Slightly below the victoryLabel
         uiStage.addActor(retryLabel);
+
+        //Configure the game completed text:
+        gameCompletedLabel = new Label("Congratulation you completed the game!", font);
+        gameCompletedLabel.setVisible(false);  // Initially invisible
+        gameCompletedLabel.setPosition(MegaMarius.M_Width / 2 - gameCompletedLabel.getWidth() / 2, MegaMarius.M_Height / 2 + 20);  // Adjust Y position for visibility
+        uiStage.addActor(gameCompletedLabel);
+
+        //Configure what to do 
+        // Configure the instruction message
+        completedDescriptionLabel = new Label("Press ENTER to return to start game or ESC to quit game", font);
+        completedDescriptionLabel.setVisible(false);  // Initially invisible
+        completedDescriptionLabel.setPosition(MegaMarius.M_Width / 2 - completedDescriptionLabel.getWidth() / 2, MegaMarius.M_Height / 2 - 20);  // Slightly below the victoryLabel
+        uiStage.addActor(completedDescriptionLabel);
 
       
 
@@ -153,8 +169,8 @@ public class ShowGame implements Screen{
     public void handleSpawningItems(){
         if(!itemsToSpawn.isEmpty()){
             ItemDef itemDef = itemsToSpawn.poll();
-            if(itemDef.type == Pepsi.class){
-                items.add(new Pepsi(this, itemDef.positon.x, itemDef.positon.y));
+            if(itemDef.type == Pessi.class){
+                items.add(new Pessi(this, itemDef.positon.x, itemDef.positon.y));
             }
         }
         
@@ -195,11 +211,11 @@ public class ShowGame implements Screen{
 
         //attach our gamecam to our players.x coordinate
         if(player.currentState != Marius.State.DEAD) {
-            gameCam.position.x = player.b2body.getPosition().x;
+            camera.position.x = player.b2body.getPosition().x;
         }
 
-        gameCam.update();
-        renderer.setView(gameCam);
+        camera.update();
+        renderer.setView(camera);
     }
 
     /**
@@ -229,7 +245,7 @@ public class ShowGame implements Screen{
      */
     private void drawGameWorld() {
         renderer.render();
-        game.getSpriteBatch().setProjectionMatrix(gameCam.combined);
+        game.getSpriteBatch().setProjectionMatrix(camera.combined);
         game.getSpriteBatch().begin();
         player.draw(game.getSpriteBatch());
         for (Enemy enemy : creator.getEnemies()) {
@@ -239,6 +255,7 @@ public class ShowGame implements Screen{
             item.draw(game.getSpriteBatch());
         }
         game.getSpriteBatch().end();
+        //b2dr.render(world, gameCam.combined); Hitboxes
     }
 
     /**
@@ -248,11 +265,20 @@ public class ShowGame implements Screen{
         game.getSpriteBatch().setProjectionMatrix(display.stage.getCamera().combined);
         display.stage.draw();
         if (Marius.getGameWon()) {
+            String nextMap = mapSelect.getNextMap(fileName);
             drawGrayOverlay();
             //game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), 1);
+            if (nextMap.equals("GameCompleted")) {
+                game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), 1); // TODO change the level parameter to get the current level
+                uiStage.draw();
+                gameCompletedLabel.setVisible(true);
+                completedDescriptionLabel.setVisible(true);
+            }
+            else{
             uiStage.draw();
             retryLabel.setVisible(true);
             victoryLabel.setVisible(true);
+            }
         }
     }
 
@@ -283,15 +309,23 @@ public class ShowGame implements Screen{
      */
     private void handleVictoryTransition() {
         String nextMap = mapSelect.getNextMap(fileName);
-        if (nextMap.equals("GameCompleted")) {
-            game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), 1); // TODO change the level parameter to get the current level
-            ScreenManager.getInstance().showScreen("GameCompleted", new showGameCompleted(game));
-        } else if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-            game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), 1); // TODO change the level parameter to get the current level
-            ScreenManager.getInstance().showScreen("ShowGame", new ShowGame(game, nextMap));
-            Display.updateLevel(1);
-        } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            System.exit(0);
+
+        if(nextMap.equals("GameCompleted")){
+            if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
+                ScreenManager.getInstance().showScreen("StartGame", new ShowStartGame(game));
+            }
+            else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
+                Gdx.app.exit();
+            }
+        }
+        else{
+            if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+                game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), 1); // TODO change the level parameter to get the current level
+                ScreenManager.getInstance().showScreen("ShowGame", new ShowGame(game, nextMap));
+                Display.updateLevel(1);
+            } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+                ScreenManager.getInstance().showScreen("StartGame", new ShowStartGame(game));
+            }
         }
     }
     /**
@@ -300,7 +334,7 @@ public class ShowGame implements Screen{
     private void drawGrayOverlay() {
         Gdx.gl.glEnable(GL20.GL_BLEND);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-        shapeRenderer.setProjectionMatrix(gameCam.combined);
+        shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(0.3f, 0.3f, 0.3f, 0.5f);  // Gray color with 50% opacity
         shapeRenderer.rect(0, 0, MegaMarius.M_Width, MegaMarius.M_Height);

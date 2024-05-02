@@ -8,7 +8,7 @@
  </layer>
  <layer id="2" name="graphics" width="240" height="16">
   <data encoding="base64" compression="zlib">
-   eJztl01OwzAQhV2FJT/rXoF92zPAlh+JDdArwBqQ2FBuA/QgwI2YQC0Zy548x+MkTSfSJ1XVeDzzPM9pl5UxS0VRFEVRdpYXYkW8DqCWsWowI+bEQjh2CLTVbu2x7XPI1d/2TBFN3oh34gPIx9WB6u/Hob1JzXUoT4oGbXS4Jm6IW+HYVO2lZqbt/Pi4/s3JwyHxoHvF6o+dqaS2iD+4OkJ7IV5B5zV1rkP3+jpDyxwdJM6Hi23Kk3L3cblS8iDv1dQ7GY139yzlX1tLl7+VuP4l5loyJzrbsbjQve7e913oPRSkzjYlD/JeTa2Li7+ahGeilH9tLVKeie1T4hy7pG6tAnpLzRcjFjvNqCF1LVfPVKCe0vRR2/Mk/H0p/0rqYr8f8pkqSipn5g8kdhv8qyi7gvWu+ldRtgvXu6X8u+/QlX/rciovrzH//y+V2BfNd0IankZ0TM1VMzX5/z/d9VWGJrG1VSSvW2/sM5KnTaw78+j829i2a6X09r1byr8HxCFxxPhW2kelaPId2scd5bgX9G8XvY2NkAcRD4T8kuIfydpL+7d+584cmt7BXZ7fOfVxQVxu+kHmt8l3qAcQ/3K5/NrRHnNrGgucBzkfxPzStDb3bnTXx7xbwr/VhrkJ/26V9O8n1fW14RvQ6oFiHomnCT6/bkxoP9QDNo6rmcvl14726Gvl7unvh+iZqjlydkiuUP0o/szbp8kLnF+a1sa0Reu36znvov7di8Rx/l209C+VrBgZTaR0Hdv52CdHi757GCrHyi+uZ/rMIZlnKNgnR4u+exgqP+3JDtM=
+   eJztl01OwzAQhV1ly886V2Df9gyw5WcJ9AqwBpbAWdgAPQggcSAmUEvGsifP8ThJ04n0SVU1Hs88z3PaVWXMSlEURVGUneWReCKeR1DLVDWYEwtiKRw7Brpqt/bY9jnk6u96pogmr8Qb8Q7k4+pA9ffj0N6k5jqUJ0WDLjpcElfEtXBsqvZSM9N1fnxc/+bk4ZB40L1i9cfOVFJbxB9cHaG9EK+g85o616F7fZ2hZY4OEufDxbblSbn7uFwpeZD3auqdjMa7e5byr62lz99KXP8Scy2ZE53tWFzoXnfv+z70HgtSZ5uSB3mvptbFxb/MwjNRyr+2FinPxPYpcY590rRWAb2l5osRi60zakhdy9VTC9RTmiFq+56Fvy/lX0ld7PdjPlNFSeXU/IHEboN/FWVXsN5V/yrKduF6t5R/9xz68m9TTuXlNeb//6US+6L5jknDk4iOqbkaapP//9NdX2VoEltbRfK69cY+I3m6xLozj86/je26Vkpv37ul/LtPHBCHjG+lfVSKNt+hfdxQjltB//bR29QIeRDxQMgvKf6RrL20f5t37tyh7R3c5/mdUR/nxMWmH2R+23yHegDxL5fLrx3tMbemqcB5kPNBzC9ta3PvRnd9zLsl/FttWJjw71ZJ/35QXZ8bvgCt7ijmnniY4fPrxoT2Qz1g47iauVx+7WiPvlbunv5+iJ6pmiNnh+QK1Y/iz7x92rzA+aVtbUxbtH67nvMu6t9YHOffZUf/UsmKkdFEStepnY99crQYuoexcqT84npmyBySecaCfXK0GLqHsfID7jsRsg==
   </data>
  </layer>
  <objectgroup id="9" name="ground">
@@ -80,7 +80,7 @@
  <objectgroup id="5" name="coins">
   <object id="35" x="1488" y="160" width="16" height="16">
    <properties>
-    <property name="pepsi" value=""/>
+    <property name="pessi" value=""/>
    </properties>
   </object>
   <object id="36" x="1744" y="96" width="16" height="16">
@@ -100,7 +100,7 @@
   </object>
   <object id="43" x="1984" y="96" width="16" height="16">
    <properties>
-    <property name="pepsi" value=""/>
+    <property name="pessi" value=""/>
    </properties>
   </object>
   <object id="44" x="2032" y="160" width="16" height="16">
@@ -110,7 +110,7 @@
   </object>
   <object id="47" x="2960" y="160" width="16" height="16">
    <properties>
-    <property name="pepsi" value=""/>
+    <property name="pessi" value=""/>
    </properties>
   </object>
   <object id="184" x="1184" y="160" width="16" height="16"/>
@@ -124,7 +124,7 @@
   </object>
   <object id="203" x="320" y="112" width="16" height="16">
    <properties>
-    <property name="pepsi" value=""/>
+    <property name="pessi" value=""/>
    </properties>
   </object>
   <object id="204" x="352" y="112" width="16" height="16">

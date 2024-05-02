@@ -4,8 +4,6 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-
 import inf112.Entities.InteractiveTileObj;
 import inf112.Entities.ItemDef;
 import inf112.Scenes.Display;
@@ -57,15 +55,15 @@ public class Coin extends InteractiveTileObj{
             getCell().setTile(tileSet.getTile(BLANK_COIN)); //Set the graphic block to Blank Coin
             
             Display.updateScore(200); //Add score
-            if(object.getProperties().containsKey("pepsi")){ //if the property is pepsi, spawn pepsi. if not spawn a coin
-                screen.spawnItems(new ItemDef(new Vector2(body.getPosition().x, body.getPosition().y + 16/MegaMarius.PPM), Pepsi.class));
+            if(object.getProperties().containsKey("pessi")){ //if the property is pessi, spawn pessi. if not spawn a coin
+                screen.spawnItems(new ItemDef(new Vector2(body.getPosition().x, body.getPosition().y + 16/MegaMarius.PPM), Pessi.class));
                 music = manager.get("audio/music/coin.wav", Music.class);
-                music.setVolume(0.009f);
+                music.setVolume(0.04f);
                 music.play(); // Comment this out to stop music from playing
             }
             else {
                 music = manager.get("audio/music/coin.wav", Music.class);
-                music.setVolume(0.009f);
+                music.setVolume(0.04f);
                 music.play(); // Comment this out to stop music from playing
                 getCellAbove().setTile(tileSet.getTile(COIN));
             }

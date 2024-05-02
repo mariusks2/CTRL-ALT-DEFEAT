@@ -79,22 +79,23 @@ public class showMapSelect implements Screen {
      * @param clickPosition The position of the click in screen coordinates
      */
     private void handleClickInput(Vector2 clickPosition){
+        System.out.println("Clicked at: " + clickPosition.x + ", " + clickPosition.y);
         //Define back arrow
-        Rectangle backBound = new Rectangle(6,197,25,8);
+        Rectangle backBound = new Rectangle(5,190,39,14);
         //Defines the bounds where the first map is defined, and the text box below is defined
-        Rectangle map1 = new Rectangle(150,131,100,51);
-        Rectangle map1Text = new Rectangle(187,121,34,5);
+        Rectangle map1 = new Rectangle(151,133,100,52);
+        Rectangle map1Text = new Rectangle(186,124,35,5);
 
         //Defines the bounds where the second map is defined and the text box below is defined
-        Rectangle map2 = new Rectangle(88,63,99,50);
-        Rectangle map2Text = new Rectangle(111,53,54,5);
+        Rectangle map2 = new Rectangle(79,65,99,52);
+        Rectangle map2Text = new Rectangle(95,55,67,5);
 
         //Defines the bounds where the third map is defined and the text box below is defined
-        Rectangle map3 = new Rectangle(212,63,100,51);
-        Rectangle map3Text = new Rectangle(223,103,54,5);
+        Rectangle map3 = new Rectangle(224,65,100,51);
+        Rectangle map3Text = new Rectangle(254,55,47,5);
 
         // Defines the bouds where the scoreboard button is defined.
-        Rectangle scoreboardButton = new Rectangle(182, 18, 33, 6);
+        Rectangle scoreboardButton = new Rectangle(173, 17, 58, 12);
 
         // Check if the click is within the bounds of any of the rectangles
         //Here we could use a for loop for the map list for better implementation with more maps

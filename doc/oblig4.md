@@ -40,9 +40,9 @@ Vi hadde en liten periode vi commitet med både norsk og engelsk commit melding,
 Vi så ikke tilbakelemdilgene fra tidligere obliger før dagen før fristen så vi fikk ikke med oss at de ville at vi skulle skrive hvem som har jobbet sammen i par programmering i git commitsene. Olav og Marius har jobbet en del sammen i prosjektet når det kommer til alt det grafiske, samt . Henrik og Christoffer har jobbet en del sammen med testing. Dette er de som har jobbet med sammen totalt, men alle har jobbet med alle gjennom prosjeket på ulike deler. Vi sitter som regel alle fire i discord sammen og jobber. Commits skal være ganskje likt på de fleset ingen uregelmessiger som vi kan se, alle har bidratt like mye på prosjektet hvertfall.
 
 ## Rapporter for denne "Sprinten"
-- uke16.md
-- uke17.md
-- uke18.md
+- <a href="https://git.app.uib.no/Christoffer.Slettebo/ctrl-alt-defeat/-/blob/main/doc/rapport/uke16.md">uke16.md</a>
+- <a href="https://git.app.uib.no/Christoffer.Slettebo/ctrl-alt-defeat/-/blob/main/doc/rapport/uke17.md">uke17.md</a>
+- <a href="https://git.app.uib.no/Christoffer.Slettebo/ctrl-alt-defeat/-/blob/main/doc/rapport/uke18.md">uke18.md</a>
 
 ## MVP (Ferdig):
 * Vise et spillebrett

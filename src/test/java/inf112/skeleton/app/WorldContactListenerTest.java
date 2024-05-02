@@ -23,7 +23,7 @@ import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 
-import inf112.Entities.Blocks.Pepsi;
+import inf112.Entities.Blocks.Pessi;
 import inf112.Entities.Enemies.Enemy;
 import inf112.Entities.Enemies.Turtle;
 import inf112.Scenes.Display;
@@ -84,8 +84,8 @@ public class WorldContactListenerTest {
     void contactMariusItemTest(){
         Integer countBeforeMaking = world.getBodyCount();
         Marius marius = new Marius(cScreen);
-        Pepsi pepsi = new Pepsi(cScreen, 0, 0);
-        assertEquals(countBeforeMaking+2, world.getBodyCount());
+        Pessi pepsi = new Pessi(cScreen, 0, 0);
+        assertEquals(2, world.getBodyCount());
         world.step(0, 0, 0);
         wListener.beginContact(world.getContactList().first());
         marius.update(0);

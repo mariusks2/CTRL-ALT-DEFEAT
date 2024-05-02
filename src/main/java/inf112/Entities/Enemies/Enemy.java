@@ -36,8 +36,8 @@ public abstract class Enemy extends Sprite{ //Abstract class for enemies.
 
     /**
      * Function to reverse velocity on wall hit
-     * @param x 
-     * @param y
+     * @param x Boolean to decide if this axis will reverse velocity
+     * @param y Boolean to decide if this axis will reverse velocity
      */
     public void revVelocity(boolean x, boolean y){
         if (x) {

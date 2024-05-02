@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Collections;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -22,7 +23,7 @@ import inf112.View.ScreenManagement.IScreenFactory;
 import inf112.View.ScreenManagement.ScreenManager;
 import inf112.skeleton.app.MegaMarius;
 
-public class ShowScoreboardScreen implements Screen {
+public class ShowScoreboardScreen implements Screen, InputHandler {
 
     private MegaMarius megaMariusGame;
     private Texture backgroundImage;
@@ -108,14 +109,6 @@ public class ShowScoreboardScreen implements Screen {
         //stage.draw();
     }
 
-
-    private void handleInput() {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
-            screenService.showMapSelectScreen();
-            dispose();
-        }
-    }
-
     @Override
     public void show() {
     }
@@ -142,5 +135,20 @@ public class ShowScoreboardScreen implements Screen {
     @Override
     public void dispose() {
         backgroundImage.dispose();
+    }
+
+
+    @Override
+    public void handleInput() {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
+            screenService.showMapSelectScreen();
+            dispose();
+        }
+    }
+
+
+    @Override
+    public void checkButtonPress(Vector2 clickPosition, IScreenFactory screenService) {
+        //Not used for scoreboard screen
     }
 }

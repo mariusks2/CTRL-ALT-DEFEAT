@@ -19,7 +19,7 @@ import inf112.skeleton.app.MegaMarius;
  * This screen represents the starting screen of the MegaMarius game,
  * and handles navigatipn to different screens like map selection, help screen and the about screen
  */
-public class ShowStartGame implements Screen {
+public class ShowStartGame implements Screen, InputHandler {
 
     private MegaMarius megaMariusGame; //Reference to the main game object for transition between screens
     private Viewport viewport; //Manages how content is displayed
@@ -50,47 +50,6 @@ public class ShowStartGame implements Screen {
         screenService.drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
-    }
-
-    /**
-     * Handles user inputs such as keyboard presses and mouse clicks for navigation between screens
-     */
-    public void handleInput(){
-        if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
-            screenService.showMapSelectScreen();
-        }
-        else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
-            Gdx.app.exit();
-        }
-        if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
-            Vector2 clickPosition = new Vector2(Gdx.input.getX(), Gdx.input.getY());
-            viewport.unproject(clickPosition);
-            checkButtonPress(clickPosition);
-        }
-    }
-
-    /**
-     * Checks the position of a mouse click and responds by navigating to the correct screen.
-     * @param clickPosition The screen coordinates of the mouse click
-     */
-    private void checkButtonPress(Vector2 clickPosition){
-        //Define buttons bounds
-        //Button for startgame
-        Rectangle startGameBounds = new Rectangle(169,38,56,10);
-        //button for help screen
-        Rectangle helpBounds = new Rectangle(160,16,35,10);
-        //Button for about screen
-        Rectangle aboutBounds = new Rectangle(199,14,39,10);
-
-        if (startGameBounds.contains(clickPosition)){
-            screenService.showMapSelectScreen();
-        }
-        else if (helpBounds.contains(clickPosition)){
-            screenService.showHelpScreen();
-        }
-        else if (aboutBounds.contains(clickPosition)){
-            screenService.showAboutScreen();
-        }
     }
     
     //Lifecycle methods from the screen interface which are not used
@@ -123,4 +82,42 @@ public class ShowStartGame implements Screen {
         stage.dispose();
         backgroundImage.dispose();
     }
+
+    @Override
+    public void handleInput() {
+        if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
+            screenService.showMapSelectScreen();
+        }
+        else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
+            Gdx.app.exit();
+        }
+        if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
+            Vector2 clickPosition = new Vector2(Gdx.input.getX(), Gdx.input.getY());
+            viewport.unproject(clickPosition);
+            checkButtonPress(clickPosition,screenService);
+        }
+    }
+
+    @Override
+    public void checkButtonPress(Vector2 clickPosition, IScreenFactory screenService) {
+            //Define buttons bounds
+        //Button for startgame
+        Rectangle startGameBounds = new Rectangle(169,38,56,10);
+        //button for help screen
+        Rectangle helpBounds = new Rectangle(160,16,35,10);
+        //Button for about screen
+        Rectangle aboutBounds = new Rectangle(199,14,39,10);
+
+        if (startGameBounds.contains(clickPosition)){
+            screenService.showMapSelectScreen();
+        }
+        else if (helpBounds.contains(clickPosition)){
+            screenService.showHelpScreen();
+        }
+        else if (aboutBounds.contains(clickPosition)){
+            screenService.showAboutScreen();
+        }
+    }
+
+  
 }

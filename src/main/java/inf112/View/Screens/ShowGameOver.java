@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -17,7 +18,7 @@ import inf112.skeleton.app.MegaMarius;
 /**
  * This screen displays the Game over screen for the MegaMarius game
  */
-public class ShowGameOver implements Screen {
+public class ShowGameOver implements Screen, InputHandler {
 
     private MegaMarius megaMariusGame; //The main game object 
     private Viewport camera; //Viewport for handling screen rendering aspects
@@ -54,25 +55,6 @@ public class ShowGameOver implements Screen {
         stage.draw();
     }
 
-    /**
-     * Handles user input to either restart the game at the same level or exits
-     */
-    private void handleInput(){
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-            // Start new game if 'enter' key is pressed
-            screenSerivce.showGameScreen(fileName);
-            if (fileName.equals("MapAndTileset/level2.tmx")){
-                Display.updateLevel(1);
-            }
-            else if (fileName.equals("MapAndTileset/level3.tmx")){
-                Display.updateLevel(2);
-            }
-
-        } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            // Exit game if 'escape' key is pressed
-            System.exit(0);
-        }
-    }
 
     //Unused lifecycle methods from the screen interface
     @Override
@@ -93,6 +75,30 @@ public class ShowGameOver implements Screen {
     public void dispose() {
         stage.dispose();
         backgroundImage.dispose();
+    }
+
+    //Methods from inputHandler
+    @Override
+    public void handleInput() {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+            // Start new game if 'enter' key is pressed
+            screenSerivce.showGameScreen(fileName);
+            if (fileName.equals("MapAndTileset/level2.tmx")){
+                Display.updateLevel(1);
+            }
+            else if (fileName.equals("MapAndTileset/level3.tmx")){
+                Display.updateLevel(2);
+            }
+
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            // Exit game if 'escape' key is pressed
+            System.exit(0);
+        }
+    }
+
+    @Override
+    public void checkButtonPress(Vector2 clickPosition, IScreenFactory screenService) {
+        //Not used in game over
     }
     
 }

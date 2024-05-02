@@ -21,7 +21,7 @@ import inf112.skeleton.app.MegaMarius;
 /**
  * Screen for handling the pause functionality of the game
  */
-public class ShowPauseScreen implements Screen{
+public class ShowPauseScreen implements Screen, InputHandler{
 
     private MegaMarius game; //Reference to the main game instance for scree transitions
     private Marius player; //Reference to the player character to manage it's state when pausing the game
@@ -63,48 +63,6 @@ public class ShowPauseScreen implements Screen{
         stage.draw();
     }
 
-    /**
-     * Method for handling keyboard and mouse input to navigate pause menu options.
-     */
-    private void handleInput(){
-        if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
-            player.setCurrentState(previousState);
-            game.setScreen(screenService.getShowGameScreen());
-        }
-        if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
-            Vector2 clickPosition = new Vector2(Gdx.input.getX(), Gdx.input.getY());
-            viewport.unproject(clickPosition);
-            checkButtonPress(clickPosition);
-        }
-    }
-
-    /**
-     * Checks the position of a mouse click and responds by executing the correspondin action, like resuming game,
-     * return to map selection or quit game
-     * @param clickPosition The screen coordinates where the mouse was clicked
-     */
-    private void checkButtonPress(Vector2 clickPosition){
-        //Defining resume game bounds
-        Rectangle resumeBound = new Rectangle(165,141,66,7);
-
-        //Defining back to map selection button
-        Rectangle mapSelectionBound = new Rectangle(150,114,111,7);
-
-        //Defining quit game bound
-        Rectangle quitGameBound = new Rectangle(176,84,49,6);
-
-        if(resumeBound.contains(clickPosition)){
-            player.setCurrentState(previousState);
-            game.setScreen(screenService.getShowGameScreen());
-        }
-        else if (mapSelectionBound.contains(clickPosition)){
-            screenService.showMapSelectScreen();
-        }
-        else if(quitGameBound.contains(clickPosition)){
-            Gdx.app.exit();
-        }
-        
-    }
 
     //Lifecycle methods form the implemenation of screen that are not used
     @Override
@@ -125,6 +83,42 @@ public class ShowPauseScreen implements Screen{
     public void dispose() {
         stage.dispose();
         backgroundImage.dispose();
+    }
+
+    @Override
+    public void handleInput() {
+        if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
+            player.setCurrentState(previousState);
+            game.setScreen(screenService.getShowGameScreen());
+        }
+        if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
+            Vector2 clickPosition = new Vector2(Gdx.input.getX(), Gdx.input.getY());
+            viewport.unproject(clickPosition);
+            checkButtonPress(clickPosition,screenService);
+        }
+    }
+
+    @Override
+    public void checkButtonPress(Vector2 clickPosition, IScreenFactory screenService) {
+        //Defining resume game bounds
+        Rectangle resumeBound = new Rectangle(165,141,66,7);
+
+        //Defining back to map selection button
+        Rectangle mapSelectionBound = new Rectangle(150,114,111,7);
+
+        //Defining quit game bound
+        Rectangle quitGameBound = new Rectangle(176,84,49,6);
+
+        if(resumeBound.contains(clickPosition)){
+            player.setCurrentState(previousState);
+            game.setScreen(screenService.getShowGameScreen());
+        }
+        else if (mapSelectionBound.contains(clickPosition)){
+            screenService.showMapSelectScreen();
+        }
+        else if(quitGameBound.contains(clickPosition)){
+            Gdx.app.exit();
+        }
     }
     
 }

@@ -44,7 +44,7 @@ import inf112.skeleton.app.WorldContactListener;
 /**
  * This class represents the main game screen and renders 
  */
-public class ShowGame implements Screen{
+public class ShowGame implements Screen, InputHandler{
     private MegaMarius game; //Reference to the main game object
     private TextureAtlas atlas; //Contains textures related to characters
     private OrthographicCamera camera; //
@@ -302,15 +302,6 @@ public class ShowGame implements Screen{
         }
     }
 
-    /**
-     * Handles user input for when the player wnats to pause the game
-     */
-    private void handleInput() {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            screenService.showPauseGameScreen(player, player.currentState);
-        }
-    }
-  
 
     /**
      * Handles the game screens and user input when the game is won
@@ -422,6 +413,19 @@ public class ShowGame implements Screen{
      */
     public MegaMarius getGame() {
         return game;
+    }
+    
+    //Methods from inputhandler
+    @Override
+    public void handleInput() {
+        //Handles when the user want to pause the game
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            screenService.showPauseGameScreen(player, player.currentState);
+        }
+    }
+    @Override
+    public void checkButtonPress(Vector2 clickPosition, IScreenFactory screenService) {
+        //Not needed in showgame
     }
 
 }

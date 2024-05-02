@@ -1,4 +1,4 @@
-package inf112.Entities.Enemies;
+package inf112.Model.Entities.Enemies;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -11,8 +11,8 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.utils.Array;
 
 import inf112.View.Screens.ShowGame;
-import inf112.skeleton.app.Marius;
-import inf112.skeleton.app.MegaMarius;
+import inf112.Model.app.Marius;
+import inf112.Model.app.MegaMarius;
 
 /** 
  * Represents a Turtle object.

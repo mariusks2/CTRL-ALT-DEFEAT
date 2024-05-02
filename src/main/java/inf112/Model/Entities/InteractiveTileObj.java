@@ -1,4 +1,4 @@
-package inf112.Entities;
+package inf112.Model.Entities;
 
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -14,8 +14,8 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
 import inf112.View.Screens.ShowGame;
-import inf112.skeleton.app.Marius;
-import inf112.skeleton.app.MegaMarius;
+import inf112.Model.app.Marius;
+import inf112.Model.app.MegaMarius;
 
 /** 
  * Abstract class for interactive tile objects

@@ -1,4 +1,4 @@
-package inf112.skeleton.app;
+package inf112.Model.app;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;

@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 
-import inf112.skeleton.app.Marius;
+import inf112.Model.app.Marius;
 
 public class MegaMariusController implements MegaMariusControllable {
 

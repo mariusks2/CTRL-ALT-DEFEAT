@@ -21,7 +21,7 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import inf112.View.ScreenManagement.ScreenManager;
 import inf112.View.Screens.ShowGame;
-import inf112.skeleton.app.MegaMarius;
+import inf112.Model.app.MegaMarius;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 

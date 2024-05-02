@@ -25,7 +25,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import inf112.View.Scenes.Display;
 import inf112.View.ScreenManagement.ScreenManager;
 import inf112.View.Screens.ShowGameOver;
-import inf112.skeleton.app.MegaMarius;
+import inf112.Model.app.MegaMarius;
 
 public class ShowGameOverTest {
     TmxMapLoader mapLoader;

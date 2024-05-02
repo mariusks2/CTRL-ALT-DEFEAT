@@ -13,7 +13,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 import inf112.View.ScreenManagement.IScreenFactory;
-import inf112.skeleton.app.MegaMarius;
+import inf112.Model.app.MegaMarius;
 
 /**
  * This screen represents the starting screen of the MegaMarius game,

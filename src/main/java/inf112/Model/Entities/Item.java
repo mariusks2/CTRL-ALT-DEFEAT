@@ -1,4 +1,4 @@
-package inf112.Entities;
+package inf112.Model.Entities;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -7,8 +7,8 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 
 import inf112.View.Screens.ShowGame;
-import inf112.skeleton.app.Marius;
-import inf112.skeleton.app.MegaMarius;
+import inf112.Model.app.Marius;
+import inf112.Model.app.MegaMarius;
 
 
 public abstract class Item extends Sprite{ //Abstract class for enemies. 

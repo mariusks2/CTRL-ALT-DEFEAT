@@ -1,14 +1,14 @@
-package inf112.Entities.Blocks;
+package inf112.Model.Entities.Blocks;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.maps.MapObject;
 
-import inf112.Entities.InteractiveTileObj;
+import inf112.Model.Entities.InteractiveTileObj;
 import inf112.View.Scenes.Display;
 import inf112.View.Screens.ShowGame;
-import inf112.skeleton.app.Marius;
-import inf112.skeleton.app.MegaMarius;
+import inf112.Model.app.Marius;
+import inf112.Model.app.MegaMarius;
 
 /** 
  * Represents a simple Brick.

@@ -1,4 +1,4 @@
-package inf112.skeleton.app;
+package inf112.Model.app;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
@@ -18,8 +18,8 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import com.badlogic.gdx.utils.Array;
 
-import inf112.Entities.Enemies.Enemy;
-import inf112.Entities.Enemies.Turtle;
+import inf112.Model.Entities.Enemies.Enemy;
+import inf112.Model.Entities.Enemies.Turtle;
 import inf112.View.Screens.ShowGame;
 
 

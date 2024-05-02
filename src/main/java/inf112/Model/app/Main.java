@@ -1,4 +1,4 @@
-package inf112.skeleton.app;
+package inf112.Model.app;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;

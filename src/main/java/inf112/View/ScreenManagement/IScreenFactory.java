@@ -3,8 +3,8 @@ package inf112.View.ScreenManagement;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 
-import inf112.skeleton.app.Marius;
-import inf112.skeleton.app.Marius.State;
+import inf112.Model.app.Marius;
+import inf112.Model.app.Marius.State;
 
 
 

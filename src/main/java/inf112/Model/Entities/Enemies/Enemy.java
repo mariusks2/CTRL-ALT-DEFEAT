@@ -1,4 +1,4 @@
-package inf112.Entities.Enemies;
+package inf112.Model.Entities.Enemies;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
@@ -6,7 +6,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 
 import inf112.View.Screens.ShowGame;
-import inf112.skeleton.app.Marius;
+import inf112.Model.app.Marius;
 
 public abstract class Enemy extends Sprite{ //Abstract class for enemies. 
     protected World world;

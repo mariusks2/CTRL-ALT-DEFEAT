@@ -1,4 +1,4 @@
-package inf112.skeleton.MakeMap;
+package inf112.Model.MakeMap;
 
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -11,13 +11,13 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 
-import inf112.Entities.Blocks.Brick;
-import inf112.Entities.Blocks.Coin;
-import inf112.Entities.Enemies.Enemy;
-import inf112.Entities.Enemies.Spider;
-import inf112.Entities.Enemies.Turtle;
+import inf112.Model.Entities.Blocks.Brick;
+import inf112.Model.Entities.Blocks.Coin;
+import inf112.Model.Entities.Enemies.Enemy;
+import inf112.Model.Entities.Enemies.Spider;
+import inf112.Model.Entities.Enemies.Turtle;
 import inf112.View.Screens.ShowGame;
-import inf112.skeleton.app.MegaMarius;
+import inf112.Model.app.MegaMarius;
 
 public class MakeMap {
     /**

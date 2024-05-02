@@ -1,4 +1,4 @@
-package inf112.skeleton.app;
+package inf112.Model.app;
 
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
@@ -6,9 +6,9 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 
-import inf112.Entities.InteractiveTileObj;
-import inf112.Entities.Item;
-import inf112.Entities.Enemies.Enemy;
+import inf112.Model.Entities.InteractiveTileObj;
+import inf112.Model.Entities.Item;
+import inf112.Model.Entities.Enemies.Enemy;
 
 
 public class WorldContactListener implements ContactListener {

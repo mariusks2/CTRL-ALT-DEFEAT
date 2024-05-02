@@ -84,11 +84,13 @@ public class WorldContactListenerTest {
     void contactMariusItemTest(){
         Integer countBeforeMaking = world.getBodyCount();
         Marius marius = new Marius(cScreen);
-        Pessi pepsi = new Pessi(cScreen, 0, 0);
+        Pessi pessi = new Pessi(cScreen, 0, 0);
         assertEquals(countBeforeMaking+2, world.getBodyCount());
         world.step(0, 0, 0);
         wListener.beginContact(world.getContactList().first());
         marius.update(0);
+        pessi.update(0);
+        assertEquals(true, pessi.isDestroyed());
         assertEquals(State.GROWING, marius.currentState);
     }
     

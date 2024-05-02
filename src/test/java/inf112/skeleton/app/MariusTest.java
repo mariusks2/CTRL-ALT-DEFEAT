@@ -26,7 +26,6 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
 
-import inf112.Entities.Blocks.Pessi;
 import inf112.Entities.Enemies.Spider;
 import inf112.Entities.Enemies.Turtle;
 import inf112.Scenes.Display;
@@ -149,11 +148,6 @@ public class MariusTest {
 		marius.update(0);
 		assertEquals(true, marius.isMariusBigNow());
 		assertEquals(1, marius.world.getBodyCount());
-	}
-
-	@Test
-	void mariusRunTest(){
-		//?
 	}
 
 	@Test

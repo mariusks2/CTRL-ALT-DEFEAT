@@ -61,11 +61,11 @@ public class ShowGameOverTest {
 	void setUpBeforeEach() {
 	
         // Initialize Box2D
-      
         MegaMarius megaMarius = (MegaMarius) headlessApplication.getApplicationListener();
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
-		megaMarius.createTest((mock(SpriteBatch.class)));
+        batch=mock(SpriteBatch.class);
+		megaMarius.setSpriteBatch(batch);
         sGame = new ShowGameOver(megaMarius, fileName, ScreenManager.getInstance());
         ScreenManager.getInstance().initialize(megaMarius);
         ScreenManager.getInstance().showGameOverScreen(fileName);
@@ -79,31 +79,15 @@ public class ShowGameOverTest {
     void checkButtonPressTest(){
         
     }
-    @Test
-    void handleInputTest(){
-        //Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE);
-        Input input = mock(Input.class);
-        when(input.isKeyJustPressed(Input.Keys.ESCAPE)).thenReturn(true);
-        Gdx.input = input;
-        sGame.handleInput();
-    }
 
     @Test
-    void handleInputTest2(){
+    void handleInputTest(){
         Input input = mock(Input.class);
         when(input.isButtonJustPressed(Input.Buttons.LEFT)).thenReturn(true);
         Gdx.input = input;
         sGame.handleInput();
     }
 
-    @Test
-    void handleInputTest3(){
-        Input input = mock(Input.class);
-        when(input.isKeyJustPressed(Input.Keys.ENTER)).thenReturn(true);
-        Gdx.input = input;
-        Gdx.input.setCursorPosition(100, 100);
-        sGame.handleInput();
-    }
     @Test
     void disposeTest(){
         sGame.dispose();

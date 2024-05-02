@@ -265,11 +265,26 @@ public class ShowGame implements Screen{
         game.getSpriteBatch().setProjectionMatrix(display.stage.getCamera().combined);
         display.stage.draw();
         if (Marius.getGameWon()) {
+            String nextMap = mapSelect.getNextMap(fileName);
             drawGrayOverlay();
             //game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), 1);
+            if (nextMap.equals("GameCompleted")) {
+                game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), 1); // TODO change the level parameter to get the current level
+                uiStage.draw();
+                gameCompletedLabel.setVisible(true);
+                completedDescriptionLabel.setVisible(true);
+                if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
+                    ScreenManager.getInstance().showScreen("StartGame", new ShowStartGame(game));
+                }
+                else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
+                    Gdx.app.exit();
+                }
+            }
+            else{
             uiStage.draw();
             retryLabel.setVisible(true);
             victoryLabel.setVisible(true);
+            }
         }
     }
 
@@ -300,19 +315,8 @@ public class ShowGame implements Screen{
      */
     private void handleVictoryTransition() {
         String nextMap = mapSelect.getNextMap(fileName);
-        if (nextMap.equals("GameCompleted")) {
-            game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), 1); // TODO change the level parameter to get the current level
-            drawGrayOverlay();
-            uiStage.draw();
-            gameCompletedLabel.setVisible(true);
-            completedDescriptionLabel.setVisible(true);
-            if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
-                ScreenManager.getInstance().showScreen("StartGame", new ShowStartGame(game));
-            }
-            else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
-                Gdx.app.exit();
-            }
-        } else if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+        
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
             game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), 1); // TODO change the level parameter to get the current level
             ScreenManager.getInstance().showScreen("ShowGame", new ShowGame(game, nextMap));
             Display.updateLevel(1);

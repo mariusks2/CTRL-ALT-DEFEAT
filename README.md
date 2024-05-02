@@ -4,8 +4,16 @@
 - Lenke til https://trello.com/b/naQJzzQZ/ctrlaltdefeat
 
 ## Om spillet
+-Lore:
+_«Marius er i trøbbel nok engong! Han er helt tom for Pessi (Brus). Marius trenger Pessi for å ha det bra. Derfor må han komme kjapt til butikken, men veien til butikken byr på mange utfordringer. Blir det for tøft for Marius»_
 
-_«Marius-Mario er i trøbbel nok engong! Han er helt tom for PepsiMax. Marius-Mario trenger PepsiMax for å ha det bra. Derfor må han komme kjappt til butikken, men veien til butikken byr på mange problemer. Blir det for tøfft for Marius-Mario»_
+-Hvordan spillet fungere:
+Spillet har en karakter som heter marius, denne karakteren ka bevege seg til "venstre", "høgre" og "hoppe" (opp).
+Karakteren kan drepe fiender ved å hoppe og lande oppå hode til fienden.
+Hvis Marius blir truffet av fienden fra siden vil Marius dø og man må starte spillet på nytt.
+Man kommer i mål hvis man når frem til en flagg stang i enden av mappet.
+De er totalt tre maps med varierende grad av vansklighet.
+Man kan sjekke scoren sin ved å trykke på scoreboard knappen i map select menyen.
 
 ## Kjøring #undervurdering
 

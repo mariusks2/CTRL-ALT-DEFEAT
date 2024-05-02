@@ -32,8 +32,8 @@ import inf112.View.Screens.ShowGame;
 import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.MegaMarius;
 
-public class PepsiTest {
-    Pessi pepsi;
+public class PessiTest {
+    Pessi pessi;
     RectangleMapObject object;
     TmxMapLoader mapLoader;
     String fileName = "MapAndTileset/level1.tmx";
@@ -74,44 +74,44 @@ public class PepsiTest {
         textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
         //when(cScreen.getAtlas().findRegion("pepsi")).thenReturn(textureAtlas.findRegion("pepsi"));
-        pepsi = new Pessi(cScreen, 0, 0);
+        pessi = new Pessi(cScreen, 0, 0);
 	}
 
     @Test
     void createTest() {
-        pepsi.getClass().equals(Pessi.class);
-        assertEquals(false, pepsi.isDestroyed());
+        pessi.getClass().equals(Pessi.class);
+        assertEquals(false, pessi.isDestroyed());
     }
 
     @Test
     void useTest() {
         Marius mockMarius = mock(Marius.class);
-        pepsi.use(mockMarius);
-        assertEquals(MegaMarius.ITEM_BIT, pepsi.getCatergoryBits());
+        pessi.use(mockMarius);
+        assertEquals(MegaMarius.ITEM_BIT, pessi.getCatergoryBits());
         verify(mockMarius).grow();
-        pepsi.update(0);
-        assertEquals(true, pepsi.isDestroyed());
+        pessi.update(0);
+        assertEquals(true, pessi.isDestroyed());
     }
 
     @Test
     void categoryFilterTest(){
-        assertEquals(MegaMarius.ITEM_BIT, pepsi.getCatergoryBits());
+        assertEquals(MegaMarius.ITEM_BIT, pessi.getCatergoryBits());
     }
 
     @Test
     void testUpdate(){
-        assertEquals(0, pepsi.b2body.getPosition().x);
-        assertEquals(0, pepsi.b2body.getPosition().y);
-        pepsi.update(1);
-        assertEquals(0, pepsi.b2body.getPosition().x);
-        assertEquals(0, pepsi.b2body.getPosition().y);
-        assertEquals(new Vector2(0.6f, 0), pepsi.b2body.getLinearVelocity());
+        assertEquals(0, pessi.b2body.getPosition().x);
+        assertEquals(0, pessi.b2body.getPosition().y);
+        pessi.update(1);
+        assertEquals(0, pessi.b2body.getPosition().x);
+        assertEquals(0, pessi.b2body.getPosition().y);
+        assertEquals(new Vector2(0.6f, 0), pessi.b2body.getLinearVelocity());
     }
 
     @Test
     void testRev(){
-        pepsi.revVelocity(true, false);
-        pepsi.update(1);
-        assertNotEquals(0, pepsi.getX()); 
+        pessi.revVelocity(true, false);
+        pessi.update(1);
+        assertNotEquals(0, pessi.getX()); 
     }
 }

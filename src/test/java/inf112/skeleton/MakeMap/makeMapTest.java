@@ -30,9 +30,7 @@ import inf112.View.Screens.ShowGame;
 
 public class makeMapTest {
     
-    
     MakeMap makeMap;
-    RectangleMapObject object;
     TmxMapLoader mapLoader;
     String fileName = "MapAndTileset/level1.tmx";
     TiledMap map;
@@ -50,17 +48,8 @@ public class makeMapTest {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
 		ApplicationListener listener = new ApplicationAdapter() {
 		};
-
-        // Provide a stub for glGenTexture() method to avoid further issues
-
-        // Provide a stub for glGenTexture() method to avoid further issues
         gl = mock(GL20.class);
-
         Application app = mock(Application.class);
-        //Graphics graphics = mock(com.badlogic.gdx.Graphics.class);
-        //when(app.getGraphics()).thenReturn(graphics);
-        //when(graphics.getGL20()).thenReturn(gl);
-        //when(gl.glGenTexture()).thenReturn(1);
         //Mock Gdx
         Gdx.app = app;
         Gdx.gl = gl;
@@ -73,7 +62,6 @@ public class makeMapTest {
         map = mapLoader.load(fileName);
         when(cScreen.getWorld()).thenReturn(world);
         when(cScreen.getMap()).thenReturn(map);
-        object = new RectangleMapObject();
         textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
         makeMap = new MakeMap(cScreen);

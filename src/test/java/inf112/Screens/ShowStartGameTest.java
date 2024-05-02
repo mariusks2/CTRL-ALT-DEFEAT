@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3NativesLoader;
@@ -23,13 +24,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
 
-import inf112.Entities.Blocks.Brick;
-import inf112.View.Scenes.Display;
-import inf112.View.ScreenManagement.ScreenManager;
-import inf112.View.Screens.ShowStartGame;
+import inf112.Scenes.Display;
 import inf112.skeleton.app.MegaMarius;
 
-public class ShowStartScreenTest {
+public class ShowStartGameTest {
 
     RectangleMapObject object;
     TmxMapLoader mapLoader;
@@ -45,17 +43,12 @@ public class ShowStartScreenTest {
 
     @BeforeAll
     static void setUpBeforeAll(){
+        //mock and start gdx for tests
         Lwjgl3NativesLoader.load();
         Box2D.init();
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
         Application app = mock(Application.class);
-        //Graphics graphics = mock(com.badlogic.gdx.Graphics.class);
-        //when(app.getGraphics()).thenReturn(graphics);
-        //when(graphics.getGL20()).thenReturn(gl);
-        //when(gl.glGenTexture()).thenReturn(1);
-        //Mock Gdx
         Gdx.app = app;
-		//Gdx.graphics = mock(com.badlogic.gdx.Graphics.class);
 		gl = mock(GL20.class);
 		when(gl.glCreateShader(anyInt())).thenReturn(1);
         when(gl.glCreateShader(anyInt())).thenReturn(0);
@@ -72,20 +65,8 @@ public class ShowStartScreenTest {
 	 */
 	@BeforeEach
 	void setUpBeforeEach() {
-	
-        // Initialize Box2D
-      
+
         MegaMarius megaMarius = (MegaMarius) headlessApplication.getApplicationListener();
-
-        // Provide a stub for glGenTexture() method to avoid further issues
-
-        // Provide a stub for glGenTexture() method to avoid further issues
-        
-
-        
-		//when(Gdx.graphics.getGL20()).thenReturn(gl);
-		//when(Gdx.graphics.getWidth()).thenReturn(800); // Example width
-		//when(Gdx.graphics.getHeight()).thenReturn(600);
         
         World world = new World(new Vector2(0, -10), true);
         display = new Display(mock(SpriteBatch.class));
@@ -95,19 +76,67 @@ public class ShowStartScreenTest {
         sGame = new ShowStartGame(megaMarius);
         ScreenManager.getInstance().initialize(megaMarius);
 	}
+    
+    //@Test
+    void render() {
+        sGame.render(1f);
+    }
+
+    @Test
+    void handleInputTest(){
+        // Simulate pressing Enter key
+        //when(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)).thenReturn(true);
+
+        // Call handleInput method
+        sGame.handleInput();
+        Gdx mockGdx = mock(Gdx.class);
+        //verify(mockGdx.app, never()).exit();
+
+        ScreenManager screenManagerMock = mock(ScreenManager.class);
+        // Verify that showScreen method is called with the correct arguments
+        //verify(screenManagerMock).showScreen(eq("MapSelect"), any(ShowMapSelect.class));
+
+
+        //Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE);
+        Gdx.input.setCatchKey(Input.Keys.ESCAPE, true);
+        sGame.handleInput();
+        Gdx.input.setCatchKey(Input.Buttons.LEFT, true);
+        sGame.handleInput();
+        Gdx.input.setCatchKey(Input.Keys.ENTER, true);
+        Gdx.input.setCursorPosition(100, 100);
+        sGame.handleInput();
+    }
+
+    @Test
+    void checkButtonPressTest(){
+        
+    }
+
+    @Test
+    void showTest() {
+        sGame.show();
+    }
 
     @Test
     void resizeTest(){
         sGame.resize(10, 10);
     }
-    @Test
-    void checkButtonPressTest(){
-        
-    }
-    @Test
-    void handleInputTest(){
 
+    @Test
+    void pauseTest() {
+        sGame.pause();
     }
+
+    @Test
+    void resumeTest() {
+        sGame.resume();
+    }
+
+    @Test
+    void hideTest() {
+        sGame.hide();
+    }
+
     @Test
     void disposeTest(){
         sGame.dispose();
@@ -119,6 +148,4 @@ public class ShowStartScreenTest {
         assertEquals(sGame.getClass(),ScreenManager.getInstance().getCurrentGameScreen().getClass());
         
     }
-
-
 }

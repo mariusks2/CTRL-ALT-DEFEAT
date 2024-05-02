@@ -52,13 +52,8 @@ public class ShowScoreboardScreenTest {
         Box2D.init();
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
         Application app = mock(Application.class);
-        //Graphics graphics = mock(com.badlogic.gdx.Graphics.class);
-        //when(app.getGraphics()).thenReturn(graphics);
-        //when(graphics.getGL20()).thenReturn(gl);
-        //when(gl.glGenTexture()).thenReturn(1);
         //Mock Gdx
         Gdx.app = app;
-		//Gdx.graphics = mock(com.badlogic.gdx.Graphics.class);
 		gl = mock(GL20.class);
 		when(gl.glCreateShader(anyInt())).thenReturn(1);
         when(gl.glCreateShader(anyInt())).thenReturn(0);
@@ -79,16 +74,6 @@ public class ShowScoreboardScreenTest {
         // Initialize Box2D
       
         MegaMarius megaMarius = (MegaMarius) headlessApplication.getApplicationListener();
-
-        // Provide a stub for glGenTexture() method to avoid further issues
-
-        // Provide a stub for glGenTexture() method to avoid further issues
-        
-
-        
-		//when(Gdx.graphics.getGL20()).thenReturn(gl);
-		//when(Gdx.graphics.getWidth()).thenReturn(800); // Example width
-		//when(Gdx.graphics.getHeight()).thenReturn(600);
         
         World world = new World(new Vector2(0, -10), true);
         display = new Display(mock(SpriteBatch.class));
@@ -167,8 +152,6 @@ public class ShowScoreboardScreenTest {
         assertEquals(sGame.getClass(),ScreenManager.getInstance().getCurrentGameScreen().getClass());
         
     }
-
-
     // Functions below are not in use so we dont test them either
     @Test
     void showTest() {

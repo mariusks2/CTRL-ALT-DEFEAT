@@ -30,6 +30,9 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import inf112.View.Scenes.Display;
 import inf112.View.Screens.ShowGame;
+import inf112.Entities.ItemDef;
+import inf112.Scenes.Display;
+import inf112.Screens.ShowGame;
 import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.MegaMarius;
 
@@ -94,6 +97,11 @@ public class CoinTest {
         assertEquals(MegaMarius.COIN_BIT, coin.getFilterData().categoryBits);
     }
 
-
+    @Test
+    void itemDefTest(){
+        ItemDef itemDef = new ItemDef(new Vector2(0,0), Coin.class);
+        assertEquals(new Vector2(0,0), itemDef.positon);
+        assertEquals(Coin.class, itemDef.type);
+    }
     
 }

@@ -1,7 +1,6 @@
 package inf112.Screens;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -20,9 +19,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
-import com.badlogic.gdx.physics.box2d.World;
 
 import inf112.View.Scenes.Display;
 import inf112.View.ScreenManagement.ScreenManager;
@@ -39,8 +36,6 @@ public class ShowHelpScreenTest {
 	showHelpScreen sGame;
     SpriteBatch batch;
     private static HeadlessApplication headlessApplication;
-    
-    
 
     @BeforeAll
     static void setUpBeforeAll(){
@@ -48,17 +43,9 @@ public class ShowHelpScreenTest {
         Box2D.init();
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
         Application app = mock(Application.class);
-        //Graphics graphics = mock(com.badlogic.gdx.Graphics.class);
-        //when(app.getGraphics()).thenReturn(graphics);
-        //when(graphics.getGL20()).thenReturn(gl);
-        //when(gl.glGenTexture()).thenReturn(1);
         //Mock Gdx
         Gdx.app = app;
-		//Gdx.graphics = mock(com.badlogic.gdx.Graphics.class);
 		gl = mock(GL20.class);
-		when(gl.glCreateShader(anyInt())).thenReturn(1);
-        when(gl.glCreateShader(anyInt())).thenReturn(0);
-        when(gl.glCreateProgram()).thenReturn(-1);
         Gdx.gl = gl; 
         Gdx.gl20 = gl; 
         MegaMarius megaMarius = new MegaMarius(); // Your implementation of ApplicationListener
@@ -71,22 +58,7 @@ public class ShowHelpScreenTest {
 	 */
 	@BeforeEach
 	void setUpBeforeEach() {
-	
-        // Initialize Box2D
-      
         MegaMarius megaMarius = (MegaMarius) headlessApplication.getApplicationListener();
-
-        // Provide a stub for glGenTexture() method to avoid further issues
-
-        // Provide a stub for glGenTexture() method to avoid further issues
-        
-
-        
-		//when(Gdx.graphics.getGL20()).thenReturn(gl);
-		//when(Gdx.graphics.getWidth()).thenReturn(800); // Example width
-		//when(Gdx.graphics.getHeight()).thenReturn(600);
-        
-        World world = new World(new Vector2(0, -10), true);
         display = new Display(mock(SpriteBatch.class));
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);

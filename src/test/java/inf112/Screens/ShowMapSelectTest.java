@@ -32,6 +32,7 @@ import inf112.View.Screens.ShowGame;
 import inf112.View.Screens.showMapSelect;
 import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.Marius.State;
+import inf112.Scenes.Display;
 import inf112.skeleton.app.MegaMarius;
 
 public class ShowMapSelectTest {
@@ -81,16 +82,6 @@ public class ShowMapSelectTest {
         // Initialize Box2D
       
         MegaMarius megaMarius = (MegaMarius) headlessApplication.getApplicationListener();
-
-        // Provide a stub for glGenTexture() method to avoid further issues
-
-        // Provide a stub for glGenTexture() method to avoid further issues
-        
-
-        
-		//when(Gdx.graphics.getGL20()).thenReturn(gl);
-		//when(Gdx.graphics.getWidth()).thenReturn(800); // Example width
-		//when(Gdx.graphics.getHeight()).thenReturn(600);
         
         World world = new World(new Vector2(0, -10), true);
         display = new Display(mock(SpriteBatch.class));
@@ -102,7 +93,6 @@ public class ShowMapSelectTest {
         when(cScreen.getMap()).thenReturn(map);
         TextureAtlas textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
-        Marius marius = new Marius(cScreen);
         sGame = new showMapSelect(megaMarius);
         ScreenManager.getInstance().initialize(megaMarius);
 	}

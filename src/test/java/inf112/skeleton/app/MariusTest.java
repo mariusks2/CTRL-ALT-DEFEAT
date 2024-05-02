@@ -1,8 +1,6 @@
 package inf112.skeleton.app;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
@@ -20,8 +18,6 @@ import com.badlogic.gdx.backends.lwjgl3.Lwjgl3NativesLoader;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Vector2;
@@ -30,7 +26,6 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
 
-import inf112.Entities.Blocks.Pessi;
 import inf112.Entities.Enemies.Spider;
 import inf112.Entities.Enemies.Turtle;
 import inf112.View.Scenes.Display;
@@ -38,9 +33,7 @@ import inf112.View.Screens.ShowGame;
 import inf112.skeleton.app.Marius.State;
 public class MariusTest {
 
-    
 	Marius marius;
-    RectangleMapObject object;
     TmxMapLoader mapLoader;
     String fileName = "MapAndTileset/level1.tmx";
     TiledMap map;
@@ -61,8 +54,6 @@ public class MariusTest {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
 		ApplicationListener listener = new ApplicationAdapter() {
 		};
-        // Provide a stub for glGenTexture() method to avoid further issues
-        // Provide a stub for glGenTexture() method to avoid further issues
         gl = mock(GL20.class);
         Application app = mock(Application.class);
         //Mock Gdx
@@ -157,11 +148,6 @@ public class MariusTest {
 		marius.update(0);
 		assertEquals(true, marius.isMariusBigNow());
 		assertEquals(1, marius.world.getBodyCount());
-	}
-
-	@Test
-	void mariusRunTest(){
-		//?
 	}
 
 	@Test

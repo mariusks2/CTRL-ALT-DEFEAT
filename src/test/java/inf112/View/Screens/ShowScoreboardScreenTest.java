@@ -31,7 +31,7 @@ import inf112.View.Scenes.Display;
 import inf112.View.Scenes.Score;
 import inf112.View.ScreenManagement.ScreenManager;
 import inf112.View.Screens.ShowScoreboardScreen;
-import inf112.skeleton.app.MegaMarius;
+import inf112.Model.app.MegaMarius;
 
 public class ShowScoreboardScreenTest {
     RectangleMapObject object;
@@ -135,10 +135,28 @@ public class ShowScoreboardScreenTest {
 
     @Test
     void handleInputTest(){
+        //Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE);
         Input input = mock(Input.class);
+        when(input.isKeyJustPressed(Input.Keys.ESCAPE)).thenReturn(true);
         Gdx.input = input;
-        sGame.render(1f);
-        when(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)).thenReturn(true);
+        sGame.handleInput();
+    }
+
+    @Test
+    void handleInputTest2(){
+        Input input = mock(Input.class);
+        when(input.isButtonJustPressed(Input.Buttons.LEFT)).thenReturn(true);
+        Gdx.input = input;
+        sGame.handleInput();
+    }
+
+    @Test
+    void handleInputTest3(){
+        Input input = mock(Input.class);
+        when(input.isKeyJustPressed(Input.Keys.ENTER)).thenReturn(true);
+        Gdx.input = input;
+        Gdx.input.setCursorPosition(100, 100);
+        sGame.handleInput();
     }
 
     @Test

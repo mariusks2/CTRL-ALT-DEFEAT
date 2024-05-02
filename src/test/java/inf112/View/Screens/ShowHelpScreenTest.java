@@ -21,9 +21,9 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.physics.box2d.Box2D;
 
+import inf112.Model.app.MegaMarius;
 import inf112.View.Scenes.Display;
 import inf112.View.ScreenManagement.ScreenManager;
-import inf112.skeleton.app.MegaMarius;
 
 public class ShowHelpScreenTest {
      RectangleMapObject object;
@@ -77,18 +77,28 @@ public class ShowHelpScreenTest {
     }
     @Test
     void handleInputTest(){
+        //Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE);
         Input input = mock(Input.class);
+        when(input.isKeyJustPressed(Input.Keys.ESCAPE)).thenReturn(true);
         Gdx.input = input;
-        when(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)).thenReturn(true);
-        sGame.renderTest();
+        sGame.handleInput();
     }
 
     @Test
     void handleInputTest2(){
         Input input = mock(Input.class);
+        when(input.isButtonJustPressed(Input.Buttons.LEFT)).thenReturn(true);
         Gdx.input = input;
-        when(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)).thenReturn(true);
-        sGame.renderTest();
+        sGame.handleInput();
+    }
+
+    @Test
+    void handleInputTest3(){
+        Input input = mock(Input.class);
+        when(input.isKeyJustPressed(Input.Keys.ENTER)).thenReturn(true);
+        Gdx.input = input;
+        Gdx.input.setCursorPosition(100, 100);
+        sGame.handleInput();
     }
 
     @Test

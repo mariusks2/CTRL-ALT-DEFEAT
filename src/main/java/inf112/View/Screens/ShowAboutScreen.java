@@ -13,7 +13,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import inf112.View.ScreenManagement.IScreenFactory;
-import inf112.skeleton.app.MegaMarius;
+import inf112.Model.app.MegaMarius;
 
 /**
  * This screen displas the "About" page for the MegaMarius game.

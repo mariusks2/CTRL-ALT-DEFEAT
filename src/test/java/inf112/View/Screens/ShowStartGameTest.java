@@ -20,12 +20,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
 
+import inf112.Model.app.MegaMarius;
 import inf112.View.ScreenManagement.ScreenManager;
-import inf112.skeleton.app.MegaMarius;
 
 public class ShowStartGameTest {
 
@@ -78,31 +79,43 @@ public class ShowStartGameTest {
 
     @Test
     void handleInputTest(){
-        // Simulate pressing Enter key
-        //when(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)).thenReturn(true);
-
-        // Call handleInput method
-        sGame.handleInput();
-        Gdx mockGdx = mock(Gdx.class);
-        //verify(mockGdx.app, never()).exit();
-
-        ScreenManager screenManagerMock = mock(ScreenManager.class);
-        // Verify that showScreen method is called with the correct arguments
-        //verify(screenManagerMock).showScreen(eq("MapSelect"), any(ShowMapSelect.class));
-
         //Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE);
-        Gdx.input.setCatchKey(Input.Keys.ESCAPE, true);
+        Input input = mock(Input.class);
+        when(input.isKeyJustPressed(Input.Keys.ESCAPE)).thenReturn(true);
+        Gdx.input = input;
         sGame.handleInput();
-        Gdx.input.setCatchKey(Input.Buttons.LEFT, true);
+    }
+
+    @Test
+    void handleInputTest2(){
+        Input input = mock(Input.class);
+        when(input.isButtonJustPressed(Input.Buttons.LEFT)).thenReturn(true);
+        Gdx.input = input;
         sGame.handleInput();
-        Gdx.input.setCatchKey(Input.Keys.ENTER, true);
+    }
+
+    @Test
+    void handleInputTest3(){
+        Input input = mock(Input.class);
+        when(input.isKeyJustPressed(Input.Keys.ENTER)).thenReturn(true);
+        Gdx.input = input;
         Gdx.input.setCursorPosition(100, 100);
         sGame.handleInput();
     }
 
     @Test
     void checkButtonPressTest(){
-        
+        sGame.checkButtonPress(new Vector2(169, 38), ScreenManager.getInstance());
+    }
+
+    @Test
+    void checkButtonPressTest2(){
+        sGame.checkButtonPress(new Vector2(160, 16), ScreenManager.getInstance());
+    }
+
+    @Test
+    void checkButtonPressTest3(){
+        sGame.checkButtonPress(new Vector2(199, 14), ScreenManager.getInstance());
     }
 
     @Test

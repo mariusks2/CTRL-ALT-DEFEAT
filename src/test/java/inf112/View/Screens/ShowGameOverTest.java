@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3NativesLoader;
@@ -24,7 +25,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import inf112.View.Scenes.Display;
 import inf112.View.ScreenManagement.ScreenManager;
 import inf112.View.Screens.ShowGameOver;
-import inf112.skeleton.app.MegaMarius;
+import inf112.Model.app.MegaMarius;
 
 public class ShowGameOverTest {
     TmxMapLoader mapLoader;
@@ -46,9 +47,6 @@ public class ShowGameOverTest {
         //Mock Gdx
         Gdx.app = app;
 		gl = mock(GL20.class);
-		when(gl.glCreateShader(anyInt())).thenReturn(1);
-        when(gl.glCreateShader(anyInt())).thenReturn(0);
-        when(gl.glCreateProgram()).thenReturn(-1);
         Gdx.gl = gl; 
         Gdx.gl20 = gl; 
         MegaMarius megaMarius = new MegaMarius(); // implementation of ApplicationListener
@@ -63,11 +61,11 @@ public class ShowGameOverTest {
 	void setUpBeforeEach() {
 	
         // Initialize Box2D
-      
         MegaMarius megaMarius = (MegaMarius) headlessApplication.getApplicationListener();
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
-		megaMarius.createTest((mock(SpriteBatch.class)));
+        batch=mock(SpriteBatch.class);
+		megaMarius.setSpriteBatch(batch);
         sGame = new ShowGameOver(megaMarius, fileName, ScreenManager.getInstance());
         ScreenManager.getInstance().initialize(megaMarius);
         ScreenManager.getInstance().showGameOverScreen(fileName);
@@ -81,10 +79,15 @@ public class ShowGameOverTest {
     void checkButtonPressTest(){
         
     }
+
     @Test
     void handleInputTest(){
-
+        Input input = mock(Input.class);
+        when(input.isButtonJustPressed(Input.Buttons.LEFT)).thenReturn(true);
+        Gdx.input = input;
+        sGame.handleInput();
     }
+
     @Test
     void disposeTest(){
         sGame.dispose();

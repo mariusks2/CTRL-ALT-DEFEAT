@@ -2,7 +2,6 @@
 Teamnavn: Ctrl+Alt+Defeat
 Spillnavn: Mega Marius
 
-# Prosjektrapport
 ## Medlemer og Roller:
 * Hoved: Teamlead, Sekunder: Tester - Christoffer A. Slettebø
 * Hoved: Nestleder, Sekunder: Utvikler - Olav Høysæther Opheim
@@ -45,7 +44,6 @@ Vi så ikke tilbakelemdilgene fra tidligere obliger før dagen før fristen så 
 - uke17.md
 - uke18.md
 
-# Krav og spesifikasjon
 ## MVP (Ferdig):
 * Vise et spillebrett
 * Vise spiller på spillebrett

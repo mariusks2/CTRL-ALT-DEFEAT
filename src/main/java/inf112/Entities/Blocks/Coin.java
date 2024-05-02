@@ -4,8 +4,6 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-
 import inf112.Entities.InteractiveTileObj;
 import inf112.Entities.ItemDef;
 import inf112.Scenes.Display;

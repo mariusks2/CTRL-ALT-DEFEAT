@@ -1,4 +1,4 @@
-package inf112.Entities;
+package inf112.Model.Entities;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;

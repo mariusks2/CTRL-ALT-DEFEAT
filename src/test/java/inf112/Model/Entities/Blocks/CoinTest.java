@@ -1,9 +1,10 @@
-package inf112.skeleton.MakeMap;
+package inf112.Model.Entities.Blocks;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +17,6 @@ import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3NativesLoader;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -24,23 +24,30 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
 
-import inf112.Model.Entities.Blocks.Brick;
 import inf112.View.Scenes.Display;
 import inf112.View.Screens.ShowGame;
+import inf112.Model.Entities.ItemDef;
+import inf112.View.Scenes.Display;
+import inf112.View.Screens.ShowGame;
+import inf112.Model.app.Marius;
+import inf112.Model.app.MegaMarius;
 
-public class makeMapTest {
-    
-    MakeMap makeMap;
+public class CoinTest {
+
+    Coin coin;
+    RectangleMapObject object;
     TmxMapLoader mapLoader;
     String fileName = "MapAndTileset/level1.tmx";
     TiledMap map;
     GL20 gl;
     Display display;
-    TextureAtlas textureAtlas;
 
+    @BeforeAll
+	static void setUpBeforeAll() {
+        
+    }
     @BeforeEach
 	void setUpBeforeEach() {
-
         Lwjgl3NativesLoader.load();
 
         // Initialize Box2D
@@ -55,6 +62,7 @@ public class makeMapTest {
         Gdx.gl = gl;
         
         new HeadlessApplication(listener, config);
+        //make instances or mocks of classes we need to test
         ShowGame cScreen = mock(ShowGame.class);
         World world = new World(new Vector2(0, -10), true);
         display = new Display(mock(SpriteBatch.class));
@@ -62,13 +70,33 @@ public class makeMapTest {
         map = mapLoader.load(fileName);
         when(cScreen.getWorld()).thenReturn(world);
         when(cScreen.getMap()).thenReturn(map);
-        textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
-        when(cScreen.getAtlas()).thenReturn(textureAtlas);
-        makeMap = new MakeMap(cScreen);
+        object = new RectangleMapObject();
+        coin = new Coin(cScreen, object);
 	}
+
     @Test
-    void getEnemiesTest(){
-        assertNotNull(makeMap.getEnemies());
+    void createTest() {
+        coin.getClass().equals(Coin.class);
     }
 
+    @Test
+    void onHeadHitTest() {
+        Marius mockMarius = mock(Marius.class);
+        coin.HeadHit(mockMarius);
+        assertEquals(MegaMarius.COIN_BIT, coin.getFilterData().categoryBits);
+        assertEquals(200, display.getScoreCount());
+    }
+
+    @Test
+    void categoryFilterTest(){
+        assertEquals(MegaMarius.COIN_BIT, coin.getFilterData().categoryBits);
+    }
+
+    @Test
+    void itemDefTest(){
+        ItemDef itemDef = new ItemDef(new Vector2(0,0), Coin.class);
+        assertEquals(new Vector2(0,0), itemDef.positon);
+        assertEquals(Coin.class, itemDef.type);
+    }
+    
 }

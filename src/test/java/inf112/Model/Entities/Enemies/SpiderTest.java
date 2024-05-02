@@ -1,4 +1,4 @@
-package inf112.Entities.Enemies;
+package inf112.Model.Entities.Enemies;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -30,10 +30,10 @@ import com.badlogic.gdx.physics.box2d.World;
 import inf112.Model.Entities.Enemies.Turtle.State;
 import inf112.View.Scenes.Display;
 import inf112.View.Screens.ShowGame;
-import inf112.skeleton.app.Marius;
+import inf112.Model.app.Marius;
 
-public class TurtleTest {
-    Turtle turtle;
+public class SpiderTest {
+    Spider spider;
     RectangleMapObject object;
     TmxMapLoader mapLoader;
     String fileName = "MapAndTileset/level1.tmx";
@@ -75,61 +75,53 @@ public class TurtleTest {
         textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
         //when(cScreen.getAtlas().findRegion("pepsi")).thenReturn(textureAtlas.findRegion("pepsi"));
-        turtle = new Turtle(cScreen, 0, 0);
+        spider = new Spider(cScreen, 0, 0);
 	}
 
     @Test
     void hitOnHeadTest(){
-        Marius marius = new Marius(cScreen);
-        turtle.hitOnHead(marius);
-        turtle.update(0);
-        assertEquals(State.STANDING_SHELL, turtle.getCurrentState());
+        Marius marius = mock(Marius.class);
+        spider.hitOnHead(marius);
+        spider.update(0);
+        assertTrue(spider.entityIsDead());
     }
 
     @Test
-    void hitOnHeadTest2(){
-        Marius marius = new Marius(cScreen);
-        turtle.hitOnHead(marius);
-        turtle.update(0);
-        assertEquals(State.STANDING_SHELL, turtle.getCurrentState());
-        turtle.hitOnHead(marius);
-        turtle.update(0);
-        assertEquals(State.MOVING_SHELL, turtle.getCurrentState());
+    void hitByEnemyTest1(){
+        Spider spider2 = new Spider(cScreen, 0, 0);
+        spider.hitByEnemy(spider2);
+        spider.update(0);
+        spider2.update(0);
+        assertFalse(spider.entityIsDead());
+        assertFalse(spider2.entityIsDead());
     }
 
     @Test
-    void hitByEnemyTest(){
-        Spider spider = new Spider(cScreen, 0, 0);
-        turtle.hitByEnemy(spider);
+    void hitByEnemyTrutleShellNoSpeedTest(){
+        Turtle turtle = new Turtle(cScreen, 0, 0);
+        Marius marius = mock(Marius.class);
+        turtle.hitOnHead(marius);
         turtle.update(0);
-        assertEquals(State.WALKING, turtle.getCurrentState());
+        spider.hitByEnemy(turtle);
+        spider.update(0);
+        turtle.update(0);
+        assertFalse(spider.entityIsDead());
         assertFalse(turtle.entityIsDead());
     }
 
     @Test
-    void hitByEnemyMovingShellTest(){
-        Marius marius = new Marius(cScreen);
-        Turtle turtle2 = new Turtle(cScreen, 0, 0);
-        turtle2.hitOnHead(marius);
-        turtle2.update(0);
-        assertEquals(State.STANDING_SHELL, turtle2.getCurrentState());
-        marius.hit(turtle2);
-        turtle2.update(0);
-        assertEquals(State.MOVING_SHELL, turtle2.getCurrentState());
-        turtle.hitByEnemy(turtle2);
-        turtle.update(0);
-        assertTrue(turtle.entityIsDead());
-        assertFalse(turtle2.entityIsDead());
-    }
-
-    @Test
-    void kickTest(){
+    void hitByEnemyTurtleShellWithSpeedTest(){
+        Turtle turtle = new Turtle(cScreen, 0, 0);
         Marius marius = new Marius(cScreen);
         turtle.hitOnHead(marius);
         turtle.update(0);
-        assertEquals(State.STANDING_SHELL, turtle.getCurrentState());
-        marius.hit(turtle);
+        turtle.hitOnHead(marius);
         turtle.update(0);
         assertEquals(State.MOVING_SHELL, turtle.getCurrentState());
+        spider.hitByEnemy(turtle);
+        spider.update(0);
+        turtle.update(0);
+        assertTrue(spider.entityIsDead());
+        assertFalse(turtle.entityIsDead());
     }
 }

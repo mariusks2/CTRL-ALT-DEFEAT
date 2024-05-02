@@ -1,9 +1,9 @@
-package inf112.Entities.Enemies;
+package inf112.Model.Entities.Blocks;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -27,13 +27,13 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
 
-import inf112.Model.Entities.Enemies.Turtle.State;
 import inf112.View.Scenes.Display;
 import inf112.View.Screens.ShowGame;
 import inf112.Model.app.Marius;
+import inf112.Model.app.MegaMarius;
 
-public class SpiderTest {
-    Spider spider;
+public class PessiTest {
+    Pessi pessi;
     RectangleMapObject object;
     TmxMapLoader mapLoader;
     String fileName = "MapAndTileset/level1.tmx";
@@ -41,7 +41,6 @@ public class SpiderTest {
     GL20 gl;
     Display display;
     TextureAtlas textureAtlas;
-    ShowGame cScreen;
 
     @BeforeAll
 	static void setUpBeforeAll() {
@@ -65,7 +64,7 @@ public class SpiderTest {
         Gdx.gl = gl;
         
         new HeadlessApplication(listener, config);
-        cScreen = mock(ShowGame.class);
+        ShowGame cScreen = mock(ShowGame.class);
         World world = new World(new Vector2(10, 10), true);
         display = new Display(mock(SpriteBatch.class));
         mapLoader = new TmxMapLoader();
@@ -75,53 +74,44 @@ public class SpiderTest {
         textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
         //when(cScreen.getAtlas().findRegion("pepsi")).thenReturn(textureAtlas.findRegion("pepsi"));
-        spider = new Spider(cScreen, 0, 0);
+        pessi = new Pessi(cScreen, 0, 0);
 	}
 
     @Test
-    void hitOnHeadTest(){
-        Marius marius = mock(Marius.class);
-        spider.hitOnHead(marius);
-        spider.update(0);
-        assertTrue(spider.entityIsDead());
+    void createTest() {
+        pessi.getClass().equals(Pessi.class);
+        assertEquals(false, pessi.isDestroyed());
     }
 
     @Test
-    void hitByEnemyTest1(){
-        Spider spider2 = new Spider(cScreen, 0, 0);
-        spider.hitByEnemy(spider2);
-        spider.update(0);
-        spider2.update(0);
-        assertFalse(spider.entityIsDead());
-        assertFalse(spider2.entityIsDead());
+    void useTest() {
+        Marius mockMarius = mock(Marius.class);
+        pessi.use(mockMarius);
+        assertEquals(MegaMarius.ITEM_BIT, pessi.getCatergoryBits());
+        verify(mockMarius).grow();
+        pessi.update(0);
+        assertEquals(true, pessi.isDestroyed());
     }
 
     @Test
-    void hitByEnemyTrutleShellNoSpeedTest(){
-        Turtle turtle = new Turtle(cScreen, 0, 0);
-        Marius marius = mock(Marius.class);
-        turtle.hitOnHead(marius);
-        turtle.update(0);
-        spider.hitByEnemy(turtle);
-        spider.update(0);
-        turtle.update(0);
-        assertFalse(spider.entityIsDead());
-        assertFalse(turtle.entityIsDead());
+    void categoryFilterTest(){
+        assertEquals(MegaMarius.ITEM_BIT, pessi.getCatergoryBits());
     }
 
     @Test
-    void hitByEnemyTurtleShellWithSpeedTest(){
-        Turtle turtle = new Turtle(cScreen, 0, 0);
-        Marius marius = new Marius(cScreen);
-        turtle.hitOnHead(marius);
-        turtle.update(0);
-        turtle.hitOnHead(marius);
-        turtle.update(0);
-        assertEquals(State.MOVING_SHELL, turtle.getCurrentState());
-        spider.hitByEnemy(turtle);
-        spider.update(0);
-        turtle.update(0);
-        assertTrue(spider.entityIsDead());
-        assertFalse(turtle.entityIsDead());
+    void testUpdate(){
+        assertEquals(0, pessi.b2body.getPosition().x);
+        assertEquals(0, pessi.b2body.getPosition().y);
+        pessi.update(1);
+        assertEquals(0, pessi.b2body.getPosition().x);
+        assertEquals(0, pessi.b2body.getPosition().y);
+        assertEquals(new Vector2(0.6f, 0), pessi.b2body.getLinearVelocity());
+    }
+
+    @Test
+    void testRev(){
+        pessi.revVelocity(true, false);
+        pessi.update(1);
+        assertNotEquals(0, pessi.getX()); 
     }
 }

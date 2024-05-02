@@ -1,4 +1,4 @@
-package inf112.skeleton.app;
+package inf112.Model.app;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import static org.junit.jupiter.api.Assertions.*;

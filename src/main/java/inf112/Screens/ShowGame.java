@@ -15,7 +15,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 //import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer; Uncomment to show hitbox
@@ -25,6 +24,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 
@@ -44,7 +44,7 @@ import inf112.skeleton.app.WorldContactListener;
 public class ShowGame implements Screen{
     private MegaMarius game; //Reference to the main game object
     private TextureAtlas atlas; //Contains textures related to characters
-    private OrthographicCamera gameCam; //
+    private OrthographicCamera camera; //
     private Viewport gamePort; //Mangages how content is displayed
     private Display display; //UI display for the game
     private Stage uiStage;
@@ -84,17 +84,18 @@ public class ShowGame implements Screen{
 
         this.game = game;
         this.fileName = fileName;
-        gameCam = new OrthographicCamera();
-        gamePort = new FitViewport(MegaMarius.M_Width / MegaMarius.PPM, MegaMarius.M_Height / MegaMarius.PPM, gameCam);
+        camera = new OrthographicCamera();
+        gamePort = new StretchViewport(MegaMarius.M_Width / MegaMarius.PPM, MegaMarius.M_Height / MegaMarius.PPM, camera);
+        //gamePort = new FitViewport(MegaMarius.M_Width / MegaMarius.PPM, MegaMarius.M_Height / MegaMarius.PPM, camera);
 
         display = new Display(game.getSpriteBatch());
 
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
         renderer = new OrthogonalTiledMapRenderer(map, 1  / MegaMarius.PPM);
-        gameCam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2, 0);
+        camera.position.set(-10, gamePort.getWorldHeight()/2, 0);
 
-        world = new World(new Vector2(0, -10), true);
+        world = new World(new Vector2(0, -10), true); //world with gravity -10
         world.step(0, 0, 0);
 
         creator = new MakeMap(this);
@@ -195,11 +196,11 @@ public class ShowGame implements Screen{
 
         //attach our gamecam to our players.x coordinate
         if(player.currentState != Marius.State.DEAD) {
-            gameCam.position.x = player.b2body.getPosition().x;
+            camera.position.x = player.b2body.getPosition().x;
         }
 
-        gameCam.update();
-        renderer.setView(gameCam);
+        camera.update();
+        renderer.setView(camera);
     }
 
     /**
@@ -229,7 +230,7 @@ public class ShowGame implements Screen{
      */
     private void drawGameWorld() {
         renderer.render();
-        game.getSpriteBatch().setProjectionMatrix(gameCam.combined);
+        game.getSpriteBatch().setProjectionMatrix(camera.combined);
         game.getSpriteBatch().begin();
         player.draw(game.getSpriteBatch());
         for (Enemy enemy : creator.getEnemies()) {
@@ -301,7 +302,7 @@ public class ShowGame implements Screen{
     private void drawGrayOverlay() {
         Gdx.gl.glEnable(GL20.GL_BLEND);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-        shapeRenderer.setProjectionMatrix(gameCam.combined);
+        shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(0.3f, 0.3f, 0.3f, 0.5f);  // Gray color with 50% opacity
         shapeRenderer.rect(0, 0, MegaMarius.M_Width, MegaMarius.M_Height);

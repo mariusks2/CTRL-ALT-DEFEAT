@@ -73,7 +73,8 @@ public class ShowScoreboardScreen implements Screen {
     }
 
     public void drawScoreboard() {
-        
+        backgroundImage = new Texture("Screens/scoreboard-screen.png");
+        ScreenManager.getInstance().drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
         ArrayList<Integer> scores_level_one = getHighScores(scoreboardList, 1);
         ArrayList<Integer> scores_level_two = getHighScores(scoreboardList, 2);
         ArrayList<Integer> scores_level_three = getHighScores(scoreboardList, 3);

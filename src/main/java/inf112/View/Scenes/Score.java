@@ -1,4 +1,4 @@
-package inf112.Scenes;
+package inf112.View.Scenes;
 
 public class Score {
 

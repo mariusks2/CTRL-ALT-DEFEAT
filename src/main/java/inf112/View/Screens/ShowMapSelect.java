@@ -1,4 +1,4 @@
-package inf112.Screens;
+package inf112.View.Screens;
 
 import com.badlogic.gdx.Screen;
 
@@ -15,26 +15,29 @@ import java.util.List;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import inf112.Scenes.Display;
+import inf112.View.Scenes.Display;
+import inf112.View.ScreenManagement.IScreenFactory;
+import inf112.View.ScreenManagement.ScreenManager;
 import inf112.skeleton.app.MegaMarius;
 
 /**
  * A screen for selecting different game maps in the MegaMarius game.
  * Users can choose from three different maps to play
  */
-public class showMapSelect implements Screen {
+public class ShowMapSelect implements Screen {
 
     private MegaMarius megaMariusGame; //Main game object
     private Viewport viewport; //Manages how content is displayed
     private Stage stage; //Stage to manage UI elements
     private Texture backgroundImage; //Background image for the map selection
     private List<String> mapList; //List of available maps
+    private IScreenFactory screenService;
 
     /**
      * Constructor to initialize the map selection screen with necessary components 
      * @param megaMariusGame Reference to the main game object for screen transitions
      */
-    public showMapSelect (MegaMarius megaMariusGame){
+    public ShowMapSelect (MegaMarius megaMariusGame,IScreenFactory screenService){
         this.megaMariusGame=megaMariusGame;
         this.viewport=new FitViewport(MegaMarius.M_Width,MegaMarius.M_Height, new OrthographicCamera());
         this.stage=new Stage(viewport,megaMariusGame.getSpriteBatch());
@@ -44,6 +47,7 @@ public class showMapSelect implements Screen {
         mapList.add("MapAndTileset/level1.tmx");
         mapList.add("MapAndTileset/level2.tmx");
         mapList.add("MapAndTileset/level3.tmx");
+        this.screenService = screenService;
     }
 
     /**
@@ -53,8 +57,8 @@ public class showMapSelect implements Screen {
     @Override
     public void render(float delta) {
         handleInputs();
-        ScreenManager.getInstance().clearScreen();
-        ScreenManager.getInstance().drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
+        screenService.clearScreen();
+        screenService.drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
         //stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         //stage.draw();
     }
@@ -64,7 +68,7 @@ public class showMapSelect implements Screen {
      */
     private void handleInputs(){
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
-            ScreenManager.getInstance().showScreen("StartGame", new ShowStartGame(megaMariusGame));
+            screenService.showStartGame();
         }
 
         if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
@@ -100,17 +104,17 @@ public class showMapSelect implements Screen {
         // Check if the click is within the bounds of any of the rectangles
         //Here we could use a for loop for the map list for better implementation with more maps
         if (backBound.contains(clickPosition)) {
-            ScreenManager.getInstance().showScreen("StartGame", new ShowStartGame(megaMariusGame));
+            screenService.showStartGame();
         }
         else if (map1.contains(clickPosition) || map1Text.contains(clickPosition)){
-            ScreenManager.getInstance().showScreen("ShowGame", new ShowGame(megaMariusGame, mapList.get(0)));
+            screenService.showGameScreen(mapList.get(0));
         }
         else if (map2.contains(clickPosition)  || map2Text.contains(clickPosition)){
-            ScreenManager.getInstance().showScreen("ShowGame", new ShowGame(megaMariusGame, mapList.get(1)));
+            screenService.showGameScreen(mapList.get(1));
             Display.updateLevel(1);
         }
         else if (map3.contains(clickPosition) || map3Text.contains(clickPosition)){
-           ScreenManager.getInstance().showScreen("ShowGame", new ShowGame(megaMariusGame, mapList.get(2)));
+           screenService.showGameScreen(mapList.get(2));
            Display.updateLevel(2);
         }
         else if (scoreboardButton.contains(clickPosition)) {

@@ -45,9 +45,7 @@ public class MegaMarius extends Game {
 
         ScreenManager.getInstance().initialize(this);
         this.scoreboard = new ShowScoreboardScreen(this, ScreenManager.getInstance());
-        if(!headless)
-            ScreenManager.getInstance().showStartGame();
-        
+        ScreenManager.getInstance().showStartGame();
     }
 
     public void createTest(SpriteBatch spriteBatch) {

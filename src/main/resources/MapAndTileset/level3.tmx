@@ -97,7 +97,7 @@
   </properties>
   <object id="9" x="1984" y="160" width="16" height="16">
    <properties>
-    <property name="pepsi" value=""/>
+    <property name="pessi" value=""/>
    </properties>
   </object>
   <object id="10" x="1984" y="96" width="16" height="16">
@@ -122,7 +122,7 @@
   </object>
   <object id="16" x="864" y="160" width="16" height="16">
    <properties>
-    <property name="pepsi" value=""/>
+    <property name="pessi" value=""/>
    </properties>
   </object>
   <object id="17" x="208" y="160" width="16" height="16">

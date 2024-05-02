@@ -31,7 +31,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import inf112.skeleton.app.MegaMarius;
 import inf112.Entities.Item;
 import inf112.Entities.ItemDef;
-import inf112.Entities.Blocks.Pepsi;
+import inf112.Entities.Blocks.Pessi;
 import inf112.Entities.Enemies.Enemy;
 import inf112.Scenes.Display;
 import inf112.skeleton.MakeMap.MakeMap;
@@ -169,8 +169,8 @@ public class ShowGame implements Screen{
     public void handleSpawningItems(){
         if(!itemsToSpawn.isEmpty()){
             ItemDef itemDef = itemsToSpawn.poll();
-            if(itemDef.type == Pepsi.class){
-                items.add(new Pepsi(this, itemDef.positon.x, itemDef.positon.y));
+            if(itemDef.type == Pessi.class){
+                items.add(new Pessi(this, itemDef.positon.x, itemDef.positon.y));
             }
         }
         

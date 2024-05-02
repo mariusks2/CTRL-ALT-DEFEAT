@@ -14,13 +14,13 @@ import inf112.skeleton.app.MegaMarius;
  * Represents a Coin block with Pepsi inside
  * 
  * This class provieds functionality neccesary to hit 
- * coin blocks and give out a pepsi
+ * coin blocks and give out a pessi
  * 
  * @author CTRL-ALT-DEFEAT
  * @version 1.0
  * @since 2024-02
 */
-public class Pepsi extends Item{
+public class Pessi extends Item{
     FixtureDef fdef;
 
     /**
@@ -29,15 +29,15 @@ public class Pepsi extends Item{
      * @param x position x
      * @param y position y
      */
-    public Pepsi(ShowGame screen, float x, float y){
+    public Pessi(ShowGame screen, float x, float y){
         super(screen, x, y);
-        setRegion(screen.getAtlas().findRegion("pepsi"));
+        setRegion(screen.getAtlas().findRegion("pessi"));
         velocity = new Vector2(0.6f, 0);
     } 
 
     /**
-     * Function for defining the pepsi.
-     * Defines the pepsi after a headhit on a coin block with pepsi as a property.
+     * Function for defining the pessi.
+     * Defines the pessi after a headhit on a coin block with pessi as a property.
      */
     @Override
     public void defineItem() {
@@ -58,7 +58,7 @@ public class Pepsi extends Item{
     }
 
     /**
-     * Function for "drinking" a pepsi.
+     * Function for "drinking" a pessi.
      * checks if you are big marius, if not, you grow.
      * @param Marius the playable character
      */

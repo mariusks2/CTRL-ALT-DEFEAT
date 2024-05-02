@@ -161,10 +161,10 @@ public class Turtle extends Enemy {
     }
 
     /**
-     * Check if enemy is hit on head by mairus.
+     * Check if turtle is hit on head by mairus.
      * 
      * If marius hits the turtle on his head, then
-     * the turtle dies and turns into a shell that moves.
+     * the turtle dies and turns into a shell that can move.
      * The shell can kill marius, and also other enemies.
      * 
      * @param marius Marius marius.
@@ -184,6 +184,10 @@ public class Turtle extends Enemy {
         }
     }
 
+    /**
+     * Function for drawing
+     * @param Batch the drawable batch
+     */
     public void draw(Batch batch){
         if (!destroyed) {
             super.draw(batch);
@@ -193,7 +197,7 @@ public class Turtle extends Enemy {
     /**
      * Changes the current state of turtle to moving shell and sets speed.
      * 
-     * @param speed
+     * @param speed speed of turtle
      */
     public void kick(int speed){
         velocity.x = speed;
@@ -210,9 +214,8 @@ public class Turtle extends Enemy {
     }
 
     /**
-     * 
-     * 
-     * @param enemy Enemy enemy.
+     * Function for checking if entity is dead.
+     * test function
      */
     @Override
     public void hitByEnemy(Enemy enemy) {

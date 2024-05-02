@@ -80,7 +80,7 @@
  <objectgroup id="5" name="coins">
   <object id="35" x="1488" y="160" width="16" height="16">
    <properties>
-    <property name="pepsi" value=""/>
+    <property name="pessi" value=""/>
    </properties>
   </object>
   <object id="36" x="1744" y="96" width="16" height="16">
@@ -100,7 +100,7 @@
   </object>
   <object id="43" x="1984" y="96" width="16" height="16">
    <properties>
-    <property name="pepsi" value=""/>
+    <property name="pessi" value=""/>
    </properties>
   </object>
   <object id="44" x="2032" y="160" width="16" height="16">
@@ -110,7 +110,7 @@
   </object>
   <object id="47" x="2960" y="160" width="16" height="16">
    <properties>
-    <property name="pepsi" value=""/>
+    <property name="pessi" value=""/>
    </properties>
   </object>
   <object id="184" x="1184" y="160" width="16" height="16"/>
@@ -124,7 +124,7 @@
   </object>
   <object id="203" x="320" y="112" width="16" height="16">
    <properties>
-    <property name="pepsi" value=""/>
+    <property name="pessi" value=""/>
    </properties>
   </object>
   <object id="204" x="352" y="112" width="16" height="16">

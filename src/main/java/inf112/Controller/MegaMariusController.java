@@ -14,6 +14,11 @@ public class MegaMariusController implements MegaMariusControllable {
         this.player = player;
     }
 
+    /**
+     * Function for handling playermovement
+     * Can move using WAD and Arrows
+     * 
+     */
     @Override
     public void handlePlayerMovement() {
          //control our player using immediate impulses

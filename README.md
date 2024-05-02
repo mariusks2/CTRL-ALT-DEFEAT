@@ -1,5 +1,4 @@
 # INF112 Prosjekt – _Mega Marius_
-
 - Team: _Ctrl+Alt+Defeat_ (Gruppe 5): _Christoffer A. Slettebø, Marius Soma, Henrik Johansen, Olav Høysæther Opheim_
 - Lenke til <a href="https://trello.com/b/naQJzzQZ/ctrlaltdefeat">Trello</a>.
 
@@ -15,18 +14,16 @@ Man kommer i mål hvis man når frem til en flagg stang i enden av mappet.
 De er totalt tre maps med varierende grad av vansklighet.
 Man kan sjekke scoren sin ved å trykke på scoreboard knappen i map select menyen.
 
-## Kjøring #undervurdering
-
+## Kjøring
 - Kompileres med `mvn package`.
 - Kjøres med `java -jar skeleton/app/main.java`
 - Krever Java 15 eller senere
 
 ## Kjente feil
-
 - Kan hoppe i blokker og da hoppe for alltid, på en måte slik du svever. 
-- Hit box på karakter er litt rar
+- Hit box på karakter er litt rar.
 - Noen ganger kan du ta skade selv om du treffer hodet til en edderkopp, mistanke er at du går gjennom hitboxen.
-- Spillet krasjer noen ganger hvis man hoppe opp i coin/pepsi bricks, feil er utbedret slik at de skjer skjeldnere. 
+- Spillet krasjer noen ganger hvis man hopper opp i coin/pessi block, feil er utbedret slik at de skjer skjeldnere. 
 
 ## Credits
 - Musikk fra <a href="https://pixabay.com/users/white_records-32584949/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=164702">Maksym Dudchyk</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=164702">Pixabay</a>

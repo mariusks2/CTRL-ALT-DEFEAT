@@ -25,7 +25,10 @@ import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
 
 import inf112.Entities.Blocks.Brick;
-import inf112.Scenes.Display;
+import inf112.View.Scenes.Display;
+import inf112.View.ScreenManagement.ScreenManager;
+import inf112.View.Screens.ShowGame;
+import inf112.View.Screens.showPauseScreen;
 import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.MegaMarius;
 import inf112.skeleton.app.Marius.State;

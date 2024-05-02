@@ -1,4 +1,4 @@
-package inf112.Screens;
+package inf112.View.ScreenManagement;
 
 
 import com.badlogic.gdx.Gdx;
@@ -6,6 +6,16 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 
+import inf112.View.Screens.ShowAboutScreen;
+import inf112.View.Screens.ShowGame;
+import inf112.View.Screens.ShowGameOver;
+import inf112.View.Screens.ShowHelpScreen;
+import inf112.View.Screens.ShowMapSelect;
+import inf112.View.Screens.ShowPauseScreen;
+import inf112.View.Screens.ShowScoreboardScreen;
+import inf112.View.Screens.ShowStartGame;
+import inf112.skeleton.app.Marius;
+import inf112.skeleton.app.Marius.State;
 import inf112.skeleton.app.MegaMarius;
 
 import java.util.HashMap;
@@ -13,7 +23,7 @@ import java.util.HashMap;
 /**
  * Class for managing different screens within the game, allowing for switching and management of screen states
  */
-public class ScreenManager {
+public class ScreenManager implements IScreenFactory {
 
     
     private static ScreenManager instance; //Variable for an instance of the screenmanager
@@ -54,8 +64,8 @@ public class ScreenManager {
      * @param name The name of the screen
      * @param screen The screen instance to display
      */
-    public void showScreen(String name, Screen screen) {
-        if (screens.get(name) != null) {
+    private void showScreen(String name, Screen screen) {
+        if (screens.get(name) != null && !name.equals("ShowGame")) {
             screens.get(name).dispose();
         }
         screens.put(name, screen);
@@ -81,9 +91,7 @@ public class ScreenManager {
     public Screen getCurrentGameScreen(){
         return currentGameScreen;
     }
-
-
-
+    
     /**
      * Clears the screen with a solid black color
      */
@@ -113,5 +121,54 @@ public class ScreenManager {
             screen.dispose();
         }
         screens.clear();
+    }
+
+    @Override
+    public void showStartGame() {
+        Screen startGameScreen = new ShowStartGame(game, this);
+        showScreen("Start Game", startGameScreen);
+    }
+
+    @Override
+    public void showAboutScreen() {
+        Screen aboutScreen = new ShowAboutScreen(game, this);
+        showScreen("About", aboutScreen);
+    }
+
+    @Override
+    public void showHelpScreen() {
+        Screen helpScreen = new ShowHelpScreen(game, this);
+        showScreen("Help", helpScreen);
+    }
+
+    @Override
+    public void showScoreBoardScreen() {
+        Screen scoreboardScreen = new ShowScoreboardScreen(game, this);
+        showScreen("Scoreboard", scoreboardScreen);
+    }
+
+    @Override
+    public void showMapSelectScreen() {
+        Screen mapSelection = new ShowMapSelect(game, this);
+        showScreen("MapSelect", mapSelection);
+    }
+
+    @Override
+    public void showGameScreen(String filename) {
+        Screen gameScreen = new ShowGame(game, filename,this);
+        showScreen("ShowGame", gameScreen);
+    }
+
+    @Override
+    public void showPauseGameScreen(Marius player, State previousState) {
+        Screen pauseScreen = new ShowPauseScreen(game, player, previousState, this);
+        showScreen("PauseGame", pauseScreen);
+        player.setCurrentState(Marius.State.PAUSED);
+    }
+
+    @Override
+    public void showGameOverScreen(String filename) {
+        Screen gameOverScreen = new ShowGameOver(game,filename, this);
+        showScreen(filename, gameOverScreen);
     }
 }

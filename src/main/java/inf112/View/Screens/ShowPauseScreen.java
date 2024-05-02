@@ -1,4 +1,4 @@
-package inf112.Screens;
+package inf112.View.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -11,6 +11,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
+import inf112.View.ScreenManagement.IScreenFactory;
+import inf112.View.ScreenManagement.ScreenManager;
 import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.Marius.State;
 import inf112.skeleton.app.MegaMarius;
@@ -19,7 +21,7 @@ import inf112.skeleton.app.MegaMarius;
 /**
  * Screen for handling the pause functionality of the game
  */
-public class showPauseScreen implements Screen{
+public class ShowPauseScreen implements Screen{
 
     private MegaMarius game; //Reference to the main game instance for scree transitions
     private Marius player; //Reference to the player character to manage it's state when pausing the game
@@ -27,6 +29,7 @@ public class showPauseScreen implements Screen{
     private Stage stage; //Stage for holding UI elements for the screen
     private Texture backgroundImage; //Backgroundimage of the pause screen
     private State previousState; //The previous state of the player before the game was paused
+    private IScreenFactory screenService;
 
 
     /**
@@ -35,13 +38,14 @@ public class showPauseScreen implements Screen{
      * @param player The player instance to manage state
      * @param state The previous state of the player before pausing
      */
-    public showPauseScreen(MegaMarius game, Marius player, State state){
+    public ShowPauseScreen(MegaMarius game, Marius player, State state, IScreenFactory screenService){
         this.game = game;
         this.player = player;
         this.viewport = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());
         this.stage = new Stage(viewport,game.getSpriteBatch());
         this.backgroundImage = new Texture("Screens/pause-screen.png");
         this.previousState = state;
+        this.screenService = screenService;
   
         
     }
@@ -53,8 +57,8 @@ public class showPauseScreen implements Screen{
     @Override
     public void render(float delta) {
         handleInput();
-        ScreenManager.getInstance().clearScreen();
-        ScreenManager.getInstance().drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
+        screenService.clearScreen();
+        screenService.drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
     }
@@ -65,7 +69,7 @@ public class showPauseScreen implements Screen{
     private void handleInput(){
         if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
             player.setCurrentState(previousState);
-            game.setScreen(ScreenManager.getInstance().getShowGameScreen());
+            game.setScreen(screenService.getShowGameScreen());
         }
         if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
             Vector2 clickPosition = new Vector2(Gdx.input.getX(), Gdx.input.getY());
@@ -91,10 +95,10 @@ public class showPauseScreen implements Screen{
 
         if(resumeBound.contains(clickPosition)){
             player.setCurrentState(previousState);
-            game.setScreen(ScreenManager.getInstance().getShowGameScreen());
+            game.setScreen(screenService.getShowGameScreen());
         }
         else if (mapSelectionBound.contains(clickPosition)){
-            ScreenManager.getInstance().showScreen("MapSelect", new showMapSelect(game));
+            screenService.showMapSelectScreen();
         }
         else if(quitGameBound.contains(clickPosition)){
             Gdx.app.exit();

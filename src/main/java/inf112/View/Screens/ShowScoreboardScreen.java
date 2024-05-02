@@ -1,4 +1,4 @@
-package inf112.Screens;
+package inf112.View.Screens;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -17,7 +17,9 @@ import com.badlogic.gdx.utils.Collections;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import inf112.Scenes.Score;
+import inf112.View.Scenes.Score;
+import inf112.View.ScreenManagement.IScreenFactory;
+import inf112.View.ScreenManagement.ScreenManager;
 import inf112.skeleton.app.MegaMarius;
 
 public class ShowScoreboardScreen implements Screen {
@@ -29,14 +31,16 @@ public class ShowScoreboardScreen implements Screen {
     private Stage stage;
     private SpriteBatch batch;
     private BitmapFont font;
+    private IScreenFactory screenService; 
 
-    public ShowScoreboardScreen(MegaMarius megaMariusGame) {
+    public ShowScoreboardScreen(MegaMarius megaMariusGame, IScreenFactory screenService) {
         this.megaMariusGame = megaMariusGame;
         this.scoreboardList = new ArrayList<Score>();
         this.backgroundImage = new Texture("Screens/scoreboard-screen.png");
         this.viewport = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());
         this.stage = new Stage(viewport,megaMariusGame.getSpriteBatch());
         this.font = new BitmapFont();
+        this.screenService = screenService;
     }
 
 
@@ -74,7 +78,7 @@ public class ShowScoreboardScreen implements Screen {
 
     public void drawScoreboard() {
         backgroundImage = new Texture("Screens/scoreboard-screen.png");
-        ScreenManager.getInstance().drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
+        screenService.drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
         ArrayList<Integer> scores_level_one = getHighScores(scoreboardList, 1);
         ArrayList<Integer> scores_level_two = getHighScores(scoreboardList, 2);
         ArrayList<Integer> scores_level_three = getHighScores(scoreboardList, 3);
@@ -95,8 +99,8 @@ public class ShowScoreboardScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        ScreenManager.getInstance().clearScreen();
-        ScreenManager.getInstance().drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
+        screenService.clearScreen();
+        screenService.drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
         drawScoreboard();
         handleInput();
         //stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
@@ -106,7 +110,7 @@ public class ShowScoreboardScreen implements Screen {
 
     private void handleInput() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
-            ScreenManager.getInstance().showScreen("MapSelect", new showMapSelect(megaMariusGame));
+            screenService.showMapSelectScreen();
             dispose();
         }
     }

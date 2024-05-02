@@ -1,4 +1,4 @@
-package inf112.Scenes;
+package inf112.View.Scenes;
 
 
 import com.badlogic.gdx.graphics.Color;

@@ -1,4 +1,4 @@
-package inf112.Screens;
+package inf112.View.Screens;
 
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -33,7 +33,9 @@ import inf112.Entities.Item;
 import inf112.Entities.ItemDef;
 import inf112.Entities.Blocks.Pessi;
 import inf112.Entities.Enemies.Enemy;
-import inf112.Scenes.Display;
+import inf112.View.Scenes.Display;
+import inf112.View.ScreenManagement.IScreenFactory;
+import inf112.View.ScreenManagement.ScreenManager;
 import inf112.skeleton.MakeMap.MakeMap;
 import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.WorldContactListener;
@@ -51,7 +53,7 @@ public class ShowGame implements Screen{
     private LabelStyle font; //Font style for UI labels
     private Label victoryLabel; //Text to display when level is completed
     private Label retryLabel; //Instruction on what to do after completing level
-    private showMapSelect mapSelect; //Used for getting next map when level is completed
+    private ShowMapSelect mapSelect; //Used for getting next map when level is completed
     private Label gameCompletedLabel; //Label to display when the final map is completed
     private Label completedDescriptionLabel; //Label to explain what the user should do after completing the game
 
@@ -76,12 +78,14 @@ public class ShowGame implements Screen{
     public String fileName; //Name of the current map file
     private Box2DDebugRenderer b2dr;
 
+    private IScreenFactory screenService;
+
     /**
      * Initialization of the game and variables used to display the game
      * @param game Reference to the main game object
      * @param fileName The filename of the map to display
      */
-    public ShowGame(MegaMarius game, String fileName){
+    public ShowGame(MegaMarius game, String fileName, IScreenFactory screenService){
         atlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
 
         this.game = game;
@@ -104,6 +108,8 @@ public class ShowGame implements Screen{
         b2dr = new Box2DDebugRenderer();
 
         player = new Marius(this);
+
+        this.screenService = screenService;
 
         world.setContactListener(new WorldContactListener());
 
@@ -145,7 +151,7 @@ public class ShowGame implements Screen{
 
       
 
-        this.mapSelect = new showMapSelect(game);
+        this.mapSelect = new ShowMapSelect(game,screenService);
         this.shapeRenderer = new ShapeRenderer();
     }
     /**
@@ -225,7 +231,7 @@ public class ShowGame implements Screen{
     @Override
     public void render(float delta) {
         updateState(delta);
-        ScreenManager.getInstance().clearScreen();
+        screenService.clearScreen();
         drawGameWorld();
         drawUI();
         handleScreenTransitions();
@@ -287,7 +293,7 @@ public class ShowGame implements Screen{
      */
     private void handleScreenTransitions() {
         if (gameIsOver()) {
-            ScreenManager.getInstance().showScreen("GameOver", new ShowGameOver(game, fileName));
+            screenService.showGameOverScreen(fileName);
         } else if (Marius.getGameWon()) {
             handleVictoryTransition();
         }
@@ -298,8 +304,7 @@ public class ShowGame implements Screen{
      */
     private void handleInput() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            ScreenManager.getInstance().showScreen("PauseGame", new showPauseScreen(game, player, player.currentState));
-            player.setCurrentState(Marius.State.PAUSED);
+            screenService.showPauseGameScreen(player, player.currentState);
         }
     }
   
@@ -312,7 +317,7 @@ public class ShowGame implements Screen{
 
         if(nextMap.equals("GameCompleted")){
             if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
-                ScreenManager.getInstance().showScreen("StartGame", new ShowStartGame(game));
+                screenService.showStartGame();
             }
             else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
                 Gdx.app.exit();
@@ -321,10 +326,10 @@ public class ShowGame implements Screen{
         else{
             if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
                 game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), 1); // TODO change the level parameter to get the current level
-                ScreenManager.getInstance().showScreen("ShowGame", new ShowGame(game, nextMap));
+                screenService.showGameScreen(nextMap);
                 Display.updateLevel(1);
             } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-                ScreenManager.getInstance().showScreen("StartGame", new ShowStartGame(game));
+                screenService.showStartGame();
             }
         }
     }

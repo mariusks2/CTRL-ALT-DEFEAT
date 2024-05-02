@@ -5,8 +5,8 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.maps.MapObject;
 
 import inf112.Entities.InteractiveTileObj;
-import inf112.Scenes.Display;
-import inf112.Screens.ShowGame;
+import inf112.View.Scenes.Display;
+import inf112.View.Screens.ShowGame;
 import inf112.skeleton.app.Marius;
 import inf112.skeleton.app.MegaMarius;
 

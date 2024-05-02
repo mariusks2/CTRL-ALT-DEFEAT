@@ -1,4 +1,4 @@
-package inf112.Screens;
+package inf112.View.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -12,28 +12,31 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import inf112.View.ScreenManagement.IScreenFactory;
 import inf112.skeleton.app.MegaMarius;
 
 /**
  * This screen displas the "About" page for the MegaMarius game.
  * It displays general information about the game. 
  */
-public class showAboutScreen implements Screen {
+public class ShowAboutScreen implements Screen {
 
     private MegaMarius megaMariusGame; //The main game object
     private Viewport viewport; //Manages how the screen is displayed
     private Stage stage; //Holds UI elements for the screen
     private Texture backgroundImage; //The graphical texture for the screens background image
+    IScreenFactory screenService;
 
     /**
      * Constructs the About scren with the graphical components used to display the screen.
      * @param megaMariusGame The main game object to enable screen changes. 
      */
-    public showAboutScreen (MegaMarius megaMariusGame){
+    public ShowAboutScreen (MegaMarius megaMariusGame, IScreenFactory screenService){
         this.megaMariusGame = megaMariusGame;
         this.viewport = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());
-        this.stage = new Stage(viewport,( megaMariusGame).getSpriteBatch());
+        this.stage = new Stage(viewport,megaMariusGame.getSpriteBatch());
         this.backgroundImage = new Texture("Screens/about-screen.png");
+        this.screenService = screenService;
     }
 
    /**
@@ -44,8 +47,8 @@ public class showAboutScreen implements Screen {
     @Override
     public void render(float delta) {
         handleInput();
-        ScreenManager.getInstance().clearScreen();
-        ScreenManager.getInstance().drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
+        screenService.clearScreen();
+        screenService.drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();   
     }
@@ -55,12 +58,12 @@ public class showAboutScreen implements Screen {
      */
     private void handleInput(){
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
-           ScreenManager.getInstance().showScreen("StartGame", new ShowStartGame(megaMariusGame));
+           screenService.showStartGame();
         }
         if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
             Vector2 clickPosition = new Vector2(Gdx.input.getX(), Gdx.input.getY());
             viewport.unproject(clickPosition);
-            checkButtonPress(clickPosition);
+            checkButtonPress(clickPosition, screenService);
         }
     }
 
@@ -68,11 +71,11 @@ public class showAboutScreen implements Screen {
      * Checks if a button press ocurred within specific screen coordinates 
      * @param clickPosition The position of the mouse click, translated to game coordinates using the Rectangle object.
      */
-    private void checkButtonPress(Vector2 clickPosition){
+    private void checkButtonPress(Vector2 clickPosition, IScreenFactory screenService){
         // Defines the bounding box where the back arrow is located
         Rectangle backBounds = new Rectangle(6, 197,35 , 8);
         if (backBounds.contains(clickPosition)) {
-            ScreenManager.getInstance().showScreen("StartGame", new ShowStartGame(megaMariusGame));
+            screenService.showStartGame();
         }
     }
 

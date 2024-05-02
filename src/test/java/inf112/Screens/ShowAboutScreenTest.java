@@ -23,7 +23,9 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
 
-import inf112.Scenes.Display;
+import inf112.View.Scenes.Display;
+import inf112.View.ScreenManagement.ScreenManager;
+import inf112.View.Screens.showAboutScreen;
 import inf112.skeleton.app.MegaMarius;
 
 public class ShowAboutScreenTest {

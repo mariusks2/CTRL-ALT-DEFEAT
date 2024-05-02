@@ -21,6 +21,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
@@ -87,10 +88,6 @@ public class PauseScreenTest {
         sGame.resize(10, 10);
     }
     @Test
-    void checkButtonPressTest(){
-        
-    }
-    @Test
     void handleInputTest(){
         //Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE);
         Input input = mock(Input.class);
@@ -114,6 +111,21 @@ public class PauseScreenTest {
         Gdx.input = input;
         Gdx.input.setCursorPosition(100, 100);
         sGame.handleInput();
+    }
+
+    @Test
+    void checkButtonPressTest(){
+        sGame.checkButtonPress(new Vector2(150, 114), ScreenManager.getInstance());
+    }
+
+    @Test
+    void checkButtonPressTest2(){
+        sGame.checkButtonPress(new Vector2(176, 84), ScreenManager.getInstance());
+    }
+
+    @Test
+    void checkButtonPressTest3(){
+        sGame.checkButtonPress(new Vector2(165, 141), ScreenManager.getInstance());
     }
 
     @Test

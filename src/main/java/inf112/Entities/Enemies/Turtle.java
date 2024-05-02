@@ -98,8 +98,8 @@ public class Turtle extends Enemy {
         Vector2[] vertice = new Vector2[4];
         vertice[0] = new Vector2(-5, 10).scl(1 / MegaMarius.PPM);
         vertice[1] = new Vector2(5, 10).scl(1 / MegaMarius.PPM);
-        vertice[2] = new Vector2(-3, 3).scl(1 / MegaMarius.PPM);
-        vertice[3] = new Vector2(3, 3).scl(1 / MegaMarius.PPM);
+        vertice[2] = new Vector2(-4, 4).scl(1 / MegaMarius.PPM);
+        vertice[3] = new Vector2(4, 4).scl(1 / MegaMarius.PPM);
         head.set(vertice);
 
         fdef.shape = head;
@@ -214,17 +214,22 @@ public class Turtle extends Enemy {
     }
 
     /**
-     * Function for checking if entity is dead.
-     * test function
+     * Function to check if enemy hit by other enemy is a turtle.
+     * checks if an entity is hit by an turtle whos moving.
+     * @param enemy the enemy who hit the other enemy.
      */
     @Override
     public void hitByEnemy(Enemy enemy) {
-        if(enemy.getClass() == Turtle.class && ((Turtle) enemy).getCurrentState() == Turtle.State.MOVING_SHELL){
+        if(enemy.getClass() == Turtle.class && ((Turtle) enemy).getCurrentState() == Turtle.State.MOVING_SHELL){ //If the enemy is a moving turtle shell the other enemy dies.
             this.setToDestroy = true;
         }
-        else revVelocity(true, false);
+        else revVelocity(true, false); // if not you collide and change x velocity.
     }
 
+    /**
+     * Function for checking if entity is dead.
+     * test function
+     */
     public boolean entityIsDead(){
         return destroyed;
     }

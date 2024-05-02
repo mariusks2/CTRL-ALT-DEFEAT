@@ -155,7 +155,7 @@ public class ScreenManager implements IScreenFactory {
 
     @Override
     public void showGameScreen(String filename) {
-        Screen gameScreen = new ShowGame(game, filename,this);
+        Screen gameScreen = new ShowGame(game, filename, this);
         showScreen("ShowGame", gameScreen);
     }
 

@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import inf112.View.ScreenManagement.ScreenManager;
 import inf112.View.Screens.ShowScoreboardScreen;
-import inf112.View.Screens.ShowStartGame;
 
 public class MegaMarius extends Game {
     public static final int M_Width = 400;

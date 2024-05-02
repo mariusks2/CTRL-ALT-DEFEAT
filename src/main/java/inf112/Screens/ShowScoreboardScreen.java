@@ -89,6 +89,7 @@ public class ShowScoreboardScreen implements Screen {
         font.draw(stage.getBatch(), "Top 5: Level 3:", 250, 150);
         drawScores(scores_level_three, 250, 140);
         stage.getBatch().end();
+        this.backgroundImage = new Texture("Screens/scoreboard-screen.png");
         
     }
 

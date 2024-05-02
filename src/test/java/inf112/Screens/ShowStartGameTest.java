@@ -1,8 +1,12 @@
 package inf112.Screens;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -11,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3NativesLoader;
@@ -27,7 +32,7 @@ import inf112.Entities.Blocks.Brick;
 import inf112.Scenes.Display;
 import inf112.skeleton.app.MegaMarius;
 
-public class ShowStartScreenTest {
+public class ShowStartGameTest {
 
     RectangleMapObject object;
     TmxMapLoader mapLoader;
@@ -93,19 +98,67 @@ public class ShowStartScreenTest {
         sGame = new ShowStartGame(megaMarius);
         ScreenManager.getInstance().initialize(megaMarius);
 	}
+    
+    //@Test
+    void render() {
+        sGame.render(1f);
+    }
+
+    @Test
+    void handleInputTest(){
+        // Simulate pressing Enter key
+        //when(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)).thenReturn(true);
+
+        // Call handleInput method
+        sGame.handleInput();
+        Gdx mockGdx = mock(Gdx.class);
+        //verify(mockGdx.app, never()).exit();
+
+        ScreenManager screenManagerMock = mock(ScreenManager.class);
+        // Verify that showScreen method is called with the correct arguments
+        //verify(screenManagerMock).showScreen(eq("MapSelect"), any(ShowMapSelect.class));
+
+
+        //Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE);
+        Gdx.input.setCatchKey(Input.Keys.ESCAPE, true);
+        sGame.handleInput();
+        Gdx.input.setCatchKey(Input.Buttons.LEFT, true);
+        sGame.handleInput();
+        Gdx.input.setCatchKey(Input.Keys.ENTER, true);
+        Gdx.input.setCursorPosition(100, 100);
+        sGame.handleInput();
+    }
+
+    @Test
+    void checkButtonPressTest(){
+        
+    }
+
+    @Test
+    void showTest() {
+        sGame.show();
+    }
 
     @Test
     void resizeTest(){
         sGame.resize(10, 10);
     }
-    @Test
-    void checkButtonPressTest(){
-        
-    }
-    @Test
-    void handleInputTest(){
 
+    @Test
+    void pauseTest() {
+        sGame.pause();
     }
+
+    @Test
+    void resumeTest() {
+        sGame.resume();
+    }
+
+    @Test
+    void hideTest() {
+        sGame.hide();
+    }
+
     @Test
     void disposeTest(){
         sGame.dispose();
@@ -117,6 +170,4 @@ public class ShowStartScreenTest {
         assertEquals(sGame.getClass(),ScreenManager.getInstance().getCurrentGameScreen().getClass());
         
     }
-
-
 }

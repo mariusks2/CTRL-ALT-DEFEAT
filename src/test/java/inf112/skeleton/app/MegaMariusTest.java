@@ -1,5 +1,6 @@
 package inf112.skeleton.app;
 
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -37,20 +38,20 @@ public class MegaMariusTest {
     @Test
     void createTest() {
         MegaMarius megaMarius = (MegaMarius) headlessApplication.getApplicationListener();
-        MegaMarius mockMegaMaris = mock(MegaMarius.class);
+        MegaMarius mockMegaMarius = mock(MegaMarius.class);
 
         assertNull(megaMarius.getSpriteBatch());
         assertNull(megaMarius.getAssetManager());
 
         SpriteBatch mockBatch = mock(SpriteBatch.class);
-        megaMarius.setMockMode(true);
 
         megaMarius.setSpriteBatch(mockBatch);
+        //megaMarius.create();
+        mockMegaMarius.create();
+        doNothing().when(mockMegaMarius).create();
         
     }
-    
-            
-            
+      
     @Test
     void disposeTest() {
         // Mock the SpriteBatch
@@ -60,32 +61,17 @@ public class MegaMariusTest {
         AssetManager mockManager = mock(AssetManager.class);
 
         megaMarius.manager = mockManager;
-        
-        // Check that the values actualy have value before
-        assertNotNull(megaMarius.manager);
-        
-        // Call the dispose method
         //megaMarius.dispose();
-
-        // Verify that the SpriteBatch and AssetManager are disposed
-        //verify(mockBatch).dispose();
-        //verify(mockManager).dispose();
-
-        //assertNull(megaMarius.batch);
-        //assertNull(MegaMarius.manager);
+        megaMarius.setSpriteBatch(mockBatch);
+        megaMarius.dispose();
     }
+
     @Test
-    void renderTest() {
+    void getScoreboardScreenTest() {
         MegaMarius megaMarius = new MegaMarius();
-        MegaMarius mockMegaMarius = mock(MegaMarius.class);
-
-        megaMarius.render();
-        mockMegaMarius.render();
-        // Verify that the render method of the Game instance is called
-        doNothing().when(mockMegaMarius).render();
-        verify(mockMegaMarius).render();
+        megaMarius.getScoreboardScreen();
     }
-    
+
     @Test
     void setAndGetSpriteBatchTest() {
         MegaMarius megaMarius = new MegaMarius();
@@ -104,4 +90,16 @@ public class MegaMariusTest {
         assertEquals(mockBatch, megaMarius.getSpriteBatch());
         assertNotEquals(batch, mockBatch);
     }   
+
+    @Test
+    void renderTest() {
+        MegaMarius megaMarius = new MegaMarius();
+        MegaMarius mockMegaMarius = mock(MegaMarius.class);
+
+        megaMarius.render();
+        mockMegaMarius.render();
+        // Verify that the render method of the Game instance is called
+        doNothing().when(mockMegaMarius).render();
+        verify(mockMegaMarius).render();
+    }
 }

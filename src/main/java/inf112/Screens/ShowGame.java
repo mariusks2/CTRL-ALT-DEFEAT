@@ -16,6 +16,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 //import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer; Uncomment to show hitbox
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -70,8 +71,6 @@ public class ShowGame implements Screen{
     private Array<Item> items; //Items present in the game
     public LinkedBlockingQueue<ItemDef> itemsToSpawn; //items needed to be spawned
     public String fileName; //Name of the current map file
-    
-    //private Box2DDebugRenderer b2dr; //Used to display hitbox if uncommented
 
     /**
      * Initialization of the game and variables used to display the game
@@ -95,7 +94,6 @@ public class ShowGame implements Screen{
 
         world = new World(new Vector2(0, -10), true);
         world.step(0, 0, 0);
-        //b2dr = new Box2DDebugRenderer(); // uncomment to show hitbox 
 
         creator = new MakeMap(this);
 

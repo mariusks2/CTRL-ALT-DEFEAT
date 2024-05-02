@@ -97,18 +97,22 @@ public class ShowMapSelectTest {
     
     @Test
     void handleInputTest(){
-        Input input = mock(Input.class);
-        Gdx.input = input;
-        when(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)).thenReturn(true);
-        sGame.render(0);
+        //Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE);
+        Gdx.input.setCatchKey(Input.Keys.ESCAPE, true);
+        sGame.handleInput();
     }
 
     @Test
-    void handleInput2Test(){
-        Input input = mock(Input.class);
-        Gdx.input = input;
-        when(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)).thenReturn(true);
-        sGame.render(0);
+    void handleInputTest2(){
+        Gdx.input.setCatchKey(Input.Buttons.LEFT, true);
+        sGame.handleInput();
+    }
+
+    @Test
+    void handleInputTest3(){
+        Gdx.input.setCatchKey(Input.Keys.ENTER, true);
+        Gdx.input.setCursorPosition(100, 100);
+        sGame.handleInput();
     }
 
     @Test

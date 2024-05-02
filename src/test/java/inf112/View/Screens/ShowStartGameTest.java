@@ -78,24 +78,26 @@ public class ShowStartGameTest {
 
     @Test
     void handleInputTest(){
-        // Simulate pressing Enter key
-        //when(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)).thenReturn(true);
-
-        // Call handleInput method
-        sGame.handleInput();
-        Gdx mockGdx = mock(Gdx.class);
-        //verify(mockGdx.app, never()).exit();
-
-        ScreenManager screenManagerMock = mock(ScreenManager.class);
-        // Verify that showScreen method is called with the correct arguments
-        //verify(screenManagerMock).showScreen(eq("MapSelect"), any(ShowMapSelect.class));
-
         //Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE);
-        Gdx.input.setCatchKey(Input.Keys.ESCAPE, true);
+        Input input = mock(Input.class);
+        when(input.isKeyJustPressed(Input.Keys.ESCAPE)).thenReturn(true);
+        Gdx.input = input;
         sGame.handleInput();
-        Gdx.input.setCatchKey(Input.Buttons.LEFT, true);
+    }
+
+    @Test
+    void handleInputTest2(){
+        Input input = mock(Input.class);
+        when(input.isButtonJustPressed(Input.Buttons.LEFT)).thenReturn(true);
+        Gdx.input = input;
         sGame.handleInput();
-        Gdx.input.setCatchKey(Input.Keys.ENTER, true);
+    }
+
+    @Test
+    void handleInputTest3(){
+        Input input = mock(Input.class);
+        when(input.isKeyJustPressed(Input.Keys.ENTER)).thenReturn(true);
+        Gdx.input = input;
         Gdx.input.setCursorPosition(100, 100);
         sGame.handleInput();
     }

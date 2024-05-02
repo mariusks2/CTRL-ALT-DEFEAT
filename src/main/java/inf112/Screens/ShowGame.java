@@ -72,6 +72,7 @@ public class ShowGame implements Screen{
     private Array<Item> items; //Items present in the game
     public LinkedBlockingQueue<ItemDef> itemsToSpawn; //items needed to be spawned
     public String fileName; //Name of the current map file
+    private Box2DDebugRenderer b2dr;
 
     /**
      * Initialization of the game and variables used to display the game
@@ -97,6 +98,7 @@ public class ShowGame implements Screen{
         world.step(0, 0, 0);
 
         creator = new MakeMap(this);
+        b2dr = new Box2DDebugRenderer();
 
         player = new Marius(this);
 
@@ -237,6 +239,7 @@ public class ShowGame implements Screen{
             item.draw(game.getSpriteBatch());
         }
         game.getSpriteBatch().end();
+        //b2dr.render(world, gameCam.combined); Hitboxes
     }
 
     /**

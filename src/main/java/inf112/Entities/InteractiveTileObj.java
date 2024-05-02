@@ -37,6 +37,12 @@ public abstract class InteractiveTileObj {
 
     protected Fixture fixture;
 
+    /**
+     * Constructor for interactivetileobj
+     * 
+     * @param screen Game screen
+     * @param object The Map
+     */
     public InteractiveTileObj(ShowGame screen, MapObject object){
         this.object = object;
         this.screen = screen;
@@ -60,16 +66,29 @@ public abstract class InteractiveTileObj {
 
     public abstract void HeadHit(Marius marius);
 
-    public void setCategoryFilter(short filterBit){ //Func to set the category filter for blocks.
+    /**
+     * Function for setting category filter
+     * 
+     * @param filterbit the category filter to set to blocks
+     */
+    public void setCategoryFilter(short filterBit){
         Filter filter = new Filter();
         filter.categoryBits = filterBit;
         fixture.setFilterData(filter);
     }
-    //Get a cell from layer 1.
+    /**
+     * Function for getting every cell in layer 1
+     * 
+     */
     public TiledMapTileLayer.Cell getCell(){
         TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(1);
         return layer.getCell((int)(body.getPosition().x * MegaMarius.PPM / 16), (int)(body.getPosition().y * MegaMarius.PPM / 16));
     }
+        /**
+     * Function for getting every cell in layer 1 but the one above, 
+     * used for putting coins above coin blocks on headhit
+     * 
+     */
     //Get a cellsfrom layer 1 but the one above the cell.
     public TiledMapTileLayer.Cell getCellAbove(){
         TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(1);

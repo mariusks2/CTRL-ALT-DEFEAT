@@ -50,7 +50,6 @@ public class Brick extends InteractiveTileObj{
      */
     @Override
     public void HeadHit(Marius marius) {
-
         if(marius.isMariusBigNow()){
             music = manager.get("audio/music/brick.wav", Music.class);
 			music.setVolume(0.050f);

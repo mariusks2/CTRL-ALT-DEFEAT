@@ -20,12 +20,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
 
+import inf112.Model.app.MegaMarius;
 import inf112.View.ScreenManagement.ScreenManager;
-import inf112.skeleton.app.MegaMarius;
 
 public class ShowStartGameTest {
 
@@ -104,7 +105,17 @@ public class ShowStartGameTest {
 
     @Test
     void checkButtonPressTest(){
-        
+        sGame.checkButtonPress(new Vector2(169, 38), ScreenManager.getInstance());
+    }
+
+    @Test
+    void checkButtonPressTest2(){
+        sGame.checkButtonPress(new Vector2(160, 16), ScreenManager.getInstance());
+    }
+
+    @Test
+    void checkButtonPressTest3(){
+        sGame.checkButtonPress(new Vector2(199, 14), ScreenManager.getInstance());
     }
 
     @Test

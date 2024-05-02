@@ -22,9 +22,9 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.physics.box2d.Box2D;
 
+import inf112.Model.app.MegaMarius;
 import inf112.View.Scenes.Display;
 import inf112.View.ScreenManagement.ScreenManager;
-import inf112.skeleton.app.MegaMarius;
 
 public class ShowAboutScreenTest {
     RectangleMapObject object;

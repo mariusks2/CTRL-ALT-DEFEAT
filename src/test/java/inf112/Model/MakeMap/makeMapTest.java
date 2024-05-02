@@ -1,6 +1,6 @@
-package inf112.Entities.Blocks;
+package inf112.Model.MakeMap;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -14,29 +14,29 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3NativesLoader;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import inf112.Model.Entities.Blocks.Brick;
 import inf112.View.Scenes.Display;
 import inf112.View.Screens.ShowGame;
-import inf112.Model.app.Marius;
-import inf112.Model.app.MegaMarius;
 
-public class BrickTest {
+public class makeMapTest {
     
-    Brick brick;
-    RectangleMapObject object;
+    MakeMap makeMap;
     TmxMapLoader mapLoader;
     String fileName = "MapAndTileset/level1.tmx";
     TiledMap map;
     GL20 gl;
     Display display;
+    TextureAtlas textureAtlas;
 
     @BeforeEach
 	void setUpBeforeEach() {
@@ -55,7 +55,6 @@ public class BrickTest {
         Gdx.gl = gl;
         
         new HeadlessApplication(listener, config);
-        //make instances or mocks of classes we need to test
         ShowGame cScreen = mock(ShowGame.class);
         World world = new World(new Vector2(0, -10), true);
         display = new Display(mock(SpriteBatch.class));
@@ -63,31 +62,13 @@ public class BrickTest {
         map = mapLoader.load(fileName);
         when(cScreen.getWorld()).thenReturn(world);
         when(cScreen.getMap()).thenReturn(map);
-        object = new RectangleMapObject();
-        brick = new Brick(cScreen, object);
+        textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
+        when(cScreen.getAtlas()).thenReturn(textureAtlas);
+        makeMap = new MakeMap(cScreen);
 	}
-
     @Test
-    void onHeadHitTestBig() {
-        Marius mockMarius = mock(Marius.class);
-        when(mockMarius.isMariusBigNow()).thenReturn(true);
-        brick.HeadHit(mockMarius);
-        assertEquals(MegaMarius.DESTROYED_BIT, brick.getFilterData().categoryBits);
-        assertEquals(200, display.getScoreCount());
-    }
-
-    @Test
-    void onHeadHitTestSmall() {
-        Marius mockMarius = mock(Marius.class);
-        when(mockMarius.isMariusBigNow()).thenReturn(false);
-        brick.HeadHit(mockMarius);
-        assertEquals(0, display.getScoreCount());
-        assertEquals(MegaMarius.BRICK_BIT, brick.getFilterData().categoryBits);
-    }
-
-    @Test
-    void setCategoryFilterTest(){
-        assertEquals(MegaMarius.BRICK_BIT, brick.getFilterData().categoryBits);
+    void getEnemiesTest(){
+        assertNotNull(makeMap.getEnemies());
     }
 
 }

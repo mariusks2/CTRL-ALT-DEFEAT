@@ -1,4 +1,4 @@
-package inf112.skeleton.app;
+package inf112.Model.app;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;

@@ -1,4 +1,4 @@
-package inf112.Screens;
+package inf112.View.Screens;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -24,8 +24,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
 
-import inf112.View.Scenes.Display;
-import inf112.Model.app.MegaMarius;
+import inf112.View.ScreenManagement.ScreenManager;
+import inf112.skeleton.app.MegaMarius;
 
 public class ShowStartGameTest {
 
@@ -34,11 +34,9 @@ public class ShowStartGameTest {
     String fileName = "MapAndTileset/level1.tmx";
     TiledMap map;
     static GL20 gl;
-    Display display;
 	ShowStartGame sGame;
     SpriteBatch batch;
     private static HeadlessApplication headlessApplication;
-    
     
 
     @BeforeAll
@@ -50,11 +48,7 @@ public class ShowStartGameTest {
         Application app = mock(Application.class);
         Gdx.app = app;
 		gl = mock(GL20.class);
-		when(gl.glCreateShader(anyInt())).thenReturn(1);
-        when(gl.glCreateShader(anyInt())).thenReturn(0);
-        when(gl.glCreateProgram()).thenReturn(-1);
         Gdx.gl = gl; 
-        Gdx.gl20 = gl; 
         MegaMarius megaMarius = new MegaMarius(); // Your implementation of ApplicationListener
 
         headlessApplication = new HeadlessApplication(megaMarius, config);
@@ -67,14 +61,14 @@ public class ShowStartGameTest {
 	void setUpBeforeEach() {
 
         MegaMarius megaMarius = (MegaMarius) headlessApplication.getApplicationListener();
-        
-        World world = new World(new Vector2(0, -10), true);
-        display = new Display(mock(SpriteBatch.class));
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
 		megaMarius.createTest((mock(SpriteBatch.class)));
-        sGame = new ShowStartGame(megaMarius);
+        
+        sGame = new ShowStartGame(megaMarius, ScreenManager.getInstance());
         ScreenManager.getInstance().initialize(megaMarius);
+        ScreenManager.getInstance().showStartGame();
+        
 	}
     
     //@Test
@@ -84,25 +78,26 @@ public class ShowStartGameTest {
 
     @Test
     void handleInputTest(){
-        // Simulate pressing Enter key
-        //when(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)).thenReturn(true);
-
-        // Call handleInput method
-        sGame.handleInput();
-        Gdx mockGdx = mock(Gdx.class);
-        //verify(mockGdx.app, never()).exit();
-
-        ScreenManager screenManagerMock = mock(ScreenManager.class);
-        // Verify that showScreen method is called with the correct arguments
-        //verify(screenManagerMock).showScreen(eq("MapSelect"), any(ShowMapSelect.class));
-
-
         //Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE);
-        Gdx.input.setCatchKey(Input.Keys.ESCAPE, true);
+        Input input = mock(Input.class);
+        when(input.isKeyJustPressed(Input.Keys.ESCAPE)).thenReturn(true);
+        Gdx.input = input;
         sGame.handleInput();
-        Gdx.input.setCatchKey(Input.Buttons.LEFT, true);
+    }
+
+    @Test
+    void handleInputTest2(){
+        Input input = mock(Input.class);
+        when(input.isButtonJustPressed(Input.Buttons.LEFT)).thenReturn(true);
+        Gdx.input = input;
         sGame.handleInput();
-        Gdx.input.setCatchKey(Input.Keys.ENTER, true);
+    }
+
+    @Test
+    void handleInputTest3(){
+        Input input = mock(Input.class);
+        when(input.isKeyJustPressed(Input.Keys.ENTER)).thenReturn(true);
+        Gdx.input = input;
         Gdx.input.setCursorPosition(100, 100);
         sGame.handleInput();
     }
@@ -144,7 +139,6 @@ public class ShowStartGameTest {
 
     @Test
     void thisScreenTest(){
-        ScreenManager.getInstance().showScreen("showStartGane", sGame);
         assertEquals(sGame.getClass(),ScreenManager.getInstance().getCurrentGameScreen().getClass());
         
     }

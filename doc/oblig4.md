@@ -1,6 +1,6 @@
 # Innlevering 4
-Teamnavn: Ctrl+Alt+Defeat
-Spillnavn: Mega Marius
+- Teamnavn: Ctrl+Alt+Defeat
+- Spillnavn: Mega Marius
 
 ## Medlemer og Roller:
 * Hoved: Teamlead, Sekunder: Tester - Christoffer A. Slettebø
@@ -12,37 +12,72 @@ Spillnavn: Mega Marius
 - Vi la til Rollen: "Design Ansvarlig", Marius tok ansvar for mye av design prosessen av karakter, map osv. så derfor passer rollen bra.
 
 ## Rolle beskrivelse
-Teamlead: Ansvar for å planlegge tidspunkt for møter og sørge for at alle i teamet får samme melding og er informert.
-Nestleder: Ansvar for å skrive møte refferat for hver uke, og sørge for at trello er/blir oppdatert.
-Design Ansvarlig: Ansvar for design av maps, karakter og sprites. Samt fordele arbeidsoppagaver til utviklere ved behov om hjelp,
-Test Ansvarlig: Ansvar for at vi får laget tester, og tester vikitge funksjoner i spillet. Samt fordele arbeidsoppgaver til tester og evt utviklere ved behov.
-Utvikler: Jobber med programmering av spillet. Selvom vi har roller så flyter vi litt mellom oppgaver,så en utvikler vil jobbe med mye forskjellig.
-Tester: Jobber med testing av spillet, og kordinerer med test ansvarlig.
-Kundekontakt: Holde kontakt med kunder eller henvendelser.
+- Teamlead: Ansvar for å planlegge tidspunkt for møter og sørge for at alle i teamet får samme melding og er informert.
+- Nestleder: Ansvar for å skrive møte refferat for hver uke, og sørge for at trello er/blir oppdatert.
+- Design Ansvarlig: Ansvar for design av maps, karakter og sprites. Samt fordele arbeidsoppagaver til utviklere ved behov om hjelp,
+- Test Ansvarlig: Ansvar for at vi får laget tester, og tester vikitge funksjoner i spillet. Samt fordele arbeidsoppgaver til tester og evt utviklere ved behov.
+- Utvikler: Jobber med programmering av spillet. Selvom vi har roller så flyter vi litt mellom oppgaver,så en utvikler vil jobbe med mye forskjellig.
+- Tester: Jobber med testing av spillet, og kordinerer med test ansvarlig.
+- Kundekontakt: Holde kontakt med kunder eller henvendelser.
 
 ## Hvordan fungerer rollene?
-Olav "jobber" forsatt som nestleder, dette fungerer fint siden struktur på referat og obliger blir lik.
-Christoffer "jobber" som teamlead, dette har fungert fint ved at han har planlagt møte tid, satt mål for videre jobbing. Han jobbet en del med test biten av prosjktet sammen med Henrik.
-Vi la til rollen "Design ansvarlig" og tilga den til Marius som har jobbet med å lage maps, design av karakter og sprites. Ellers lite kundekontakt.
-
-Vi syntes at rollene har fungert fint og at dette har vært en god erfaring å ta med seg. Vi har holdt oss noe lunde til rollene, selvom vi alle har jobbet litt på tvers av "rollene" vi har hatt.
+- Olav "jobber" forsatt som nestleder, dette fungerer fint siden struktur på referat og obliger blir lik.
+- Christoffer "jobber" som teamlead, dette har fungert fint ved at han har planlagt møte tid, satt mål for videre jobbing. Han jobbet en del med test biten av prosjktet sammen med Henrik.
+- Vi la til rollen "Design ansvarlig" og tilga den til Marius som har jobbet med å lage maps, design av karakter og sprites. Ellers lite kundekontakt.
+-Vi syntes at rollene har fungert fint og at dette har vært en god erfaring å ta med seg. Vi har holdt oss noe lunde til rollene, selvom vi alle har jobbet litt på tvers av "rollene" vi har hatt.
 
 ## Erfaringer, gruppedynamikk og kommunikasjon
-Vi syntes at valget vi har tatt har fungert fint, det er nokk alltid ting som kunne blitt gjort anderledes. Det er ingen spesielle valg vi ser på som dårlige og vi tar stort sett alle de større valgene sammen som et team. Dynamikken i gruppen er vedlig god. Vi kommuniserer bra via discord ukentlig og ofte daglig når frister nærmer seg. Vi sitte ofte alle sammen i discord ilag og jobber som par, eller som en hel gruppe å ser på problemet sammen. Vi syntes at dette har fungert veldig bra. Vi har ingen uenigheter som må løses.
-
-## Retroperspektiv for hele prosjektet
-* Hva har dere gjort bra?
-
-* Hva hadde dere gjort annerledes hvis dere begynte på nytt? 
+- Vi syntes at valget vi har tatt har fungert fint, det er nokk alltid ting som kunne blitt gjort anderledes. 
+- Det er ingen spesielle valg vi ser på som dårlige og vi tar stort sett alle de større valgene sammen som et team. Dynamikken i gruppen er vedlig god. 
+- Vi kommuniserer bra via discord ukentlig og ofte daglig når frister nærmer seg. 
+- Vi sitte ofte alle sammen i discord ilag og jobber som par, eller som en hel gruppe å ser på problemet sammen. 
+- Vi syntes at dette har fungert veldig bra. 
+- Vi har ingen uenigheter som må løses.
 
 ## Commits til kodebasen
-Vi hadde en liten periode vi commitet med både norsk og engelsk commit melding, men vi bestemete oss for engelsk og har holdt oss til det en stund nå.
-Vi så ikke tilbakelemdilgene fra tidligere obliger før dagen før fristen så vi fikk ikke med oss at de ville at vi skulle skrive hvem som har jobbet sammen i par programmering i git commitsene. Olav og Marius har jobbet en del sammen i prosjektet når det kommer til alt det grafiske, samt . Henrik og Christoffer har jobbet en del sammen med testing. Dette er de som har jobbet med sammen totalt, men alle har jobbet med alle gjennom prosjeket på ulike deler. Vi sitter som regel alle fire i discord sammen og jobber. Commits skal være ganskje likt på de fleset ingen uregelmessiger som vi kan se, alle har bidratt like mye på prosjektet hvertfall.
+- Vi hadde en liten periode vi commitet med både norsk og engelsk commit melding, men vi bestemete oss for engelsk og har holdt oss til det en stund nå.
+- Vi så ikke tilbakelemdilgene fra tidligere obliger før dagen før fristen så vi fikk ikke med oss at de ville at vi skulle skrive hvem som har jobbet sammen i par programmering i git commitsene. 
+- Olav og Marius har jobbet en del sammen i prosjektet når det kommer til alt det grafiske, samt. 
+- Henrik og Christoffer har jobbet en del sammen med testing. 
+- Dette er de som har jobbet med sammen totalt, men alle har jobbet med alle gjennom prosjeket på ulike deler. 
+- Vi sitter som regel alle fire i discord sammen og jobber. 
+- Antall commits skal være ganske likt på de fleset ingen uregelmessiger som vi kan se, alle har bidratt like mye på prosjektet.
 
 ## Rapporter for denne "Sprinten"
-- <a href="https://git.app.uib.no/Christoffer.Slettebo/ctrl-alt-defeat/-/blob/main/doc/rapport/uke16.md">uke16.md</a>
-- <a href="https://git.app.uib.no/Christoffer.Slettebo/ctrl-alt-defeat/-/blob/main/doc/rapport/uke17.md">uke17.md</a>
-- <a href="https://git.app.uib.no/Christoffer.Slettebo/ctrl-alt-defeat/-/blob/main/doc/rapport/uke18.md">uke18.md</a>
+- <a href="https://git.app.uib.no/Christoffer.Slettebo/ctrl-alt-defeat/-/blob/main/doc/rapport/uke16.md" target="_blank">uke16.md</a>
+- <a href="https://git.app.uib.no/Christoffer.Slettebo/ctrl-alt-defeat/-/blob/main/doc/rapport/uke17.md" target="_blank">uke17.md</a>
+- <a href="https://git.app.uib.no/Christoffer.Slettebo/ctrl-alt-defeat/-/blob/main/doc/rapport/uke18.md" target="_blank">uke18.md</a>
+
+## Konsept
+- Spill figur:
+  - Kan bevege seg: høyre, venstre og hoppe (oppover).
+  - Plukke opp "pessi" som er en brus boks som gir en power-up.
+  - Power-uppen gjør spill figuren større og gir den muligheten til å ødelegge blokker av typen "bricks".
+  - Kan drepe fiender ved å treffe den i hode ved å hoppe oppå de.
+- To dimmensjonel verden som er bygd opp av:
+  - Blokker som "grass", "brick", "coin brick", "pessi brick" samt "rør" (ikke en "block") som og har kollision.
+  - Disse blokkene former platformer som spill karakteren kan gå/stå på
+  - Spill figuren har kollisjon med blokker, hvis figuren er blitt stor kan den ødelegge blokkene "bricks".
+  - Spilleren kan bevege seg opp ved å hoppe.
+- Fiender:
+  - Fiender som kan bevege seg til venstre og til høyre (retning endres ved kollisjon).
+  - Fiender kan dø ved å bli truffet i hode av spill figuren, men kan også drepe figuren hvis figuren blir truffet i siden av fienden (altså i siden av kroppen)
+- Utfordigene/formålet i spillet er:
+  - Bevege seg gjennom verden (mappet) uten å falle uten for mappet.
+  - Samle coins som gir høyere score.
+  - Å unngå fiender eller evt drepe dem (som gir mer score).
+  - Nå frem til enden av mappet som er en flagstang som representere målet for den verdenen (mappet).
+  - Forbedre tiden man bruker på å komme gjennom mappet på, man kan se tiden man får i "scoreboard" menyen for de ulike mapsene".
+- Verden:
+  - Bygget opp av blokker med fast satt størrelse (felter i et 2D-rutenett).
+  - Verden har plattformer som man kan hoppe opp på, og evt ødelegge hvis spill figur er stor og blokken er av typen "brick".
+  - Verden er større enn skjermen, og viewet beveger seg vertikalt som følger bevegelsen til spill figuren.
+
+## Prosjektmetodikk
+ToDo:
+
+## Brukerhistorie
+ToDo:
 
 ## MVP (Ferdig):
 * Vise et spillebrett
@@ -73,11 +108,6 @@ Vi så ikke tilbakelemdilgene fra tidligere obliger før dagen før fristen så 
 * Spillet krasjer når en tar en coin, en dreper en spider, tar en pepsi og så før pepsien er i bakken tar en coin. 
   Får da Java Runtime Enviroment feil. (Muligens CoinAnimation feil)
 
-## Commit
-* Vi har alle commitet en del
-* Vi har jobbet litt i brancher, men og pushet en del til main da vi har jobbet mer sammen for å løse problemer
-* Noen er litt mer glad i flere små commits, mens noen i få store
-
 ## Kode
 - Vi har laget en "structure.txt" fil som viser strukturern til prosjektet, og vi har ogås laget et "klassediagram.?" som ligger vedlagt i root mappen.
 - Vi har fått laget automatiserte tester som viser coverage, den viser rett over 75%. Tester kan kjøres manuelt i IDE-en eller man kan bruke "mvn test" commandoen i terminalen etter man har "bygget" prosjektet med "mvn compile".
@@ -94,4 +124,21 @@ Vi fant ikke tilbakemeldingene til de tidligere obligen før dagen før innlever
 - Vi har også oppdatert prosjektmetodikk og beskrevet bedre hvordan de har fungert osv.
 
 ## Oppsumering
-ToDo:
+Her er et kort retoperspektiv fra diskusjonen vi hadde om hvordan vi syntes hele prosjektet har gått, hva som gikk bra, ting vi syntes kunne gått bedre og ting vi ville prøvd ut hvis vi skulle fortsatte å viredeutvikle spillet:
+
+Dette syntes vi gikk bra:
+- Vi kom godt i gang med selve spillet, og har jobbet ganske jevnt så å si hver uke så vi følte vi hadde kontroll frem mot hver oblig.
+- Vi slet en del med testing i starten, men når vi knakk koden på hvordan mockito fungerete så gikk de bedre og vi fikk lagd masse tester (som var vårt forgje mål)
+- Vi måtte endre en del av mappe-fil stukturen samt flytte på litt kode for å forbedre kode-kvaliteten. Dette syntes vi at vi fikk løst på en bra måte, og vi er nå fornøy med hvoradan prosjektet er strukturert!
+- Kommunikasjonen og samarbeidet i gruppen har fungert veldig bra.
+- Måten vi planla jobbingen ved å bruke trello funket bra. De å skrive oppgaver vi måtte gjøre inn mot en oblig ga oss en stukturert oversikt over oppgavene vi måtte løse.
+
+Dette syntes vi kunne gått bedre:
+- Vi fant ikke wiki siden før dagen før innleveringen, så vi hadde litt å rette oppi før innleveringen blant anna en del mappe struktur måtte endres.
+- Vi burde startet med M-V-C stuktur fra start slik at vi kunne ha sluppet og måtte endre mye av stukturen rett før innleverings fristen. Ville og gjort implementerings jobben tidligere lettere.
+- Brukt gruppe timer (fysisk) mer aktivt for å spørre om hjelp og generel info om faget, vi ville nokk ha fått med oss hvor wiki siden låg tidligere og evt kunne fått hjelp med andre problemer som testing eller mappe stuktur.
+
+Nye ting vi ville prøvd ut (hvis vi skulle forsettet å utvikle spille videre):
+- Vi fikk ikke testet de ulike bugs programmene, så de er noen vi ville ha prøvd å testet litt og sett om de finner noe bugs.
+- Vi hadde lyst til å lage en måte å gå ned i "pessi rørene" slik som i orginale "super mario" spillet. Vi fikk desverre ikke tid til å implementere dette.
+- 

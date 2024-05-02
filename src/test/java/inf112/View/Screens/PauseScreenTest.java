@@ -1,6 +1,7 @@
-package inf112.Screens;
+package inf112.View.Screens;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -16,24 +17,28 @@ import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3NativesLoader;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
+import com.badlogic.gdx.physics.box2d.World;
 
 import inf112.View.Scenes.Display;
 import inf112.View.ScreenManagement.ScreenManager;
-import inf112.View.Screens.showHelpScreen;
-import inf112.Model.app.MegaMarius;
+import inf112.skeleton.app.Marius;
+import inf112.skeleton.app.MegaMarius;
+import inf112.skeleton.app.Marius.State;
 
-public class ShowHelpScreenTest {
-     RectangleMapObject object;
+public class PauseScreenTest {
+    RectangleMapObject object;
     TmxMapLoader mapLoader;
     String fileName = "MapAndTileset/level1.tmx";
     TiledMap map;
     static GL20 gl;
     Display display;
-	showHelpScreen sGame;
+	ShowPauseScreen sGame;
     SpriteBatch batch;
     private static HeadlessApplication headlessApplication;
 
@@ -58,13 +63,23 @@ public class ShowHelpScreenTest {
 	 */
 	@BeforeEach
 	void setUpBeforeEach() {
+	
+        // Initialize Box2D
         MegaMarius megaMarius = (MegaMarius) headlessApplication.getApplicationListener();
+        World world = new World(new Vector2(0, -10), true);
         display = new Display(mock(SpriteBatch.class));
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
 		megaMarius.createTest((mock(SpriteBatch.class)));
-        sGame = new showHelpScreen(megaMarius);
+        ShowGame cScreen = mock(ShowGame.class);
+        when(cScreen.getWorld()).thenReturn(world);
+        when(cScreen.getMap()).thenReturn(map);
+        TextureAtlas textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
+        when(cScreen.getAtlas()).thenReturn(textureAtlas);
+        Marius marius = new Marius(cScreen);
+        sGame = new ShowPauseScreen(megaMarius, marius, State.STANDING, ScreenManager.getInstance());
         ScreenManager.getInstance().initialize(megaMarius);
+        ScreenManager.getInstance().showPauseGameScreen(marius, State.STANDING);
 	}
 
     @Test
@@ -77,18 +92,28 @@ public class ShowHelpScreenTest {
     }
     @Test
     void handleInputTest(){
+        //Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE);
         Input input = mock(Input.class);
+        when(input.isKeyJustPressed(Input.Keys.ESCAPE)).thenReturn(true);
         Gdx.input = input;
-        when(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)).thenReturn(true);
-        sGame.renderTest();
+        sGame.handleInput();
     }
 
     @Test
     void handleInputTest2(){
         Input input = mock(Input.class);
+        when(input.isButtonJustPressed(Input.Buttons.LEFT)).thenReturn(true);
         Gdx.input = input;
-        when(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)).thenReturn(true);
-        sGame.renderTest();
+        sGame.handleInput();
+    }
+
+    @Test
+    void handleInputTest3(){
+        Input input = mock(Input.class);
+        when(input.isKeyJustPressed(Input.Keys.ENTER)).thenReturn(true);
+        Gdx.input = input;
+        Gdx.input.setCursorPosition(100, 100);
+        sGame.handleInput();
     }
 
     @Test
@@ -97,9 +122,8 @@ public class ShowHelpScreenTest {
     }
 
     @Test
-    void thisScreenTest(){
-        ScreenManager.getInstance().showScreen("showHelpScreen", sGame);
-        assertEquals(sGame.getClass(),ScreenManager.getInstance().getCurrentGameScreen().getClass());
-        
+    void thisScreenTest(){  
+        assertEquals(sGame.getClass(), ScreenManager.getInstance().getCurrentGameScreen().getClass());
     }
+
 }

@@ -1,4 +1,4 @@
-package inf112.Screens;
+package inf112.View.Screens;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -80,7 +80,7 @@ public class ShowScoreboardScreenTest {
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
 		megaMarius.createTest((mock(SpriteBatch.class)));
-        sGame = new ShowScoreboardScreen(megaMarius);
+        sGame = new ShowScoreboardScreen(megaMarius, ScreenManager.getInstance());
         ScreenManager.getInstance().initialize(megaMarius);
 	}
 
@@ -135,10 +135,28 @@ public class ShowScoreboardScreenTest {
 
     @Test
     void handleInputTest(){
+        //Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE);
         Input input = mock(Input.class);
+        when(input.isKeyJustPressed(Input.Keys.ESCAPE)).thenReturn(true);
         Gdx.input = input;
-        sGame.render(1f);
-        when(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)).thenReturn(true);
+        sGame.handleInput();
+    }
+
+    @Test
+    void handleInputTest2(){
+        Input input = mock(Input.class);
+        when(input.isButtonJustPressed(Input.Buttons.LEFT)).thenReturn(true);
+        Gdx.input = input;
+        sGame.handleInput();
+    }
+
+    @Test
+    void handleInputTest3(){
+        Input input = mock(Input.class);
+        when(input.isKeyJustPressed(Input.Keys.ENTER)).thenReturn(true);
+        Gdx.input = input;
+        Gdx.input.setCursorPosition(100, 100);
+        sGame.handleInput();
     }
 
     @Test
@@ -148,7 +166,6 @@ public class ShowScoreboardScreenTest {
 
     //@Test
     void thisScreenTest(){
-        ScreenManager.getInstance().showScreen("showScoreBoardScreen", sGame);
         assertEquals(sGame.getClass(),ScreenManager.getInstance().getCurrentGameScreen().getClass());
         
     }

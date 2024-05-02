@@ -1,7 +1,6 @@
-package inf112.Screens;
+package inf112.View.Screens;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -11,31 +10,31 @@ import org.junit.jupiter.api.Test;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3NativesLoader;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.physics.box2d.Box2D;
-import com.badlogic.gdx.physics.box2d.World;
 
 import inf112.View.Scenes.Display;
 import inf112.View.ScreenManagement.ScreenManager;
-import inf112.View.Screens.ShowGameOver;
-import inf112.Model.app.MegaMarius;
+import inf112.skeleton.app.MegaMarius;
 
-public class ShowGameOverTest {
+public class ShowHelpScreenTest {
+     RectangleMapObject object;
     TmxMapLoader mapLoader;
     String fileName = "MapAndTileset/level1.tmx";
     TiledMap map;
     static GL20 gl;
-	ShowGameOver sGame;
+    Display display;
+	ShowHelpScreen sGame;
     SpriteBatch batch;
     private static HeadlessApplication headlessApplication;
-    
-    
 
     @BeforeAll
     static void setUpBeforeAll(){
@@ -46,12 +45,9 @@ public class ShowGameOverTest {
         //Mock Gdx
         Gdx.app = app;
 		gl = mock(GL20.class);
-		when(gl.glCreateShader(anyInt())).thenReturn(1);
-        when(gl.glCreateShader(anyInt())).thenReturn(0);
-        when(gl.glCreateProgram()).thenReturn(-1);
         Gdx.gl = gl; 
         Gdx.gl20 = gl; 
-        MegaMarius megaMarius = new MegaMarius(); // implementation of ApplicationListener
+        MegaMarius megaMarius = new MegaMarius(); // Your implementation of ApplicationListener
 
         headlessApplication = new HeadlessApplication(megaMarius, config);
     }
@@ -61,15 +57,14 @@ public class ShowGameOverTest {
 	 */
 	@BeforeEach
 	void setUpBeforeEach() {
-	
-        // Initialize Box2D
-      
         MegaMarius megaMarius = (MegaMarius) headlessApplication.getApplicationListener();
+        display = new Display(mock(SpriteBatch.class));
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
 		megaMarius.createTest((mock(SpriteBatch.class)));
-        sGame = new ShowGameOver(megaMarius, fileName);
+        sGame = new ShowHelpScreen(megaMarius, ScreenManager.getInstance());
         ScreenManager.getInstance().initialize(megaMarius);
+        ScreenManager.getInstance().showHelpScreen();
 	}
 
     @Test
@@ -82,8 +77,30 @@ public class ShowGameOverTest {
     }
     @Test
     void handleInputTest(){
-
+        //Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE);
+        Input input = mock(Input.class);
+        when(input.isKeyJustPressed(Input.Keys.ESCAPE)).thenReturn(true);
+        Gdx.input = input;
+        sGame.handleInput();
     }
+
+    @Test
+    void handleInputTest2(){
+        Input input = mock(Input.class);
+        when(input.isButtonJustPressed(Input.Buttons.LEFT)).thenReturn(true);
+        Gdx.input = input;
+        sGame.handleInput();
+    }
+
+    @Test
+    void handleInputTest3(){
+        Input input = mock(Input.class);
+        when(input.isKeyJustPressed(Input.Keys.ENTER)).thenReturn(true);
+        Gdx.input = input;
+        Gdx.input.setCursorPosition(100, 100);
+        sGame.handleInput();
+    }
+
     @Test
     void disposeTest(){
         sGame.dispose();
@@ -91,7 +108,6 @@ public class ShowGameOverTest {
 
     @Test
     void thisScreenTest(){
-        ScreenManager.getInstance().showScreen("showStartGane", sGame);
         assertEquals(sGame.getClass(),ScreenManager.getInstance().getCurrentGameScreen().getClass());
         
     }

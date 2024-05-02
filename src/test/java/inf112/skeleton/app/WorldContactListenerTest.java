@@ -27,7 +27,6 @@ import inf112.Model.Entities.Blocks.Pessi;
 import inf112.Model.Entities.Enemies.Enemy;
 import inf112.Model.Entities.Enemies.Turtle;
 import inf112.View.Scenes.Display;
-import inf112.View.ScreenManagement.ScreenManager;
 import inf112.View.Screens.ShowGame;
 import inf112.View.Screens.ShowStartGame;
 import inf112.View.Scenes.Display;

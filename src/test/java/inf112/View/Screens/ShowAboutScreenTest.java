@@ -1,4 +1,4 @@
-package inf112.Screens;
+package inf112.View.Screens;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -17,37 +17,25 @@ import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3NativesLoader;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
-import com.badlogic.gdx.physics.box2d.World;
 
-import inf112.Model.Entities.Blocks.Brick;
 import inf112.View.Scenes.Display;
 import inf112.View.ScreenManagement.ScreenManager;
-import inf112.View.Screens.ShowGame;
-import inf112.View.Screens.showMapSelect;
-import inf112.Model.app.Marius;
-import inf112.Model.app.Marius.State;
-import inf112.View.Scenes.Display;
-import inf112.Model.app.MegaMarius;
+import inf112.skeleton.app.MegaMarius;
 
-public class ShowMapSelectTest {
-    Brick brick;
+public class ShowAboutScreenTest {
     RectangleMapObject object;
     TmxMapLoader mapLoader;
     String fileName = "MapAndTileset/level1.tmx";
     TiledMap map;
     static GL20 gl;
     Display display;
-	showMapSelect sGame;
+	ShowAboutScreen sGame;
     SpriteBatch batch;
     private static HeadlessApplication headlessApplication;
-    
-    
 
     @BeforeAll
     static void setUpBeforeAll(){
@@ -55,17 +43,9 @@ public class ShowMapSelectTest {
         Box2D.init();
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
         Application app = mock(Application.class);
-        //Graphics graphics = mock(com.badlogic.gdx.Graphics.class);
-        //when(app.getGraphics()).thenReturn(graphics);
-        //when(graphics.getGL20()).thenReturn(gl);
-        //when(gl.glGenTexture()).thenReturn(1);
         //Mock Gdx
         Gdx.app = app;
-		//Gdx.graphics = mock(com.badlogic.gdx.Graphics.class);
 		gl = mock(GL20.class);
-		when(gl.glCreateShader(anyInt())).thenReturn(1);
-        when(gl.glCreateShader(anyInt())).thenReturn(0);
-        when(gl.glCreateProgram()).thenReturn(-1);
         Gdx.gl = gl; 
         Gdx.gl20 = gl; 
         MegaMarius megaMarius = new MegaMarius(); // Your implementation of ApplicationListener
@@ -80,44 +60,48 @@ public class ShowMapSelectTest {
 	void setUpBeforeEach() {
 	
         // Initialize Box2D
-      
         MegaMarius megaMarius = (MegaMarius) headlessApplication.getApplicationListener();
-        
-        World world = new World(new Vector2(0, -10), true);
-        display = new Display(mock(SpriteBatch.class));
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
 		megaMarius.createTest((mock(SpriteBatch.class)));
-        ShowGame cScreen = mock(ShowGame.class);
-        when(cScreen.getWorld()).thenReturn(world);
-        when(cScreen.getMap()).thenReturn(map);
-        TextureAtlas textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
-        when(cScreen.getAtlas()).thenReturn(textureAtlas);
-        sGame = new showMapSelect(megaMarius);
+        sGame = new ShowAboutScreen(megaMarius, ScreenManager.getInstance());
         ScreenManager.getInstance().initialize(megaMarius);
+        ScreenManager.getInstance().showAboutScreen();
 	}
 
     @Test
     void resizeTest(){
         sGame.resize(10, 10);
     }
-    
+    @Test
+    void checkButtonPressTest(){
+        
+    }
     @Test
     void handleInputTest(){
+        //Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE);
         Input input = mock(Input.class);
+        when(input.isKeyJustPressed(Input.Keys.ESCAPE)).thenReturn(true);
         Gdx.input = input;
-        when(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)).thenReturn(true);
-        sGame.render(0);
+        sGame.handleInput();
     }
 
     @Test
-    void handleInput2Test(){
+    void handleInputTest2(){
         Input input = mock(Input.class);
+        when(input.isButtonJustPressed(Input.Buttons.LEFT)).thenReturn(true);
         Gdx.input = input;
-        when(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)).thenReturn(true);
-        sGame.render(0);
+        sGame.handleInput();
     }
 
+    @Test
+    void handleInputTest3(){
+        Input input = mock(Input.class);
+        when(input.isKeyJustPressed(Input.Keys.ENTER)).thenReturn(true);
+        Gdx.input = input;
+        Gdx.input.setCursorPosition(6, 197);
+        sGame.handleInput();
+    }
     @Test
     void disposeTest(){
         sGame.dispose();
@@ -125,28 +109,7 @@ public class ShowMapSelectTest {
 
     @Test
     void thisScreenTest(){
-        ScreenManager.getInstance().showScreen("ShowMapSelect", sGame);
-        assertEquals(sGame.getClass(), ScreenManager.getInstance().getCurrentGameScreen().getClass());
+        assertEquals(sGame.getClass(),ScreenManager.getInstance().getCurrentGameScreen().getClass());
         
-    }
-
-    @Test
-    void getNextMapTest(){
-        String nextMap = sGame.getNextMap(fileName);
-        assertEquals("MapAndTileset/level2.tmx", nextMap);
-    }
-
-    @Test
-    void getNextMapTest2(){
-        fileName = "MapAndTileset/level2.tmx";
-        String nextMap = sGame.getNextMap(fileName);
-        assertEquals("MapAndTileset/level3.tmx", nextMap);
-    }
-
-    @Test
-    void getNextMapTest3(){
-        fileName = "MapAndTileset/level3.tmx";
-        String nextMap = sGame.getNextMap(fileName);
-        assertEquals("GameCompleted", nextMap);
     }
 }

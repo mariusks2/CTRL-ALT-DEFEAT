@@ -183,7 +183,6 @@ public class ShowGame implements Screen{
                 items.add(new Pessi(this, itemDef.positon.x, itemDef.positon.y));
             }
         }
-        
     }
 
     /**
@@ -195,7 +194,7 @@ public class ShowGame implements Screen{
             return;
         }
 
-        playerController.handlePlayerMovement(dt);
+        playerController.handlePlayerMovement();
         handleSpawningItems();
         
         accumulator += Math.min(dt, 0.25f);

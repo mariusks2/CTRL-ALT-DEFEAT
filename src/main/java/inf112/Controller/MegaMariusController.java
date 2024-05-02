@@ -15,7 +15,7 @@ public class MegaMariusController implements MegaMariusControllable {
     }
 
     @Override
-    public void handlePlayerMovement(float delta) {
+    public void handlePlayerMovement() {
          //control our player using immediate impulses
         if (player.currentState != Marius.State.DEAD) {
             if (Gdx.input.isKeyJustPressed(Input.Keys.UP))

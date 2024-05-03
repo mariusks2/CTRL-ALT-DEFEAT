@@ -57,6 +57,8 @@ public class ShowGame implements Screen, InputHandler{
     private IScreenFactory screenService;
     private GameWorldManager worldManager;
 
+    private int currentLevel;
+
     /**
      * Initialization of the game and variables used to display the game
      * @param game Reference to the main game object
@@ -198,7 +200,7 @@ public class ShowGame implements Screen, InputHandler{
             drawGrayOverlay();
             //game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), 1);
             if (nextMap.equals("GameCompleted")) {
-                game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), 1); // TODO change the level parameter to get the current level
+                game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), getLevel()); // TODO change the level parameter to get the current level
                 uiStage.draw();
                 gameCompletedLabel.setVisible(true);
                 completedDescriptionLabel.setVisible(true);
@@ -222,7 +224,6 @@ public class ShowGame implements Screen, InputHandler{
         }
     }
 
-
     /**
      * Handles the game screens and user input when the game is won
      */
@@ -239,13 +240,23 @@ public class ShowGame implements Screen, InputHandler{
         }
         else{
             if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-                game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), 1); // TODO change the level parameter to get the current level
+                game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), getLevel());
                 screenService.showGameScreen(nextMap);
                 Display.updateLevel(1);
             } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
                 screenService.showStartGame();
             }
         }
+    }
+    private int getLevel(){
+        if (fileName == "MapAndTileset/level1.tmx") {
+            currentLevel = 1;
+        } else if (fileName == "MapAndTileset/level2.tmx") {
+            currentLevel = 2;
+        } else {
+            currentLevel = 3;
+        }
+        return currentLevel;
     }
     /**
      * Method for drawing a light gray overlay when the game is won, used to display a clear difference between game and game win screen

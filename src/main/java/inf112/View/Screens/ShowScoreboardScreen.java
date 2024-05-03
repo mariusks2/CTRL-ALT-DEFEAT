@@ -67,7 +67,6 @@ public class ShowScoreboardScreen implements Screen, InputHandler {
         }
 
         int count = 0;
-        System.out.println(scores.size());
         if (scores.size() <= 5) {
             count = scores.size();
         } else {

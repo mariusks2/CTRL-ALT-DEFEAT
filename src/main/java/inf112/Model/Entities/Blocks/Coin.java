@@ -34,8 +34,10 @@ public class Coin extends InteractiveTileObj{
 
     /**
      * Constructor for coin
-     * @param screen Game screen
-     * @param object The map
+     * @param world the world
+     * @param map the map
+     * @param object the collision blocks
+     * @param worldManager the world manager
      */
     public Coin(World world,TiledMap map, MapObject object, GameWorldManager worldManager){
         super(world, map, object);

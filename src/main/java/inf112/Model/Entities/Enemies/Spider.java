@@ -39,9 +39,10 @@ public class Spider extends Enemy{
     private TextureAtlas atlas;
     
     /**
-     * Constructs a Spider object with given screen, x and y values.
+     * Constructs a Spider object with given world, atlas, x and y values.
      * 
-     * @param screen ShowGame screen.
+     * @param world ShowGame screen.
+     * @param atlas the texture
      * @param x pos x.
      * @param y pos y.
      */

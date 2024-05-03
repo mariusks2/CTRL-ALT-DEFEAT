@@ -113,7 +113,6 @@ public class WorldContactListenerTest {
             }
         }
         gameWorldManager.getWorld().step(0.5f, 0, 0);
-        // Test that the contact is made, have contact between, 2=mariusbit and 128=enemybit
         assertEquals(4, gameWorldManager.getWorld().getContactCount());
         assertEquals(128, gameWorldManager.getWorld().getContactList().get(2).getFixtureB().getFilterData().categoryBits);
         assertEquals(1, gameWorldManager.getWorld().getContactList().get(2).getFixtureA().getFilterData().categoryBits);

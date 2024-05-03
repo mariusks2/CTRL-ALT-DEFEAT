@@ -22,7 +22,7 @@ public abstract class Item extends Sprite{ //Abstract class for enemies.
     /**
      * Constructor for item
      * 
-     * @param screen Gamescreen
+     * @param world the world
      * @param x x position
      * @param y y position
      */
@@ -38,7 +38,6 @@ public abstract class Item extends Sprite{ //Abstract class for enemies.
     /**
      * Function for defining an item
      * 
-     * @param screen Gamescreen
      */
     public abstract void defineItem();
 

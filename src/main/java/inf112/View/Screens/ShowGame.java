@@ -200,7 +200,6 @@ public class ShowGame implements Screen, InputHandler{
             drawGrayOverlay();
             //game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), 1);
             if (nextMap.equals("GameCompleted")) {
-                game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), getLevel());
                 uiStage.draw();
                 gameCompletedLabel.setVisible(true);
                 completedDescriptionLabel.setVisible(true);
@@ -233,17 +232,20 @@ public class ShowGame implements Screen, InputHandler{
         if(nextMap.equals("GameCompleted")){
             if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
                 screenService.showStartGame();
+                game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), getLevel());
             }
             else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
                 Gdx.app.exit();
             }
         }
-        else{
+        else {
+            
             if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
                 game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), getLevel());
                 screenService.showGameScreen(nextMap);
                 Display.updateLevel(1);
             } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+                game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), getLevel());
                 screenService.showStartGame();
             }
         }

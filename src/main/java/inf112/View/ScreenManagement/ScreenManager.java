@@ -76,37 +76,24 @@ public class ScreenManager implements IScreenFactory {
         game.setScreen(screen);
     }
     
-    /**
-     * Returns the store game screen, used when returning from a pause screen
-     * @return The stored game screen
-     */
+    
     public Screen getShowGameScreen() {
         return showGameScreen; // Return the stored game screen
     }
 
-    /**
-     * Returns the currently active game screen.
-     * @return The currently active game screen.
-     */
+    
     public Screen getCurrentGameScreen(){
         return currentGameScreen;
     }
     
-    /**
-     * Clears the screen with a solid black color
-     */
+    
     public void clearScreen() {
         // Clear the screen
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     }
 
-    /**
-     * Draws a background image across the entire screen. Used when displaying the different screens
-     * @param backgroundImage The texture of the background image.
-     * @param width The width of the screen.
-     * @param height The height of the screen.
-     */
+    
     public void drawBackground(Texture backgroundImage, float width, float height) {
         game.getSpriteBatch().begin();
         game.getSpriteBatch().draw(backgroundImage, 0, 0, width, height);

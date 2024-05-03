@@ -8,8 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.badlogic.gdx.Application;
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
@@ -32,9 +30,6 @@ public class InteractiveObjectTest {
         Gdx.app = app;
         Gdx.gl = gl;
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-		ApplicationListener listener = new ApplicationAdapter() {
-		};
-
         new HeadlessApplication(new MegaMarius(), config);
     }
     @BeforeEach

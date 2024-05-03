@@ -1,5 +1,7 @@
 package inf112.Model.Entities.Blocks;
 
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -24,6 +26,9 @@ import inf112.Model.app.MegaMarius;
 */
 public class Pessi extends Item{
     FixtureDef fdef;
+    private AssetManager manager;
+    private Music music;
+    private TextureRegion textureRegion;
 
     /**
      * Constructor for Pepsi

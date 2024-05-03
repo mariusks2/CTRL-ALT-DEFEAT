@@ -106,7 +106,7 @@ import inf112.View.Screens.ShowGame;
 	
 			// Create texture region for dead marius
 			mariusDead = new TextureRegion(screen.getAtlas().findRegion("little_mario"), 96, 0, 16, 16);
-			
+
 			manager = new AssetManager();
 			manager.load("audio/music/powerup.wav", Music.class);
 			manager.finishLoading();

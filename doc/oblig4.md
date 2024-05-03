@@ -175,7 +175,7 @@ Eksempel 5:
   * About meny (ny), Skal vise info om spillet (ikke skret enda).
   * Help meny (ny), viser info om hvordan man spiller spillet.
 
-## Releas-versjon (Gjeldende versjon)
+## Release-versjon (Gjeldende versjon)
 * Spill figur:
   * Endret hastigheten på spill figuren.
   * Endre høyden figuren hopper.
@@ -183,8 +183,8 @@ Eksempel 5:
 * Musikk: 
   * Brick, musikk når brick blir ødelagt av stor spill figur.
   * Coin, musikk når spill figur kolliderer med coin blokk.
-  * Pessi, musikk når spill figur kolliderer med pessi blokk.
-  * Figur, musikk når spill figur plukker opp pessi boks.
+  * Pessi, musikk når spill figur pluker opp pessi blokk.
+  * Figur, musikk når spill figur blir megamarius fra en pessi boks.
 * Maps: 
   * Level 1, map som er "easy" vansklighets grad.
   * Level 2 (modifisert for å gjøre lettere), map som er "medium" vanskelighets grad.
@@ -193,11 +193,11 @@ Eksempel 5:
   * Endret design for normal og stor spill figur.
   * Endret design av noen blokker som blir brukt på mappet.
   * Fjernet sprites som ikke brukes lenger. 
-  Oppdatert med nytt design på noen av blokkene.
+  * Oppdatert med nytt design på noen av blokkene.
 * Fil stuktur: Restukturert ved å bruke Model, View og Controller.
 * Tester: 
   * Vi har laget mye tester som er automatiserte og kjører på gitlab i pipelinen (71% coeverage)
-  * Tester både enkle men også 
+  * Tester både enkle men også avanserte metoder.
 * Menyer: 
   * Start Meny (Modifisert bilde), fremside bilde der man kan trykke på about, help og start game knappene.
   * Help meny (Modifisert tekst), tekst som forklarer hvordan man spiller spillet.
@@ -214,11 +214,11 @@ Eksempel 5:
 * Hit box rar på enemies, spesielt når man er stor
 * Faller man fra en stor høyde ned på enemies kan også skade selv om man treffer hodet. 
 * Mens man går fra liten marius til stor marius ser det ut som man kan dobbel jumpe mid animation
-* Spillet krasjer når en tar en coin, en dreper en spider, tar en pepsi og så før pepsien er i bakken tar en coin. 
-  Får da Java Runtime Enviroment feil. (Muligens CoinAnimation feil)
+* 1 av 100 games så krasjer spillet.
+
 
 ## Kode
-- Vi har laget en "structure.txt" fil som viser strukturern til prosjektet, og vi har ogås laget et "klassediagram.?" som ligger vedlagt i root mappen.
+- Vi har laget en "structure.txt" fil som viser strukturern til prosjektet, og vi har ogås laget et "klassediagram".
 - Vi har fått laget automatiserte tester som viser coverage, den viser rett over 75%. Tester kan kjøres manuelt i IDE-en eller man kan bruke "mvn test" commandoen i terminalen etter man har "bygget" prosjektet med "mvn compile".
 
 ## Dette har vi fikset siden sist:

@@ -19,7 +19,6 @@ import inf112.Model.app.MegaMarius;
  */
 public class ShowGameOver implements Screen, InputHandler {
 
-    private MegaMarius megaMariusGame; //The main game object 
     private Viewport camera; //Viewport for handling screen rendering aspects
     private Stage stage; //Stage to render UI components
     private Texture backgroundImage; //Background image for the game over screen
@@ -33,7 +32,6 @@ public class ShowGameOver implements Screen, InputHandler {
      */
     public ShowGameOver(MegaMarius megaMariusGame,String fileName, IScreenFactory screenService) {
         // Initialize variables
-        this.megaMariusGame = megaMariusGame;
         this.camera = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());
         this.stage = new Stage(camera, megaMariusGame.getSpriteBatch());
         this.fileName = fileName;

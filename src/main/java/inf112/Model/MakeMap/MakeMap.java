@@ -28,20 +28,12 @@ public class MakeMap {
      */
     private Array<Enemy> spiders;
     private static Array<Enemy> turtles;
-    private World world;
-    private TiledMap map;
-    private TextureAtlas atlas;
-    private GameWorldManager worldManager;
     private IEntityFactory entityFactory;
 
     public MakeMap(World world, TiledMap map, TextureAtlas atlas, GameWorldManager worldManager){
         BodyDef bodyDef = new BodyDef();
         PolygonShape polygonShape = new PolygonShape();
         FixtureDef fixtureDef = new FixtureDef(); 
-        this.world= world;
-        this.map = map;
-        this.atlas = atlas;
-        this.worldManager = worldManager;
         entityFactory = new EntityFactory();
         Body body;
         

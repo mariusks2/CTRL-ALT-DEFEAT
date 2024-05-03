@@ -196,7 +196,7 @@ Eksempel 5:
   * Oppdatert med nytt design på noen av blokkene.
 * Fil stuktur: Restukturert ved å bruke Model, View og Controller.
 * Tester: 
-  * Vi har laget mye tester som er automatiserte og kjører på gitlab i pipelinen (71% coeverage)
+  * Vi har laget mye tester som er automatiserte og kjører på gitlab i pipelinen (75% coeverage)
   * Tester både enkle men også avanserte metoder.
 * Menyer: 
   * Start Meny (Modifisert bilde), fremside bilde der man kan trykke på about, help og start game knappene.
@@ -221,6 +221,8 @@ Eksempel 5:
 - Vi har laget en "structure.txt" fil som viser strukturern til prosjektet, og vi har ogås laget et "klassediagram".
 - Vi har fått laget automatiserte tester som viser coverage, den viser rett over 75%. Tester kan kjøres manuelt i IDE-en eller man kan bruke "mvn test" commandoen i terminalen etter man har "bygget" prosjektet med "mvn compile".
 
+![Cat](testCoverage.png)
+
 ## Dette har vi fikset siden sist:
 Vi fant ikke tilbakemeldingene til de tidligere obligen før dagen før innlevering, men heldivis var de ikke alt for mye vi måtte fikse opp i så de gikk fint. Så her er en liste de vi har ordnet oppi fra alle tilbakemeldinger:
 - Vi holdt oss til engelsk på commit meldinger.
@@ -229,7 +231,7 @@ Vi fant ikke tilbakemeldingene til de tidligere obligen før dagen før innlever
 - Vi har lagt inn all javadocs.
 - Vi har oppdatert pom.xml iflen med korrekt prosjektnavn.
 - Vi har fjernet ubrokt kode.
-- Vi har fått 66% test coverage på automatiske tester, og resterende 9% (antar vi) er oppnåd ved manuell og visuell testing.
+- Vi har fått 75% test coverage på automatiske tester, og resterende 9% (antar vi) er oppnåd ved manuell og visuell testing.
 - Vi har også oppdatert prosjektmetodikk og beskrevet bedre hvordan de har fungert osv.
 
 ## Oppsumering

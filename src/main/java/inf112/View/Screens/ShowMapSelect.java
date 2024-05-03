@@ -17,7 +17,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import inf112.View.Scenes.Display;
 import inf112.View.ScreenManagement.IScreenFactory;
-import inf112.View.ScreenManagement.ScreenManager;
 import inf112.Model.app.MegaMarius;
 
 /**

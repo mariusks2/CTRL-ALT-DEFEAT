@@ -200,7 +200,7 @@ public class ShowGame implements Screen, InputHandler{
             drawGrayOverlay();
             //game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), 1);
             if (nextMap.equals("GameCompleted")) {
-                game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), getLevel()); // TODO change the level parameter to get the current level
+                game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), getLevel());
                 uiStage.draw();
                 gameCompletedLabel.setVisible(true);
                 completedDescriptionLabel.setVisible(true);

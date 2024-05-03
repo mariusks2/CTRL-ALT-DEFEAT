@@ -1,8 +1,5 @@
 package inf112.View.Screens;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
@@ -11,11 +8,9 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.Collections;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -31,7 +26,6 @@ public class ShowScoreboardScreen implements Screen, InputHandler {
     private ArrayList<Score> scoreboardList;
     private Viewport viewport;
     private Stage stage;
-    private SpriteBatch batch;
     private BitmapFont font;
     private IScreenFactory screenService; 
 

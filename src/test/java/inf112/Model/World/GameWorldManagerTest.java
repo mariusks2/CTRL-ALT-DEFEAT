@@ -1,6 +1,5 @@
 package inf112.Model.World;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 
 import org.junit.jupiter.api.AfterAll;
@@ -8,27 +7,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.badlogic.gdx.Application;
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3NativesLoader;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
-import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.utils.Array;
 
-import inf112.Controller.MegaMariusController;
-import inf112.Model.Entities.Item;
 import inf112.Model.Entities.ItemDef;
-import inf112.Model.Entities.Blocks.Pessi;
-import inf112.Model.Entities.Enemies.Enemy;
-import inf112.Model.MakeMap.MakeMap;
 import inf112.Model.app.Marius;
 import inf112.Model.app.MegaMarius;
 
@@ -47,8 +34,6 @@ public class GameWorldManagerTest {
         // Initialize Box2D
         Box2D.init();
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-		ApplicationListener listener = new ApplicationAdapter() {
-		};
         gl = mock(GL20.class);
         app = mock(Application.class);
         //Mock Gdx

@@ -9,8 +9,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.badlogic.gdx.Application;
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
@@ -20,17 +18,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2D;
-import com.badlogic.gdx.physics.box2d.World;
 
 import inf112.Model.Entities.Enemies.Spider;
 import inf112.Model.Entities.Enemies.Turtle;
 import inf112.Model.World.GameWorldManager;
 import inf112.View.Scenes.Display;
-import inf112.View.ScreenManagement.ScreenManager;
 import inf112.View.Screens.ShowGame;
 import inf112.Model.app.Marius.State;
 public class MariusTest {
@@ -55,8 +48,6 @@ public class MariusTest {
         // Initialize Box2D
         Box2D.init();
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-		ApplicationListener listener = new ApplicationAdapter() {
-		};
 		MegaMarius megaMarius = new MegaMarius();
         gl = mock(GL20.class);
         Application app = mock(Application.class);

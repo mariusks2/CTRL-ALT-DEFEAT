@@ -28,7 +28,9 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import inf112.Model.Entities.Enemies.Spider;
 import inf112.Model.Entities.Enemies.Turtle;
+import inf112.Model.World.GameWorldManager;
 import inf112.View.Scenes.Display;
+import inf112.View.ScreenManagement.ScreenManager;
 import inf112.View.Screens.ShowGame;
 import inf112.Model.app.Marius.State;
 public class MariusTest {
@@ -40,6 +42,7 @@ public class MariusTest {
     GL20 gl;
     Display display;
     TextureAtlas textureAtlas;
+	GameWorldManager gameWorldManager;
 
     @BeforeAll
 	static void setUpBeforeAll() {
@@ -54,24 +57,26 @@ public class MariusTest {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
 		ApplicationListener listener = new ApplicationAdapter() {
 		};
+		MegaMarius megaMarius = new MegaMarius();
         gl = mock(GL20.class);
         Application app = mock(Application.class);
         //Mock Gdx
         Gdx.app = app;
         Gdx.gl = gl;
+		Gdx.gl20 = gl;
         
-        new HeadlessApplication(listener, config);
+        new HeadlessApplication(megaMarius, config);
+		megaMarius.setSpriteBatch(mock(SpriteBatch.class));
         ShowGame cScreen = mock(ShowGame.class);
-        World world = new World(new Vector2(10, 10), true);
         display = new Display(mock(SpriteBatch.class));
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
-        when(cScreen.getWorld()).thenReturn(world);
-        when(cScreen.getMap()).thenReturn(map);
 		when(cScreen.getDisplay()).thenReturn(display);
         textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
+		gameWorldManager = new GameWorldManager(fileName, textureAtlas);
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
-        marius = new Marius(cScreen);
+		//when(cScreen.getWorldManager()).thenReturn(gameWorldManager);
+        marius = new Marius(cScreen, gameWorldManager.getWorld());
 	}
 
 	@Test 
@@ -94,10 +99,12 @@ public class MariusTest {
 
 	@Test
 	void redefineMariusTest(){
+		assertEquals(State.STANDING, marius.getState());
+		assertEquals(148, marius.world.getBodyCount());
 		marius.redefineMarius();
-		assertEquals(1, marius.world.getBodyCount());
+		assertEquals(148, marius.world.getBodyCount());
+		assertEquals(State.STANDING, marius.getState());
 		assertEquals(false, marius.isMariusBigNow());
-		assertEquals(1, marius.world.getBodyCount());
 	}
 
 	@Test
@@ -127,13 +134,9 @@ public class MariusTest {
 	@Test
 	void mariusHitShellTest(){
 		//define a turtle mock that will work
-		Turtle turtle = mock(Turtle.class);
-		when(turtle.getCurrentState()).thenReturn(Turtle.State.STANDING_SHELL);
-		BodyDef bdef = new BodyDef();
-        bdef.position.set(1, 0);
-        bdef.type = BodyDef.BodyType.DynamicBody;
-        Body b2body = marius.getScreen().getWorld().createBody(bdef);
-		turtle.b2body = b2body;
+		Turtle turtle = new Turtle(gameWorldManager.getWorld(), textureAtlas, 0, 0);
+		turtle.hitOnHead(marius);
+		turtle.update(0);
 		//marius hit the turtle, not supposed to die
 		marius.hit(turtle);
 		assertEquals(State.STANDING, marius.getState());
@@ -143,11 +146,16 @@ public class MariusTest {
 
 	@Test
 	void defineBigMariusTest(){
-		assertEquals(1, marius.world.getBodyCount());
+		assertEquals(148, marius.world.getBodyCount());
+		assertEquals(State.STANDING, marius.getState());
 		marius.grow();
 		marius.update(0);
+		assertEquals(State.GROWING, marius.getState());
 		assertEquals(true, marius.isMariusBigNow());
-		assertEquals(1, marius.world.getBodyCount());
+		marius.update(2);
+		marius.update(0);
+		assertEquals(State.STANDING, marius.getState());
+		assertEquals(148, marius.world.getBodyCount());
 	}
 
 	@Test

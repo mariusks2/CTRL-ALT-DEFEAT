@@ -23,6 +23,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
 
+import inf112.Model.World.GameWorldManager;
 import inf112.Model.app.Marius;
 import inf112.Model.app.MegaMarius;
 import inf112.Model.app.Marius.State;
@@ -36,8 +37,8 @@ public class PauseScreenTest {
     static GL20 gl;
     Display display;
 	ShowPauseScreen sGame;
-    SpriteBatch batch;
     private static HeadlessApplication headlessApplication;
+    GameWorldManager gameWorldManager;
 
     @BeforeAll
     static void setUpBeforeAll(){
@@ -63,17 +64,17 @@ public class PauseScreenTest {
 	
         // Initialize Box2D
         MegaMarius megaMarius = (MegaMarius) headlessApplication.getApplicationListener();
-        World world = new World(new Vector2(0, -10), true);
         display = new Display(mock(SpriteBatch.class));
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
 		megaMarius.createTest((mock(SpriteBatch.class)));
         ShowGame cScreen = mock(ShowGame.class);
-        when(cScreen.getWorld()).thenReturn(world);
-        when(cScreen.getMap()).thenReturn(map);
         TextureAtlas textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
+        gameWorldManager = new GameWorldManager(fileName, textureAtlas);
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
-        Marius marius = new Marius(cScreen);
+        when(cScreen.getWorldManager()).thenReturn(gameWorldManager);
+        when(cScreen.getAtlas()).thenReturn(textureAtlas);
+        Marius marius = new Marius(cScreen, gameWorldManager.getWorld());
         sGame = new ShowPauseScreen(megaMarius, marius, State.STANDING, ScreenManager.getInstance());
         ScreenManager.getInstance().initialize(megaMarius);
         ScreenManager.getInstance().showPauseGameScreen(marius, State.STANDING);

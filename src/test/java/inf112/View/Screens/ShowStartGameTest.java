@@ -21,6 +21,8 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
+
+import inf112.Model.World.GameWorldManager;
 import inf112.Model.app.MegaMarius;
 import inf112.View.ScreenManagement.ScreenManager;
 
@@ -34,7 +36,7 @@ public class ShowStartGameTest {
 	ShowStartGame sGame;
     SpriteBatch batch;
     private static HeadlessApplication headlessApplication;
-    
+    GameWorldManager gameWorldManager;
 
     @BeforeAll
     static void setUpBeforeAll(){

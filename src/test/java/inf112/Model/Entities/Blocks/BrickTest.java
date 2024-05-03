@@ -22,9 +22,11 @@ import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 import inf112.View.Scenes.Display;
 import inf112.View.Screens.ShowGame;
+import inf112.Model.World.GameWorldManager;
 import inf112.Model.app.Marius;
 import inf112.Model.app.MegaMarius;
 
@@ -37,6 +39,9 @@ public class BrickTest {
     TiledMap map;
     GL20 gl;
     Display display;
+    GameWorldManager gameWorldManager;
+    TextureAtlas textureAtlas;
+    Marius marius;
 
     @BeforeEach
 	void setUpBeforeEach() {
@@ -53,34 +58,36 @@ public class BrickTest {
         //Mock Gdx
         Gdx.app = app;
         Gdx.gl = gl;
-        
-        new HeadlessApplication(listener, config);
+        MegaMarius megaMarius = new MegaMarius();
+        new HeadlessApplication(megaMarius, config);
         //make instances or mocks of classes we need to test
+        textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
         ShowGame cScreen = mock(ShowGame.class);
-        World world = new World(new Vector2(0, -10), true);
         display = new Display(mock(SpriteBatch.class));
         mapLoader = new TmxMapLoader();
-        map = mapLoader.load(fileName);
-        when(cScreen.getWorld()).thenReturn(world);
-        when(cScreen.getMap()).thenReturn(map);
+        gameWorldManager = new GameWorldManager(fileName, textureAtlas);
+        map = gameWorldManager.getMap();
+        when(cScreen.getWorldManager()).thenReturn(gameWorldManager);
+        when(cScreen.getAtlas()).thenReturn(textureAtlas);
+        when(cScreen.getDisplay()).thenReturn(display);
         object = new RectangleMapObject();
-        brick = new Brick(cScreen, object);
+        brick = new Brick(gameWorldManager.getWorld(), map, object);
+        marius = new Marius(cScreen, gameWorldManager.getWorld());
+        gameWorldManager.setPlayer(marius);
 	}
 
     @Test
     void onHeadHitTestBig() {
-        Marius mockMarius = mock(Marius.class);
-        when(mockMarius.isMariusBigNow()).thenReturn(true);
-        brick.HeadHit(mockMarius);
+        marius.grow();
+        marius.update(0);
+        brick.HeadHit(marius);
         assertEquals(MegaMarius.DESTROYED_BIT, brick.getFilterData().categoryBits);
         assertEquals(200, display.getScoreCount());
     }
 
     @Test
     void onHeadHitTestSmall() {
-        Marius mockMarius = mock(Marius.class);
-        when(mockMarius.isMariusBigNow()).thenReturn(false);
-        brick.HeadHit(mockMarius);
+        brick.HeadHit(marius);
         assertEquals(0, display.getScoreCount());
         assertEquals(MegaMarius.BRICK_BIT, brick.getFilterData().categoryBits);
     }

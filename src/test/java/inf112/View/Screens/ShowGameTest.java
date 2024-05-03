@@ -21,6 +21,7 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import inf112.View.ScreenManagement.ScreenManager;
 import inf112.View.Screens.ShowGame;
+import inf112.Model.World.GameWorldManager;
 import inf112.Model.app.MegaMarius;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -33,6 +34,7 @@ public class ShowGameTest {
     private MegaMarius mockedGame;
     private static HeadlessApplication application;
     String fileName = "MapAndTileset/level1.tmx";
+    GameWorldManager gameWorldManager;
 
     @BeforeAll
     public static void setupHeadless() {

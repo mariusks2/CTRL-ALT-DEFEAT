@@ -17,6 +17,7 @@ import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3NativesLoader;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -27,6 +28,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import inf112.View.Scenes.Display;
 import inf112.View.Screens.ShowGame;
 import inf112.Model.Entities.ItemDef;
+import inf112.Model.World.GameWorldManager;
 import inf112.Model.app.Marius;
 import inf112.Model.app.MegaMarius;
 
@@ -36,9 +38,11 @@ public class CoinTest {
     RectangleMapObject object;
     TmxMapLoader mapLoader;
     String fileName = "MapAndTileset/level1.tmx";
-    TiledMap map;
     GL20 gl;
     Display display;
+    GameWorldManager gameWorldManager;
+    TextureAtlas textureAtlas; 
+    Marius marius;
 
     @BeforeAll
 	static void setUpBeforeAll() {
@@ -62,14 +66,16 @@ public class CoinTest {
         new HeadlessApplication(listener, config);
         //make instances or mocks of classes we need to test
         ShowGame cScreen = mock(ShowGame.class);
-        World world = new World(new Vector2(0, -10), true);
+        textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
         display = new Display(mock(SpriteBatch.class));
-        mapLoader = new TmxMapLoader();
-        map = mapLoader.load(fileName);
-        when(cScreen.getWorld()).thenReturn(world);
-        when(cScreen.getMap()).thenReturn(map);
+        gameWorldManager = new GameWorldManager(fileName, textureAtlas);
+        when(cScreen.getWorldManager()).thenReturn(gameWorldManager);
+        when(cScreen.getDisplay()).thenReturn(display);
+        when(cScreen.getAtlas()).thenReturn(textureAtlas);
         object = new RectangleMapObject();
-        coin = new Coin(cScreen, object);
+        coin = new Coin(gameWorldManager.getWorld(), gameWorldManager.getMap(), object, gameWorldManager);
+        marius = new Marius(cScreen, gameWorldManager.getWorld());
+        gameWorldManager.setPlayer(marius);
 	}
 
     @Test
@@ -79,8 +85,7 @@ public class CoinTest {
 
     @Test
     void onHeadHitTest() {
-        Marius mockMarius = mock(Marius.class);
-        coin.HeadHit(mockMarius);
+        coin.HeadHit(marius);
         assertEquals(MegaMarius.COIN_BIT, coin.getFilterData().categoryBits);
         assertEquals(200, display.getScoreCount());
     }
@@ -93,7 +98,7 @@ public class CoinTest {
     @Test
     void itemDefTest(){
         ItemDef itemDef = new ItemDef(new Vector2(0,0), Coin.class);
-        assertEquals(new Vector2(0,0), itemDef.positon);
+        assertEquals(new Vector2(0,0), itemDef.position);
         assertEquals(Coin.class, itemDef.type);
     }
     

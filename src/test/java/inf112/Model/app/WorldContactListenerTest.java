@@ -29,6 +29,7 @@ import inf112.Model.Entities.Enemies.Turtle;
 import inf112.View.Scenes.Display;
 import inf112.View.Screens.ShowGame;
 import inf112.Model.MakeMap.MakeMap;
+import inf112.Model.World.GameWorldManager;
 import inf112.Model.app.Marius.State;
 
 
@@ -42,8 +43,8 @@ public class WorldContactListenerTest {
     WorldContactListener wListener;
     TextureAtlas textureAtlas;
     ShowGame cScreen;
-    World world;
     MakeMap makeMap;
+    GameWorldManager gameWorldManager;
     
 
     @BeforeAll
@@ -70,24 +71,22 @@ public class WorldContactListenerTest {
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
         wListener = new WorldContactListener();
-        world = new World(new Vector2(0, 0), true);
-        world.setContactListener(wListener);
-        when(cScreen.getWorld()).thenReturn(world);
-        when(cScreen.getMap()).thenReturn(map);
 		when(cScreen.getDisplay()).thenReturn(display);
         textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
-        makeMap = new MakeMap(cScreen);
-        
+        gameWorldManager = new GameWorldManager(fileName, textureAtlas);
+        when(cScreen.getWorldManager()).thenReturn(gameWorldManager);
+        gameWorldManager.getWorld().setContactListener(wListener);
 	}
     @Test
     void contactMariusItemTest(){
-        Integer countBeforeMaking = world.getBodyCount();
-        Marius marius = new Marius(cScreen);
-        Pessi pessi = new Pessi(cScreen, 0, 0);
-        assertEquals(countBeforeMaking+2, world.getBodyCount());
-        world.step(0, 0, 0);
-        wListener.beginContact(world.getContactList().first());
+        Integer countBeforeMaking = gameWorldManager.getWorld().getBodyCount();
+        Marius marius = new Marius(cScreen, gameWorldManager.getWorld());
+        gameWorldManager.setPlayer(marius);
+        Pessi pessi = new Pessi(gameWorldManager.getWorld(), textureAtlas, 0, 0);
+        assertEquals(countBeforeMaking+2, gameWorldManager.getWorld().getBodyCount());
+        gameWorldManager.getWorld().step(0, 0, 0);
+        wListener.beginContact(gameWorldManager.getWorld().getContactList().first());
         marius.update(0);
         pessi.update(0);
         assertEquals(true, pessi.isDestroyed());
@@ -96,13 +95,14 @@ public class WorldContactListenerTest {
     
     @Test
     void contactMariusEnemyTest1(){
-        Integer countBeforeMaking = world.getBodyCount();
-        Marius marius = new Marius(cScreen);
-        Turtle turtle = new Turtle(cScreen, 64/MegaMarius.PPM, 32/MegaMarius.PPM);
+        Integer countBeforeMaking = gameWorldManager.getWorld().getBodyCount();
+        Marius marius = new Marius(cScreen, gameWorldManager.getWorld());
+        gameWorldManager.setPlayer(marius);
+        Turtle turtle = new Turtle(gameWorldManager.getWorld(), textureAtlas, 64/MegaMarius.PPM, 32/MegaMarius.PPM);
         turtle.update(0);
         marius.update(0);
-        Array<Enemy> enemies = makeMap.getEnemies();
-        for(Enemy enemy : makeMap.getEnemies()){
+        Array<Enemy> enemies = gameWorldManager.getEnemies();
+        for(Enemy enemy : gameWorldManager.getEnemies()){
             enemy.update(0);
             if (enemy.getX() < marius.getX() + 224/MegaMarius.PPM) {
                 enemy.b2body.setActive(true);
@@ -110,22 +110,22 @@ public class WorldContactListenerTest {
         }
         marius.update(0);
         assertEquals(16, enemies.size);
-        assertEquals(countBeforeMaking+2, world.getBodyCount());
-        world.step(10f, 0, 0);
-        assertEquals(countBeforeMaking+2, world.getBodyCount());
-        for(Enemy enemy : makeMap.getEnemies()){
+        assertEquals(countBeforeMaking+2, gameWorldManager.getWorld().getBodyCount());
+        gameWorldManager.getWorld().step(10f, 0, 0);
+        assertEquals(countBeforeMaking+2, gameWorldManager.getWorld().getBodyCount());
+        for(Enemy enemy : gameWorldManager.getEnemies()){
             enemy.update(0);
             if (enemy.getX() < marius.getX() + 224/MegaMarius.PPM) {
                 enemy.b2body.setActive(true);
             }
         }
-        world.step(0.5f, 0, 0);
+        gameWorldManager.getWorld().step(0.5f, 0, 0);
         // Test that the contact is made, have contact between, 2=mariusbit and 128=enemybit
-        assertEquals(8, world.getContactCount());
-        assertEquals(2, world.getContactList().get(3).getFixtureB().getFilterData().categoryBits);
-        assertEquals(128, world.getContactList().get(3).getFixtureA().getFilterData().categoryBits);
-        for (int i = 0; i<world.getContactCount(); i++){
-            wListener.beginContact(world.getContactList().get(0));
+        assertEquals(4, gameWorldManager.getWorld().getContactCount());
+        assertEquals(128, gameWorldManager.getWorld().getContactList().get(2).getFixtureB().getFilterData().categoryBits);
+        assertEquals(1, gameWorldManager.getWorld().getContactList().get(2).getFixtureA().getFilterData().categoryBits);
+        for (int i = 0; i<gameWorldManager.getWorld().getContactCount(); i++){
+            wListener.beginContact(gameWorldManager.getWorld().getContactList().get(0));
         }
     }
     

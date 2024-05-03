@@ -25,22 +25,19 @@ import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
 
 import inf112.Model.Entities.Blocks.Brick;
+import inf112.Model.World.GameWorldManager;
 import inf112.Model.app.MegaMarius;
 import inf112.View.Scenes.Display;
 import inf112.View.ScreenManagement.ScreenManager;
 
 public class ShowMapSelectTest {
-    Brick brick;
-    RectangleMapObject object;
     TmxMapLoader mapLoader;
     String fileName = "MapAndTileset/level1.tmx";
     TiledMap map;
     static GL20 gl;
-    Display display;
 	ShowMapSelect sGame;
-    SpriteBatch batch;
     private static HeadlessApplication headlessApplication;
-    
+    GameWorldManager gameWorldManager;
     
 
     @BeforeAll
@@ -68,14 +65,8 @@ public class ShowMapSelectTest {
       
         MegaMarius megaMarius = (MegaMarius) headlessApplication.getApplicationListener();
         
-        World world = new World(new Vector2(0, -10), true);
-        display = new Display(mock(SpriteBatch.class));
-        mapLoader = new TmxMapLoader();
-        map = mapLoader.load(fileName);
 		megaMarius.createTest((mock(SpriteBatch.class)));
         ShowGame cScreen = mock(ShowGame.class);
-        when(cScreen.getWorld()).thenReturn(world);
-        when(cScreen.getMap()).thenReturn(map);
         TextureAtlas textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
         sGame = new ShowMapSelect(megaMarius, ScreenManager.getInstance());

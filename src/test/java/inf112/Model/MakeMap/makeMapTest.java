@@ -23,6 +23,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
 
+import inf112.Model.World.GameWorldManager;
 import inf112.View.Scenes.Display;
 import inf112.View.Screens.ShowGame;
 
@@ -31,10 +32,9 @@ public class makeMapTest {
     MakeMap makeMap;
     TmxMapLoader mapLoader;
     String fileName = "MapAndTileset/level1.tmx";
-    TiledMap map;
     GL20 gl;
-    Display display;
     TextureAtlas textureAtlas;
+    GameWorldManager gameWorldManager;
 
     @BeforeEach
 	void setUpBeforeEach() {
@@ -53,16 +53,9 @@ public class makeMapTest {
         Gdx.gl = gl;
         
         new HeadlessApplication(listener, config);
-        ShowGame cScreen = mock(ShowGame.class);
-        World world = new World(new Vector2(0, -10), true);
-        display = new Display(mock(SpriteBatch.class));
-        mapLoader = new TmxMapLoader();
-        map = mapLoader.load(fileName);
-        when(cScreen.getWorld()).thenReturn(world);
-        when(cScreen.getMap()).thenReturn(map);
         textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
-        when(cScreen.getAtlas()).thenReturn(textureAtlas);
-        makeMap = new MakeMap(cScreen);
+        gameWorldManager = new GameWorldManager(fileName, textureAtlas);       
+        makeMap = new MakeMap(gameWorldManager.getWorld(), gameWorldManager.getMap(), textureAtlas, gameWorldManager);
 	}
     @Test
     void getEnemiesTest(){

@@ -321,7 +321,6 @@ public class ShowGame implements Screen, InputHandler{
     public TextureAtlas getAtlas(){
         return atlas;
     }
-    
     //Methods from inputhandler
     @Override
     public void handleInput() {
@@ -333,6 +332,9 @@ public class ShowGame implements Screen, InputHandler{
     @Override
     public void checkButtonPress(Vector2 clickPosition, IScreenFactory screenService) {
         //Not needed in showgame
+    }
+    public GameWorldManager getWorldManager(){
+        return worldManager;
     }
 }
 

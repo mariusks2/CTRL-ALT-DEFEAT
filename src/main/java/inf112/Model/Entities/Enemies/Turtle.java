@@ -49,10 +49,10 @@ public class Turtle extends Enemy {
 
     /**
      * Constructs a Turtle object with given screen, x and y values.
-     * 
-     * @param screen ShowGame screen.
-     * @param x float x.
-     * @param y float y.
+     * @param world ShowGame screen.
+     * @param atlas the texture
+     * @param x pos x.
+     * @param y pos y.
      */
     public Turtle(World world, TextureAtlas atlas, float x, float y) {
         super(world, x, y);

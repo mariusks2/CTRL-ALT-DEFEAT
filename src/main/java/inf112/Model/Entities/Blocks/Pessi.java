@@ -31,8 +31,9 @@ public class Pessi extends Item{
     private TextureRegion textureRegion;
 
     /**
-     * Constructor for Pepsi
-     * @param screen game screen
+     * Constructor for pessi
+     * @param world the world
+     * @param textureAtlas the texture
      * @param x position x
      * @param y position y
      */

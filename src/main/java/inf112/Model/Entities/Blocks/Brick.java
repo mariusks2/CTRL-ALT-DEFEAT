@@ -29,8 +29,9 @@ public class Brick extends InteractiveTileObj{
     /**
      * Constructs a Brick object with given screen and map object.
      * 
-     * @param screen Game screen
-     * @param object The Map
+     * @param world the world
+     * @param map the map
+     * @param object the collision blocks
      */
     public Brick(World world, TiledMap map, MapObject object){
         super(world,map ,object);

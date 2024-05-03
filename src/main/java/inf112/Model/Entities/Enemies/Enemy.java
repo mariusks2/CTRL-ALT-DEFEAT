@@ -5,18 +5,16 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 
-import inf112.View.Screens.ShowGame;
 import inf112.Model.app.Marius;
 
 public abstract class Enemy extends Sprite{ //Abstract class for enemies. 
     protected World world;
-    protected ShowGame screen;
     public Body b2body;
     public Vector2 velocity;
 
     /**
      * Constructor for Enemy
-     * @param screen game screen
+     * @param world world
      * @param x position x
      * @param y position y
      */

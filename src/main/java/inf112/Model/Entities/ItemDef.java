@@ -3,7 +3,7 @@ package inf112.Model.Entities;
 import com.badlogic.gdx.math.Vector2;
 
 public class ItemDef {
-    public Vector2 positon;
+    public Vector2 position;
     public Class<?> type;
     
     /**
@@ -12,7 +12,7 @@ public class ItemDef {
      * @param type the class type to define
      */
     public ItemDef(Vector2 position, Class<?> type){
-        this.positon = position;
+        this.position = position;
         this.type = type;
     }
 }

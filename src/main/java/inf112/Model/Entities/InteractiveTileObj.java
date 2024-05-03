@@ -43,11 +43,10 @@ public abstract class InteractiveTileObj {
      * @param screen Game screen
      * @param object The Map
      */
-    public InteractiveTileObj(ShowGame screen, MapObject object){
+    public InteractiveTileObj(World world, TiledMap map, MapObject object){
         this.object = object;
-        this.screen = screen;
-        this.world = screen.getWorld();
-        this.map = screen.getMap();
+        this.world = world;
+        this.map = map;
         this.bounds = ((RectangleMapObject) object).getRectangle();
 
         BodyDef bodyDef = new BodyDef();

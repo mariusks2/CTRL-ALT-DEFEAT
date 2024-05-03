@@ -1,5 +1,6 @@
 package inf112.Model.MakeMap;
 
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -17,6 +18,7 @@ import inf112.Model.Entities.Blocks.Flag;
 import inf112.Model.Entities.Enemies.Enemy;
 import inf112.Model.Entities.Enemies.Spider;
 import inf112.Model.Entities.Enemies.Turtle;
+import inf112.Model.World.GameWorldManager;
 import inf112.View.Screens.ShowGame;
 import inf112.Model.app.MegaMarius;
 
@@ -27,12 +29,19 @@ public class MakeMap {
      */
     private Array<Spider> spiders;
     private Array<Turtle> turtles;
-    public MakeMap(ShowGame screen){
+    private World world;
+    private TiledMap map;
+    private TextureAtlas atlas;
+    private GameWorldManager worldManager;
+
+    public MakeMap(World world, TiledMap map, TextureAtlas atlas, GameWorldManager worldManager){
         BodyDef bodyDef = new BodyDef();
         PolygonShape polygonShape = new PolygonShape();
         FixtureDef fixtureDef = new FixtureDef(); 
-        World world = screen.getWorld();
-        TiledMap map = screen.getMap();
+        this.world= world;
+        this.map = map;
+        this.atlas = atlas;
+        this.worldManager = worldManager;
         Body body;
         
         // this will find every rectangle in layer 2 from the map. Used for collision.
@@ -58,26 +67,26 @@ public class MakeMap {
         } 
         //create the bricks, so we can interact with them
         for(MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)){
-            new Brick(screen, object);
+            new Brick(world, map, object);
         }
 
         //create the coins, so we can interact with them
         for(MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)){
-            new Coin(screen, object);
+            new Coin(world, map, object, worldManager);
         }
         //create spiders
         spiders = new Array<Spider>();
         for(MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)){
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            spiders.add(new Spider(screen, rect.getX() / MegaMarius.PPM, rect.getY() / MegaMarius.PPM));
+            spiders.add(new Spider(world, atlas, rect.getX() / MegaMarius.PPM, rect.getY() / MegaMarius.PPM));
         }
         turtles = new Array<Turtle>();
         for(MapObject object : map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class)){
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            turtles.add(new Turtle(screen, rect.getX() / MegaMarius.PPM, rect.getY() / MegaMarius.PPM));
+            turtles.add(new Turtle(world, atlas, rect.getX() / MegaMarius.PPM, rect.getY() / MegaMarius.PPM));
         }
         for(MapObject object : map.getLayers().get(8).getObjects().getByType(RectangleMapObject.class)){
-            new Flag(screen, object);
+            new Flag(world, map, object);
         }
     }
     public Array<Enemy> getEnemies(){

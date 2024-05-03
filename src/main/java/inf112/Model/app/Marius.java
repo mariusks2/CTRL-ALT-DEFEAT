@@ -63,10 +63,10 @@ import inf112.View.Screens.ShowGame;
 		private Music music;
 
 		@SuppressWarnings({ "rawtypes", "unchecked" })
-		public Marius(ShowGame screen){
+		public Marius(ShowGame screen, World world){
 			// Initializing variables
 			this.screen = screen;
-			this.world = screen.getWorld();
+			this.world = world;
 			currentState = State.STANDING;
 			previousState = State.STANDING;
 			stateTimer = 0;

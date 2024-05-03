@@ -20,9 +20,8 @@ public abstract class Enemy extends Sprite{ //Abstract class for enemies.
      * @param x position x
      * @param y position y
      */
-    public Enemy(ShowGame screen, float x, float y){
-        this.world = screen.getWorld();
-        this.screen = screen;
+    public Enemy(World world, float x, float y){
+        this.world = world;
         setPosition(x, y);
         defineEnemy();
         velocity = new Vector2(-1,-2);

@@ -1,7 +1,6 @@
 package inf112.View.Screens;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -26,12 +25,9 @@ import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
 
 import inf112.Model.Entities.Blocks.Brick;
-import inf112.Model.app.Marius;
 import inf112.Model.app.MegaMarius;
-import inf112.Model.app.Marius.State;
 import inf112.View.Scenes.Display;
 import inf112.View.ScreenManagement.ScreenManager;
-import inf112.View.Screens.ShowGame;
 
 public class ShowMapSelectTest {
     Brick brick;
@@ -56,9 +52,6 @@ public class ShowMapSelectTest {
         //Mock Gdx
         Gdx.app = app;
 		gl = mock(GL20.class);
-		when(gl.glCreateShader(anyInt())).thenReturn(1);
-        when(gl.glCreateShader(anyInt())).thenReturn(0);
-        when(gl.glCreateProgram()).thenReturn(-1);
         Gdx.gl = gl; 
         Gdx.gl20 = gl; 
         MegaMarius megaMarius = new MegaMarius(); // Your implementation of ApplicationListener
@@ -98,21 +91,20 @@ public class ShowMapSelectTest {
     @Test
     void handleInputTest(){
         //Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE);
-        Gdx.input.setCatchKey(Input.Keys.ESCAPE, true);
+        Input input = mock(Input.class);
+        when(input.isKeyJustPressed(Input.Keys.ESCAPE)).thenReturn(true);
+        Gdx.input = input;
         sGame.handleInput();
     }
 
     @Test
-    void handleInputTest2(){
-        Gdx.input.setCatchKey(Input.Buttons.LEFT, true);
-        sGame.handleInput();
+    void buttonPressTest(){
+        sGame.checkButtonPress(new Vector2(173, 17), ScreenManager.getInstance());
     }
 
     @Test
-    void handleInputTest3(){
-        Gdx.input.setCatchKey(Input.Keys.ENTER, true);
-        Gdx.input.setCursorPosition(100, 100);
-        sGame.handleInput();
+    void buttonPressTest2(){
+        sGame.checkButtonPress(new Vector2(5,190), ScreenManager.getInstance());
     }
 
     @Test
@@ -145,4 +137,11 @@ public class ShowMapSelectTest {
         String nextMap = sGame.getNextMap(fileName);
         assertEquals("GameCompleted", nextMap);
     }
+
+    @Test
+    void renderTest(){
+        sGame.render(0);
+    }
+
+
 }

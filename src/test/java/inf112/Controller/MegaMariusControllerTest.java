@@ -57,6 +57,11 @@ public class MegaMariusControllerTest {
         Gdx.app = app;
         Gdx.gl = gl;
 		Gdx.gl20 = gl;
+        HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
+		ApplicationListener listener = new ApplicationAdapter() {
+		};
+		MegaMarius megaMarius = new MegaMarius();
+        
         
         new HeadlessApplication(megaMarius, config);
 		megaMarius.setSpriteBatch(mock(SpriteBatch.class));

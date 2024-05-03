@@ -1,9 +1,12 @@
 package inf112.Model.app;
 
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+import com.badlogic.gdx.Application;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
@@ -17,11 +20,17 @@ import org.junit.jupiter.api.Test;
 public class MegaMariusTest {
 
     private static HeadlessApplication headlessApplication;
-
+    static GL20 gl;
+    
     @BeforeAll
     static void setUpBeforeAll() {
         Lwjgl3NativesLoader.load();
-
+        gl = mock(GL20.class);
+        Application app = mock(Application.class);
+        //Mock Gdx
+        Gdx.app = app;
+        Gdx.gl = gl;
+		Gdx.gl20 = gl;
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
         MegaMarius megaMarius = new MegaMarius(); // Your implementation of ApplicationListener
 

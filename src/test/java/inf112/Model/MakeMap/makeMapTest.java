@@ -20,6 +20,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.physics.box2d.Box2D;
 
 import inf112.Model.World.GameWorldManager;
+import inf112.Model.app.MegaMarius;
 
 public class makeMapTest {
     
@@ -38,16 +39,15 @@ public class makeMapTest {
 
         // Initialize Box2D
         Box2D.init();
-        HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-		ApplicationListener listener = new ApplicationAdapter() {
-		};
         gl = mock(GL20.class);
         app = mock(Application.class);
         //Mock Gdx
         Gdx.app = app;
         Gdx.gl = gl;
-        
-        new HeadlessApplication(listener, config);
+        HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
+		ApplicationListener listener = new ApplicationAdapter() {
+		};
+        new HeadlessApplication(new MegaMarius(), config);
         textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
         gameWorldManager = new GameWorldManager(fileName, textureAtlas);       
         makeMap = new MakeMap(gameWorldManager.getWorld(), gameWorldManager.getMap(), textureAtlas, gameWorldManager);

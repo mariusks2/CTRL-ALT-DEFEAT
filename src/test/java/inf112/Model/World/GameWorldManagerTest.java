@@ -39,6 +39,7 @@ public class GameWorldManagerTest {
         //Mock Gdx
         Gdx.app = app;
         Gdx.gl = gl;
+        
         MegaMarius megaMarius = new MegaMarius();
         new HeadlessApplication(megaMarius, config);
         textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");

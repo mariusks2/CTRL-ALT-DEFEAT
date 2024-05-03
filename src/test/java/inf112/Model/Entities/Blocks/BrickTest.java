@@ -52,6 +52,7 @@ public class BrickTest {
         //Mock Gdx
         Gdx.app = app;
         Gdx.gl = gl;
+        
         MegaMarius megaMarius = new MegaMarius();
         new HeadlessApplication(megaMarius, config);
         //make instances or mocks of classes we need to test

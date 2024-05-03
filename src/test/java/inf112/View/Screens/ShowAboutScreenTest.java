@@ -42,13 +42,14 @@ public class ShowAboutScreenTest {
     static void setUpBeforeAll(){
         Lwjgl3NativesLoader.load();
         Box2D.init();
-        HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = mock(Application.class);
         //Mock Gdx
         Gdx.app = app;
-		gl = mock(GL20.class);
+        gl = mock(GL20.class);
         Gdx.gl = gl; 
         Gdx.gl20 = gl; 
+        HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
+        app = mock(Application.class);
+
         MegaMarius megaMarius = new MegaMarius(); // Your implementation of ApplicationListener
 
         headlessApplication = new HeadlessApplication(megaMarius, config);

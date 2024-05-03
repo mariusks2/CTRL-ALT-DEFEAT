@@ -5,15 +5,24 @@ import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.Test;
 
+import com.badlogic.gdx.Application;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
+import com.badlogic.gdx.graphics.GL20;
 
 
 public class MainTest {
-    
+    GL20 gl;
     @Test
     void mainTest() {
 
         // Mock Lwjgl3Application
+        gl = mock(GL20.class);
+        Application app = mock(Application.class);
+        //Mock Gdx
+        Gdx.app = app;
+        Gdx.gl = gl;
+		Gdx.gl20 = gl;
         Lwjgl3ApplicationConfiguration mockConfiguration = mock(Lwjgl3ApplicationConfiguration.class);
 
         // Call the main method

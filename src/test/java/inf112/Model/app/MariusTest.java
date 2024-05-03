@@ -50,11 +50,13 @@ public class MariusTest {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
 		MegaMarius megaMarius = new MegaMarius();
         gl = mock(GL20.class);
+		gl = mock(GL20.class);
         Application app = mock(Application.class);
         //Mock Gdx
         Gdx.app = app;
         Gdx.gl = gl;
 		Gdx.gl20 = gl;
+        
         
         new HeadlessApplication(megaMarius, config);
 		megaMarius.setSpriteBatch(mock(SpriteBatch.class));

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,13 +38,14 @@ public class ShowHelpScreenTest {
     SpriteBatch batch;
     private static HeadlessApplication headlessApplication;
     GameWorldManager gameWorldManager;
+    static Application app;
 
     @BeforeAll
     static void setUpBeforeAll(){
         Lwjgl3NativesLoader.load();
         Box2D.init();
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        Application app = mock(Application.class);
+        app = mock(Application.class);
         //Mock Gdx
         Gdx.app = app;
 		gl = mock(GL20.class);
@@ -112,5 +114,17 @@ public class ShowHelpScreenTest {
     void thisScreenTest(){
         assertEquals(sGame.getClass(),ScreenManager.getInstance().getCurrentGameScreen().getClass());
         
+    }
+
+    @AfterAll
+    static void cleanUp() {
+        if (app != null) {
+            app.exit();
+            app = null;
+        }
+        Gdx.app = null;
+        Gdx.gl = null;
+        Gdx.gl20 = null;
+        ScreenManager.getInstance().dispose();
     }
 }

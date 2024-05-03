@@ -9,6 +9,10 @@ Dette gjorde vi på gruppetime:
     - Endre mappe stuktur til å bruke Model, View og Controller.
     - Dokumentere public metoder (vi lagde og en del interfaces for å forbedre kode-kvaliteten).
     - Laget Structure.txt (som viser strukturen av prosjektet) og Klassediagram.
+    - Vi fikk lagd en pause skjerm, scorebard skjermen ble ferdig
+    - Finjustert spillet mtp: hitbox og game speed.
+    - Vi droppet settings meny for å endre game speed det fikk vi ikke tid til.
+    - Vi nådde 70% test coverage på automatiske tester.
 - Vi brukte noen av møtene på å reflektre litt over hvordan vi syntes prosjektet har gått, ting som gikk bra og ting som kunne gjort annerledes etc. (Mer om dette står i oblig4.md filen).
 - Vi oppdaterete README.md filen slik at den inneholder opppdatert informasjon, samt skrev ferdig oblig4.md teksten og sørget for at den inneholder alt av nødvendige "tekster/svar" som vi fikk tilbakemelding om at vi manglet: blant annet "brukerhistorier" og "prosjektmetodikk" for å neven noen.
 

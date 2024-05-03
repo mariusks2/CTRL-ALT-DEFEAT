@@ -17,7 +17,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import inf112.Model.app.MegaMarius;
 import inf112.Model.Entities.Item;
@@ -73,7 +72,7 @@ public class ShowGame implements Screen, InputHandler{
         this.game = game;
         
         camera = new OrthographicCamera();
-        gamePort = new StretchViewport(MegaMarius.M_Width / MegaMarius.PPM, MegaMarius.M_Height / MegaMarius.PPM, camera);
+        gamePort = new FitViewport(MegaMarius.M_Width / MegaMarius.PPM, MegaMarius.M_Height / MegaMarius.PPM, camera);
         display = new Display(game.getSpriteBatch());
 
 
@@ -321,7 +320,6 @@ public class ShowGame implements Screen, InputHandler{
     public TextureAtlas getAtlas(){
         return atlas;
     }
-    
     //Methods from inputhandler
     @Override
     public void handleInput() {
@@ -333,6 +331,9 @@ public class ShowGame implements Screen, InputHandler{
     @Override
     public void checkButtonPress(Vector2 clickPosition, IScreenFactory screenService) {
         //Not needed in showgame
+    }
+    public GameWorldManager getWorldManager(){
+        return worldManager;
     }
 }
 

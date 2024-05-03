@@ -28,6 +28,7 @@ import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
 
 import inf112.Model.Entities.Enemies.Turtle.State;
+import inf112.Model.World.GameWorldManager;
 import inf112.Model.app.Marius;
 import inf112.View.Scenes.Display;
 import inf112.View.Screens.ShowGame;
@@ -42,6 +43,8 @@ public class TurtleTest {
     Display display;
     TextureAtlas textureAtlas;
     ShowGame cScreen;
+    GameWorldManager gameWorldManager;
+    Marius marius;
 
     @BeforeAll
 	static void setUpBeforeAll() {
@@ -66,21 +69,19 @@ public class TurtleTest {
         
         new HeadlessApplication(listener, config);
         cScreen = mock(ShowGame.class);
-        World world = new World(new Vector2(10, 10), true);
-        display = new Display(mock(SpriteBatch.class));
-        mapLoader = new TmxMapLoader();
-        map = mapLoader.load(fileName);
-        when(cScreen.getWorld()).thenReturn(world);
-        when(cScreen.getMap()).thenReturn(map);
         textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
+        display = new Display(mock(SpriteBatch.class));
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
-        //when(cScreen.getAtlas().findRegion("pepsi")).thenReturn(textureAtlas.findRegion("pepsi"));
-        turtle = new Turtle(cScreen, 0, 0);
+        gameWorldManager = new GameWorldManager(fileName, textureAtlas);
+        when(cScreen.getWorldManager()).thenReturn(gameWorldManager);
+        when(cScreen.getDisplay()).thenReturn(display);
+        turtle = new Turtle(gameWorldManager.getWorld(), textureAtlas, 0, 0);
+        marius = new Marius(cScreen, gameWorldManager.getWorld());
+        gameWorldManager.setPlayer(marius);
 	}
 
     @Test
     void hitOnHeadTest(){
-        Marius marius = new Marius(cScreen);
         turtle.hitOnHead(marius);
         turtle.update(0);
         assertEquals(State.STANDING_SHELL, turtle.getCurrentState());
@@ -88,7 +89,6 @@ public class TurtleTest {
 
     @Test
     void hitOnHeadTest2(){
-        Marius marius = new Marius(cScreen);
         turtle.hitOnHead(marius);
         turtle.update(0);
         assertEquals(State.STANDING_SHELL, turtle.getCurrentState());
@@ -99,7 +99,7 @@ public class TurtleTest {
 
     @Test
     void hitByEnemyTest(){
-        Spider spider = new Spider(cScreen, 0, 0);
+        Spider spider = new Spider(gameWorldManager.getWorld(), textureAtlas, 0, 0);
         turtle.hitByEnemy(spider);
         turtle.update(0);
         assertEquals(State.WALKING, turtle.getCurrentState());
@@ -108,8 +108,7 @@ public class TurtleTest {
 
     @Test
     void hitByEnemyMovingShellTest(){
-        Marius marius = new Marius(cScreen);
-        Turtle turtle2 = new Turtle(cScreen, 0, 0);
+        Turtle turtle2 = new Turtle(gameWorldManager.getWorld(), textureAtlas, 0, 0);
         turtle2.hitOnHead(marius);
         turtle2.update(0);
         assertEquals(State.STANDING_SHELL, turtle2.getCurrentState());
@@ -124,7 +123,6 @@ public class TurtleTest {
 
     @Test
     void kickTest(){
-        Marius marius = new Marius(cScreen);
         turtle.hitOnHead(marius);
         turtle.update(0);
         assertEquals(State.STANDING_SHELL, turtle.getCurrentState());

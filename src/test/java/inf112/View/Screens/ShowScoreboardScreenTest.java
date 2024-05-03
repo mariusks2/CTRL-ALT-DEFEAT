@@ -27,6 +27,7 @@ import com.badlogic.gdx.physics.box2d.Box2D;
 import inf112.View.Scenes.Display;
 import inf112.View.Scenes.Score;
 import inf112.View.ScreenManagement.ScreenManager;
+import inf112.Model.World.GameWorldManager;
 import inf112.Model.app.MegaMarius;
 
 public class ShowScoreboardScreenTest {
@@ -39,7 +40,7 @@ public class ShowScoreboardScreenTest {
 	ShowScoreboardScreen sGame;
     SpriteBatch batch;
     private static HeadlessApplication headlessApplication;
-    
+    GameWorldManager gameWorldManager;
     
 
     @BeforeAll

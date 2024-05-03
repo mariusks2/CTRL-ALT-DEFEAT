@@ -76,17 +76,25 @@
 ## Prosjektmetodikk
 * Mål: 
   * Utvikle et spill kalt "Mega Marius" som følger et gitt konspet og oppnår en viss funksjonalitet i en hver utviklingsfase.
-* Faser:
-    * Fase 1:
-    * 
-* Metodikk:
-  *  
-* Faser:
-* Roller:
+* Faser: Vi kan si at spillet har blitt delt opp i 3 faser, Prototype-versjon, early-access versjon og release-versjon.
+* Metodikk, Kaban:
+  * Vi har valgt å gå for kaban metodikken og gjennomførte den ved å bruke (trello) verktøyet til å lage "kaban tavle".
+  * I trello hadde vi kolonnene:
+    * ToDo - Oppgaver: Her la vi inn små oppgaver som vi måtte løse, f.eks: lage et klassediagram.
+    * Planlegging: Her la vi inn møter, planer f.eks: Planlegge muntlig presentasjon.
+    * Aktive Oppgaver: Her flyttet vi oppgaver fra ToDo listen til denne kolonnen når vi begynte på en oppgave, slik ungikk vi å evt jobbe med samme oppgave samtidig.
+    * Bugs i spillet: Her oppdaterte og la vi inn bugs som vi fant i spillet.
+    * Utbedret/ fjernet bugs: Her flytte (samt modifiserte teksten til kortet) over fra bugs i spillet til denne kolonnen hvis vi fikk utbedret eller fjernet buggen som var i spillet.
+    * Ferdig: Her flyttet vi over alle aktive oppagver som var blitt gjort ferdig til denne kolonnen.
 * Utvikling og arbeidsflyt:
 * Identifisere og håntdere ufoutsette hendelser:
-* Prosjektplaner:
-* Evaluering av prosess:
+  * Vi valget å ha en nestleder slik at hvis teamlead var borte, eller ikke hadde tid til møte så kunne nestleder steppe inn og ta ansvar for å planlegge møte med resten av gruppa som normalt.
+  * Når det kommer til selve prosjektet og ufoutsette hendelser, vi valgte å møtes jevnlig og merge commite de vi hadde jobbet med slik at vi da kunne sammen gå gjennom de nye vi hadde lagt til å sjekke at alt funket så de skulle.
+* Evaluering av prosjektmetodikk:
+  * Vi syntes at bruk av kaban ved hjelp av Trello har funket fint.
+  * Vi var litt dårlig i starten å bruke Trello som gjorde at vi av og til jobbet med samme filer og prøve å løse samme oppgaver, vi ser her at hvis vi hadde brukt Kaban mer aktivt i start så ville vi nokk sluppet at flere jobbet med samme filer. En god læring å ta med seg videre.
+  * Vi ble bedre utover mot slutten av prosjektet å legge inn oppaver vi jobbet med, slik at vi ungikk å jobbe med samme filer.
+  * Vi gikk og mer over til parprogrammering og satt mye i discord alle sammen og jobbet ilag. Dette syntes vi fungerte veldig fint, vi har alle kunnskap om forskjellige ting og de å jobbe sammen gjør at man får et ferskt blikk på oppgaver.
 
 ## Brukerhistorie
 ToDo:
@@ -102,7 +110,8 @@ ToDo:
 * Start skjerm ved oppstart og en game-over skjerm ved død og game-won skjerm ved å nå flaggstangen.
 
 ## Prototype-versjon
-* 
+* Spill figur:
+  * e 
 
 ## Early access-versjon:
 * Spill figur:

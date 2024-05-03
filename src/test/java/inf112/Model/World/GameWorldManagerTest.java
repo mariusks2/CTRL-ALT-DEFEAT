@@ -1,8 +1,7 @@
-package inf112.Model.MakeMap;
+package inf112.Model.World;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,22 +15,24 @@ import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3NativesLoader;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 
-import inf112.Model.World.GameWorldManager;
-import inf112.View.Scenes.Display;
-import inf112.View.Screens.ShowGame;
+import inf112.Controller.MegaMariusController;
+import inf112.Model.Entities.Item;
+import inf112.Model.Entities.ItemDef;
+import inf112.Model.Entities.Blocks.Pessi;
+import inf112.Model.Entities.Enemies.Enemy;
+import inf112.Model.MakeMap.MakeMap;
+import inf112.Model.app.Marius;
+import inf112.Model.app.MegaMarius;
 
-public class makeMapTest {
-    
-    MakeMap makeMap;
-    TmxMapLoader mapLoader;
+public class GameWorldManagerTest {
     String fileName = "MapAndTileset/level1.tmx";
     GL20 gl;
     TextureAtlas textureAtlas;
@@ -53,15 +54,48 @@ public class makeMapTest {
         //Mock Gdx
         Gdx.app = app;
         Gdx.gl = gl;
-        
-        new HeadlessApplication(listener, config);
+        MegaMarius megaMarius = new MegaMarius();
+        new HeadlessApplication(megaMarius, config);
         textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
         gameWorldManager = new GameWorldManager(fileName, textureAtlas);       
-        makeMap = new MakeMap(gameWorldManager.getWorld(), gameWorldManager.getMap(), textureAtlas, gameWorldManager);
 	}
+
     @Test
-    void getEnemiesTest(){
-        assertNotNull(makeMap.getEnemies());
+    void setPlayer() {
+        gameWorldManager.setPlayer(mock(Marius.class));
+    }
+
+    @Test
+    void updateTest() {
+        gameWorldManager.setPlayer(mock(Marius.class));
+        gameWorldManager.update(0);
+    }
+
+
+    @Test
+    void handleSpawningItemsTest() {
+        gameWorldManager.handleSpawningItems();
+    }
+
+    @Test
+    void disposeTest() {
+        gameWorldManager.dispose();
+    }
+
+    @Test
+    void getEnemies() {
+        gameWorldManager.getEnemies();
+    }
+    
+    @Test
+   void getItemsTest() {
+        gameWorldManager.spawnItems(mock(ItemDef.class));
+        gameWorldManager.getItems();
+    }
+
+    @Test
+    void spawnItemsTest() {
+        gameWorldManager.spawnItems(mock(ItemDef.class));
     }
 
     @AfterAll

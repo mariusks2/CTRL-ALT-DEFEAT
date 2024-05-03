@@ -75,7 +75,6 @@ public class MariusTest {
         textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
 		gameWorldManager = new GameWorldManager(fileName, textureAtlas);
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
-		//when(cScreen.getWorldManager()).thenReturn(gameWorldManager);
         marius = new Marius(cScreen, gameWorldManager.getWorld());
 	}
 

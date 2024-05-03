@@ -2,15 +2,17 @@ package inf112.Model.Entities.Enemies;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 
-import inf112.View.Screens.ShowGame;
+
 import inf112.Model.app.Marius;
 import inf112.Model.app.MegaMarius;
 
@@ -40,6 +42,7 @@ public class Turtle extends Enemy {
     // State control variables
     private boolean setToDestroy;
     private boolean destroyed;
+    private TextureAtlas atlas;
 
     // Constants
     public static final int KICK_LEFT = -2;
@@ -52,13 +55,14 @@ public class Turtle extends Enemy {
      * @param x float x.
      * @param y float y.
      */
-    public Turtle(ShowGame screen, float x, float y) {
-        super(screen, x, y);
+    public Turtle(World world, TextureAtlas atlas, float x, float y) {
+        super(world, x, y);
         frames = new Array<TextureRegion>();
-        frames.add(new TextureRegion(screen.getAtlas().findRegion("turtle"), 0, 0, 16, 24));
-        frames.add(new TextureRegion(screen.getAtlas().findRegion("turtle"), 16, 0, 16, 24));
-        shell = new TextureRegion(screen.getAtlas().findRegion("turtle"), 64, 0, 16, 24);
-        walkAnimation = new Animation(0.2f, frames);
+        this.atlas = atlas;
+        frames.add(new TextureRegion(atlas.findRegion("turtle"), 0, 0, 16, 24));
+        frames.add(new TextureRegion(atlas.findRegion("turtle"), 16, 0, 16, 24));
+        shell = new TextureRegion(atlas.findRegion("turtle"), 64, 0, 16, 24);
+        walkAnimation = new Animation<TextureRegion>(0.2f, frames);
         currentState = prevState = State.WALKING;
         setBounds(getX(), getY(), 16 / MegaMarius.PPM, 24 / MegaMarius.PPM);
         setToDestroy = false;

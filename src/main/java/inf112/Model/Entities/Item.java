@@ -26,9 +26,8 @@ public abstract class Item extends Sprite{ //Abstract class for enemies.
      * @param x x position
      * @param y y position
      */
-    public Item(ShowGame screen, float x, float y){
-        this.world = screen.getWorld();
-        this.screen = screen;
+    public Item(World world, float x, float y){
+        this.world = world;
         setPosition(x, y);
         defineItem();
         setBounds(getX(), getY(), 16 / MegaMarius.PPM, 16 / MegaMarius.PPM);

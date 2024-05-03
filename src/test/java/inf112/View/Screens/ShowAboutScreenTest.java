@@ -1,7 +1,6 @@
 package inf112.View.Screens;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -17,7 +16,6 @@ import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3NativesLoader;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.physics.box2d.Box2D;
@@ -27,7 +25,6 @@ import inf112.View.Scenes.Display;
 import inf112.View.ScreenManagement.ScreenManager;
 
 public class ShowAboutScreenTest {
-    RectangleMapObject object;
     TmxMapLoader mapLoader;
     String fileName = "MapAndTileset/level1.tmx";
     TiledMap map;
@@ -61,8 +58,6 @@ public class ShowAboutScreenTest {
 	
         // Initialize Box2D
         MegaMarius megaMarius = (MegaMarius) headlessApplication.getApplicationListener();
-        mapLoader = new TmxMapLoader();
-        map = mapLoader.load(fileName);
 		megaMarius.createTest((mock(SpriteBatch.class)));
         sGame = new ShowAboutScreen(megaMarius, ScreenManager.getInstance());
         ScreenManager.getInstance().initialize(megaMarius);

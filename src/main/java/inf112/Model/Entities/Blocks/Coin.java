@@ -2,12 +2,15 @@ package inf112.Model.Entities.Blocks;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.World;
+
 import inf112.Model.Entities.InteractiveTileObj;
 import inf112.Model.Entities.ItemDef;
+import inf112.Model.World.GameWorldManager;
 import inf112.View.Scenes.Display;
-import inf112.View.Screens.ShowGame;
 import inf112.Model.app.Marius;
 import inf112.Model.app.MegaMarius;
 
@@ -27,14 +30,16 @@ public class Coin extends InteractiveTileObj{
     private final int COIN = 66;
     private AssetManager manager;
     private Music music;
+    private GameWorldManager worldManager;
 
     /**
      * Constructor for coin
      * @param screen Game screen
      * @param object The map
      */
-    public Coin(ShowGame screen, MapObject object){
-        super(screen, object);
+    public Coin(World world,TiledMap map, MapObject object, GameWorldManager worldManager){
+        super(world, map, object);
+        this.worldManager = worldManager;
         tileSet = map.getTileSets().getTileSet("customtileset");
         fixture.setUserData(this);
         setCategoryFilter(MegaMarius.COIN_BIT); //Set the block to Coin bit.
@@ -57,7 +62,7 @@ public class Coin extends InteractiveTileObj{
             
             Display.updateScore(200); //Add score
             if(object.getProperties().containsKey("pessi")){ //if the property is pessi, spawn pessi. if not spawn a coin
-                screen.spawnItems(new ItemDef(new Vector2(body.getPosition().x, body.getPosition().y + 16/MegaMarius.PPM), Pessi.class));
+                worldManager.spawnItems(new ItemDef(new Vector2(body.getPosition().x, body.getPosition().y + 16/MegaMarius.PPM), Pessi.class));
                 music = manager.get("audio/music/pessi.wav", Music.class);
                 music.setVolume(0.12f);
                 music.play(); // Comment this out to stop music from playing

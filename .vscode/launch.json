@@ -9,6 +9,13 @@
             "name": "Main",
             "request": "launch",
             "mainClass": "inf112.Model.app.Main",
+            "projectName": "MEGAMARIUS"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "inf112.Model.app.Main",
             "projectName": "gdx-app"
         },
         {

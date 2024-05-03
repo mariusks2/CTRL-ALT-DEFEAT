@@ -2,15 +2,17 @@ package inf112.Model.Entities.Enemies;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 
-import inf112.View.Screens.ShowGame;
+
 import inf112.Model.app.Marius;
 import inf112.Model.app.MegaMarius;
 
@@ -34,6 +36,7 @@ public class Spider extends Enemy{
     // State control variables
     private boolean setToDestroy;
     private boolean destroyed;
+    private TextureAtlas atlas;
     
     /**
      * Constructs a Spider object with given screen, x and y values.
@@ -42,11 +45,12 @@ public class Spider extends Enemy{
      * @param x pos x.
      * @param y pos y.
      */
-    public Spider(ShowGame screen, float x, float y) {
-        super(screen, x, y);
+    public Spider(World world,TextureAtlas atlas ,float x, float y) {
+        super(world, x, y);
         frames = new Array<TextureRegion>();
+        this.atlas = atlas;
         for (int i = 0; i < 2; i++) { //For loop for animation. Goomba is changed in the file to a spider.
-            frames.add(new TextureRegion(screen.getAtlas().findRegion("spider"), i *16, 0,16,16));
+            frames.add(new TextureRegion(atlas.findRegion("spider"), i *16, 0,16,16));
         }
         walkAnimation = new Animation<>(0.4f, frames);
         stateTime = 0;
@@ -65,7 +69,7 @@ public class Spider extends Enemy{
         if (setToDestroy && !destroyed) {
             world.destroyBody(b2body);
             destroyed = true;
-            setRegion(new TextureRegion(screen.getAtlas().findRegion("spider"),32, 0, 16, 16));
+            setRegion(new TextureRegion(atlas.findRegion("spider"),32, 0, 16, 16));
             stateTime = 0;
         }
         else if (!destroyed){

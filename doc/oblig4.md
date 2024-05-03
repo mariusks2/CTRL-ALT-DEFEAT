@@ -74,30 +74,97 @@
   - Verden er større enn skjermen, og viewet beveger seg vertikalt som følger bevegelsen til spill figuren.
 
 ## Prosjektmetodikk
-ToDo:
+* Mål: 
+  * Utvikle et spill kalt "Mega Marius" som følger et gitt konspet og oppnår en viss funksjonalitet i en hver utviklingsfase.
+* Faser:
+    * Fase 1:
+    * 
+* Metodikk:
+  *  
+* Faser:
+* Roller:
+* Utvikling og arbeidsflyt:
+* Identifisere og håntdere ufoutsette hendelser:
+* Prosjektplaner:
+* Evaluering av prosess:
 
 ## Brukerhistorie
 ToDo:
 
-## MVP (Ferdig):
-* Vise et spillebrett
-* Vise spiller på spillebrett
-* Flytte spiller ved å bruke tastene
-* Spiller interagerer med terreng
-* Vise fiender/monstre; de skal interagere med terreng og spiller
-* Spiller kan dø (ved kontakt med fiender, eller ved å falle utfor skjermen)
-* Mål for spillbrett, å komme i mål uten å dø
-* Start-skjerm ved oppstart / game over
+## MVP:
+* Vise et map.
+* Vise spill figuren på mappet.
+* Styre spill figuren slik at den kan gå til høyre, venstre og hoppe.
+* Spill figur har kollisjon med blokker som vises på mappet.
+* Vise en fiende; de skal ha kollisjon med både mappet og spill figuren.
+* Spill figuren kan dø (ved kollisjon med fiender, eller ved å falle utenfor mappet)
+* Målet med spillet er å komme til enden av mappet (som er vist med en flaggstang) uten å dø.
+* Start skjerm ved oppstart og en game-over skjerm ved død og game-won skjerm ved å nå flaggstangen.
 
-## Early access-version (Dette er de vi har lagt til):
-* Power up (Marius kan drikke pepsi og vokse seg stor)
-* To fiender (en edderkopp og et pepsi turtle som kan dø og drepe marius)
-* Musikk
-* Et nytt map
-* oppdatert pixel art
-* Restruktur
-* Tester
-* Main menu og Help menu
+## Prototype-versjon
+* 
+
+## Early access-versjon:
+* Spill figur:
+  * Fikset hastihet slik at spillet kjøres likt på ulike maskiner (litt buggy på noen fortsatt).
+  * Endre farge på spriten til spill figuren.
+* Power-ups: 
+  * Pessi (Ny), Pessi boks som spill figur kan "drikke", figuren blir da større og kan ødelegge "bricks".
+* Fiender: 
+  * Edderkopp (endret design), fiende som beveger seg til høyre og venstre (retning endres ved kollisjon), kan drepe spill figur eller bli drept ved å bli hoppet på av spill figur.
+  * Skilpadde (Ny), en ny skilpadde fiende som hvis truffet av spill figur i hode blir gjort om til et skall so kan bevege seg til høyre og venstre og drep spill figur og andre fiender ved kollisjon.
+* Musikk: 
+  * Spill musikk (Ny), Lagd inn musikk som kjører i en loop når spillet starter.
+* Maps: 
+  * Level 1, map som er "easy" vansklighets grad.
+  * Level 2 (Nytt map) map some er "hard" vansklighets grad.
+* Sprites: 
+  * Endret design på spill figur.
+  * Endre design på noen av blokkene som er på mappet.
+  * Lagt inn nye sprites som vises på mappet
+* Fil struktur: 
+  * Endre litt på mappe stuktur
+  * Fjernet ubrukt kode og lag litt javadoc.
+* Tester: 
+ * Vi har laget et par basic tester, ikke fått til avanserte tester enda.
+ * Ikke automatiserte tester, kunn manuelle.
+* Menyer: 
+  * Start meny (ny), viser et fremside bilde med start game knapp, about knapp og help knapp.
+  * About meny (ny), Skal vise info om spillet (ikke skret enda).
+  * Help meny (ny), viser info om hvordan man spiller spillet.
+
+## Releas-versjon
+* Spill figur:
+  * Endret hastigheten på spill figuren.
+  * Endre høyden figuren hopper.
+  * Endre design, og hitbox til spill figuren.
+* Musikk: 
+  * Brick, musikk når brick blir ødelagt av stor spill figur.
+  * Coin, musikk når spill figur kolliderer med coin blokk.
+  * Pessi, musikk når spill figur kolliderer med pessi blokk.
+  * Figur, musikk når spill figur plukker opp pessi boks.
+* Maps: 
+  * Level 1, map som er "easy" vansklighets grad.
+  * Level 2 (modifisert for å gjøre lettere), map som er "medium" vanskelighets grad.
+  * Level 3 (Nytt), lagt til et nytt siste map som er "hard" vanskilghets grad.
+* Sprites: 
+  * Endret design for normal og stor spill figur.
+  * Endret design av noen blokker som blir brukt på mappet.
+  * Fjernet sprites som ikke brukes lenger. 
+  Oppdatert med nytt design på noen av blokkene.
+* Fil stuktur: Restukturert ved å bruke Model, View og Controller.
+* Tester: 
+  * Vi har laget mye tester som er automatiserte og kjører på gitlab i pipelinen (71% coeverage)
+  * Tester både enkle men også 
+* Menyer: 
+  * Start Meny (Modifisert bilde), fremside bilde der man kan trykke på about, help og start game knappene.
+  * Help meny (Modifisert tekst), tekst som forklarer hvordan man spiller spillet.
+  * About meny (Ny), beskriver litt historie om spillet.
+  * Map Select meny (Ny), en meny der man får se et bilde av de ulike mappene og kan trykke på de mappet man vil spillet, er og en scoreboard knap man kan trykke på.
+  * Scoreboard meny (Ny), viser de 5 beste tidene på hvert av de ulike mappene.
+  * Pause meny (ny), lar spiller pause spillet og enten resume spillet, quitte spilet eller gå tilbake til Map select menyen.
+  * Game over skjerm, viser game over tekst man kan trykke esc for å avslutte spillet eller enter for å prøve på nytt.
+  * Game won skjerm, viser game won og lar spiller avslutte, gå tilbake til map select eller forsette til neste map (hvis man er på siste map så blir man sent tilbake til map select)
 
 ## Bugs som vi har funnet:
 * Kan "sveve" ved å spamme hoppe knapp når man treffer en blokk i lufta

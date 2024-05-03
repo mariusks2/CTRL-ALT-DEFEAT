@@ -1,7 +1,6 @@
 package inf112.View.Screens;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -23,14 +22,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
-import com.badlogic.gdx.physics.box2d.World;
 
 import inf112.View.Scenes.Display;
 import inf112.View.Scenes.Score;
 import inf112.View.ScreenManagement.ScreenManager;
-import inf112.View.Screens.ShowScoreboardScreen;
 import inf112.Model.app.MegaMarius;
 
 public class ShowScoreboardScreenTest {
@@ -55,9 +51,6 @@ public class ShowScoreboardScreenTest {
         //Mock Gdx
         Gdx.app = app;
 		gl = mock(GL20.class);
-		when(gl.glCreateShader(anyInt())).thenReturn(1);
-        when(gl.glCreateShader(anyInt())).thenReturn(0);
-        when(gl.glCreateProgram()).thenReturn(-1);
         Gdx.gl = gl; 
         Gdx.gl20 = gl; 
         MegaMarius megaMarius = new MegaMarius(); // Your implementation of ApplicationListener
@@ -75,7 +68,6 @@ public class ShowScoreboardScreenTest {
       
         MegaMarius megaMarius = (MegaMarius) headlessApplication.getApplicationListener();
         
-        World world = new World(new Vector2(0, -10), true);
         display = new Display(mock(SpriteBatch.class));
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);

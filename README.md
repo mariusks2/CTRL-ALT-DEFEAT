@@ -17,7 +17,7 @@ Man kan sjekke scoren sin ved å trykke på scoreboard knappen i map select meny
 
 ## Kjøring
 - Kompileres med `mvn package`.
-- Kjør jar filen (allerede oppretter) med `java -jar ./ctrl-alt-defeat.jar`, evt opprett en ny jar fil.
+- Kjør jar filen (allerede oppretter) med `java -jar .\ctrl-alt-defeat.jar`, evt opprett en ny jar fil.
 - Krever Java 15 eller senere
 
 ## Kjente feil

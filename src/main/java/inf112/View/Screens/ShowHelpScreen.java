@@ -19,7 +19,6 @@ import inf112.Model.app.MegaMarius;
  */
 public class ShowHelpScreen implements Screen, InputHandler{
 
-    private MegaMarius megaMariusGame; //Main game object
     private Viewport viewport; //Viewport for handling screen rendering
     private Stage stage; //Stage to render UI components
     private Texture backgroundImage; //Background image for the hekp screen
@@ -30,7 +29,6 @@ public class ShowHelpScreen implements Screen, InputHandler{
      * @param megaMariusGame The main game object to enable screen changes
      */
     public ShowHelpScreen (MegaMarius megaMariusGame, IScreenFactory screenService){
-        this.megaMariusGame=megaMariusGame;
         this.viewport=new FitViewport(MegaMarius.M_Width,MegaMarius.M_Height, new OrthographicCamera());
         this.stage=new Stage(viewport,megaMariusGame.getSpriteBatch());
         this.backgroundImage = new Texture("Screens/help-screen.png");

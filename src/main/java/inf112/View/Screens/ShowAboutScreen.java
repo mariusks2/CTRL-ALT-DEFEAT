@@ -21,7 +21,6 @@ import inf112.Model.app.MegaMarius;
  */
 public class ShowAboutScreen implements Screen, InputHandler {
 
-    private MegaMarius megaMariusGame; //The main game object
     private Viewport viewport; //Manages how the screen is displayed
     private Stage stage; //Holds UI elements for the screen
     private Texture backgroundImage; //The graphical texture for the screens background image
@@ -32,7 +31,6 @@ public class ShowAboutScreen implements Screen, InputHandler {
      * @param megaMariusGame The main game object to enable screen changes. 
      */
     public ShowAboutScreen (MegaMarius megaMariusGame, IScreenFactory screenService){
-        this.megaMariusGame = megaMariusGame;
         this.viewport = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());
         this.stage = new Stage(viewport,megaMariusGame.getSpriteBatch());
         this.backgroundImage = new Texture("Screens/about-screen.png");

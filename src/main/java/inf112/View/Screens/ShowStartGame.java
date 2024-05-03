@@ -21,7 +21,6 @@ import inf112.Model.app.MegaMarius;
  */
 public class ShowStartGame implements Screen, InputHandler {
 
-    private MegaMarius megaMariusGame; //Reference to the main game object for transition between screens
     private Viewport viewport; //Manages how content is displayed
     private Stage stage; //Stage to hold UI elements for this screen
     private Texture backgroundImage; //Background image for the start screen
@@ -32,7 +31,6 @@ public class ShowStartGame implements Screen, InputHandler {
      * @param megaMariusGame The main game object to enable screen changes
      */
     public ShowStartGame(MegaMarius megaMariusGame, IScreenFactory screenService) {
-        this.megaMariusGame = megaMariusGame;
         this.viewport = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());
         this.stage = new Stage(viewport, megaMariusGame.getSpriteBatch());
         this.backgroundImage = new Texture("src/main/resources/Screens/start-screen.png");

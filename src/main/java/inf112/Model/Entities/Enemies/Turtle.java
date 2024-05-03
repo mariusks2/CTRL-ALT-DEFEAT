@@ -42,7 +42,6 @@ public class Turtle extends Enemy {
     // State control variables
     private boolean setToDestroy;
     private boolean destroyed;
-    private TextureAtlas atlas;
 
     // Constants
     public static final int KICK_LEFT = -2;
@@ -58,7 +57,6 @@ public class Turtle extends Enemy {
     public Turtle(World world, TextureAtlas atlas, float x, float y) {
         super(world, x, y);
         frames = new Array<TextureRegion>();
-        this.atlas = atlas;
         frames.add(new TextureRegion(atlas.findRegion("turtle"), 0, 0, 16, 24));
         frames.add(new TextureRegion(atlas.findRegion("turtle"), 16, 0, 16, 24));
         shell = new TextureRegion(atlas.findRegion("turtle"), 64, 0, 16, 24);

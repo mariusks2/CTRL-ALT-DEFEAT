@@ -21,7 +21,6 @@ import inf112.Model.app.MegaMarius;
 
 public class ShowScoreboardScreen implements Screen, InputHandler {
 
-    private MegaMarius megaMariusGame;
     private Texture backgroundImage;
     private ArrayList<Score> scoreboardList;
     private Viewport viewport;
@@ -30,7 +29,6 @@ public class ShowScoreboardScreen implements Screen, InputHandler {
     private IScreenFactory screenService; 
 
     public ShowScoreboardScreen(MegaMarius megaMariusGame, IScreenFactory screenService) {
-        this.megaMariusGame = megaMariusGame;
         this.scoreboardList = new ArrayList<Score>();
         this.backgroundImage = new Texture("Screens/scoreboard-screen.png");
         this.viewport = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());

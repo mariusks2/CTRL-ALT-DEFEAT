@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Collections;
@@ -142,13 +143,23 @@ public class ShowScoreboardScreen implements Screen, InputHandler {
     public void handleInput() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
             screenService.showMapSelectScreen();
-            dispose();
         }
+        if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
+            Vector2 clickPosition = new Vector2(Gdx.input.getX(), Gdx.input.getY());
+            viewport.unproject(clickPosition);
+            checkButtonPress(clickPosition, screenService);
+            
+        }
+        dispose();
     }
 
 
     @Override
     public void checkButtonPress(Vector2 clickPosition, IScreenFactory screenService) {
-        //Not used for scoreboard screen
+         // Defines the bounding box where back arrow is located
+         Rectangle backBounds = new Rectangle(6, 197,35 , 8);
+         if (backBounds.contains(clickPosition)) {
+             screenService.showMapSelectScreen();
+         }
     }
 }

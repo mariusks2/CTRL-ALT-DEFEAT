@@ -97,7 +97,27 @@
   * Vi gikk og mer over til parprogrammering og satt mye i discord alle sammen og jobbet ilag. Dette syntes vi fungerte veldig fint, vi har alle kunnskap om forskjellige ting og de å jobbe sammen gjør at man får et ferskt blikk på oppgaver.
 
 ## Brukerhistorie
-ToDo:
+Her er en liste over et par brukerhistorer som vi har tatt utgangspunkt i når vi har jobbet gjennom prosjektet, samt når nye ting blir implementert:
+
+Eksempel 1:
+- Brukerhistorie: Som spiller ønsker jeg at spill figuren skal kunne hoppe.
+- Akseptansekriterie: Spiller skal kunne trykke på en knapp(pil opp eller w) og da kan spill figuren hoppe.
+
+Eksempel 2:
+- Brukerhistorie: Som spiller ønsker jeg at spill figuren skal kunne bevege seg.
+- Akseptansekriterie: Spiller skal kunne trykke på knapper (pil vensstre, pil høyre) og da vil spill figuren bevege seg til høyre eller venstre.
+
+Eksempel 3:
+- Brukerhistorie: Som spiller ønsker jeg at spillet skal ha en fiende som skal kunne skade spill figuren.
+- Akseptansekriterie: Spiller skal kunne bli skadet av en fiende (edderkopp eller skilpadde) ved å kollisjon, da vil spill figuren kunne bli skadet og dø.
+
+Eksempel 4:
+- Brukerhistorie: Som spiller ønsker jeg at spillet skal ha musikk og lyd slik at man kan høre at man plukker opp eller interagerer med objekter i spillet.
+- Akseptansekriterie: Spiller skal kunne høre musikk i spillet samt lyder når spiller interagerer med objekter.
+
+Eksempel 5:
+- Brukerhistorie: Som spiller ønsker jeg at spillet skal ha ulike menyer slik at jeg kan velge å: lese mer om spillet, lese hvordan man spiller, velge ulike maps, sjekke scoren min og en pause meny mens jeg spiller.
+- Akseptansekriterie: Spiller vil kunne lese mer om hvordan man spiller (about meny, knapp i start meny), lese hvordan man spiller (help meny, knapp i start meny), velge maps (map select meny), sjekke scoren sin (scoreboard meny, scorebaord knapp i map select) og pause spillet (pause meny, ved å trykke "esc").
 
 ## MVP:
 * Vise et map.
@@ -111,7 +131,20 @@ ToDo:
 
 ## Prototype-versjon
 * Spill figur:
-  * e 
+  * Lagd til sprites for figuren.
+  * Lagd til bevegelse, kollisjon etc.
+* Fiender:
+  * Edderkopp (Ny), 
+* Maps:
+  * Level 1 (Ny), Map som er "easy" i vansklighets grad.
+* Sprites:
+  * Lagt til sprites for spill figur og endret på farge.
+  * Lagt til sprites for blokker på mappet og endre på noen av de.
+* Tester
+  * Ingen tester.
+* Menyer:
+  * Game over Skjerm (Ny) (Vises ved død, men også når man vinner).
+  * Per nå starter spillet automatisk, med ingen fremside skjerm/meny.
 
 ## Early access-versjon:
 * Spill figur:
@@ -142,7 +175,7 @@ ToDo:
   * About meny (ny), Skal vise info om spillet (ikke skret enda).
   * Help meny (ny), viser info om hvordan man spiller spillet.
 
-## Releas-versjon
+## Releas-versjon (Gjeldende versjon)
 * Spill figur:
   * Endret hastigheten på spill figuren.
   * Endre høyden figuren hopper.

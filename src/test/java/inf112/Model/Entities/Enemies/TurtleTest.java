@@ -64,9 +64,8 @@ public class TurtleTest {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
 		ApplicationListener listener = new ApplicationAdapter() {
 		};
-
-        
         new HeadlessApplication(listener, config);
+        //make mock and classes to use for testing
         cScreen = mock(ShowGame.class);
         textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
         display = new Display(mock(SpriteBatch.class));

@@ -65,6 +65,7 @@ public class PessiTest {
 		};
         
         new HeadlessApplication(new MegaMarius(), config);
+        //make mock and classes to use for testing
         ShowGame cScreen = mock(ShowGame.class);
         display = new Display(mock(SpriteBatch.class));
         textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");

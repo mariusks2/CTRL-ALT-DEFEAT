@@ -57,8 +57,7 @@ public class ShowGameOverTest {
 	 */
 	@BeforeEach
 	void setUpBeforeEach() {
-	
-        // Initialize Box2D
+        //make mock and classes to use for testing
         MegaMarius megaMarius = (MegaMarius) headlessApplication.getApplicationListener();
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);

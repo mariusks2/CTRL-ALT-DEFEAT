@@ -62,6 +62,7 @@ public class ShowHelpScreenTest {
 	 */
 	@BeforeEach
 	void setUpBeforeEach() {
+        //make mock and classes to use for testing
         MegaMarius megaMarius = (MegaMarius) headlessApplication.getApplicationListener();
         display = new Display(mock(SpriteBatch.class));
         mapLoader = new TmxMapLoader();

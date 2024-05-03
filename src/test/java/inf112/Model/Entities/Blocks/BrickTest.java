@@ -62,7 +62,6 @@ public class BrickTest {
         mapLoader = new TmxMapLoader();
         gameWorldManager = new GameWorldManager(fileName, textureAtlas);
         map = gameWorldManager.getMap();
-        when(cScreen.getWorldManager()).thenReturn(gameWorldManager);
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
         when(cScreen.getDisplay()).thenReturn(display);
         object = new RectangleMapObject();

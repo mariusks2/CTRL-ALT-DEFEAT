@@ -336,8 +336,5 @@ public class ShowGame implements Screen, InputHandler{
     public void checkButtonPress(Vector2 clickPosition, IScreenFactory screenService) {
         //Not needed in showgame
     }
-    public GameWorldManager getWorldManager(){
-        return worldManager;
-    }
 }
 

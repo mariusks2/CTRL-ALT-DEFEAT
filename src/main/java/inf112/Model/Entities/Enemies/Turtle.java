@@ -12,7 +12,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 
-import inf112.View.Screens.ShowGame;
+
 import inf112.Model.app.Marius;
 import inf112.Model.app.MegaMarius;
 

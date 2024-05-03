@@ -11,7 +11,6 @@ import inf112.Model.Entities.InteractiveTileObj;
 import inf112.Model.Entities.ItemDef;
 import inf112.Model.World.GameWorldManager;
 import inf112.View.Scenes.Display;
-import inf112.View.Screens.ShowGame;
 import inf112.Model.app.Marius;
 import inf112.Model.app.MegaMarius;
 

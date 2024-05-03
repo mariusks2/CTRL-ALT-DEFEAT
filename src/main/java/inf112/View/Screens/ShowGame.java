@@ -1,7 +1,5 @@
 package inf112.View.Screens;
 
-import java.util.concurrent.LinkedBlockingQueue;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -12,32 +10,20 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 //import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer; Uncomment to show hitbox
-import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-
-
 import inf112.Model.app.MegaMarius;
-import inf112.Controller.MegaMariusControllable;
-import inf112.Controller.MegaMariusController;
 import inf112.Model.Entities.Item;
-import inf112.Model.Entities.ItemDef;
-import inf112.Model.Entities.Blocks.Pessi;
 import inf112.Model.Entities.Enemies.Enemy;
 import inf112.View.Scenes.Display;
 import inf112.View.ScreenManagement.IScreenFactory;
-import inf112.Model.MakeMap.MakeMap;
 import inf112.Model.World.GameWorldManager;
 import inf112.Model.app.Marius;
 import inf112.Model.app.WorldContactListener;
@@ -48,7 +34,7 @@ import inf112.Model.app.WorldContactListener;
 public class ShowGame implements Screen, InputHandler{
     private MegaMarius game; //Reference to the main game object
     private TextureAtlas atlas; //Contains textures related to characters
-    private OrthographicCamera camera; //
+    private OrthographicCamera camera; 
     private Viewport gamePort; //Mangages how content is displayed
     private Display display; //UI display for the game
     private Stage uiStage;
@@ -61,22 +47,13 @@ public class ShowGame implements Screen, InputHandler{
 
     //For creating a grayed out screen when the game is won
     private ShapeRenderer shapeRenderer;
-
-    //Renderer for the tiled map
-    private TmxMapLoader mapLoader; //Loads the chosen map
-    private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
     
-    private World world; //Represents the physical world within the game
-    private MakeMap creator; //Creating the map
 
     private Marius player; //The players character
 
     private Music music; //Background music for the game
-    private Array<Item> items; //Items present in the game
-    public LinkedBlockingQueue<ItemDef> itemsToSpawn; //items needed to be spawned
     public String fileName; //Name of the current map file
-    private Box2DDebugRenderer b2dr;
 
     private IScreenFactory screenService;
     private GameWorldManager worldManager;
@@ -93,7 +70,6 @@ public class ShowGame implements Screen, InputHandler{
         player = new Marius(this,worldManager.getWorld());
         worldManager.setPlayer(player);
         
-        
         this.game = game;
         
         camera = new OrthographicCamera();
@@ -104,12 +80,7 @@ public class ShowGame implements Screen, InputHandler{
         renderer = new OrthogonalTiledMapRenderer(worldManager.getMap(), 1  / MegaMarius.PPM);
         camera.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2, 0);
 
-    
-
-        b2dr = new Box2DDebugRenderer();
-
-        
-
+        //Screenhandler
         this.screenService = screenService;
 
         worldManager.getWorld().setContactListener(new WorldContactListener());
@@ -148,8 +119,9 @@ public class ShowGame implements Screen, InputHandler{
         uiStage.addActor(completedDescriptionLabel);
 
       
-
+        //To get the next map
         this.mapSelect = new ShowMapSelect(game,screenService);
+        //USed for drawing a gray ovelay of the screen
         this.shapeRenderer = new ShapeRenderer();
     }
   
@@ -324,9 +296,8 @@ public class ShowGame implements Screen, InputHandler{
      */
     @Override
     public void dispose() {
-        map.dispose();
         renderer.dispose();
-        world.dispose();
+        worldManager.dispose();
         if(!Marius.getGameWon())
             display.dispose();
     }
@@ -363,6 +334,5 @@ public class ShowGame implements Screen, InputHandler{
     public void checkButtonPress(Vector2 clickPosition, IScreenFactory screenService) {
         //Not needed in showgame
     }
-
 }
 

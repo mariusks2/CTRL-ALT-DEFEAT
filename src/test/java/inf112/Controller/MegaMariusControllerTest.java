@@ -51,16 +51,17 @@ public class MegaMariusControllerTest {
 
         // Initialize Box2D
         Box2D.init();
-        HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-		ApplicationListener listener = new ApplicationAdapter() {
-		};
-		MegaMarius megaMarius = new MegaMarius();
         gl = mock(GL20.class);
         Application app = mock(Application.class);
         //Mock Gdx
         Gdx.app = app;
         Gdx.gl = gl;
 		Gdx.gl20 = gl;
+        HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
+		ApplicationListener listener = new ApplicationAdapter() {
+		};
+		MegaMarius megaMarius = new MegaMarius();
+        
         
         new HeadlessApplication(megaMarius, config);
 		megaMarius.setSpriteBatch(mock(SpriteBatch.class));

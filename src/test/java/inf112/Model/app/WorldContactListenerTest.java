@@ -53,10 +53,10 @@ public class WorldContactListenerTest {
         Box2D.init();
         Application app = mock(Application.class);
         Gdx.app = app;
-        HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-		gl = mock(GL20.class);
+        gl = mock(GL20.class);
         Gdx.gl = gl; 
         Gdx.gl20 = gl; 
+        HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
         MegaMarius megaMarius = new MegaMarius();
         HeadlessApplication headlessApplication = new HeadlessApplication(megaMarius, config);
     }

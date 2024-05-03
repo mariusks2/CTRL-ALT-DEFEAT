@@ -45,11 +45,11 @@ public class ShowStartGameTest {
         //mock and start gdx for tests
         Lwjgl3NativesLoader.load();
         Box2D.init();
-        HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
         app = mock(Application.class);
         Gdx.app = app;
 		gl = mock(GL20.class);
         Gdx.gl = gl; 
+        HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
         MegaMarius megaMarius = new MegaMarius(); // Your implementation of ApplicationListener
 
         headlessApplication = new HeadlessApplication(megaMarius, config);

@@ -33,6 +33,7 @@ import inf112.Model.World.GameWorldManager;
 import inf112.View.Scenes.Display;
 import inf112.View.Screens.ShowGame;
 import inf112.Model.app.Marius;
+import inf112.Model.app.MegaMarius;
 
 public class SpiderTest {
     Spider spider;
@@ -57,18 +58,16 @@ public class SpiderTest {
 
         // Initialize Box2D
         Box2D.init();
-        HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-		ApplicationListener listener = new ApplicationAdapter() {
-		};
-        // Provide a stub for glGenTexture() method to avoid further issues
-        // Provide a stub for glGenTexture() method to avoid further issues
         gl = mock(GL20.class);
         Application app = mock(Application.class);
         //Mock Gdx
         Gdx.app = app;
         Gdx.gl = gl;
+        HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
+		ApplicationListener listener = new ApplicationAdapter() {
+		};
         
-        new HeadlessApplication(listener, config);
+        new HeadlessApplication(new MegaMarius(), config);
         cScreen = mock(ShowGame.class);
         display = new Display(mock(SpriteBatch.class));
         mapLoader = new TmxMapLoader();

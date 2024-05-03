@@ -46,14 +46,15 @@ public class GameWorldManagerTest {
 
         // Initialize Box2D
         Box2D.init();
-        HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-		ApplicationListener listener = new ApplicationAdapter() {
-		};
         gl = mock(GL20.class);
         app = mock(Application.class);
         //Mock Gdx
         Gdx.app = app;
         Gdx.gl = gl;
+        HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
+		ApplicationListener listener = new ApplicationAdapter() {
+		};
+        
         MegaMarius megaMarius = new MegaMarius();
         new HeadlessApplication(megaMarius, config);
         textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");

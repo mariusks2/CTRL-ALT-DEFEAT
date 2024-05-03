@@ -56,16 +56,15 @@ public class TurtleTest {
 
         // Initialize Box2D
         Box2D.init();
-        HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-		ApplicationListener listener = new ApplicationAdapter() {
-		};
-        // Provide a stub for glGenTexture() method to avoid further issues
-        // Provide a stub for glGenTexture() method to avoid further issues
         gl = mock(GL20.class);
         Application app = mock(Application.class);
         //Mock Gdx
         Gdx.app = app;
         Gdx.gl = gl;
+        HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
+		ApplicationListener listener = new ApplicationAdapter() {
+		};
+
         
         new HeadlessApplication(listener, config);
         cScreen = mock(ShowGame.class);

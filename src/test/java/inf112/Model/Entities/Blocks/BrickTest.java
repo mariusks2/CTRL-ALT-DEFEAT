@@ -50,14 +50,14 @@ public class BrickTest {
 
         // Initialize Box2D
         Box2D.init();
-        HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-		ApplicationListener listener = new ApplicationAdapter() {
-		};
         gl = mock(GL20.class);
         Application app = mock(Application.class);
         //Mock Gdx
         Gdx.app = app;
         Gdx.gl = gl;
+        HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
+		ApplicationListener listener = new ApplicationAdapter() {
+		};
         MegaMarius megaMarius = new MegaMarius();
         new HeadlessApplication(megaMarius, config);
         //make instances or mocks of classes we need to test

@@ -55,18 +55,16 @@ public class PessiTest {
 
         // Initialize Box2D
         Box2D.init();
-        HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-		ApplicationListener listener = new ApplicationAdapter() {
-		};
-        // Provide a stub for glGenTexture() method to avoid further issues
-        // Provide a stub for glGenTexture() method to avoid further issues
         gl = mock(GL20.class);
         Application app = mock(Application.class);
         //Mock Gdx
         Gdx.app = app;
         Gdx.gl = gl;
+        HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
+		ApplicationListener listener = new ApplicationAdapter() {
+		};
         
-        new HeadlessApplication(listener, config);
+        new HeadlessApplication(new MegaMarius(), config);
         ShowGame cScreen = mock(ShowGame.class);
         display = new Display(mock(SpriteBatch.class));
         textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");

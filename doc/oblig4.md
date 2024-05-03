@@ -119,6 +119,10 @@ Eksempel 5:
 - Brukerhistorie: Som spiller ønsker jeg at spillet skal ha ulike menyer slik at jeg kan velge å: lese mer om spillet, lese hvordan man spiller, velge ulike maps, sjekke scoren min og en pause meny mens jeg spiller.
 - Akseptansekriterie: Spiller vil kunne lese mer om hvordan man spiller (about meny, knapp i start meny), lese hvordan man spiller (help meny, knapp i start meny), velge maps (map select meny), sjekke scoren sin (scoreboard meny, scorebaord knapp i map select) og pause spillet (pause meny, ved å trykke "esc").
 
+Eksempel 6:
+- Brukerhistorie: Som spiller ønsker jeg at spillet skal å se tekst som viser hvilke knapper jeg skal trykke på for å restarte spillet hvis jeg dør.
+- Akseptansekriterie: Spiller skal kunne se tekst som beskriver hvordan man restarter spiller hvis man dør.
+
 ## MVP:
 * Vise et map.
 * Vise spill figuren på mappet.

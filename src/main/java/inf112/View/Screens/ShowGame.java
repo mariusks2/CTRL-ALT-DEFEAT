@@ -93,8 +93,7 @@ public class ShowGame implements Screen, InputHandler{
         this.game = game;
         this.fileName = fileName;
         camera = new OrthographicCamera();
-        gamePort = new StretchViewport(MegaMarius.M_Width / MegaMarius.PPM, MegaMarius.M_Height / MegaMarius.PPM, camera);
-        //gamePort = new FitViewport(MegaMarius.M_Width / MegaMarius.PPM, MegaMarius.M_Height / MegaMarius.PPM, camera);
+        gamePort = new FitViewport(MegaMarius.M_Width / MegaMarius.PPM, MegaMarius.M_Height / MegaMarius.PPM, camera);
         
         display = new Display(game.getSpriteBatch());
 

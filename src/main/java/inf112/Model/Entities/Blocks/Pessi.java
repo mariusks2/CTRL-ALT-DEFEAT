@@ -1,5 +1,7 @@
 package inf112.Model.Entities.Blocks;
 
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
@@ -22,6 +24,8 @@ import inf112.Model.app.MegaMarius;
 */
 public class Pessi extends Item{
     FixtureDef fdef;
+    private AssetManager manager;
+    private Music music;
 
     /**
      * Constructor for Pepsi
@@ -33,6 +37,9 @@ public class Pessi extends Item{
         super(screen, x, y);
         setRegion(screen.getAtlas().findRegion("pessi"));
         velocity = new Vector2(0.6f, 0);
+        manager = new AssetManager();
+		manager.load("audio/music/canopen.wav", Music.class);
+		manager.finishLoading();
     } 
 
     /**
@@ -64,6 +71,10 @@ public class Pessi extends Item{
      */
     @Override
     public void use(Marius marius) {
+        music = manager.get("audio/music/canopen.wav", Music.class);
+        music.setVolume(0.15f);
+        music.play(); // Comment this out to stop music from playin
+
         destroy();
         if(!marius.isMariusBigNow()) marius.grow();
     }

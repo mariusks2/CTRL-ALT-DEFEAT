@@ -221,7 +221,7 @@ Eksempel 5:
 - Vi har laget en "structure.txt" fil som viser strukturern til prosjektet, og vi har ogås laget et "klassediagram.?" som ligger vedlagt i root mappen.
 - Vi har fått laget automatiserte tester som viser coverage, den viser rett over 75%. Tester kan kjøres manuelt i IDE-en eller man kan bruke "mvn test" commandoen i terminalen etter man har "bygget" prosjektet med "mvn compile".
 
-![Cat](testCoverage.jpg)
+![Cat](testCoverage.png)
 
 ## Dette har vi fikset siden sist:
 Vi fant ikke tilbakemeldingene til de tidligere obligen før dagen før innlevering, men heldivis var de ikke alt for mye vi måtte fikse opp i så de gikk fint. Så her er en liste de vi har ordnet oppi fra alle tilbakemeldinger:

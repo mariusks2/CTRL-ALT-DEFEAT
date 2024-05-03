@@ -34,14 +34,14 @@ public abstract class InteractiveTileObj {
     protected Body body;
     protected ShowGame screen;
     protected MapObject object;
-
     protected Fixture fixture;
 
     /**
      * Constructor for interactivetileobj
      * 
-     * @param screen Game screen
-     * @param object The Map
+     * @param world the world
+     * @param map The Map
+     * @param object The colission object
      */
     public InteractiveTileObj(World world, TiledMap map, MapObject object){
         this.object = object;
@@ -63,6 +63,10 @@ public abstract class InteractiveTileObj {
         fixture = body.createFixture(fixtureDef);
     }
 
+    /**
+     * Function for headhit
+     * @param marius the character marius
+     */
     public abstract void HeadHit(Marius marius);
 
     /**

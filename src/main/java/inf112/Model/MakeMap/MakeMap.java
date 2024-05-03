@@ -30,6 +30,13 @@ public class MakeMap {
     private static Array<Enemy> turtles;
     private IEntityFactory entityFactory;
 
+    /** Constructor for making map
+     * defines the collision objects
+     * @param world the wolrd
+     * @param map the map
+     * @param atlas the textures
+     * @param worldManager the world manager
+     */
     public MakeMap(World world, TiledMap map, TextureAtlas atlas, GameWorldManager worldManager){
         BodyDef bodyDef = new BodyDef();
         PolygonShape polygonShape = new PolygonShape();
@@ -84,10 +91,18 @@ public class MakeMap {
             entityFactory.createBlock("Flag", world, map, object, worldManager);
         }
     }
-
+    /**
+     * Function to remove dead turtles from the world
+     * helps with crashing problem
+     * @param turtle the turtle to remove
+     */
     public static void removeTurtle (Turtle turtle){
         turtles.removeValue(turtle,true);
     }
+    /**
+     * Function to get enemies from the enemies array
+     * @return enemies
+     */
     public Array<Enemy> getEnemies(){
         Array<Enemy> enemies = new Array<Enemy>();
         enemies.addAll(spiders);

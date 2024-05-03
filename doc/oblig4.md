@@ -196,7 +196,7 @@ Eksempel 5:
   Oppdatert med nytt design på noen av blokkene.
 * Fil stuktur: Restukturert ved å bruke Model, View og Controller.
 * Tester: 
-  * Vi har laget mye tester som er automatiserte og kjører på gitlab i pipelinen (71% coeverage)
+  * Vi har laget mye tester som er automatiserte og kjører på gitlab i pipelinen (75% coverage)
   * Tester både enkle men også 
 * Menyer: 
   * Start Meny (Modifisert bilde), fremside bilde der man kan trykke på about, help og start game knappene.
@@ -231,7 +231,7 @@ Vi fant ikke tilbakemeldingene til de tidligere obligen før dagen før innlever
 - Vi har lagt inn all javadocs.
 - Vi har oppdatert pom.xml iflen med korrekt prosjektnavn.
 - Vi har fjernet ubrokt kode.
-- Vi har fått 66% test coverage på automatiske tester, og resterende 9% (antar vi) er oppnåd ved manuell og visuell testing.
+- Vi har fått 75% test coverage på automatiske tester, og resterende 9% (antar vi) er oppnåd ved manuell og visuell testing.
 - Vi har også oppdatert prosjektmetodikk og beskrevet bedre hvordan de har fungert osv.
 
 ## Oppsumering

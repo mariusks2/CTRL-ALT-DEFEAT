@@ -119,6 +119,10 @@ import inf112.View.Screens.ShowGame;
 			setRegion(mariusStand);
 		}
 		
+		/**
+		 * 
+		 * @param dt
+		 */
 		public void update(float dt){
 			
 			if(currentState==State.PAUSED){
@@ -152,10 +156,17 @@ import inf112.View.Screens.ShowGame;
 				return false;
 		}
 
+		/**
+		 * 
+		 * @return
+		 */
 		public boolean entityIsDead() {
 			return mariusIsDead;
 		}
 
+		/**
+		 * 
+		 */
 		public void entityDie() {
 			// Check that marius is not already dead
 			if(!entityIsDead()) {
@@ -173,6 +184,11 @@ import inf112.View.Screens.ShowGame;
 			}
 		}
 	
+		/**
+		 * 
+		 * @param dt
+		 * @return
+		 */
 		public TextureRegion getFrame(float dt){
 			// Retrieve marius current state (jumping, running etc..)
 			currentState = getState();
@@ -230,7 +246,11 @@ import inf112.View.Screens.ShowGame;
 			// Return animation frame
 			return animationFrame;
 		}
-	
+		
+		/**
+		 * 
+		 * @return
+		 */
 		public State getState(){
 			//Test to Box2D for velocity on the X and Y-Axis
 			//if mario is going positive in Y-Axis he is jumping... or if he just jumped and is falling remain in jump state
@@ -256,12 +276,18 @@ import inf112.View.Screens.ShowGame;
 			else
 				return State.STANDING;
 		}
-	
+		
+		/**
+		 * 
+		 * @return
+		 */
 		public float getStateTimer(){
 			return stateTimer;
 		}
 	
-
+		/**
+		 * 
+		 */
 		public void jump(){
 			// Jump if not already jumping
 			if (currentState != State.JUMPING) {
@@ -269,7 +295,10 @@ import inf112.View.Screens.ShowGame;
 				currentState = State.JUMPING;
 			}
 		}
-	
+		
+		/**
+		 * 
+		 */
 		public void defineMarius(){
 			BodyDef bdef = new BodyDef();
 			bdef.position.set(32 / MegaMarius.PPM, 32 / MegaMarius.PPM);
@@ -301,6 +330,9 @@ import inf112.View.Screens.ShowGame;
 			b2body.createFixture(fdef).setUserData(this);
 		}
 
+		/**
+		 * 
+		 */
 		public void defineBigMarius(){
 			Vector2 currentPositionMarius =  b2body.getPosition();
 			world.destroyBody(b2body);
@@ -339,22 +371,40 @@ import inf112.View.Screens.ShowGame;
 		}
 
 
+		/**
+		 * 
+		 */
 		public void draw(Batch batch){
 			super.draw(batch);
 		}
 
+		/**
+		 * 
+		 */
 		public static void setGameWon() {
 			gameWon = true;
 		}
 
+		/**
+		 * 
+		 * @return
+		 */
 		public boolean isMariusBigNow(){
 			return isMariusBig;
 		}
 
+		/**
+		 * 
+		 * @return
+		 */
 		public static boolean getGameWon() {
 			return gameWon;
 		}
 
+		/**
+		 * 
+		 * @param enemy
+		 */
 		public void hit(Enemy enemy){
 			if (enemy instanceof Turtle && ((Turtle) enemy).getCurrentState() == Turtle.State.STANDING_SHELL) {
 				((Turtle) enemy).kick(enemy.b2body.getPosition().x > b2body.getPosition().x ? Turtle.KICK_RIGHT : Turtle.KICK_LEFT);
@@ -371,6 +421,9 @@ import inf112.View.Screens.ShowGame;
 			}
 		}
 
+		/**
+		 * 
+		 */
 		public void grow(){
 			music = manager.get("audio/music/powerup.wav", Music.class);
 			music.setVolume(0.005f);
@@ -382,6 +435,9 @@ import inf112.View.Screens.ShowGame;
 			setBounds(getX(), getY(), getWidth(), getHeight()*2);
 		}
 
+		/**
+		 * 
+		 */
 		public void redefineMarius(){
 			Vector2 posistion = b2body.getPosition();
 			world.destroyBody(b2body);
@@ -418,10 +474,18 @@ import inf112.View.Screens.ShowGame;
 			timetoReDefineMarius = false;
 		}
 
+		/**
+		 * 
+		 * @return
+		 */
 		public ShowGame getScreen(){
 			return screen;
 		}
 
+		/**
+		 * Set the current state, save previous state and reset state timer because state has changed.
+		 * @param newState
+		 */
 		public void setCurrentState(State newState) {
 			// Before changing the state, update previousState
 			this.previousState = this.currentState;

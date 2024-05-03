@@ -3,7 +3,9 @@ package inf112.View.Screens;
 import com.badlogic.gdx.math.Vector2;
 
 import inf112.View.ScreenManagement.IScreenFactory;
-
+/**
+ * Interface for implementing functions which handles input on the different screens
+ */
 public interface InputHandler {
 
     /**

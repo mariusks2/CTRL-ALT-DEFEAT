@@ -10,10 +10,14 @@ import inf112.Model.Entities.Item;
 import inf112.Model.Entities.Enemies.Enemy;
 import inf112.Model.World.GameWorldManager;
 
+
+/**
+ * Interface  for creating objects like Enemies, bricks and items
+ */
 public interface IEntityFactory {
     /**
      * Function to create block
-     * @param type type of bloc
+     * @param type type of block
      * @param world the world
      * @param map the map
      * @param object the collision blocks

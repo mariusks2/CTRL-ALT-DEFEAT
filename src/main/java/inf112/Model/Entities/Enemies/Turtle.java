@@ -12,7 +12,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 
-
+import inf112.Model.MakeMap.MakeMap;
 import inf112.Model.app.Marius;
 import inf112.Model.app.MegaMarius;
 
@@ -154,13 +154,15 @@ public class Turtle extends Enemy {
             velocity.x = 1;
 
         }
+        setPosition(b2body.getPosition().x-getWidth()/2, b2body.getPosition().y-8/MegaMarius.PPM);
         if (setToDestroy && !destroyed) {
             world.destroyBody(b2body);
+            MakeMap.removeTurtle(this);
             destroyed = true;
             stateTime = 0;
 
         }
-        setPosition(b2body.getPosition().x-getWidth()/2, b2body.getPosition().y-8/MegaMarius.PPM);
+       
         b2body.setLinearVelocity(velocity);
     }
 

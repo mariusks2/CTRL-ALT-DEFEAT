@@ -51,7 +51,6 @@ public class ShowStartGameTest {
         Gdx.gl = gl; 
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
         MegaMarius megaMarius = new MegaMarius(); // Your implementation of ApplicationListener
-
         headlessApplication = new HeadlessApplication(megaMarius, config);
     }
 
@@ -60,12 +59,11 @@ public class ShowStartGameTest {
 	 */
 	@BeforeEach
 	void setUpBeforeEach() {
-
+        //make mock and classes to use for testing
         MegaMarius megaMarius = (MegaMarius) headlessApplication.getApplicationListener();
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
 		megaMarius.createTest((mock(SpriteBatch.class)));
-        
         sGame = new ShowStartGame(megaMarius, ScreenManager.getInstance());
         ScreenManager.getInstance().initialize(megaMarius);
         ScreenManager.getInstance().showStartGame();

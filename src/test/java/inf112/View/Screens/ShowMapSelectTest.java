@@ -22,7 +22,6 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
-
 import inf112.Model.World.GameWorldManager;
 import inf112.Model.app.MegaMarius;
 import inf112.View.ScreenManagement.ScreenManager;
@@ -48,7 +47,6 @@ public class ShowMapSelectTest {
         Gdx.gl = gl; 
         Gdx.gl20 = gl; 
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-
         MegaMarius megaMarius = new MegaMarius(); // Your implementation of ApplicationListener
         headlessApplication = new HeadlessApplication(megaMarius, config);
     }
@@ -58,11 +56,8 @@ public class ShowMapSelectTest {
 	 */
 	@BeforeEach
 	void setUpBeforeEach() {
-	
-        // Initialize Box2D
-      
+        //make mock and classes to use for testing
         MegaMarius megaMarius = (MegaMarius) headlessApplication.getApplicationListener();
-        
 		megaMarius.createTest((mock(SpriteBatch.class)));
         ShowGame cScreen = mock(ShowGame.class);
         TextureAtlas textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");

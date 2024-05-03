@@ -48,6 +48,7 @@ public class makeMapTest {
 		ApplicationListener listener = new ApplicationAdapter() {
 		};
         new HeadlessApplication(new MegaMarius(), config);
+        //make mock and classes to use for testing
         textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
         gameWorldManager = new GameWorldManager(fileName, textureAtlas);       
         makeMap = new MakeMap(gameWorldManager.getWorld(), gameWorldManager.getMap(), textureAtlas, gameWorldManager);

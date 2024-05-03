@@ -63,8 +63,8 @@ public class SpiderTest {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
 		ApplicationListener listener = new ApplicationAdapter() {
 		};
-        
         new HeadlessApplication(new MegaMarius(), config);
+        //make mock and classes to use for testing
         cScreen = mock(ShowGame.class);
         display = new Display(mock(SpriteBatch.class));
         mapLoader = new TmxMapLoader();

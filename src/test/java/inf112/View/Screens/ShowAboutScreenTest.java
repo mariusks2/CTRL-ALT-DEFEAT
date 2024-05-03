@@ -60,8 +60,7 @@ public class ShowAboutScreenTest {
 	 */
 	@BeforeEach
 	void setUpBeforeEach() {
-	
-        // Initialize Box2D
+        //make mock and classes to use for testing
         MegaMarius megaMarius = (MegaMarius) headlessApplication.getApplicationListener();
 		megaMarius.createTest((mock(SpriteBatch.class)));
         sGame = new ShowAboutScreen(megaMarius, ScreenManager.getInstance());

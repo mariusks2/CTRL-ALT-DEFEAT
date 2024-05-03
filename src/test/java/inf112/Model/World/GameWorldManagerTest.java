@@ -30,7 +30,6 @@ public class GameWorldManagerTest {
 	void setUpBeforeEach() {
 
         Lwjgl3NativesLoader.load();
-
         // Initialize Box2D
         Box2D.init();
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
@@ -40,6 +39,7 @@ public class GameWorldManagerTest {
         Gdx.app = app;
         Gdx.gl = gl;
         
+        //make mock and classes to use for testing
         MegaMarius megaMarius = new MegaMarius();
         new HeadlessApplication(megaMarius, config);
         textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");

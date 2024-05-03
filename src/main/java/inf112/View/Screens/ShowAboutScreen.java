@@ -89,7 +89,7 @@ public class ShowAboutScreen implements Screen, InputHandler {
     @Override
     public void checkButtonPress(Vector2 clickPosition, IScreenFactory screenService) {
         // Defines the bounding box where the back arrow is located
-        Rectangle backBounds = new Rectangle(6, 197,35 , 8);
+        Rectangle backBounds = new Rectangle(3, 190,41,12);
         if (backBounds.contains(clickPosition)) {
             screenService.showStartGame();
         }

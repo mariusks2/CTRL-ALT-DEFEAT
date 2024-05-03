@@ -14,6 +14,7 @@ import com.badlogic.gdx.utils.Array;
 
 import inf112.Model.Entities.Blocks.Coin;
 import inf112.Model.Entities.Enemies.Enemy;
+import inf112.Model.Entities.Enemies.Turtle;
 import inf112.Model.Factory.EntityFactory;
 import inf112.Model.Factory.IEntityFactory;
 import inf112.Model.World.GameWorldManager;
@@ -26,7 +27,7 @@ public class MakeMap {
      * @param screen
      */
     private Array<Enemy> spiders;
-    private Array<Enemy> turtles;
+    private static Array<Enemy> turtles;
     private World world;
     private TiledMap map;
     private TextureAtlas atlas;
@@ -90,6 +91,10 @@ public class MakeMap {
         for(MapObject object : map.getLayers().get(8).getObjects().getByType(RectangleMapObject.class)){
             entityFactory.createBlock("Flag", world, map, object, worldManager);
         }
+    }
+
+    public static void removeTurtle (Turtle turtle){
+        turtles.removeValue(turtle,true);
     }
     public Array<Enemy> getEnemies(){
         Array<Enemy> enemies = new Array<Enemy>();

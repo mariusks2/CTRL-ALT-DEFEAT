@@ -12,7 +12,6 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import inf112.View.ScreenManagement.IScreenFactory;
-import inf112.View.ScreenManagement.ScreenManager;
 import inf112.Model.app.MegaMarius;
 
 /**
@@ -92,7 +91,7 @@ public class ShowHelpScreen implements Screen, InputHandler{
     @Override
     public void checkButtonPress(Vector2 clickPosition, IScreenFactory screenService) {
          // Defines the bounding box where back arrow is located
-         Rectangle backBounds = new Rectangle(6, 197,35 , 8);
+         Rectangle backBounds = new Rectangle(3, 190,43 ,12 );
          if (backBounds.contains(clickPosition)) {
              screenService.showStartGame();
          }

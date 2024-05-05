@@ -212,6 +212,13 @@ Eksempel 6:
   * Game over skjerm, viser game over tekst man kan trykke esc for å avslutte spillet eller enter for å prøve på nytt.
   * Game won skjerm, viser game won og lar spiller avslutte, gå tilbake til map select eller forsette til neste map (hvis man er på siste map så blir man sent tilbake til map select)
 
+## Beskrivelse av arkitektur:
+Prosjektet er delt inn i en hovedstruktur av model, view og controller. Model er ansvarlig for all spill logikk og alt som skjer i spill verdenen. Model er delt inn i flere mapper, som app, entities, factory, makemap og world. Hvor app inneholder filer som representerer spilleren og contact listener som ser etter kollisjoner i verdenen. Videre inneholder entities mappen filer som representerer objekter i spillet som enemies, coins, flag og bricks. Factory inneholder en generisk fabrikk og et grensesnitt for å opprette forskjellige objekter og screens i spillet. World mappen inneholder GameWorldManager som oppdaterer verdenen og håndterer spawning items. Til slutt har vi makemap klassen som lager de forskjellige map'sene. 
+
+Videre har vi en mappe for controller som er ansvarlig for å håndtere "player movement" i spillet som å hoppe og bevege karrakteren. 
+
+Til slutt har vi view mappen som er ansvarlig for alt det visuelle i spillet. Her har vi tre forskjellige mapper scenes, screens og screenmanagement. Scenes er ansvarlig for å håndtere visningsscener som display og score for poengvisning. Deretter har vi screenmanagement klassen som har en fabrikk for å legge til de forskjellige skjermene i den generiske fabrikken samt en screenmanger klasse for å håndtere skjerm overganger i spillet. Til slutt har vi screens klassen som inneholder alle de forskjellige skjermene som about, help og map selection skjermen. Den inneholder også showgame som er ansvarlig for å generere det visuelle i spillet. 
+
 ## Bugs som vi har funnet:
 * Kan "sveve" ved å spamme hoppe knapp når man treffer en blokk i lufta
 * Kan "sveve" ved å spamme venstre eller høgre knapp intil en vegg/blokk

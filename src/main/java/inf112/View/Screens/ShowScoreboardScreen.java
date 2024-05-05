@@ -14,10 +14,9 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import inf112.View.Scenes.Score;
-import inf112.View.ScreenManagement.IScreenFactory;
-
 import inf112.Model.app.MegaMarius;
+import inf112.View.Scenes.Score;
+import inf112.View.ScreenManagement.ScreenManager;
 
 public class ShowScoreboardScreen implements Screen, InputHandler {
 
@@ -26,15 +25,14 @@ public class ShowScoreboardScreen implements Screen, InputHandler {
     private Viewport viewport;
     private Stage stage;
     private BitmapFont font;
-    private IScreenFactory screenService; 
+    private MegaMarius game;
 
-    public ShowScoreboardScreen(MegaMarius megaMariusGame, IScreenFactory screenService) {
+    public ShowScoreboardScreen(MegaMarius megaMariusGame) {
         this.scoreboardList = new ArrayList<Score>();
         this.backgroundImage = new Texture("Screens/scoreboard-screen.png");
         this.viewport = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());
         this.stage = new Stage(viewport,megaMariusGame.getSpriteBatch());
-        this.font = new BitmapFont();
-        this.screenService = screenService;
+        this.game = megaMariusGame;
     }
 
 
@@ -71,7 +69,7 @@ public class ShowScoreboardScreen implements Screen, InputHandler {
 
     public void drawScoreboard() {
         backgroundImage = new Texture("Screens/scoreboard-screen.png");
-        screenService.drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
+        ScreenManager.getInstance().drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
         ArrayList<Integer> scores_level_one = getHighScores(scoreboardList, 1);
         ArrayList<Integer> scores_level_two = getHighScores(scoreboardList, 2);
         ArrayList<Integer> scores_level_three = getHighScores(scoreboardList, 3);
@@ -93,8 +91,8 @@ public class ShowScoreboardScreen implements Screen, InputHandler {
 
     @Override
     public void render(float delta) {
-        screenService.clearScreen();
-        screenService.drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
+        ScreenManager.getInstance().clearScreen();
+        ScreenManager.getInstance().drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
         drawScoreboard();
         handleInput();
         //stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
@@ -133,12 +131,12 @@ public class ShowScoreboardScreen implements Screen, InputHandler {
     @Override
     public void handleInput() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
-            screenService.showMapSelectScreen();
+            ScreenManager.getInstance().showScreen("MapSelect", new Object[]{game});
         }
         if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
             Vector2 clickPosition = new Vector2(Gdx.input.getX(), Gdx.input.getY());
             viewport.unproject(clickPosition);
-            checkButtonPress(clickPosition, screenService);
+            checkButtonPress(clickPosition);
             
         }
         dispose();
@@ -146,11 +144,11 @@ public class ShowScoreboardScreen implements Screen, InputHandler {
 
 
     @Override
-    public void checkButtonPress(Vector2 clickPosition, IScreenFactory screenService) {
+    public void checkButtonPress(Vector2 clickPosition) {
          // Defines the bounding box where back arrow is located
          Rectangle backBounds = new Rectangle(6, 197,35 , 8);
          if (backBounds.contains(clickPosition)) {
-             screenService.showMapSelectScreen();
+             ScreenManager.getInstance().showScreen("MapSelect", new Object[]{game});
          }
     }
 }

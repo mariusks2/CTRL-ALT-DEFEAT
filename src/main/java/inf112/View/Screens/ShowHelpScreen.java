@@ -11,9 +11,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import inf112.View.ScreenManagement.IScreenFactory;
-import inf112.View.ScreenManagement.ScreenManager;
 import inf112.Model.app.MegaMarius;
+import inf112.View.ScreenManagement.ScreenManager;
 
 /**
  * This screen provides help to players on how to play the game
@@ -23,6 +22,7 @@ public class ShowHelpScreen implements Screen, InputHandler{
     private Viewport viewport; //Viewport for handling screen rendering
     private Stage stage; //Stage to render UI components
     private Texture backgroundImage; //Background image for the hekp screen
+    private MegaMarius game;
 
     /**
      * Constructor to initialize the help screen and loading in the backgroundimage
@@ -32,6 +32,7 @@ public class ShowHelpScreen implements Screen, InputHandler{
         this.viewport=new FitViewport(MegaMarius.M_Width,MegaMarius.M_Height, new OrthographicCamera());
         this.stage=new Stage(viewport,megaMariusGame.getSpriteBatch());
         this.backgroundImage = new Texture("Screens/help-screen.png");
+        this.game = megaMariusGame;
     }
 
     /**
@@ -77,7 +78,7 @@ public class ShowHelpScreen implements Screen, InputHandler{
     @Override
     public void handleInput() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
-            ScreenManager.getInstance().showScreen("StartGame", new Object[0]);
+            ScreenManager.getInstance().showScreen("StartGame", new Object[]{game});
         }
         if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
             Vector2 clickPosition = new Vector2(Gdx.input.getX(), Gdx.input.getY());
@@ -91,7 +92,7 @@ public class ShowHelpScreen implements Screen, InputHandler{
          // Defines the bounding box where back arrow is located
          Rectangle backBounds = new Rectangle(3, 190,43 ,12 );
          if (backBounds.contains(clickPosition)) {
-             ScreenManager.getInstance().showScreen("StartGame", new Object[0]);
+             ScreenManager.getInstance().showScreen("StartGame", new Object[]{game});
          }
     }
     

@@ -18,15 +18,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import inf112.Model.app.MegaMarius;
+
 import inf112.Model.Entities.Item;
 import inf112.Model.Entities.Enemies.Enemy;
-import inf112.View.Scenes.Display;
-import inf112.View.ScreenManagement.IScreenFactory;
-import inf112.View.ScreenManagement.ScreenManager;
 import inf112.Model.World.GameWorldManager;
 import inf112.Model.app.Marius;
+import inf112.Model.app.MegaMarius;
 import inf112.Model.app.WorldContactListener;
+import inf112.View.Scenes.Display;
+import inf112.View.ScreenManagement.ScreenManager;
 
 /**
  * This class represents the main game screen and renders 
@@ -230,8 +230,6 @@ public class ShowGame implements Screen, InputHandler{
         if(nextMap.equals("GameCompleted")){
             if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
                 ScreenManager.getInstance().showScreen("StartGame", new Object[]{game});
-                game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), getLevel());
-                screenService.showStartGame();
                 game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), display.getLevel());
             }
             else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
@@ -241,12 +239,12 @@ public class ShowGame implements Screen, InputHandler{
         else {
             
             if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-                game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), getLevel());
-                screenService.showGameScreen(nextMap);
+                game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), display.getLevel());
+                ScreenManager.getInstance().showScreen("ShowGame", new Object[]{game,nextMap});
                 Display.updateLevel(1);
             } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-                game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), getLevel());
-                ScreenManager.getInstance().showScreen("StartGame", new Object[0]);
+                game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), display.getLevel());
+                ScreenManager.getInstance().showScreen("StartGame", new Object[]{game});
             }
         }
     }
@@ -329,7 +327,7 @@ public class ShowGame implements Screen, InputHandler{
     public void handleInput() {
         //Handles when the user want to pause the game
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            ScreenManager.getInstance().showScreen("PauseGame", new Object[]{player, player.currentState});
+            ScreenManager.getInstance().showScreen("PauseGame", new Object[]{game,player, player.currentState});
         }
     }
     @Override

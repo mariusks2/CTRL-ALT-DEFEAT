@@ -45,8 +45,8 @@ public class MegaMarius extends Game {
         manager.finishLoading();
 
         ScreenManager.getInstance().initialize(this);
-        this.scoreboard = new ShowScoreboardScreen(this, ScreenManager.getInstance());
-        ScreenManager.getInstance().showStartGame();
+        this.scoreboard = new ShowScoreboardScreen(this);
+        ScreenManager.getInstance().showScreen("StartGame", new Object[]{this});
     }
 
     /**

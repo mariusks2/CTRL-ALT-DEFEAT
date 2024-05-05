@@ -218,7 +218,7 @@ Eksempel 6:
 * Hit box rar på enemies, spesielt når man er stor
 * Faller man fra en stor høyde ned på enemies kan også skade selv om man treffer hodet. 
 * Mens man går fra liten marius til stor marius ser det ut som man kan dobbel jumpe mid animation
-* 1 av 100 games så krasjer spillet.
+* Vi har opplevd krasjer ved at man gjør en spesifikk kombinasjon av oppgaver, lurer på om det er noen med gdx eller java har ikke klart å løst det helt, men redusert problemet.
 
 
 ## Kode
@@ -257,4 +257,3 @@ Dette syntes vi kunne gått bedre:
 Nye ting vi ville prøvd ut (hvis vi skulle forsettet å utvikle spille videre):
 - Vi fikk ikke testet de ulike bugs programmene, så de er noen vi ville ha prøvd å testet litt og sett om de finner noe bugs.
 - Vi hadde lyst til å lage en måte å gå ned i "pessi rørene" slik som i orginale "super mario" spillet. Vi fikk desverre ikke tid til å implementere dette.
-- 

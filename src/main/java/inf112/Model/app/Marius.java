@@ -22,7 +22,10 @@ import inf112.Model.Entities.Enemies.Enemy;
 import inf112.Model.Entities.Enemies.Turtle;
 import inf112.View.Screens.ShowGame;
 
-
+	/**
+	 * The Marius class represents the main character in the game.
+	 * It extends sprite and includes Box2D physics for movement and collision detection
+	 */
 	public class Marius extends Sprite {
 
 		// Enum and states
@@ -62,7 +65,11 @@ import inf112.View.Screens.ShowGame;
 		private AssetManager manager;
 		private Music music;
 
-		@SuppressWarnings({ "rawtypes", "unchecked" })
+		/**
+		 * Constructs a Marius object
+		 * @param screen The game screen where Marius exists
+		 * @param world The Box2D world in which Marius interacts
+		 */
 		public Marius(ShowGame screen, World world){
 			// Initializing variables
 			this.screen = screen;

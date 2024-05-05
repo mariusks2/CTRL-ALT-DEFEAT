@@ -12,10 +12,14 @@ import inf112.View.Screens.ShowMapSelect;
 import inf112.View.Screens.ShowPauseScreen;
 import inf112.View.Screens.ShowScoreboardScreen;
 import inf112.View.Screens.ShowStartGame;
-
+/**
+ * Screen factory to produce different screens
+ */
 public class ScreenFactory extends GenericFactory<Screen> {
+    /**
+     * Constructor for the screenfactory, where the different screens to be produced are added to the factory
+     */
     public ScreenFactory() {
-
         addType("StartGame", ShowStartGame.class);
         addType("About", ShowAboutScreen.class);
         addType("Help", ShowHelpScreen.class);

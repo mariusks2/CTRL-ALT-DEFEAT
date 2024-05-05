@@ -175,7 +175,7 @@ import inf112.View.Screens.ShowGame;
 		}
 
 		/**
-		 * Method that checks that marius is not already dead.
+		 * Method that changes mariusIsDead variable to true (if marius is not allready dead).
 		 */
 		public void entityDie() {
 			// Check that marius is not already dead

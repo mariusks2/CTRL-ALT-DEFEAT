@@ -15,7 +15,6 @@ import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
-
 import com.badlogic.gdx.utils.Array;
 
 import inf112.Model.Entities.Enemies.Enemy;
@@ -87,19 +86,19 @@ import inf112.View.Screens.ShowGame;
 			for(int i = 1; i < 4; i++)
 				frames.add(new TextureRegion(screen.getAtlas().findRegion("little_mario"), i * 16, 0, 16, 16));
 			// Adding run animation to marius
-			mariusRun = new Animation(0.1f, frames);
+			mariusRun = new Animation<TextureRegion>(0.1f, frames);
 			frames.clear();
 
 			for(int i = 1; i < 4; i++)
 				frames.add(new TextureRegion(screen.getAtlas().findRegion("big_mario"), i * 16, 0, 16, 32));
 			// Adding run animation to marius
-			bigMariusRun = new Animation(0.1f, frames);
+			bigMariusRun = new Animation<TextureRegion>(0.1f, frames);
 			frames.clear();
 
 			// Animation when Marius gets pessi
 			frames.add(new TextureRegion(screen.getAtlas().findRegion("big_mario"), 240, 0, 16, 32));
 			frames.add(new TextureRegion(screen.getAtlas().findRegion("big_mario"), 0, 0, 16, 32));
-			mariusGrow = new Animation(0.3f, frames);
+			mariusGrow = new Animation<TextureRegion>(0.3f, frames);
 			frames.clear();
 
 			// Cet jump animation frames and add them to marioJump Animation

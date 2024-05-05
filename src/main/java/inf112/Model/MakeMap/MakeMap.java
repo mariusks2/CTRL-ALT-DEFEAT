@@ -21,6 +21,9 @@ import inf112.Model.Factory.IFactory;
 import inf112.Model.World.GameWorldManager;
 import inf112.Model.app.MegaMarius;
 
+/**
+ * Class that handles the process of creating the map.
+ */
 public class MakeMap {
     /**
      * Makes the Marius world. Defines what has collision with Marius.

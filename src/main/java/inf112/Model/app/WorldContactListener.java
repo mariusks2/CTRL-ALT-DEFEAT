@@ -10,9 +10,16 @@ import inf112.Model.Entities.InteractiveTileObj;
 import inf112.Model.Entities.Item;
 import inf112.Model.Entities.Enemies.Enemy;
 
-
+/**
+ * Class that begins contact.
+ */
 public class WorldContactListener implements ContactListener {
 
+    /**
+     * Method that begins contact with given contact parameter
+     * 
+     * @param contact
+     */
     @Override
     public void beginContact(Contact contact) {
         Fixture fixtureA = contact.getFixtureA();
@@ -67,14 +74,23 @@ public class WorldContactListener implements ContactListener {
         }
     }
 
+    /**
+     * Not implemented or used.
+     */
     @Override
     public void endContact(Contact contact) {
     }
 
+    /**
+     * Not implemented or used.
+     */
     @Override
     public void preSolve(Contact contact, Manifold oldManifold) {
     }
 
+    /**
+     * Not implemented or used.
+     */
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
 

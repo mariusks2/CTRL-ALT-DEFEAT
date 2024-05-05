@@ -71,7 +71,10 @@ public class ScreenManager {
         game.setScreen(screen);
     }
     
-    
+    /**
+     * 
+     * @return
+     */
     public Screen getShowGameScreen() {
         return showGameScreen; // Return the stored game screen
     }

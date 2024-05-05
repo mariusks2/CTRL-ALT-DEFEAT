@@ -6,19 +6,23 @@ import com.badlogic.gdx.math.Vector2;
 
 import inf112.Model.app.Marius;
 
+/**
+ * Class for handeling movement of marius.
+ */
 public class MegaMariusController implements MegaMariusControllable {
 
+    // Variables
     private Marius player;
 
+    /**
+     * Creates a MegaMariusController object with player as paramterer
+     * 
+     * @param player
+     */
     public MegaMariusController(Marius player) {
         this.player = player;
     }
 
-    /**
-     * Function for handling playermovement
-     * Can move using WAD and Arrows
-     * 
-     */
     @Override
     public void handlePlayerMovement() {
          //control our player using immediate impulses

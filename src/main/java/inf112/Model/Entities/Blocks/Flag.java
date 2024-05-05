@@ -38,8 +38,10 @@ public class Flag extends InteractiveTileObj{
         fixture = body.createFixture(fixtureDef);
     }
 
-
+    /**
+     * Not implemented or used.
+     */
     @Override
     public void HeadHit(Marius marius) {
-    } //not used 
+    }
 }

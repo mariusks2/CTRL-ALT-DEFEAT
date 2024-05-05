@@ -2,6 +2,9 @@ package inf112.Model.Entities;
 
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * Class for defining items.
+ */
 public class ItemDef {
     public Vector2 position;
     public Class<?> type;

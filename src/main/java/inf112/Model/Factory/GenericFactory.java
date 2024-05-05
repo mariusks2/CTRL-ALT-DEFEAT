@@ -4,8 +4,12 @@ import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.Map; // Make sure this is java.util.Map
 
+/**
+ * Abstract class for generic factory.
+ */
 public abstract class GenericFactory<T> implements IFactory<T> {
 
+    // Variables
     protected Map<String, Class<? extends T>> registeredType = new HashMap<>();
 
     @Override

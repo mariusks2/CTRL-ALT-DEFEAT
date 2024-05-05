@@ -12,7 +12,6 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 
-
 import inf112.Model.app.Marius;
 import inf112.Model.app.MegaMarius;
 
@@ -46,7 +45,7 @@ public class Spider extends Enemy{
      * @param x pos x.
      * @param y pos y.
      */
-    public Spider(World world,TextureAtlas atlas ,float x, float y) {
+    public Spider(World world,TextureAtlas atlas ,Float x, Float y) {
         super(world, x, y);
         frames = new Array<TextureRegion>();
         this.atlas = atlas;

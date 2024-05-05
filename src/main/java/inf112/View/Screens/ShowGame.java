@@ -23,6 +23,7 @@ import inf112.Model.Entities.Item;
 import inf112.Model.Entities.Enemies.Enemy;
 import inf112.View.Scenes.Display;
 import inf112.View.ScreenManagement.IScreenFactory;
+import inf112.View.ScreenManagement.ScreenManager;
 import inf112.Model.World.GameWorldManager;
 import inf112.Model.app.Marius;
 import inf112.Model.app.WorldContactListener;
@@ -54,7 +55,6 @@ public class ShowGame implements Screen, InputHandler{
     private Music music; //Background music for the game
     public String fileName; //Name of the current map file
 
-    private IScreenFactory screenService;
     private GameWorldManager worldManager;
 
     private int currentLevel;
@@ -64,7 +64,7 @@ public class ShowGame implements Screen, InputHandler{
      * @param game Reference to the main game object
      * @param fileName The filename of the map to display
      */
-    public ShowGame(MegaMarius game, String fileName, IScreenFactory screenService){
+    public ShowGame(MegaMarius game, String fileName){
         atlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
         this.fileName = fileName;
         this.worldManager = new GameWorldManager(fileName, atlas);
@@ -81,8 +81,6 @@ public class ShowGame implements Screen, InputHandler{
         renderer = new OrthogonalTiledMapRenderer(worldManager.getMap(), 1  / MegaMarius.PPM);
         camera.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2, 0);
 
-        //Screenhandler
-        this.screenService = screenService;
 
         worldManager.getWorld().setContactListener(new WorldContactListener());
 
@@ -121,7 +119,7 @@ public class ShowGame implements Screen, InputHandler{
 
       
         //To get the next map
-        this.mapSelect = new ShowMapSelect(game,screenService);
+        this.mapSelect = new ShowMapSelect(game);
         //USed for drawing a gray ovelay of the screen
         this.shapeRenderer = new ShapeRenderer();
     }
@@ -156,7 +154,7 @@ public class ShowGame implements Screen, InputHandler{
     @Override
     public void render(float delta) {
         updateState(delta);
-        screenService.clearScreen();
+        ScreenManager.getInstance().clearScreen();
         drawGameWorld();
         drawUI();
         handleScreenTransitions();
@@ -217,7 +215,7 @@ public class ShowGame implements Screen, InputHandler{
      */
     private void handleScreenTransitions() {
         if (gameIsOver()) {
-            screenService.showGameOverScreen(fileName);
+            ScreenManager.getInstance().showScreen("GameOver", new Object[]{game,fileName});
         } else if (Marius.getGameWon()) {
             handleVictoryTransition();
         }
@@ -231,7 +229,7 @@ public class ShowGame implements Screen, InputHandler{
 
         if(nextMap.equals("GameCompleted")){
             if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
-                screenService.showStartGame();
+                ScreenManager.getInstance().showScreen("StartGame", new Object[]{game});
                 game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), getLevel());
             }
             else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
@@ -242,11 +240,11 @@ public class ShowGame implements Screen, InputHandler{
             
             if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
                 game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), getLevel());
-                screenService.showGameScreen(nextMap);
+                ScreenManager.getInstance().showScreen("ShowGame", new Object[]{fileName});
                 Display.updateLevel(1);
             } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
                 game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), getLevel());
-                screenService.showStartGame();
+                ScreenManager.getInstance().showScreen("StartGame", new Object[0]);
             }
         }
     }
@@ -338,11 +336,11 @@ public class ShowGame implements Screen, InputHandler{
     public void handleInput() {
         //Handles when the user want to pause the game
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            screenService.showPauseGameScreen(player, player.currentState);
+            ScreenManager.getInstance().showScreen("PauseGame", new Object[]{player, player.currentState});
         }
     }
     @Override
-    public void checkButtonPress(Vector2 clickPosition, IScreenFactory screenService) {
+    public void checkButtonPress(Vector2 clickPosition) {
         //Not needed in showgame
     }
     public GameWorldManager getWorldManager(){

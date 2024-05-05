@@ -54,7 +54,7 @@ public class Turtle extends Enemy {
      * @param x pos x.
      * @param y pos y.
      */
-    public Turtle(World world, TextureAtlas atlas, float x, float y) {
+    public Turtle(World world, TextureAtlas atlas, Float x, Float y) {
         super(world, x, y);
         frames = new Array<TextureRegion>();
         frames.add(new TextureRegion(atlas.findRegion("turtle"), 0, 0, 16, 24));

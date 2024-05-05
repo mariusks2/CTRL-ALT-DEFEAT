@@ -13,10 +13,10 @@ import inf112.Controller.MegaMariusControllable;
 import inf112.Controller.MegaMariusController;
 import inf112.Model.Entities.Item;
 import inf112.Model.Entities.ItemDef;
+import inf112.Model.Entities.ItemFactory;
 import inf112.Model.Entities.Blocks.Pessi;
 import inf112.Model.Entities.Enemies.Enemy;
-import inf112.Model.Factory.EntityFactory;
-import inf112.Model.Factory.IEntityFactory;
+import inf112.Model.Factory.IFactory;
 import inf112.Model.MakeMap.MakeMap;
 import inf112.Model.app.Marius;
 import inf112.Model.app.MegaMarius;
@@ -34,7 +34,7 @@ public class GameWorldManager implements IGameWorldManager{
     private TextureAtlas atlas;
     private float accumulator = 0f; //Fixed timestep in game loop
     private float stepTime = 1/60f; //Timestep
-    private IEntityFactory entityFactory;
+    private IFactory <Item> itemFactory;
 
     public GameWorldManager(String filename, TextureAtlas atlas) {
         this.world = new World(new Vector2(0, -10), true);
@@ -45,7 +45,7 @@ public class GameWorldManager implements IGameWorldManager{
         this.itemsToSpawn = new LinkedBlockingQueue<ItemDef>();
         this.items = new Array<>();
         this.atlas = atlas;
-        entityFactory = new EntityFactory();
+        this.itemFactory = new ItemFactory();
     }
 
     public void setPlayer(Marius player) {
@@ -91,7 +91,9 @@ public class GameWorldManager implements IGameWorldManager{
          if(!itemsToSpawn.isEmpty()){
             ItemDef itemDef = itemsToSpawn.poll();
             if(itemDef.type == Pessi.class){
-                items.add(entityFactory.createItem("Pessi", world, atlas, itemDef.position.x,itemDef.position.y));
+                //items.add(entityFactory.createItem("Pessi", world, atlas, itemDef.position.x,itemDef.position.y));
+                System.out.println("The position is: " + itemDef.position.x + itemDef.position.y);
+                items.add(itemFactory.create("Pessi", new Object[]{world, atlas, itemDef.position.x,itemDef.position.y }));
             }
         }
     }
@@ -117,7 +119,5 @@ public class GameWorldManager implements IGameWorldManager{
     @Override
     public void spawnItems(ItemDef itemDef) {
         itemsToSpawn.add(itemDef);
-    }
-
-    
+    }    
 }

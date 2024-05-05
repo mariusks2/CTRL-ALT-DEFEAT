@@ -13,9 +13,9 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
-import inf112.View.Screens.ShowGame;
 import inf112.Model.app.Marius;
 import inf112.Model.app.MegaMarius;
+import inf112.View.Screens.ShowGame;
 
 /** 
  * Abstract class for interactive tile objects
@@ -43,11 +43,11 @@ public abstract class InteractiveTileObj {
      * @param map The Map
      * @param object The colission object
      */
-    public InteractiveTileObj(World world, TiledMap map, MapObject object){
+    public InteractiveTileObj(World world, TiledMap map, RectangleMapObject object){
         this.object = object;
         this.world = world;
         this.map = map;
-        this.bounds = ((RectangleMapObject) object).getRectangle();
+        this.bounds =  object.getRectangle();
 
         BodyDef bodyDef = new BodyDef();
         FixtureDef fixtureDef = new FixtureDef();

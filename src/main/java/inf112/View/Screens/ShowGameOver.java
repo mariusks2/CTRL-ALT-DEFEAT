@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import inf112.View.Scenes.Display;
 import inf112.View.ScreenManagement.IScreenFactory;
+import inf112.View.ScreenManagement.ScreenManager;
 import inf112.Model.app.MegaMarius;
 
 /**
@@ -23,20 +24,18 @@ public class ShowGameOver implements Screen, InputHandler {
     private Stage stage; //Stage to render UI components
     private Texture backgroundImage; //Background image for the game over screen
     private String fileName; //File name indicating the level to restart on
-    private IScreenFactory screenSerivce;
 
     /**
      * Constructs the game over screen and loads the image
      * @param megaMariusGame The main game object.
      * @param fileName Th level file name to restartd on.
      */
-    public ShowGameOver(MegaMarius megaMariusGame,String fileName, IScreenFactory screenService) {
+    public ShowGameOver(MegaMarius megaMariusGame,String fileName) {
         // Initialize variables
         this.camera = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());
         this.stage = new Stage(camera, megaMariusGame.getSpriteBatch());
         this.fileName = fileName;
         this.backgroundImage = new Texture("Screens/game-over.png");
-        this.screenSerivce = screenService;
     }
 
     /**
@@ -45,8 +44,8 @@ public class ShowGameOver implements Screen, InputHandler {
      */
     @Override
     public void render(float delta) {
-        screenSerivce.clearScreen();
-        screenSerivce.drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
+        ScreenManager.getInstance().clearScreen();
+        ScreenManager.getInstance().drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
         handleInput();
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
@@ -79,7 +78,7 @@ public class ShowGameOver implements Screen, InputHandler {
     public void handleInput() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
             // Start new game if 'enter' key is pressed
-            screenSerivce.showGameScreen(fileName);
+            ScreenManager.getInstance().showScreen("ShowGame", new Object[]{fileName});
             if (fileName.equals("MapAndTileset/level2.tmx")){
                 Display.updateLevel(1);
             }
@@ -94,7 +93,7 @@ public class ShowGameOver implements Screen, InputHandler {
     }
 
     @Override
-    public void checkButtonPress(Vector2 clickPosition, IScreenFactory screenService) {
+    public void checkButtonPress(Vector2 clickPosition) {
         //Not used in game over
     }
     

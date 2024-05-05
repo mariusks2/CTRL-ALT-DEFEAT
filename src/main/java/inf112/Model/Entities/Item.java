@@ -6,9 +6,9 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 
-import inf112.View.Screens.ShowGame;
 import inf112.Model.app.Marius;
 import inf112.Model.app.MegaMarius;
+import inf112.View.Screens.ShowGame;
 
 
 public abstract class Item extends Sprite{ //Abstract class for enemies. 
@@ -26,7 +26,7 @@ public abstract class Item extends Sprite{ //Abstract class for enemies.
      * @param x x position
      * @param y y position
      */
-    public Item(World world, float x, float y){
+    public Item(World world, Float x, Float y){
         this.world = world;
         setPosition(x, y);
         defineItem();

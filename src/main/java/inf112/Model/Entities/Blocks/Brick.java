@@ -3,6 +3,7 @@ package inf112.Model.Entities.Blocks;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.physics.box2d.World;
 
@@ -33,7 +34,7 @@ public class Brick extends InteractiveTileObj{
      * @param map the map
      * @param object the collision blocks
      */
-    public Brick(World world, TiledMap map, MapObject object){
+    public Brick(World world, TiledMap map, RectangleMapObject object){
         super(world,map ,object);
         fixture.setUserData(this);
         setCategoryFilter(MegaMarius.BRICK_BIT); //Set the block to Brick bit.

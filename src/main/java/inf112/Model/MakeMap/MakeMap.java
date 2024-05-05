@@ -12,13 +12,13 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 
-import inf112.Model.Entities.Blocks.Coin;
+import inf112.Model.Entities.InteractiveTileObj;
+import inf112.Model.Entities.Blocks.BlockFactory;
 import inf112.Model.Entities.Enemies.Enemy;
+import inf112.Model.Entities.Enemies.EnemyFactory;
 import inf112.Model.Entities.Enemies.Turtle;
-import inf112.Model.Factory.EntityFactory;
-import inf112.Model.Factory.IEntityFactory;
+import inf112.Model.Factory.IFactory;
 import inf112.Model.World.GameWorldManager;
-
 import inf112.Model.app.MegaMarius;
 
 public class MakeMap {
@@ -28,7 +28,8 @@ public class MakeMap {
      */
     private Array<Enemy> spiders;
     private static Array<Enemy> turtles;
-    private IEntityFactory entityFactory;
+    private IFactory<Enemy> enemyFactory;
+    private IFactory<InteractiveTileObj> blockFactory;
 
     /** Constructor for making map
      * defines the collision objects
@@ -38,10 +39,11 @@ public class MakeMap {
      * @param worldManager the world manager
      */
     public MakeMap(World world, TiledMap map, TextureAtlas atlas, GameWorldManager worldManager){
+        this.enemyFactory = new EnemyFactory();
+        this.blockFactory = new BlockFactory();
         BodyDef bodyDef = new BodyDef();
         PolygonShape polygonShape = new PolygonShape();
         FixtureDef fixtureDef = new FixtureDef(); 
-        entityFactory = new EntityFactory();
         Body body;
         
         // this will find every rectangle in layer 2 from the map. Used for collision.
@@ -67,28 +69,33 @@ public class MakeMap {
         } 
         //create the bricks, so we can interact with them
         for(MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)){
-            entityFactory.createBlock("Brick", world, map, object,worldManager);
+            //entityFactory.createBlock("Brick", world, map, object,worldManager);
+            blockFactory.create("Brick", new Object[]{world,map,object});
         }
 
         //create the coins, so we can interact with them
         for(MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)){
-            new Coin(world, map, object, worldManager);
-            entityFactory.createBlock("Coin", world, map, object, worldManager);
+            //new Coin(world, map, object, worldManager);
+            //entityFactory.createBlock("Coin", world, map, object, worldManager);
+            blockFactory.create("Coin", new Object[]{world, map, object, worldManager});
         }
         //create spiders
         spiders = new Array<Enemy>();
         for(MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)){
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
             
-            spiders.add(entityFactory.createEnemy("Spider", world, atlas, rect.getX() / MegaMarius.PPM, rect.getY() / MegaMarius.PPM));
+            //spiders.add(entityFactory.createEnemy("Spider", world, atlas, rect.getX() / MegaMarius.PPM, rect.getY() / MegaMarius.PPM));
+            spiders.add(enemyFactory.create("Spider", new Object[]{world, atlas, (float) rect.getX() / MegaMarius.PPM, (float) rect.getY() / MegaMarius.PPM}));
         }
         turtles = new Array<Enemy>();
         for(MapObject object : map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class)){
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            turtles.add(entityFactory.createEnemy("Turtle", world, atlas,rect.getX() / MegaMarius.PPM, rect.getY() / MegaMarius.PPM ));
+            //turtles.add(entityFactory.createEnemy("Turtle", world, atlas,rect.getX() / MegaMarius.PPM, rect.getY() / MegaMarius.PPM ));
+            turtles.add(enemyFactory.create("Turtle", new Object[]{world, atlas,rect.getX() / MegaMarius.PPM, rect.getY() / MegaMarius.PPM }));
         }
         for(MapObject object : map.getLayers().get(8).getObjects().getByType(RectangleMapObject.class)){
-            entityFactory.createBlock("Flag", world, map, object, worldManager);
+            //entityFactory.createBlock("Flag", world, map, object, worldManager);
+            blockFactory.create("Flag", new Object[]{world, map, object});
         }
     }
     /**

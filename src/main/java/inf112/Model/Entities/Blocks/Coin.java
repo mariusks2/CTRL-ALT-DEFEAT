@@ -1,7 +1,7 @@
 package inf112.Model.Entities.Blocks;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.math.Vector2;
@@ -10,9 +10,9 @@ import com.badlogic.gdx.physics.box2d.World;
 import inf112.Model.Entities.InteractiveTileObj;
 import inf112.Model.Entities.ItemDef;
 import inf112.Model.World.GameWorldManager;
-import inf112.View.Scenes.Display;
 import inf112.Model.app.Marius;
 import inf112.Model.app.MegaMarius;
+import inf112.View.Scenes.Display;
 
 /** 
  * Represents a Coin block
@@ -39,7 +39,7 @@ public class Coin extends InteractiveTileObj{
      * @param object the collision blocks
      * @param worldManager the world manager
      */
-    public Coin(World world,TiledMap map, MapObject object, GameWorldManager worldManager){
+    public Coin(World world,TiledMap map, RectangleMapObject object, GameWorldManager worldManager){
         super(world, map, object);
         this.worldManager = worldManager;
         tileSet = map.getTileSets().getTileSet("customtileset");

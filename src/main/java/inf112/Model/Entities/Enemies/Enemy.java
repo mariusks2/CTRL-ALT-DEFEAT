@@ -18,7 +18,7 @@ public abstract class Enemy extends Sprite{ //Abstract class for enemies.
      * @param x position x
      * @param y position y
      */
-    public Enemy(World world, float x, float y){
+    public Enemy(World world, Float x, Float y){
         this.world = world;
         setPosition(x, y);
         defineEnemy();

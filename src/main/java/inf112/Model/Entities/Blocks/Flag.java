@@ -1,6 +1,6 @@
 package inf112.Model.Entities.Blocks;
 
-import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
@@ -28,7 +28,7 @@ public class Flag extends InteractiveTileObj{
      * @param map The map
      * @param object The collision object
      */
-    public Flag(World world, TiledMap map, MapObject object) {
+    public Flag(World world, TiledMap map, RectangleMapObject object) {
         super(world, map, object);
         FixtureDef fixtureDef = new FixtureDef();
         PolygonShape pShape = new PolygonShape();

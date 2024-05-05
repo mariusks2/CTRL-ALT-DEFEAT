@@ -37,7 +37,7 @@ public class Pessi extends Item{
      * @param x position x
      * @param y position y
      */
-    public Pessi(World world, TextureAtlas textureAtlas, float x, float y){
+    public Pessi(World world, TextureAtlas textureAtlas, Float x, Float y){
         super(world, x, y);
         this.textureRegion = textureAtlas.findRegion("pessi");
         setRegion(textureRegion);

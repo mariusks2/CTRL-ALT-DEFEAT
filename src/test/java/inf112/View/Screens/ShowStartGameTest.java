@@ -64,10 +64,9 @@ public class ShowStartGameTest {
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
 		megaMarius.createTest((mock(SpriteBatch.class)));
-        sGame = new ShowStartGame(megaMarius, ScreenManager.getInstance());
         ScreenManager.getInstance().initialize(megaMarius);
-        ScreenManager.getInstance().showStartGame();
-        
+        ScreenManager.getInstance().showScreen("StartGame", new Object[]{megaMarius});
+        sGame = (ShowStartGame) ScreenManager.getInstance().getCurrentGameScreen();
 	}
     
     //@Test
@@ -103,17 +102,17 @@ public class ShowStartGameTest {
 
     @Test
     void checkButtonPressTest(){
-        sGame.checkButtonPress(new Vector2(169, 38), ScreenManager.getInstance());
+        sGame.checkButtonPress(new Vector2(169, 38));
     }
 
     @Test
     void checkButtonPressTest2(){
-        sGame.checkButtonPress(new Vector2(160, 16), ScreenManager.getInstance());
+        sGame.checkButtonPress(new Vector2(160, 16));
     }
 
     @Test
     void checkButtonPressTest3(){
-        sGame.checkButtonPress(new Vector2(199, 14), ScreenManager.getInstance());
+        sGame.checkButtonPress(new Vector2(199, 14));
     }
 
     @Test

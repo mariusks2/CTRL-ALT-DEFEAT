@@ -63,9 +63,9 @@ public class ShowGameOverTest {
         map = mapLoader.load(fileName);
         batch=mock(SpriteBatch.class);
 		megaMarius.setSpriteBatch(batch);
-        sGame = new ShowGameOver(megaMarius, fileName, ScreenManager.getInstance());
         ScreenManager.getInstance().initialize(megaMarius);
-        ScreenManager.getInstance().showGameOverScreen(fileName);
+        ScreenManager.getInstance().showScreen("GameOver", new Object[]{megaMarius,fileName});
+        sGame = (ShowGameOver) ScreenManager.getInstance().getCurrentGameScreen();
 	}
 
     @Test

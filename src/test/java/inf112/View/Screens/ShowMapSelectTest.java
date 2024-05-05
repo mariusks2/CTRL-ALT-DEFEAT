@@ -62,9 +62,9 @@ public class ShowMapSelectTest {
         ShowGame cScreen = mock(ShowGame.class);
         TextureAtlas textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
-        sGame = new ShowMapSelect(megaMarius, ScreenManager.getInstance());
         ScreenManager.getInstance().initialize(megaMarius);
-        ScreenManager.getInstance().showMapSelectScreen();
+        ScreenManager.getInstance().showScreen("MapSelect", new Object[]{megaMarius});
+        sGame = (ShowMapSelect) ScreenManager.getInstance().getCurrentGameScreen();
 	}
 
     @Test
@@ -83,12 +83,12 @@ public class ShowMapSelectTest {
 
     @Test
     void buttonPressTest(){
-        sGame.checkButtonPress(new Vector2(173, 17), ScreenManager.getInstance());
+        sGame.checkButtonPress(new Vector2(173, 17));
     }
 
     @Test
     void buttonPressTest2(){
-        sGame.checkButtonPress(new Vector2(5,190), ScreenManager.getInstance());
+        sGame.checkButtonPress(new Vector2(5,190));
     }
 
     @Test

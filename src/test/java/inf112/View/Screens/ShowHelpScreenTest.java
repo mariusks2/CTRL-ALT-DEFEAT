@@ -68,9 +68,9 @@ public class ShowHelpScreenTest {
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
 		megaMarius.createTest((mock(SpriteBatch.class)));
-        sGame = new ShowHelpScreen(megaMarius, ScreenManager.getInstance());
         ScreenManager.getInstance().initialize(megaMarius);
-        ScreenManager.getInstance().showHelpScreen();
+        ScreenManager.getInstance().showScreen("Help", new Object[]{megaMarius});
+        sGame = (ShowHelpScreen) ScreenManager.getInstance().getCurrentGameScreen();
 	}
 
     @Test

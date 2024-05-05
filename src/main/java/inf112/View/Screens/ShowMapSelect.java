@@ -1,24 +1,22 @@
 package inf112.View.Screens;
 
-import com.badlogic.gdx.Screen;
-
 import java.util.ArrayList;
+import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import java.util.List;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import inf112.View.Scenes.Display;
-import inf112.View.ScreenManagement.IScreenFactory;
-import inf112.View.ScreenManagement.ScreenManager;
 import inf112.Model.app.MegaMarius;
+import inf112.View.Scenes.Display;
+import inf112.View.ScreenManagement.ScreenManager;
 
 /**
  * A screen for selecting different game maps in the MegaMarius game.
@@ -103,7 +101,7 @@ public class ShowMapSelect implements Screen, InputHandler {
 @Override
 public void handleInput() {
     if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
-        ScreenManager.getInstance().showScreen("StartGame", new Object[0]);
+        ScreenManager.getInstance().showScreen("StartGame", new Object[]{megaMariusGame});
     }
 
     if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
@@ -135,17 +133,17 @@ public void checkButtonPress(Vector2 clickPosition) {
     // Check if the click is within the bounds of any of the rectangles
     //Here we could use a for loop for the map list for better implementation with more maps
     if (backBound.contains(clickPosition)) {
-        ScreenManager.getInstance().showScreen("StartGAme", new Object[0]);
+        ScreenManager.getInstance().showScreen("StartGAme", new Object[]{megaMariusGame});
     }
     else if (map1.contains(clickPosition) || map1Text.contains(clickPosition)){
-        ScreenManager.getInstance().showScreen("ShowGame", mapList.get(0));
+        ScreenManager.getInstance().showScreen("ShowGame", new Object[]{megaMariusGame,mapList.get(0)});
     }
     else if (map2.contains(clickPosition)  || map2Text.contains(clickPosition)){
-        ScreenManager.getInstance().showScreen("ShowGame", new Object[]{mapList.get(1)});
+        ScreenManager.getInstance().showScreen("ShowGame", new Object[]{megaMariusGame,mapList.get(1)});
         Display.updateLevel(1);
     }
     else if (map3.contains(clickPosition) || map3Text.contains(clickPosition)){
-       ScreenManager.getInstance().showScreen("ShowGame", new Object[]{mapList.get(2)});
+       ScreenManager.getInstance().showScreen("ShowGame", new Object[]{megaMariusGame,mapList.get(2)});
        Display.updateLevel(2);
     }
     else if (scoreboardButton.contains(clickPosition)) {

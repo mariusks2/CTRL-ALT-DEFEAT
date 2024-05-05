@@ -10,10 +10,9 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import inf112.View.Scenes.Display;
-import inf112.View.ScreenManagement.IScreenFactory;
-import inf112.View.ScreenManagement.ScreenManager;
 import inf112.Model.app.MegaMarius;
+import inf112.View.Scenes.Display;
+import inf112.View.ScreenManagement.ScreenManager;
 
 /**
  * This screen displays the Game over screen for the MegaMarius game
@@ -24,6 +23,7 @@ public class ShowGameOver implements Screen, InputHandler {
     private Stage stage; //Stage to render UI components
     private Texture backgroundImage; //Background image for the game over screen
     private String fileName; //File name indicating the level to restart on
+    private MegaMarius game;
 
     /**
      * Constructs the game over screen and loads the image
@@ -36,6 +36,7 @@ public class ShowGameOver implements Screen, InputHandler {
         this.stage = new Stage(camera, megaMariusGame.getSpriteBatch());
         this.fileName = fileName;
         this.backgroundImage = new Texture("Screens/game-over.png");
+        this.game = megaMariusGame;
     }
 
     /**
@@ -78,7 +79,7 @@ public class ShowGameOver implements Screen, InputHandler {
     public void handleInput() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
             // Start new game if 'enter' key is pressed
-            ScreenManager.getInstance().showScreen("ShowGame", new Object[]{fileName});
+            ScreenManager.getInstance().showScreen("ShowGame", new Object[]{game,fileName});
             if (fileName.equals("MapAndTileset/level2.tmx")){
                 Display.updateLevel(1);
             }

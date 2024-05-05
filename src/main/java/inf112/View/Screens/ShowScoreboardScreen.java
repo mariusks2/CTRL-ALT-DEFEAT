@@ -1,6 +1,8 @@
 package inf112.View.Screens;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Collections;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -63,6 +65,8 @@ public class ShowScoreboardScreen implements Screen, InputHandler {
         } else {
             count = Math.min(scores.size(), 5);
         }
+
+        Collections.sort(scores, Comparator.reverseOrder());
         for (int i = 0; i < count; i++) {
             font.draw(stage.getBatch(), (i + 1) + ". Time: " + scores.get(i), x, y - (i + 1) * 20);
         }

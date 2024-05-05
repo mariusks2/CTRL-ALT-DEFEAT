@@ -7,7 +7,10 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import inf112.Model.app.Marius;
 
-public abstract class Enemy extends Sprite{ //Abstract class for enemies. 
+/**
+ * Abstact class for enemies.
+ */
+public abstract class Enemy extends Sprite{
     protected World world;
     public Body b2body;
     public Vector2 velocity;

@@ -10,8 +10,10 @@ import inf112.Model.app.Marius;
 import inf112.Model.app.MegaMarius;
 import inf112.View.Screens.ShowGame;
 
-
-public abstract class Item extends Sprite{ //Abstract class for enemies. 
+/**
+ * Abstact class for Item.
+ */
+public abstract class Item extends Sprite{
     protected World world;
     protected ShowGame screen;
     protected Vector2 velocity; 

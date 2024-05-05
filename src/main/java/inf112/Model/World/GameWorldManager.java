@@ -21,8 +21,12 @@ import inf112.Model.MakeMap.MakeMap;
 import inf112.Model.app.Marius;
 import inf112.Model.app.MegaMarius;
 
+/**
+ * Class for managing game world.
+ */
 public class GameWorldManager implements IGameWorldManager{
 
+    // Variables
     private World world;
     private MakeMap creator;
     private LinkedBlockingQueue<ItemDef> itemsToSpawn;
@@ -36,6 +40,12 @@ public class GameWorldManager implements IGameWorldManager{
     private float stepTime = 1/60f; //Timestep
     private IFactory <Item> itemFactory;
 
+    /**
+     * Constructs a GameWorldManger object with given parameters.
+     * 
+     * @param filename
+     * @param atlas
+     */
     public GameWorldManager(String filename, TextureAtlas atlas) {
         this.world = new World(new Vector2(0, -10), true);
         world.step(0, 0, 0);
@@ -48,6 +58,10 @@ public class GameWorldManager implements IGameWorldManager{
         this.itemFactory = new ItemFactory();
     }
 
+    /**
+     * Initialize player and create a controller object.
+     * @param player
+     */
     public void setPlayer(Marius player) {
         this.player = player;
         this.playerController = new MegaMariusController(player);
@@ -102,18 +116,33 @@ public class GameWorldManager implements IGameWorldManager{
         atlas.dispose();
     }
 
+    /**
+     * Method that returns enemies.
+     * @return creator.getEnemies()
+     */
     public Array<Enemy> getEnemies() {
         return creator.getEnemies();
     }
     
+    /**
+     * Method that returns items
+     * @return items
+     */
     public Array<Item> getItems() {
         return items;
     }
 
+    /**
+     * Method that returns the map
+     * @return map
+     */
     public TiledMap getMap(){
         return map;
     }
 
+    /**
+     * Method that adds itemDef to list of itemsToSpawn.
+     */
     @Override
     public void spawnItems(ItemDef itemDef) {
         itemsToSpawn.add(itemDef);

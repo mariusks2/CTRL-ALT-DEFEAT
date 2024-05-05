@@ -83,6 +83,7 @@ public class Pessi extends Item{
         destroy();
         if(!marius.isMariusBigNow()) marius.grow();
     }
+    
     /**
      * Function for updating
      * @param dt deltatime for updating. 
@@ -94,6 +95,7 @@ public class Pessi extends Item{
         velocity.y = b2body.getLinearVelocity().y;
         b2body.setLinearVelocity(velocity);
     }
+
     /**
      * Function for getting category bits
      * used for testing. 

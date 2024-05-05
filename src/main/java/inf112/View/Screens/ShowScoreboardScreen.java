@@ -20,8 +20,12 @@ import inf112.Model.app.MegaMarius;
 import inf112.View.Scenes.Score;
 import inf112.View.ScreenManagement.ScreenManager;
 
+/**
+ * Class that creates a scorebaord.
+ */
 public class ShowScoreboardScreen implements Screen, InputHandler {
 
+    // Variables
     private Texture backgroundImage;
     private ArrayList<Score> scoreboardList;
     private Viewport viewport;
@@ -29,6 +33,11 @@ public class ShowScoreboardScreen implements Screen, InputHandler {
     private BitmapFont font;
     private MegaMarius game;
 
+    /**
+     * Creates a scoreboard screen object with given paramter.
+     * 
+     * @param megaMariusGame
+     */
     public ShowScoreboardScreen(MegaMarius megaMariusGame) {
         this.scoreboardList = new ArrayList<Score>();
         this.backgroundImage = new Texture("Screens/scoreboard-screen.png");
@@ -38,11 +47,24 @@ public class ShowScoreboardScreen implements Screen, InputHandler {
         this.font = new BitmapFont();
     }
 
-
+    /**
+     * Creates a new score and adds it ot scoreboard list.
+     * 
+     * @param time
+     * @param score
+     * @param level
+     */
     public void createNewScore(int time, int score, int level) {
         this.scoreboardList.add(new Score(time, score, level));
     }
 
+    /**
+     * Method that returns list of scores for given level.
+     * 
+     * @param scores
+     * @param level
+     * @return scoresForLevel
+     */
     public ArrayList<Integer> getHighScores(ArrayList<Score> scores, int level) {
         ArrayList<Integer> scoresForLevel = new ArrayList<>();
         for (Score score : scores) {
@@ -53,6 +75,13 @@ public class ShowScoreboardScreen implements Screen, InputHandler {
         return scoresForLevel;
     }
 
+    /**
+     * Method that draws the score for given scores list, and draws at the given x and y position.
+     * 
+     * @param scores
+     * @param x
+     * @param y
+     */
     public void drawScores(ArrayList<Integer> scores, int x, int y) {
         if (scores.isEmpty()) {
             font.draw(stage.getBatch(), "No scores available", x, y);
@@ -72,6 +101,9 @@ public class ShowScoreboardScreen implements Screen, InputHandler {
         }
     }
 
+    /**
+     * Draws the scoreboard.
+     */
     public void drawScoreboard() {
         backgroundImage = new Texture("Screens/scoreboard-screen.png");
         ScreenManager.getInstance().drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
@@ -116,22 +148,18 @@ public class ShowScoreboardScreen implements Screen, InputHandler {
     public void pause() {
     }
 
-
     @Override
     public void resume() {
     }
-
 
     @Override
     public void hide() {
     }
 
-
     @Override
     public void dispose() {
         backgroundImage.dispose();
     }
-
 
     @Override
     public void handleInput() {
@@ -146,7 +174,6 @@ public class ShowScoreboardScreen implements Screen, InputHandler {
         }
         dispose();
     }
-
 
     @Override
     public void checkButtonPress(Vector2 clickPosition) {

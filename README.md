@@ -2,8 +2,8 @@
 - Team: _Ctrl+Alt+Defeat_ (Gruppe 5): _Christoffer A. Slettebø, Marius Soma, Henrik Johansen, Olav Høysæther Opheim_
 - Lenke til <a href="https://trello.com/b/naQJzzQZ/ctrlaltdefeat" target="_blank">Trello</a>.
 - Lenke til <a href="https://git.app.uib.no/Christoffer.Slettebo/ctrl-alt-defeat" target="_blank">GitLab</a>
-- Lenke til <a href="https://git.app.uib.no/Christoffer.Slettebo/ctrl-alt-defeat/-/blob/main/structure.txt?ref_type=heads" traget="_blank">Structure.txt</a>
-- Lenke til <a href="https://git.app.uib.no/Christoffer.Slettebo/ctrl-alt-defeat/-/blob/main/uml%20diagram.png?ref_type=heads" traget="_blank">Klassediagram.</a>
+- Lenke til <a href="https://git.app.uib.no/Christoffer.Slettebo/ctrl-alt-defeat/-/blob/main/structure.txt?ref_type=heads" target="_blank">Structure.txt</a>
+- Lenke til <a href="https://git.app.uib.no/Christoffer.Slettebo/ctrl-alt-defeat/-/blob/main/uml%20diagram.png?ref_type=heads" target="_blank">Klassediagram.</a>
 
 ## Om spillet
 - Lore:

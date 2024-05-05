@@ -1,5 +1,6 @@
 package inf112.Controller;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -76,34 +77,38 @@ public class MegaMariusControllerTest {
     @Test
     void handleInputTest(){
         Input input = mock(Input.class);
-        when(input.isKeyJustPressed(Input.Keys.UP)).thenReturn(true);
         Gdx.input = input;
+        when(input.isKeyJustPressed(Input.Keys.UP)).thenReturn(true);
         megaMariusController.handlePlayerMovement();
+        assertEquals(new Vector2(0, 3.8f), marius.b2body.getLinearVelocity());
+        megaMariusController.handlePlayerMovement();
+        assertEquals(new Vector2(0, 3.8f), marius.b2body.getLinearVelocity());
     }
 
     @Test
     void handleInputTest2(){
         Input input = mock(Input.class);
-        marius.b2body.setLinearVelocity(new Vector2(0,0));
-        when(input.isKeyJustPressed(Input.Keys.RIGHT)).thenReturn(true);
+        assertEquals(new Vector2(0,0), marius.b2body.getLinearVelocity());
         Gdx.input = input;
+        when(input.isKeyPressed(Input.Keys.RIGHT)).thenReturn(true);
         megaMariusController.handlePlayerMovement();
+        assertEquals(new Vector2(0.05f,0), marius.b2body.getLinearVelocity());
     }
 
     @Test
     void handleInputTest3(){
         Input input = mock(Input.class);
-        marius.b2body.setLinearVelocity(new Vector2(0,0));
-        when(input.isKeyJustPressed(Input.Keys.LEFT)).thenReturn(true);
         Gdx.input = input;
+        when(input.isKeyPressed(Input.Keys.LEFT)).thenReturn(true);
+        when(input.isKeyPressed(Input.Keys.A)).thenReturn(true);
         megaMariusController.handlePlayerMovement();
     }
 
     @Test
     void handleInputTest4(){
         Input input = mock(Input.class);
-        when(input.isKeyJustPressed(Input.Keys.W)).thenReturn(true);
         Gdx.input = input;
+        when(input.isKeyPressed(Input.Keys.W)).thenReturn(true);
         megaMariusController.handlePlayerMovement();
     }
 
@@ -111,19 +116,21 @@ public class MegaMariusControllerTest {
     void handleInputTest5(){
         Input input = mock(Input.class);
         marius.b2body.setLinearVelocity(new Vector2(3,0));
-        when(input.isKeyJustPressed(Input.Keys.D)).thenReturn(true);
         marius.update(0);
         Gdx.input = input;
+        when(input.isKeyPressed(Input.Keys.D)).thenReturn(true);
         megaMariusController.handlePlayerMovement();
+        assertEquals(new Vector2(3,0), marius.b2body.getLinearVelocity());
     }
 
     @Test
     void handleInputTest6(){
         Input input = mock(Input.class);
         marius.b2body.setLinearVelocity(new Vector2(3,0));
-        when(input.isKeyJustPressed(Input.Keys.A)).thenReturn(true);
         marius.update(0);
         Gdx.input = input;
+        when(input.isKeyPressed(Input.Keys.A)).thenReturn(true);
         megaMariusController.handlePlayerMovement();
+        assertEquals(new Vector2(2.95f,0), marius.b2body.getLinearVelocity());
     }
 }

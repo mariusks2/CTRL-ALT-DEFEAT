@@ -13,6 +13,9 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import inf112.Model.app.MegaMarius;
 
+/**
+ * Class for creating a display in the game with various labels on screen which can be updated while the game is running
+ */
 public class Display {
     
     //using scene2D.ui from libgdx to create 
@@ -39,9 +42,11 @@ public class Display {
     private Label worldTextLabel;
     private Label timeTextLabel;
 
-  
-    
-
+    /**
+     * Creates Display object using sprite batch as parameter
+     * 
+     * @param sb
+     */
     public Display(SpriteBatch sb) {
         timer=300;
         timeCount=0;
@@ -94,9 +99,10 @@ public class Display {
         stage.addActor(table);
     }
 
-
-        
-
+    /**
+     * Method that updates time given incoming newTime 
+     * @param newTime
+     */
     public void updateTime (float newTime){
         timeCount+=newTime;
         if (timeCount>=1){
@@ -119,11 +125,19 @@ public class Display {
         scoreDisplay.setText(String.format("%03d",scoreCount));
     }
 
+    /**
+     * Method that updates coin count and updates display text
+     * @param coin
+     */
     public static void updateCoin(int coin){
         coinCount+= coin;
         coinsDisplay.setText(String.format("%02d", coinCount));
     }
 
+    /**
+     * Method that gets the time
+     * @return timer
+     */
     public int getTimer() {
         return this.timer;
     }
@@ -137,6 +151,10 @@ public class Display {
         levelDisplay.setText(String.format("%01d",level));
     }
 
+    /**
+     * Method that adds a coin given parameter and sets updated display text for coin
+     * @param newCoin
+     */
     public static void addCoins(int newCoin){
         coinCount+=newCoin;
         coinsDisplay.setText(String.format("COINS: %02d",coinCount));
@@ -150,11 +168,14 @@ public class Display {
         return timesOut;
     }
 
-    
+    /**
+     * Method that disposes stage and font
+     */
     public void dispose() {
         stage.dispose();
         font.dispose();
     } 
+
     /**
      * Method for returning the score of the player
      * @return the score of the player
@@ -163,6 +184,10 @@ public class Display {
         return scoreCount;
     }
 
+    /**
+     * Method that returns the level
+     * @return level
+     */
     public Integer getLevel() {
         return level;
     }

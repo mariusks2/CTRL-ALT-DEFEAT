@@ -34,3 +34,4 @@ Man kan sjekke scoren sin ved å trykke på scoreboard knappen i map select meny
 - Retro, Coin 02.wav av MATRIXXX_ <a href="https://freesound.org/s/402288/" target="_blank">Freesound</a> License: Creative Commons 0.
 - Trúng Gạch Đá av SieuAmThanh <a href="https://freesound.org/s/530812/" target="_blank">Freesound</a> License: Creative Commons 0.
 - Like, Thumbs Up av MATRIXXX_ <a href="https://freesound.org/people/MATRIXXX_/sounds/714568/" target="_blank">Freesound</a> License: Creative Commons 0.
+- Fizzy Drink Can, Opening, B.wav by InspectorJ <a href="https://freesound.org/s/393876/" targer="_blank">Freesound</a> License: Attribution 4.0

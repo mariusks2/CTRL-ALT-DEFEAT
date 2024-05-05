@@ -63,9 +63,9 @@ public class ShowAboutScreenTest {
         //make mock and classes to use for testing
         MegaMarius megaMarius = (MegaMarius) headlessApplication.getApplicationListener();
 		megaMarius.createTest((mock(SpriteBatch.class)));
-        sGame = new ShowAboutScreen(megaMarius, ScreenManager.getInstance());
         ScreenManager.getInstance().initialize(megaMarius);
-        ScreenManager.getInstance().showAboutScreen();
+        ScreenManager.getInstance().showScreen("About", new Object[]{megaMarius});;
+        sGame = (ShowAboutScreen) ScreenManager.getInstance().getCurrentGameScreen();
 	}
 
     @Test

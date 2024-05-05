@@ -76,9 +76,9 @@ public class PauseScreenTest {
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
         Marius marius = new Marius(cScreen, gameWorldManager.getWorld());
-        sGame = new ShowPauseScreen(megaMarius, marius, State.STANDING, ScreenManager.getInstance());
         ScreenManager.getInstance().initialize(megaMarius);
-        ScreenManager.getInstance().showPauseGameScreen(marius, State.STANDING);
+        ScreenManager.getInstance().showScreen("PauseGame", new Object[]{megaMarius, marius, State.STANDING});
+        sGame = (ShowPauseScreen) ScreenManager.getInstance().getCurrentGameScreen();
 	}
 
     @Test
@@ -113,17 +113,17 @@ public class PauseScreenTest {
 
     @Test
     void checkButtonPressTest(){
-        sGame.checkButtonPress(new Vector2(150, 114), ScreenManager.getInstance());
+        sGame.checkButtonPress(new Vector2(150, 114));
     }
 
     @Test
     void checkButtonPressTest2(){
-        sGame.checkButtonPress(new Vector2(176, 84), ScreenManager.getInstance());
+        sGame.checkButtonPress(new Vector2(176, 84));
     }
 
     @Test
     void checkButtonPressTest3(){
-        sGame.checkButtonPress(new Vector2(165, 141), ScreenManager.getInstance());
+        sGame.checkButtonPress(new Vector2(165, 141));
     }
 
     @Test

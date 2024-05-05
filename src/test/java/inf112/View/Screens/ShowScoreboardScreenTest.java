@@ -72,9 +72,9 @@ public class ShowScoreboardScreenTest {
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(fileName);
 		megaMarius.createTest((mock(SpriteBatch.class)));
-        sGame = new ShowScoreboardScreen(megaMarius, ScreenManager.getInstance());
         ScreenManager.getInstance().initialize(megaMarius);
-        ScreenManager.getInstance().showScoreBoardScreen();
+        ScreenManager.getInstance().showScreen("Scoreboard", new Object[]{megaMarius});
+        sGame = (ShowScoreboardScreen) ScreenManager.getInstance().getCurrentGameScreen();
 	}
 
     @Test

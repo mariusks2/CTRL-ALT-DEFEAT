@@ -26,7 +26,7 @@ public class MegaMariusController implements MegaMariusControllable {
     @Override
     public void handlePlayerMovement() {
          //control our player using immediate impulses
-        if (player.currentState != Marius.State.DEAD) {
+        if (player.getState() != Marius.State.DEAD) {
             if (Gdx.input.isKeyJustPressed(Input.Keys.UP) || (Gdx.input.isKeyJustPressed(Input.Keys.W)))
                 player.jump();
             if ((Gdx.input.isKeyPressed(Input.Keys.RIGHT) ^ (Gdx.input.isKeyPressed(Input.Keys.D)) && player.b2body.getLinearVelocity().x <= 2 ))

@@ -25,6 +25,7 @@ import com.badlogic.gdx.physics.box2d.Box2D;
 import inf112.Model.World.GameWorldManager;
 import inf112.Model.app.Marius;
 import inf112.Model.app.MegaMarius;
+import inf112.Model.app.Marius.State;
 import inf112.View.Scenes.Display;
 import inf112.View.Screens.ShowGame;
 
@@ -79,6 +80,7 @@ public class MegaMariusControllerTest {
         Input input = mock(Input.class);
         Gdx.input = input;
         when(input.isKeyJustPressed(Input.Keys.UP)).thenReturn(true);
+        when(input.isKeyJustPressed(Input.Keys.W)).thenReturn(true);
         megaMariusController.handlePlayerMovement();
         assertEquals(new Vector2(0, 3.8f), marius.b2body.getLinearVelocity());
         megaMariusController.handlePlayerMovement();
@@ -132,5 +134,18 @@ public class MegaMariusControllerTest {
         when(input.isKeyPressed(Input.Keys.A)).thenReturn(true);
         megaMariusController.handlePlayerMovement();
         assertEquals(new Vector2(2.95f,0), marius.b2body.getLinearVelocity());
+    }
+
+    @Test
+    void testIfDead(){
+        Input input = mock(Input.class);
+        Gdx.input = input;
+        when(input.isKeyPressed(Input.Keys.D)).thenReturn(true);
+        assertEquals(new Vector2(0, 0), marius.b2body.getLinearVelocity());
+        marius.entityDie();
+        marius.update(0);
+        assertEquals(State.DEAD, marius.getState());
+        megaMariusController.handlePlayerMovement();
+        assertEquals(0, marius.b2body.getLinearVelocity().x);
     }
 }

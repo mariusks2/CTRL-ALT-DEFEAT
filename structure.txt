@@ -9,7 +9,7 @@ C:.
 |   pom.xml
 |   README.md
 |   structure.txt
-|   UML diagram.png
+|   uml diagram.png
 |   
 +---.idea
 |       .gitignore
@@ -18,7 +18,6 @@ C:.
 |       jarRepositories.xml
 |       misc.xml
 |       vcs.xml
-|       workspace.xml
 |       
 +---.vscode
 |       launch.json
@@ -273,10 +272,6 @@ C:.
     |           scoreboard-screen.png
     |           start-screen.png
     |           
-    +---generated-sources
-    |   \---annotations
-    +---generated-test-sources
-    |   \---test-annotations
     \---test-classes
         \---inf112
             +---Controller

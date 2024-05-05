@@ -86,7 +86,7 @@ public class WorldContactListenerTest {
         marius.update(0);
         pessi.update(0);
         assertEquals(true, pessi.isDestroyed());
-        assertEquals(State.GROWING, marius.currentState);
+        assertEquals(State.GROWING, marius.getState());
         map = gameWorldManager.getMap();
     }
     

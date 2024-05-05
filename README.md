@@ -29,7 +29,7 @@ Man kan sjekke scoren sin ved å trykke på scoreboard knappen i map select meny
 ## Credits
 - Musikk fra <a href="https://pixabay.com/users/white_records-32584949/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=164702" target="_blank">Maksym Dudchyk</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=164702" target="_blank">Pixabay</a>.
 - Sprites, vi har redigert de fleste : <a href= https://www.spriters-resource.com/nes/supermariobros/sheet/52571 target="_blank">Spriters-resource</a>.
-- Tok utgangspunkt i orginal karakter og fiender fra Super Mario og modifiserte disse spitsene til våre egene å lå de inn i en felles png for sprites <a href="https://git.app.uib.no/Christoffer.Slettebo/ctrl-alt-defeat/-/blob/main/src/main/resources/Characters/CustomCharacter.png?ref_type=heads" target="_blank">CustomCharacter.png<a>
+- Tok inspirasjon fra orginal karakter og fiender fra Super Mario og lagde våre egene sprites å lå de inn i en felles png for sprites <a href="https://git.app.uib.no/Christoffer.Slettebo/ctrl-alt-defeat/-/blob/main/src/main/resources/Characters/CustomCharacter.png?ref_type=heads" target="_blank">CustomCharacter.png<a>
 - Powerup 10.wav av MATRIXXX_ <a href="https://freesound.org/s/523654/" target="_blank">Freesound</a> License: Creative Commons 0.
 - Retro, Coin 02.wav av MATRIXXX_ <a href="https://freesound.org/s/402288/" target="_blank">Freesound</a> License: Creative Commons 0.
 - Trúng Gạch Đá av SieuAmThanh <a href="https://freesound.org/s/530812/" target="_blank">Freesound</a> License: Creative Commons 0.

@@ -62,6 +62,14 @@ import inf112.View.Screens.ShowGame;
 		private AssetManager manager;
 		private Music music;
 
+		/**
+		 * Marius constructor.
+		 * 
+		 * Initializes varoius variables before defining marius.
+		 * 
+		 * @param screen
+		 * @param world
+		 */
 		@SuppressWarnings({ "rawtypes", "unchecked" })
 		public Marius(ShowGame screen, World world){
 			// Initializing variables
@@ -120,7 +128,8 @@ import inf112.View.Screens.ShowGame;
 		}
 		
 		/**
-		 * 
+		 * Update method that checks different statements, like is marius big, if time is up or marius has dead.
+		 * Method also defines big marius or redefines marius if needed.
 		 * @param dt
 		 */
 		public void update(float dt){
@@ -148,6 +157,10 @@ import inf112.View.Screens.ShowGame;
 			}
 		}
 
+		/**
+		 * Method that checks if b2body position is of the map, if that is the case return true, else return false.
+		 * @return boolean
+		 */
 		private boolean fallOfMap() {
 			// Check if marius body position is off the map
 			if(b2body.getPosition().y <= 0)
@@ -157,15 +170,14 @@ import inf112.View.Screens.ShowGame;
 		}
 
 		/**
-		 * 
-		 * @return
+		 * @return mariusIsDead
 		 */
 		public boolean entityIsDead() {
 			return mariusIsDead;
 		}
 
 		/**
-		 * 
+		 * Method that checks that marius is not already dead.
 		 */
 		public void entityDie() {
 			// Check that marius is not already dead
@@ -185,9 +197,9 @@ import inf112.View.Screens.ShowGame;
 		}
 	
 		/**
-		 * 
+		 * Gets marius state current state to check which animation frame to use by going through a switch statement.
 		 * @param dt
-		 * @return
+		 * @return animationFrame
 		 */
 		public TextureRegion getFrame(float dt){
 			// Retrieve marius current state (jumping, running etc..)
@@ -248,8 +260,7 @@ import inf112.View.Screens.ShowGame;
 		}
 		
 		/**
-		 * 
-		 * @return
+		 * @return state . Depends on which if statements goes through
 		 */
 		public State getState(){
 			//Test to Box2D for velocity on the X and Y-Axis
@@ -278,15 +289,14 @@ import inf112.View.Screens.ShowGame;
 		}
 		
 		/**
-		 * 
-		 * @return
+		 * @return stateTimer
 		 */
 		public float getStateTimer(){
 			return stateTimer;
 		}
 	
 		/**
-		 * 
+		 * Check if mairus is jumping, and if so apply linear impulse and set current state to jumping.
 		 */
 		public void jump(){
 			// Jump if not already jumping
@@ -297,7 +307,7 @@ import inf112.View.Screens.ShowGame;
 		}
 		
 		/**
-		 * 
+		 * This method defines marius body.
 		 */
 		public void defineMarius(){
 			BodyDef bdef = new BodyDef();
@@ -331,17 +341,20 @@ import inf112.View.Screens.ShowGame;
 		}
 
 		/**
-		 * 
+		 * This method defines big marius by,
 		 */
 		public void defineBigMarius(){
+			// Save current position and destory old body
 			Vector2 currentPositionMarius =  b2body.getPosition();
 			world.destroyBody(b2body);
 
+			// Create new body definition, set saved current position to the definition and create the body with body definition as input
 			BodyDef bdef = new BodyDef();
 			bdef.position.set(currentPositionMarius.add(0, 10/MegaMarius.PPM));
 			bdef.type = BodyDef.BodyType.DynamicBody;
 			b2body = world.createBody(bdef);
-	
+			
+			// Create a new fixture definition and circle shape (hitbox).
 			FixtureDef fdef = new FixtureDef();
 			CircleShape shape = new CircleShape();
 			shape.setRadius(5 / MegaMarius.PPM);
@@ -354,12 +367,14 @@ import inf112.View.Screens.ShowGame;
 					MegaMarius.ENEMY_HEAD_BIT |
 					MegaMarius.ITEM_BIT |
 					MegaMarius. FLAG_BIT;
-	
+			
+			// initialize shape, create fixutre using fixture definition and set user data, set potition of hitbox (shape).
 			fdef.shape = shape;
 			b2body.createFixture(fdef).setUserData(this);
 			shape.setPosition(new Vector2(0, -14/MegaMarius.PPM));
 			b2body.createFixture(fdef).setUserData(this);
-	
+			
+			// Create new edge shape and initialize. Add fixture head shape to body. Set timeToDefineBigMarius = false.
 			EdgeShape head = new EdgeShape();
 			head.set(new Vector2(-2 / MegaMarius.PPM, 6 / MegaMarius.PPM), new Vector2(2 / MegaMarius.PPM, 6 / MegaMarius.PPM));
 			fdef.filter.categoryBits = MegaMarius.MARIUS_HEAD_BIT;
@@ -372,37 +387,36 @@ import inf112.View.Screens.ShowGame;
 
 
 		/**
-		 * 
+		 * Call super draw on batch parameter.
+		 * @param batch
 		 */
 		public void draw(Batch batch){
 			super.draw(batch);
 		}
 
 		/**
-		 * 
+		 * Set game won to true.
 		 */
 		public static void setGameWon() {
 			gameWon = true;
 		}
 
 		/**
-		 * 
-		 * @return
+		 * @return isMariusBig
 		 */
 		public boolean isMariusBigNow(){
 			return isMariusBig;
 		}
 
 		/**
-		 * 
-		 * @return
+		 * @return gameWon
 		 */
 		public static boolean getGameWon() {
 			return gameWon;
 		}
 
 		/**
-		 * 
+		 * Hit method checks if enemy has hit marius.
 		 * @param enemy
 		 */
 		public void hit(Enemy enemy){
@@ -422,7 +436,7 @@ import inf112.View.Screens.ShowGame;
 		}
 
 		/**
-		 * 
+		 * The grow method plays music, sets big marius variables to true and sets the bounds to big marius.
 		 */
 		public void grow(){
 			music = manager.get("audio/music/powerup.wav", Music.class);
@@ -436,7 +450,7 @@ import inf112.View.Screens.ShowGame;
 		}
 
 		/**
-		 * 
+		 * Redefines marius body-
 		 */
 		public void redefineMarius(){
 			Vector2 posistion = b2body.getPosition();
@@ -475,8 +489,7 @@ import inf112.View.Screens.ShowGame;
 		}
 
 		/**
-		 * 
-		 * @return
+		 * @return show game screen
 		 */
 		public ShowGame getScreen(){
 			return screen;

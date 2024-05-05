@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.util.Vector;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,6 +23,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
 
 import inf112.Model.Entities.Enemies.Turtle.State;
@@ -119,5 +122,14 @@ public class SpiderTest {
         turtle.update(0);
         assertTrue(spider.entityIsDead());
         assertFalse(turtle.entityIsDead());
+    }
+
+    @Test
+    void revSpeedTest(){
+        Vector2 expectedSpeed = new Vector2(-1, -2);
+        assertEquals(expectedSpeed, spider.getVelocity());
+        spider.revVelocity(true, true);
+        expectedSpeed = new Vector2(1, 2);
+        assertEquals(expectedSpeed, expectedSpeed);
     }
 }

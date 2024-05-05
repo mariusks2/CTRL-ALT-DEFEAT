@@ -66,7 +66,7 @@ public class PessiTest {
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
         gameWorldManager = new GameWorldManager(fileName, textureAtlas);
         when(cScreen.getDisplay()).thenReturn(display);
-        pessi = new Pessi(gameWorldManager.getWorld(), textureAtlas, 0, 0);
+        pessi = new Pessi(gameWorldManager.getWorld(), textureAtlas, 0f, 0f);
         marius = new Marius(cScreen, gameWorldManager.getWorld());
         gameWorldManager.setPlayer(marius);
 	}

@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.backends.headless.HeadlessApplication;
+import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3NativesLoader;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -52,6 +54,9 @@ public class WorldContactListenerTest {
 		gl = mock(GL20.class);
         Gdx.gl = gl; 
         Gdx.gl20 = gl; 
+        HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
+        MegaMarius megaMarius = new MegaMarius();
+        new HeadlessApplication(megaMarius, config);
     }
 
 	/**
@@ -59,10 +64,9 @@ public class WorldContactListenerTest {
 	 */
 	@BeforeEach
 	void setUpBeforeEach() {
+        
         cScreen = mock(ShowGame.class);
         display =   mock(Display.class);
-        mapLoader = new TmxMapLoader();
-        map = mapLoader.load(fileName);
         wListener = new WorldContactListener();
 		when(cScreen.getDisplay()).thenReturn(display);
         textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
@@ -75,7 +79,7 @@ public class WorldContactListenerTest {
         Integer countBeforeMaking = gameWorldManager.getWorld().getBodyCount();
         Marius marius = new Marius(cScreen, gameWorldManager.getWorld());
         gameWorldManager.setPlayer(marius);
-        Pessi pessi = new Pessi(gameWorldManager.getWorld(), textureAtlas, 0, 0);
+        Pessi pessi = new Pessi(gameWorldManager.getWorld(), textureAtlas, 0f, 0f);
         assertEquals(countBeforeMaking+2, gameWorldManager.getWorld().getBodyCount());
         gameWorldManager.getWorld().step(0, 0, 0);
         wListener.beginContact(gameWorldManager.getWorld().getContactList().first());
@@ -83,6 +87,7 @@ public class WorldContactListenerTest {
         pessi.update(0);
         assertEquals(true, pessi.isDestroyed());
         assertEquals(State.GROWING, marius.currentState);
+        map = gameWorldManager.getMap();
     }
     
     @Test

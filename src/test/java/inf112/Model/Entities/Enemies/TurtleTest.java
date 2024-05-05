@@ -70,7 +70,7 @@ public class TurtleTest {
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
         gameWorldManager = new GameWorldManager(fileName, textureAtlas);
         when(cScreen.getDisplay()).thenReturn(display);
-        turtle = new Turtle(gameWorldManager.getWorld(), textureAtlas, 0, 0);
+        turtle = new Turtle(gameWorldManager.getWorld(), textureAtlas, 0f, 0f);
         marius = new Marius(cScreen, gameWorldManager.getWorld());
         gameWorldManager.setPlayer(marius);
 	}
@@ -94,7 +94,7 @@ public class TurtleTest {
 
     @Test
     void hitByEnemyTest(){
-        Spider spider = new Spider(gameWorldManager.getWorld(), textureAtlas, 0, 0);
+        Spider spider = new Spider(gameWorldManager.getWorld(), textureAtlas, 0f, 0f);
         turtle.hitByEnemy(spider);
         turtle.update(0);
         assertEquals(State.WALKING, turtle.getCurrentState());
@@ -103,7 +103,7 @@ public class TurtleTest {
 
     @Test
     void hitByEnemyMovingShellTest(){
-        Turtle turtle2 = new Turtle(gameWorldManager.getWorld(), textureAtlas, 0, 0);
+        Turtle turtle2 = new Turtle(gameWorldManager.getWorld(), textureAtlas, 0f, 0f);
         turtle2.hitOnHead(marius);
         turtle2.update(0);
         assertEquals(State.STANDING_SHELL, turtle2.getCurrentState());

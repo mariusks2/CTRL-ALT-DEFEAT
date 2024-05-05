@@ -69,7 +69,7 @@ public class SpiderTest {
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
         gameWorldManager = new GameWorldManager(fileName, textureAtlas);
         when(cScreen.getDisplay()).thenReturn(display);
-        spider = new Spider(gameWorldManager.getWorld(), textureAtlas, 0, 0);
+        spider = new Spider(gameWorldManager.getWorld(), textureAtlas, 0f, 0f);
         marius = new Marius(cScreen, gameWorldManager.getWorld());
         gameWorldManager.setPlayer(marius);
 	}
@@ -84,7 +84,7 @@ public class SpiderTest {
 
     @Test
     void hitByEnemyTest1(){
-        Spider spider2 = new Spider(gameWorldManager.getWorld(), textureAtlas, 0, 0);
+        Spider spider2 = new Spider(gameWorldManager.getWorld(), textureAtlas, 0f, 0f);
         spider.hitByEnemy(spider2);
         spider.update(0);
         spider2.update(0);
@@ -94,7 +94,7 @@ public class SpiderTest {
 
     @Test
     void hitByEnemyTrutleShellNoSpeedTest(){
-        Turtle turtle = new Turtle(gameWorldManager.getWorld(), textureAtlas, 0, 0);
+        Turtle turtle = new Turtle(gameWorldManager.getWorld(), textureAtlas, 0f, 0f);
         Marius marius = mock(Marius.class);
         turtle.hitOnHead(marius);
         turtle.update(0);
@@ -107,7 +107,7 @@ public class SpiderTest {
 
     @Test
     void hitByEnemyTurtleShellWithSpeedTest(){
-        Turtle turtle = new Turtle(gameWorldManager.getWorld(), textureAtlas, 0, 0);
+        Turtle turtle = new Turtle(gameWorldManager.getWorld(), textureAtlas, 0f, 0f);
         Marius marius = new Marius(cScreen, gameWorldManager.getWorld());
         turtle.hitOnHead(marius);
         turtle.update(0);

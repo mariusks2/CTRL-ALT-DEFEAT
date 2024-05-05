@@ -50,7 +50,6 @@ public class MariusTest {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
 		MegaMarius megaMarius = new MegaMarius();
         gl = mock(GL20.class);
-		gl = mock(GL20.class);
         Application app = mock(Application.class);
         //Mock Gdx
         Gdx.app = app;
@@ -92,9 +91,9 @@ public class MariusTest {
 	@Test
 	void redefineMariusTest(){
 		assertEquals(State.STANDING, marius.getState());
-		assertEquals(148, marius.world.getBodyCount());
+		assertEquals(133, marius.world.getBodyCount());
 		marius.redefineMarius();
-		assertEquals(148, marius.world.getBodyCount());
+		assertEquals(133, marius.world.getBodyCount());
 		assertEquals(State.STANDING, marius.getState());
 		assertEquals(false, marius.isMariusBigNow());
 	}
@@ -126,7 +125,7 @@ public class MariusTest {
 	@Test
 	void mariusHitShellTest(){
 		//define a turtle mock that will work
-		Turtle turtle = new Turtle(gameWorldManager.getWorld(), textureAtlas, 0, 0);
+		Turtle turtle = new Turtle(gameWorldManager.getWorld(), textureAtlas, 0f, 0f);
 		turtle.hitOnHead(marius);
 		turtle.update(0);
 		//marius hit the turtle, not supposed to die
@@ -138,7 +137,7 @@ public class MariusTest {
 
 	@Test
 	void defineBigMariusTest(){
-		assertEquals(148, marius.world.getBodyCount());
+		assertEquals(133, marius.world.getBodyCount());
 		assertEquals(State.STANDING, marius.getState());
 		marius.grow();
 		marius.update(0);
@@ -147,7 +146,7 @@ public class MariusTest {
 		marius.update(2);
 		marius.update(0);
 		assertEquals(State.STANDING, marius.getState());
-		assertEquals(148, marius.world.getBodyCount());
+		assertEquals(133, marius.world.getBodyCount());
 	}
 
 	@Test

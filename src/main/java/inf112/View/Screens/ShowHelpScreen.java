@@ -47,12 +47,6 @@ public class ShowHelpScreen implements Screen, InputHandler{
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
     }
-    //??
-    public void renderTest(){
-        handleInput();
-        ScreenManager.getInstance().clearScreen();
-        ScreenManager.getInstance().drawBackground(backgroundImage, MegaMarius.M_Width, MegaMarius.M_Height);
-    }
 
     //Lifecycle methods that are part of the Screen interface but are not used
     @Override
@@ -92,7 +86,7 @@ public class ShowHelpScreen implements Screen, InputHandler{
          // Defines the bounding box where back arrow is located
          Rectangle backBounds = new Rectangle(3, 190,43 ,12 );
          if (backBounds.contains(clickPosition)) {
-             ScreenManager.getInstance().showScreen("StartGame", new Object[]{game});
+            ScreenManager.getInstance().showScreen("StartGame", new Object[]{game});
          }
     }
     

@@ -91,8 +91,6 @@ public class GameWorldManager implements IGameWorldManager{
          if(!itemsToSpawn.isEmpty()){
             ItemDef itemDef = itemsToSpawn.poll();
             if(itemDef.type == Pessi.class){
-                //items.add(entityFactory.createItem("Pessi", world, atlas, itemDef.position.x,itemDef.position.y));
-                System.out.println("The position is: " + itemDef.position.x + itemDef.position.y);
                 items.add(itemFactory.create("Pessi", new Object[]{world, atlas, itemDef.position.x,itemDef.position.y }));
             }
         }

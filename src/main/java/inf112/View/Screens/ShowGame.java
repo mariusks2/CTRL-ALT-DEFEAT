@@ -57,8 +57,6 @@ public class ShowGame implements Screen, InputHandler{
 
     private GameWorldManager worldManager;
 
-    private int currentLevel;
-
     /**
      * Initialization of the game and variables used to display the game
      * @param game Reference to the main game object
@@ -312,13 +310,9 @@ public class ShowGame implements Screen, InputHandler{
     }
 
     /**
-     * Method for returning the current game object
-     * @return current game object
+     * Method for returning the texture atlas
+     * @return a texture atlas object
      */
-    public MegaMarius getGame() {
-        return game;
-    }
-
     public TextureAtlas getAtlas(){
         return atlas;
     }

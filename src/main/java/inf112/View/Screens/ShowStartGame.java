@@ -1,6 +1,5 @@
 package inf112.View.Screens;
 
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -24,7 +23,7 @@ public class ShowStartGame implements Screen, InputHandler {
     private Viewport viewport; //Manages how content is displayed
     private Stage stage; //Stage to hold UI elements for this screen
     private Texture backgroundImage; //Background image for the start screen
-    private MegaMarius game;
+    private MegaMarius game; //Main game object
 
     /**
      * Constructor that initializes the start screen with necessary components

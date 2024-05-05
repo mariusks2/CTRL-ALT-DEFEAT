@@ -133,7 +133,7 @@ public void checkButtonPress(Vector2 clickPosition) {
     // Check if the click is within the bounds of any of the rectangles
     //Here we could use a for loop for the map list for better implementation with more maps
     if (backBound.contains(clickPosition)) {
-        ScreenManager.getInstance().showScreen("StartGAme", new Object[]{megaMariusGame});
+        ScreenManager.getInstance().showScreen("StartGame", new Object[]{megaMariusGame});
     }
     else if (map1.contains(clickPosition) || map1Text.contains(clickPosition)){
         ScreenManager.getInstance().showScreen("ShowGame", new Object[]{megaMariusGame,mapList.get(0)});

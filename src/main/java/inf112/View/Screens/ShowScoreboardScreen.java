@@ -33,6 +33,7 @@ public class ShowScoreboardScreen implements Screen, InputHandler {
         this.viewport = new FitViewport(MegaMarius.M_Width, MegaMarius.M_Height, new OrthographicCamera());
         this.stage = new Stage(viewport,megaMariusGame.getSpriteBatch());
         this.game = megaMariusGame;
+        this.font = new BitmapFont();
     }
 
 

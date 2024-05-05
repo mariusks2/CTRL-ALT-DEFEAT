@@ -74,7 +74,6 @@ public class PauseScreenTest {
         TextureAtlas textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
         gameWorldManager = new GameWorldManager(fileName, textureAtlas);
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
-        when(cScreen.getWorldManager()).thenReturn(gameWorldManager);
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
         Marius marius = new Marius(cScreen, gameWorldManager.getWorld());
         sGame = new ShowPauseScreen(megaMarius, marius, State.STANDING, ScreenManager.getInstance());

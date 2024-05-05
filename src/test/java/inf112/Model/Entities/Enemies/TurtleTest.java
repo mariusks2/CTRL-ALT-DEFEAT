@@ -69,7 +69,6 @@ public class TurtleTest {
         display = new Display(mock(SpriteBatch.class));
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
         gameWorldManager = new GameWorldManager(fileName, textureAtlas);
-        when(cScreen.getWorldManager()).thenReturn(gameWorldManager);
         when(cScreen.getDisplay()).thenReturn(display);
         turtle = new Turtle(gameWorldManager.getWorld(), textureAtlas, 0, 0);
         marius = new Marius(cScreen, gameWorldManager.getWorld());

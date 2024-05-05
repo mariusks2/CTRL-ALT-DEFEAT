@@ -65,7 +65,6 @@ public class PessiTest {
         textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
         gameWorldManager = new GameWorldManager(fileName, textureAtlas);
-        when(cScreen.getWorldManager()).thenReturn(gameWorldManager);
         when(cScreen.getDisplay()).thenReturn(display);
         pessi = new Pessi(gameWorldManager.getWorld(), textureAtlas, 0, 0);
         marius = new Marius(cScreen, gameWorldManager.getWorld());

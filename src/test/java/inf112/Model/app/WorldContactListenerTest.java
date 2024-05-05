@@ -68,7 +68,6 @@ public class WorldContactListenerTest {
         textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
         gameWorldManager = new GameWorldManager(fileName, textureAtlas);
-        when(cScreen.getWorldManager()).thenReturn(gameWorldManager);
         gameWorldManager.getWorld().setContactListener(wListener);
 	}
     @Test

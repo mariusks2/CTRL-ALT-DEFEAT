@@ -67,7 +67,6 @@ public class CoinTest {
         textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
         display = new Display(mock(SpriteBatch.class));
         gameWorldManager = new GameWorldManager(fileName, textureAtlas);
-        when(cScreen.getWorldManager()).thenReturn(gameWorldManager);
         when(cScreen.getDisplay()).thenReturn(display);
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
         object = new RectangleMapObject();

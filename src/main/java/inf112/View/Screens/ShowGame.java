@@ -231,6 +231,8 @@ public class ShowGame implements Screen, InputHandler{
             if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
                 ScreenManager.getInstance().showScreen("StartGame", new Object[]{game});
                 game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), getLevel());
+                screenService.showStartGame();
+                game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), display.getLevel());
             }
             else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
                 Gdx.app.exit();
@@ -240,7 +242,7 @@ public class ShowGame implements Screen, InputHandler{
             
             if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
                 game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), getLevel());
-                ScreenManager.getInstance().showScreen("ShowGame", new Object[]{fileName});
+                screenService.showGameScreen(nextMap);
                 Display.updateLevel(1);
             } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
                 game.getScoreboardScreen().createNewScore(display.getTimer(), display.getScoreCount(), getLevel());
@@ -248,16 +250,7 @@ public class ShowGame implements Screen, InputHandler{
             }
         }
     }
-    private int getLevel(){
-        if (fileName == "MapAndTileset/level1.tmx") {
-            currentLevel = 1;
-        } else if (fileName == "MapAndTileset/level2.tmx") {
-            currentLevel = 2;
-        } else {
-            currentLevel = 3;
-        }
-        return currentLevel;
-    }
+
     /**
      * Method for drawing a light gray overlay when the game is won, used to display a clear difference between game and game win screen
      */
@@ -342,9 +335,6 @@ public class ShowGame implements Screen, InputHandler{
     @Override
     public void checkButtonPress(Vector2 clickPosition) {
         //Not needed in showgame
-    }
-    public GameWorldManager getWorldManager(){
-        return worldManager;
     }
 }
 

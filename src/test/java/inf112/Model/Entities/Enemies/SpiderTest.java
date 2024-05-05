@@ -68,7 +68,6 @@ public class SpiderTest {
         textureAtlas = new TextureAtlas("Characters/MegaMariusCharacters.pack");
         when(cScreen.getAtlas()).thenReturn(textureAtlas);
         gameWorldManager = new GameWorldManager(fileName, textureAtlas);
-        when(cScreen.getWorldManager()).thenReturn(gameWorldManager);
         when(cScreen.getDisplay()).thenReturn(display);
         spider = new Spider(gameWorldManager.getWorld(), textureAtlas, 0, 0);
         marius = new Marius(cScreen, gameWorldManager.getWorld());

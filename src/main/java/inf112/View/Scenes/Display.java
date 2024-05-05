@@ -163,5 +163,7 @@ public class Display {
         return scoreCount;
     }
 
-
+    public Integer getLevel() {
+        return level;
+    }
 }

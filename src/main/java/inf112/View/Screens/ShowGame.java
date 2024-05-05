@@ -129,7 +129,7 @@ public class ShowGame implements Screen, InputHandler{
      * @param dt The time passed since the last frame
      */
     public void update(float dt){ 
-        if (player.currentState==Marius.State.PAUSED){
+        if (player.getState()==Marius.State.PAUSED){
             return;
         }
         worldManager.update(dt);
@@ -137,7 +137,7 @@ public class ShowGame implements Screen, InputHandler{
         display.updateTime(dt);
 
         //attach our gamecam to our players.x coordinate
-        if(player.currentState != Marius.State.DEAD && player.b2body.getPosition().x > 2) {
+        if(player.getState() != Marius.State.DEAD && player.b2body.getPosition().x > 2) {
             camera.position.x = player.b2body.getPosition().x;
         }
 
@@ -265,7 +265,7 @@ public class ShowGame implements Screen, InputHandler{
      * Method for checking whether the game is over or not, returns true if the player is dead or the timer is done. Otherwise it returns false
      */
     private boolean gameIsOver() {
-        if (player.currentState == Marius.State.DEAD && player.getStateTimer() > 1)
+        if (player.getState() == Marius.State.DEAD && player.getStateTimer() > 1)
             return true;
         else
             return false;
@@ -321,7 +321,7 @@ public class ShowGame implements Screen, InputHandler{
     public void handleInput() {
         //Handles when the user want to pause the game
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            ScreenManager.getInstance().showScreen("PauseGame", new Object[]{game,player, player.currentState});
+            ScreenManager.getInstance().showScreen("PauseGame", new Object[]{game,player, player.getState()});
         }
     }
     @Override

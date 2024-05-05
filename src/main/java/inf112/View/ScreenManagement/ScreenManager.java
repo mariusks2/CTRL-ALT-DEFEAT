@@ -72,26 +72,37 @@ public class ScreenManager {
     }
     
     /**
-     * 
-     * @return
+     * Method that returns the showGameScreen.
+     * @return showGameScreen
      */
     public Screen getShowGameScreen() {
         return showGameScreen; // Return the stored game screen
     }
 
-    
+    /**
+     * Method that returns currentGamescren
+     * @return currentGameScreen
+     */
     public Screen getCurrentGameScreen(){
         return currentGameScreen;
     }
     
-    
+    /**
+     * Clear the screen.
+     */
     public void clearScreen() {
         // Clear the screen
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     }
 
-    
+    /**
+     * Draw background with given backgroundimage and position.
+     * 
+     * @param backgroundImage
+     * @param width
+     * @param height
+     */
     public void drawBackground(Texture backgroundImage, float width, float height) {
         game.getSpriteBatch().begin();
         game.getSpriteBatch().draw(backgroundImage, 0, 0, width, height);

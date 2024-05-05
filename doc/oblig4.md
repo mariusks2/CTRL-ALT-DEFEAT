@@ -235,7 +235,7 @@ Vi fant ikke tilbakemeldingene til de tidligere obligen før dagen før innlever
 - Vi har lagt inn all javadocs.
 - Vi har oppdatert pom.xml iflen med korrekt prosjektnavn.
 - Vi har fjernet ubrokt kode.
-- Vi har fått 75% test coverage på automatiske tester, og resterende 9% (antar vi) er oppnåd ved manuell og visuell testing.
+- Vi har fått 75% test coverage på automatiske tester.
 - Vi har også oppdatert prosjektmetodikk og beskrevet bedre hvordan de har fungert osv.
 - Vi har lagt til en abstrakt fabrikk og fabrikk metode for å lage objekter og skjermer
 

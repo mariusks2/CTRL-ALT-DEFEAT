@@ -9,7 +9,7 @@ C:.
 |   pom.xml
 |   README.md
 |   structure.txt
-|   uml diagram.png
+|   UML diagram.png
 |   
 +---.idea
 |       .gitignore
@@ -74,8 +74,10 @@ C:.
 |   |   |       |   |   |   InteractiveTileObj.java
 |   |   |       |   |   |   Item.java
 |   |   |       |   |   |   ItemDef.java
+|   |   |       |   |   |   ItemFactory.java
 |   |   |       |   |   |   
 |   |   |       |   |   +---Blocks
+|   |   |       |   |   |       BlockFactory.java
 |   |   |       |   |   |       Brick.java
 |   |   |       |   |   |       Coin.java
 |   |   |       |   |   |       Flag.java
@@ -83,12 +85,13 @@ C:.
 |   |   |       |   |   |       
 |   |   |       |   |   \---Enemies
 |   |   |       |   |           Enemy.java
+|   |   |       |   |           EnemyFactory.java
 |   |   |       |   |           Spider.java
 |   |   |       |   |           Turtle.java
 |   |   |       |   |           
 |   |   |       |   +---Factory
-|   |   |       |   |       EntityFactory.java
-|   |   |       |   |       IEntityFactory.java
+|   |   |       |   |       GenericFactory.java
+|   |   |       |   |       IFactory.java
 |   |   |       |   |       
 |   |   |       |   +---MakeMap
 |   |   |       |   |       MakeMap.java
@@ -103,7 +106,7 @@ C:.
 |   |   |           |       Score.java
 |   |   |           |       
 |   |   |           +---ScreenManagement
-|   |   |           |       IScreenFactory.java
+|   |   |           |       ScreenFactory.java
 |   |   |           |       ScreenManager.java
 |   |   |           |       
 |   |   |           \---Screens
@@ -207,8 +210,10 @@ C:.
     |   |   |   |   |   InteractiveTileObj.class
     |   |   |   |   |   Item.class
     |   |   |   |   |   ItemDef.class
+    |   |   |   |   |   ItemFactory.class
     |   |   |   |   |   
     |   |   |   |   +---Blocks
+    |   |   |   |   |       BlockFactory.class
     |   |   |   |   |       Brick.class
     |   |   |   |   |       Coin.class
     |   |   |   |   |       Flag.class
@@ -216,14 +221,14 @@ C:.
     |   |   |   |   |       
     |   |   |   |   \---Enemies
     |   |   |   |           Enemy.class
+    |   |   |   |           EnemyFactory.class
     |   |   |   |           Spider.class
-    |   |   |   |           Turtle$1.class
     |   |   |   |           Turtle$State.class
     |   |   |   |           Turtle.class
     |   |   |   |           
     |   |   |   +---Factory
-    |   |   |   |       EntityFactory.class
-    |   |   |   |       IEntityFactory.class
+    |   |   |   |       GenericFactory.class
+    |   |   |   |       IFactory.class
     |   |   |   |       
     |   |   |   +---MakeMap
     |   |   |   |       MakeMap.class
@@ -238,7 +243,7 @@ C:.
     |   |       |       Score.class
     |   |       |       
     |   |       +---ScreenManagement
-    |   |       |       IScreenFactory.class
+    |   |       |       ScreenFactory.class
     |   |       |       ScreenManager.class
     |   |       |       
     |   |       \---Screens

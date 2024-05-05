@@ -29,7 +29,7 @@ import inf112.View.Screens.ShowGame;
 
 		// Enum and states
 		public enum State {START, FALLING, JUMPING, STANDING, RUNNING, DEAD, GROWING, PAUSED};
-		public State currentState;
+		private State currentState;
 		public State previousState;
 		
 		// Enteties

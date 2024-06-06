@@ -16,6 +16,7 @@ Hvis Marius blir truffet av fienden fra siden vil Marius dø og man må starte s
 Man kommer i mål hvis man når frem til en flagg stang i enden av mappet.
 De er totalt tre maps med varierende grad av vansklighet.
 Man kan sjekke scoren sin ved å trykke på scoreboard knappen i map select menyen.
+Målet med spillet er å nå mål.
 
 ## Kjøring
 - Kompileres med `mvn package`.

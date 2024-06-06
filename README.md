@@ -4,6 +4,7 @@
 - Lenke til <a href="https://git.app.uib.no/Christoffer.Slettebo/ctrl-alt-defeat" target="_blank">GitLab</a>
 - Lenke til <a href="https://git.app.uib.no/Christoffer.Slettebo/ctrl-alt-defeat/-/blob/main/structure.txt?ref_type=heads" target="_blank">Structure.txt</a>
 - Lenke til <a href="https://git.app.uib.no/Christoffer.Slettebo/ctrl-alt-defeat/-/blob/main/uml%20diagram.png?ref_type=heads" target="_blank">Klassediagram.</a>
+- Lenke til <a href="blogpost.md" target="_blank">Bloggpost.</a>
 
 ## Om spillet
 - Lore:
